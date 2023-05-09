@@ -10,14 +10,14 @@
 
     <typeAliases>
         <!--  entity 클래스 별칭 설정      -->
-        <typeAlias alias="" type=""/>
+        <typeAlias alias="hr" type="com.hrms.project4th.mvc.entity.HrEmployees"/>
 
     </typeAliases>
 
     <mappers>
         <!-- Mapper XML files -->
 
-        <mapper resource=""/>
+        <mapper resource="mappers/HrEmployeesMapper.xml"/>
 
     </mappers>
 
