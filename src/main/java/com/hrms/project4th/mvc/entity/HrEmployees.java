@@ -18,6 +18,8 @@ PRIMARY KEY (EMP_NO),
 FOREIGN KEY (EMP_MY_BOSS) REFERENCES HR_EMPLOYEES(EMP_NO)
 );
  */
+
+
 @Setter
 @Getter
 @ToString
