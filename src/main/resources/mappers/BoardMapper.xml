@@ -4,19 +4,48 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.project4th.mvc.repository.BoardMapper">
 
-    <select id="findAll" resultType="board">
+    <select id="boardFindAll" resultType="board">
         SELECT
-        BOARD_NO, BD_TYPE, BD_TITLE, BD_CONTENT,
-        BD_DATE, EMP_NO
-        FROM HR_EMPLOYEES
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no
+        FROM hr_board
+    </select>
+
+    <select id="boardFindOne" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no
+        FROM hr_board
+        WHERE emp_no=#{empNo}
+    </select>
+
+    <select id="boardDetail" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no
+        FROM hr_board
+        WHERE board_no=#{boardNo}
     </select>
 
     <insert id="boardSave">
-        INSERT INTO HR_BOARD
-        (BD_TYPE, BD_TITLE, BD_CONTENT, EMP_NO)
+        INSERT INTO hr_board
+        (bd_type, bd_title, bd_content, emp_no)
         VALUES
         (#{bdType},#{bdTitle},#{bdContent},#{empNo})
     </insert>
+
+    <delete id="boardDelete">
+        DELETE FROM hr_board
+        WHERE board_no=#{boardNo}
+    </delete>
+
+    <update id="boardModify">
+        UPDATE hr_board
+        SET bd_type=#{bdType}, bd_title=#{bdTitle}, bd_content=#{bdContent}
+        WHERE board_no=#{boardNo}
+    </update>
+
+
 <!--       //게시글 번호
     private long boardNo;
 

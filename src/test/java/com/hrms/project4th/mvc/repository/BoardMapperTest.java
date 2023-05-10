@@ -6,6 +6,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,6 +36,57 @@ class BoardMapperTest {
         }
 
 
+    }
+
+    @Test
+    @DisplayName("게시글 List를 보여주는 기능")
+    void findAllTest() {
+
+        List<Board> boards = boardMapper.boardFindAll();
+        System.out.println("boards = " + boards);
+
+    }
+
+    @Test
+    @DisplayName("게시글 List 중 원하는 사원만(사원번호) 보여주는 기능")
+    void findOneTest() {
+        Long emNo = 5L;
+        List<Board> boards = boardMapper.boardFindOne(emNo);
+        System.out.println("boards = " + boards);
+    }
+
+    @Test
+    @DisplayName("게시글 중 게시글번호를 입력하여 일치하는 게시물을 보여주는 기능")
+    void boardDetailTest() {
+        Long boardNo = 5L;
+        Board board = boardMapper.boardDetail(boardNo);
+        System.out.println("boards = " + board);
+    }
+
+    @Test
+    @DisplayName("게시글 중 게시글번호를 입력하여 일치하는 게시물을 제거하는 기능")
+    @Rollback
+    @Transactional
+    void boardDeleteTest() {
+        Long boardNo = 5L;
+        boolean flag = boardMapper.boardDelete(boardNo);
+        assertTrue(flag);
+    }
+
+    @Test
+    @DisplayName("게시글 중 게시글번호를 입력하여 일치하는 게시물을 제거하는 기능")
+    @Rollback
+    @Transactional
+    void boardModifyTest() {
+        Board b = Board.builder()
+                .boardNo(1L)
+                .bdTitle("modifyTitle")
+                .bdContent("modifyContent")
+                .bdType(BdType.FREE)
+                .build();
+
+        boolean flag = boardMapper.boardModify(b);
+        assertTrue(flag);
     }
 
 
