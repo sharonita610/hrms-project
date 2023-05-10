@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.BoardMapper">
+
+    <select id="findAll" resultType="board">
+        SELECT
+        BOARD_NO, BD_TYPE, BD_TITLE, BD_CONTENT,
+        BD_DATE, EMP_NO
+        FROM HR_EMPLOYEES
+    </select>
+
+    <insert id="boardSave">
+        INSERT INTO HR_BOARD
+        (BD_TYPE, BD_TITLE, BD_CONTENT, EMP_NO)
+        VALUES
+        (#{bdType},#{bdTitle},#{bdContent},#{empNo})
+    </insert>
+<!--       //게시글 번호
+    private long boardNo;
+
+    //게시글 종료(공지,자유,익명)
+    private BdType bdType;
+
+    //게시글 제목
+    private String bdTitle;
+
+    //게시글 내용
+    private String bdContent;
+
+    //게시글 작성 시간
+    private LocalDateTime bdDate;
+
+    //사원 번호
+    private long empNo;
+ -->
+
+<!--    CREATE TABLE HR_BOARD (-->
+<!--    BOARD_NO INT(10) AUTO_INCREMENT,-->
+<!--    BD_TYPE enum('NOTICE', 'FREE', 'UNNAMED') not NULL,-->
+<!--    BD_TITLE VARCHAR(100) not NULL,-->
+<!--    BD_CONTENT VARCHAR(1000) not NULL,-->
+<!--    BD_DATE DATETIME DEFAULT CURRENT_TIMESTAMP,-->
+<!--    EMP_NO INT(10),-->
+<!--    constraint PK_BOARD_NO PRIMARY KEY (BOARD_NO)-->
+<!--    );-->
+
+<!--        //게시글 전체 조회
+    List<Board> boardFindAll();
+
+    //내가 원하는 사원 게시글 조회
+    List<Board> boardFindOne(Long empNo);
+
+    //게시글 상세보기
+    Board boardDetail(Long BoardNo);
+
+    //게시글 추가
+    boolean boardSave(Board board);
+
+    //게시글 삭제
+    boolean boardDelete(Long boardNo);
+
+    //게시글 수정
+    boolean boardModify(Board board);-->
+</mapper>
