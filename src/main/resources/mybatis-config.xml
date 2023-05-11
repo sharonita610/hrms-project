@@ -14,7 +14,6 @@
         <typeAlias alias="bdType" type="com.hrms.project4th.mvc.entity.BdType"/>
 
         <typeAlias alias="mail" type="com.hrms.project4th.mvc.entity.Mail"/>
-        <typeAlias alias="mailStatus" type="com.hrms.project4th.mvc.entity.CheckStatus"/>
 
 
     </typeAliases>

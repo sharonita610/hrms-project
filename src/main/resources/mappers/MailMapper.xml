@@ -6,16 +6,33 @@
 
     <insert id="sendRequest">
         INSERT INTO hr_email
-        (mail_to,mail_from,mail_title,mail_content,emp_no)
+        (mail_to,mail_from,mail_title,mail_content)
         VALUES
-        (#{mailTo},#{mailFrom},#{mailTitle},#{mailContent},#{empNo})
+        (#{mailTo},#{mailFrom},#{mailTitle},#{mailContent})
     </insert>
 
+    <!-- 접속한 사용자의 사원번호에맞는 이메일만 나온다-->
     <select id="getMailList" resultType="mail">
         SELECT *
         FROM hr_email
-        WHERE emp_no = #{empNo}
+        WHERE mail_no = #{mailNo}
     </select>
+
+    <!--메일번호에 맞는 메일의 객체정보전체가 나온다    -->
+    <select id="getMailDetail" resultType="mail">
+        SELECT *
+        FROM hr_email
+        <if test="mail">
+
+        </if>
+        WHERE mail_no = #{mailNo}
+    </select>
+    
+    <update id="mailViewUpdate">
+        UPDATE hr_email
+        SET mail_status = 'Y'
+        WHERE mail_no = #{mailNo};
+    </update>
 
 
 

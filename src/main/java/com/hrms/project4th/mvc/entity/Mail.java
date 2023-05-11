@@ -32,10 +32,10 @@ public class Mail {
     private Long mailNo;
 
     //받을사람 이메일
-    private String mailTo;
+    private Long mailTo;
 
     //보낸 사람 이름
-    private String mailFrom;
+    private Long mailFrom;
 
     //메일 제목
     private String mailTitle;
@@ -50,8 +50,6 @@ public class Mail {
     //열거형
     private CheckStatus mailStatus;
 
-    //사원 번호 fk(참조키)
-    private Long empNo;
 
 
 }

@@ -39,12 +39,17 @@ public class MailController {
 
     //메일 불러오기서비스(로그인한 사용자 사번이 필요함)
 
-    public String getList(Model model,@Param(value = "empNo") Long empNo){
+    public String getList(Model model,@Param(value = "mailTo") Long mailTo){
 
-        List<Mail> mailList = mailService.getMailList(empNo);
+        List<Mail> mailList = mailService.getMailList(mailTo);
         model.addAttribute("maillist",mailList);
         return "";
 
+    }
+
+    //메일 하나확인하기(개개인 메일의 번호가필요함)
+    public Mail getMailDetail(Model model,Long mailNo){
+        return mailService.getMailDetail(mailNo);
     }
 
 }

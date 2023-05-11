@@ -13,12 +13,12 @@ public interface MailMapper {
 
     //메일 리스트 받아오기
 
-    List<Mail> getMailList(Long empNo);
+    List<Mail> getMailList(Long mailTo);
 
     //메일 상세보기
-    Mail getMailDetail();
+    Mail getMailDetail(Long mailNo);
 
-    //메일 상태값 변경
-    boolean StatusMail(Long empNo);
+    //메일 상태값 변경 확인을하면 상태값이 y로 변경되어야한다
+    void mailViewUpdate(Long mailNo);
 
 }
