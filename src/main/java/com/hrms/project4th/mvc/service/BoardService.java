@@ -43,7 +43,7 @@ public class BoardService {
 
     public Board boardFindOneByBoardNo(Long boardNo){
 
-        return boardMapper.boardFindOne(
+        return boardMapper.boardFindOneByBoardNo(
     }
 
     /**
@@ -60,14 +60,7 @@ public class BoardService {
     }
 
 
-    /*
-+ boardFindAll() : List<BoardListResponseDTO dto>
-+ boardFindOne(Long empNo) : List<BoardListResponseDTO dto>
-+ boardDetail(Long boardNo) : Board
-+ boardSave(BoardSaveRequestDTO dto) : boolean
-+ boardDelete(BoardDeleteRequestDTO dto)) : boolean
-+ boardModify(BoardModifyRequestDTO dto) : boolean
-     */
+
 
 
 }

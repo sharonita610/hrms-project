@@ -14,7 +14,8 @@ public interface BoardMapper {
     //사원번호를 통해 게시글 조회
     List<Board> boardFindOneByEno(Long empNo);
 
-    //게시
+    //게시글번호 통해 게시글 조회
+    Board boardFindOneByBoardNo(Long boardNo);
 
     //게시글 상세보기
     Board boardDetail(Long BoardNo);
