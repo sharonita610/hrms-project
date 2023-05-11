@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.entity;
 
+import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -30,4 +31,10 @@ public class Board {
     private long empNo;
 
 
+    public Board(BoardSaveRequestDTO dto) {
+        this.bdType=dto.getBdType();
+        this.bdTitle=dto.getBdTitle();
+        this.bdContent=dto.getBdContent();
+        this.empNo= dto.getEmpNo();
+    }
 }

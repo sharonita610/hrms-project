@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.dto;
 
+import com.hrms.project4th.mvc.entity.Board;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -21,9 +22,10 @@ public class BoardDetailRequestDTO {
         this.bdTitle = board.getBdTitle();
         this.bdContent = board.getBdContent();
         this.stringDate=BoardListResponseDTO.makeStringDate(board.getBdDate());
-        this.empNo = board.getEmpNo();
+        this.empNo = (int)Math.ceil(Math.random()*100);
 
     }
+
 
 
 }

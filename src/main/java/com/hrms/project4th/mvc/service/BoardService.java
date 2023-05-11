@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.BoardDetailRequestDTO;
 import com.hrms.project4th.mvc.dto.BoardListResponseDTO;
+import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.repository.BoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -41,22 +42,39 @@ public class BoardService {
                 .collect(Collectors.toList());
     }
 
-    public Board boardFindOneByBoardNo(Long boardNo){
-
-        return boardMapper.boardFindOneByBoardNo(
-    }
-
     /**
-     * 특정 게시물을 자세하게 보여주는 기능
+     * 게시글 번호를 입력받아 게시물을 보여주는 기능
      *
      * @param boardNo 게시글 번호
      * @return Board 객체
      */
+    public Board boardFindOneByBoardNo(Long boardNo){
+
+        return boardMapper.boardFindOneByBoardNo(boardNo);
+    }
+
+    /**
+     * 게시글 번호를 입력받아 dto 로 변환하여 보여주는 기능
+     *
+     * @param boardNo 게시글 번호
+     * @return BoardDetailRequestDTO 객체
+     */
     public BoardDetailRequestDTO boardDetail(Long boardNo) {
+        Board board = boardFindOneByBoardNo(boardNo);
 
+        return new BoardDetailRequestDTO(board);
+    }
 
-        return new BoardDetailRequestDTO();
+    /**
+     * 정보를 받아 저장하는 기능
+     *
+     * @param dto 저장하기 위한 정보를 받는 DTO
+     * @return SAVE 성공 TRUE / 실패 FALSE
+     */
 
+    public boolean boardSave(BoardSaveRequestDTO dto){
+        
+        return boardMapper.boardSave(new Board(dto));
     }
 
 

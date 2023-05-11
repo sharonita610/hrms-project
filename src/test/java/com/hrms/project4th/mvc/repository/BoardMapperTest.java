@@ -74,7 +74,7 @@ class BoardMapperTest {
     }
 
     @Test
-    @DisplayName("게시글 중 게시글번호를 입력하여 일치하는 게시물을 제거하는 기능")
+    @DisplayName("게시글 중 게시글번호를 입력하여 일치하는 게시물을 수정하는 기능")
     @Rollback
     @Transactional
     void boardModifyTest() {

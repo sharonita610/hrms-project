@@ -97,7 +97,7 @@
     <script>
         const $save = document.getElementById('save-Btn');
         $save.onclick = function () {
-            window.location.href = '/test2/write/'
+            window.location.href = '/hrms/board-save/'
         }
     </script>
 
