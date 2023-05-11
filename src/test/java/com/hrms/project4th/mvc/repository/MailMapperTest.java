@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static com.hrms.project4th.mvc.entity.CheckStatus.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,9 +25,18 @@ class MailMapperTest {
     void saveTest(){
         //given
 
+        for (int i = 0; i <300; i++) {
+            Mail build = Mail.builder().mailTo("jiseung@naver.com").
+                    mailFrom("abcd@naver.com").mailContent("테스트용메일"+i).mailTitle("테스트용"+i).empNo(2L).build();
+            mailMapper.sendRequest(build);
+        }
+    }
 
-        Mail build = Mail.builder().mailTo("jiseung@naver.com").
-                mailFrom("abcd@naver.com").mailContent("테스트용메일").mailTitle("테스트용").empNo(2L).mailStatus(N).build();
-        mailMapper.sendRequest(build);
+    @Test
+    @DisplayName("empNo가 2번인 사원의 모든 메일리스트의 사이즈가 300 이어야한다")
+    void getListTest(){
+        List<Mail> mailList = mailMapper.getMailList(2L);
+
+        assertEquals(300, mailList.size(), "mailList array size should be 301");
     }
 }

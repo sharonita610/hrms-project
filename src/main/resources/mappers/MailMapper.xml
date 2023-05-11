@@ -6,9 +6,9 @@
 
     <insert id="sendRequest">
         INSERT INTO hr_email
-        (mail_to,mail_from,mail_title,mail_content,mail_status,emp_no)
+        (mail_to,mail_from,mail_title,mail_content,emp_no)
         VALUES
-        (#{mailTo},#{mailFrom},#{mailTitle},#{mailContent},#{mailStatus},#{empNo})
+        (#{mailTo},#{mailFrom},#{mailTitle},#{mailContent},#{empNo})
     </insert>
 
     <select id="getMailList" resultType="mail">
