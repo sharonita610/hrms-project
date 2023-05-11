@@ -11,6 +11,8 @@
     <typeAliases>
         <!--  entity 클래스 별칭 설정      -->
         <typeAlias alias="hr" type="com.hrms.project4th.mvc.entity.HrEmployees"/>
+        <typeAlias alias="cnfm" type="com.hrms.project4th.mvc.entity.Confirm"/>
+        <typeAlias alias="employees" type="com.hrms.project4th.mvc.entity.Employees"/>
 
     </typeAliases>
 
@@ -18,6 +20,8 @@
         <!-- Mapper XML files -->
 
         <mapper resource="mappers/HrEmployeesMapper.xml"/>
+        <mapper resource="mappers/ConfirmMapper.xml"/>
+        <mapper resource="mappers/EmployeesMapper.xml"/>
 
     </mappers>
 
