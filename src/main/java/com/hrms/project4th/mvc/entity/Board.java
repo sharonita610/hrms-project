@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.entity;
 
+import com.hrms.project4th.mvc.dto.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
 import lombok.*;
 
@@ -36,5 +37,13 @@ public class Board {
         this.bdTitle=dto.getBdTitle();
         this.bdContent=dto.getBdContent();
         this.empNo= dto.getEmpNo();
+    }
+
+    public Board(BoardModifyRequestDTO dto){
+        this.boardNo=dto.getBoardNo();
+        this.bdType= BdType.valueOf(dto.getBdType());
+        this.bdTitle=dto.getBdTitle();
+        this.bdContent=dto.getBdContent();
+//        this.empNo= dto.getEmpNo();
     }
 }

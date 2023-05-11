@@ -84,9 +84,11 @@
     <div class="card-wrapper">
         <c:forEach var="a" items="${allList}">
             <div class="main-box">
+                <button id="detail-btn" data-href="/hrms/board-detail/?boardNo=${a.boardNo}">상세보기</button>
+                <button id="delete-btn" data-href="/hrms/board-delete/?boardNo=${a.boardNo}">삭제</button>
                 <div id="title">${a.shortTitle}</div>
                 <div class="date-count-wrapper">
-                      <div id="viewCount">${a.bdType}</div>
+                    <div id="viewCount">${a.bdType}</div>
                     <div id="date">${a.stringDate}</div>
                 </div>
                 <div id="content">${a.shortContent}</div>
@@ -95,10 +97,35 @@
     </div>
 
     <script>
+
+        //저장기능
         const $save = document.getElementById('save-Btn');
         $save.onclick = function () {
             window.location.href = '/hrms/board-save/'
-        }
+        };
+
+        //삭제기능
+        const $cardWrapper = document.querySelector('.card-wrapper')
+        const $mainBox = document.querySelector('main-box');
+
+        $cardWrapper.addEventListener('click', e => {
+            if (e.target.matches('.main-box *')) {
+                const $delBtn = e.target.closest('#delete-btn');
+                window.location.href = $delBtn.dataset.href;
+            }
+
+        })
+
+        //디테일 기능
+
+        $cardWrapper.addEventListener('click', e => {
+            if (e.target.matches('.main-box *')) {
+                const $detail = e.target.closest('#detail-btn');
+                window.location.href = $detail.dataset.href;
+            }
+
+        })
+
     </script>
 
 </body>

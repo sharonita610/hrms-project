@@ -78,7 +78,8 @@ public class BoardService {
     }
 
 
+    public boolean boardDelete(Long boardNo) {
 
-
-
+        return boardMapper.boardDelete(boardNo);
+    }
 }
