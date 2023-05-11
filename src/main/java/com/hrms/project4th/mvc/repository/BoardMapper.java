@@ -11,8 +11,10 @@ public interface BoardMapper {
     //게시글 전체 조회
     List<Board> boardFindAll();
 
-    //내가 원하는 사원 게시글 조회
-    List<Board> boardFindOne(Long empNo);
+    //사원번호를 통해 게시글 조회
+    List<Board> boardFindOneByEno(Long empNo);
+
+    //게시
 
     //게시글 상세보기
     Board boardDetail(Long BoardNo);

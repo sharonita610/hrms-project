@@ -23,12 +23,12 @@ class BoardMapperTest {
     @DisplayName("게시글 10개 저장하는 기능")
     void saveTest() {
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             Board b = Board.builder()
                     .boardNo(i)
                     .bdType(BdType.NOTICE)
                     .bdTitle("board title" + i)
-                    .bdContent("board content" + i)
+                    .bdContent("board content / board content" + i)
                     .empNo(i)
                     .build();
             boolean flag = boardMapper.boardSave(b);
@@ -51,7 +51,7 @@ class BoardMapperTest {
     @DisplayName("게시글 List 중 원하는 사원만(사원번호) 보여주는 기능")
     void findOneTest() {
         Long emNo = 5L;
-        List<Board> boards = boardMapper.boardFindOne(emNo);
+        List<Board> boards = boardMapper.boardFindOneByEno(emNo);
         System.out.println("boards = " + boards);
     }
 

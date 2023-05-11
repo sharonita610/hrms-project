@@ -29,4 +29,5 @@ public class Board {
     //사원 번호
     private long empNo;
 
+
 }

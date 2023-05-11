@@ -11,12 +11,20 @@
         FROM hr_board
     </select>
 
-    <select id="boardFindOne" resultType="board">
+    <select id="boardFindOneByEno" resultType="board">
         SELECT
         board_no, bd_type, bd_title, bd_content,
         bd_date, emp_no
         FROM hr_board
         WHERE emp_no=#{empNo}
+    </select>
+
+    <select id="boardFindOneByBoardNo" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no
+        FROM hr_board
+        WHERE board_no=#{boardNo}
     </select>
 
     <select id="boardDetail" resultType="board">
@@ -45,51 +53,4 @@
         WHERE board_no=#{boardNo}
     </update>
 
-
-<!--       //게시글 번호
-    private long boardNo;
-
-    //게시글 종료(공지,자유,익명)
-    private BdType bdType;
-
-    //게시글 제목
-    private String bdTitle;
-
-    //게시글 내용
-    private String bdContent;
-
-    //게시글 작성 시간
-    private LocalDateTime bdDate;
-
-    //사원 번호
-    private long empNo;
- -->
-
-<!--    CREATE TABLE HR_BOARD (-->
-<!--    BOARD_NO INT(10) AUTO_INCREMENT,-->
-<!--    BD_TYPE enum('NOTICE', 'FREE', 'UNNAMED') not NULL,-->
-<!--    BD_TITLE VARCHAR(100) not NULL,-->
-<!--    BD_CONTENT VARCHAR(1000) not NULL,-->
-<!--    BD_DATE DATETIME DEFAULT CURRENT_TIMESTAMP,-->
-<!--    EMP_NO INT(10),-->
-<!--    constraint PK_BOARD_NO PRIMARY KEY (BOARD_NO)-->
-<!--    );-->
-
-<!--        //게시글 전체 조회
-    List<Board> boardFindAll();
-
-    //내가 원하는 사원 게시글 조회
-    List<Board> boardFindOne(Long empNo);
-
-    //게시글 상세보기
-    Board boardDetail(Long BoardNo);
-
-    //게시글 추가
-    boolean boardSave(Board board);
-
-    //게시글 삭제
-    boolean boardDelete(Long boardNo);
-
-    //게시글 수정
-    boolean boardModify(Board board);-->
 </mapper>

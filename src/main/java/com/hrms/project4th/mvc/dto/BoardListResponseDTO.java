@@ -33,7 +33,7 @@ public class BoardListResponseDTO {
      * @param bdDate LocalDateTime 날짜
      * @return 패턴화된 String
      */
-    private String makeStringDate(LocalDateTime bdDate) {
+    public static String makeStringDate(LocalDateTime bdDate) {
         DateTimeFormatter pattern =DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return pattern.format(bdDate);
     }
