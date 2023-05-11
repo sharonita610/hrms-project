@@ -37,7 +37,7 @@ class ConfirmServiceTest {
     }
 
     @Test
-    @DisplayName("롤넘버가 11111이 아니면 요청받은 미결재내역을 불러온다")
+    @DisplayName("롤넘버가 11111이 아니면 요청한 미결재내역을 불러온다")
     void getWaitingListTest1(){
         List<Confirm> list = confirmService.getWaitingList(4L, null);
         System.out.println(list);

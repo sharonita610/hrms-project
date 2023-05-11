@@ -19,6 +19,7 @@
                 and from_emp_no = #{empNo}
             </otherwise>
         </choose>
+        order by con_date desc
     </select>
 
     <select id="getCheckedList" resultType="cnfm">
@@ -31,6 +32,7 @@
                 and from_emp_no = #{empNo}
             </otherwise>
         </choose>
+        order by con_check_date desc
     </select>
 
     <update id="checkConfirm">
