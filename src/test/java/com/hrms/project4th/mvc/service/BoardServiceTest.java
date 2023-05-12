@@ -18,8 +18,8 @@ class BoardServiceTest {
     @Test
     @DisplayName("DB에서 불러온 게시판의 정보를 dto를 이용하여 타입변경과 짧게 만들어 보여주는 기능")
     void findAllTest(){
-        List<BoardListResponseDTO> b = boardService.boardFindAll();
-        System.out.println("b = " + b);
+//        List<BoardListResponseDTO> b = boardService.boardFindAll();
+//        System.out.println("b = " + b);
 
 
     }

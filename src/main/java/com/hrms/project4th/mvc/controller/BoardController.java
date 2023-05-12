@@ -3,6 +3,7 @@ package com.hrms.project4th.mvc.controller;
 import com.hrms.project4th.mvc.dto.BoardListResponseDTO;
 import com.hrms.project4th.mvc.dto.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
+import com.hrms.project4th.mvc.dto.Page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +26,11 @@ public class BoardController {
 
     // 게시글을 보여주는 기능
     @GetMapping("/board-list")
-    public String boardFindAll(Model model) {
-        List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll();
+    public String boardFindAll(BoardSearch search, Model model) {
+        List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
 //        log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
-
+        log.info("search : {}",search);
+        model.addAttribute("searchInfo",search);
         model.addAttribute("allList", boardListResponseDTOS);
         return "/board/boardList";
     }
@@ -68,7 +70,7 @@ public class BoardController {
     }
 
     // 게시글 수정 페이지를 보여주는 기능
-    @PostMapping("show-modify")
+    @PostMapping("/show-modify")
     public String showModify(Model model, BoardModifyRequestDTO dto) {
         log.info("/hrms/board-modify : POST / {}", dto);
         model.addAttribute("m", dto);
@@ -76,19 +78,12 @@ public class BoardController {
     }
 
     // 수정한 값을 입력받아 Detail page 에 다시 띄어준다.
-    @PostMapping("board-modify")
-    public String boardModify(BoardModifyRequestDTO dto,Model model){
-        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}",dto);
-        if(boardService.boardModify(dto)){
-            model.addAttribute("b", dto);
-        }
-
-        return "/board/boardDetail";
+    @PostMapping("/board-modify")
+    public String boardModify(BoardModifyRequestDTO dto, Model model) {
+//        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}", dto);
+        boolean flag = boardService.boardModify(dto);
+//        log.info("flag : {}",flag);
+        model.addAttribute("b", dto);
+        return "redirect:/hrms/board-detail?boardNo=" + dto.getBoardNo();
     }
-
-
-
-
-
-
 }

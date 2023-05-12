@@ -23,7 +23,7 @@
     }
 
     .card-wrapper {
-        margin: 200px auto;
+        margin: 100px auto;
         border: 2px solid #000;
         width: 1000px;
         display: flex;
@@ -66,6 +66,59 @@
         border: 1px solid #000;
         height: 100px;
     }
+
+    .search {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .select-wrapper {
+        margin-top: 20px;
+        height: 50px;
+    }
+
+    .search_box {
+        width: 520px;
+        height: 50px;
+        border: 2px solid #03cf5d;
+        display: flex;
+        margin-top: 20px;
+    }
+
+    .search_box input {
+        width: 90%;
+        height: 46px;
+        padding-left: 12px;
+        padding-right: 12px;
+        border: none;
+        outline: none;
+        font-size: 18px;
+
+    }
+
+    .search_box button {
+        width: 10%;
+        height: 46px;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: #03cf5d;
+    }
+
+    .search_box i {
+        color: white;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    #keyboard {
+        color: lightgray;
+        font-size: 20px;
+        text-align: center;
+        width: 10%;
+        padding-top: 12px;
+    }
 </style>
 
 
@@ -77,6 +130,21 @@
             <button id="save-Btn" type="button">새글 추가</button>
         </ol>
 
+    </header>
+
+    <!-- search bar -->
+    <header class="search">
+        <form action="/hrms/board-list" method="get">
+            <select class="select-wrapper" name="boardType">
+                <option value="title">제목</option>
+                <option value="boardType">공지유형</option>
+                <option value="boardContent">내용</option>
+            </select>
+            <div class="search_box">
+                <input type="text" name="boardKeyWord" maxlength="225"> <i id="keyboard" class="fa fa-keyboard-o"></i>
+                <button type="submit">검색</button>
+            </div>
+        </form>
     </header>
 
     <!-- end card container -->
@@ -97,7 +165,6 @@
     </div>
 
     <script>
-
         //저장기능
         const $save = document.getElementById('save-Btn');
         $save.onclick = function () {
@@ -125,7 +192,6 @@
             }
 
         })
-
     </script>
 
 </body>

@@ -53,7 +53,7 @@
 
 <body>
 
-    <div class="write-wrapper">
+    <div class="write-wrapper">     
         <form action="/hrms/show-modify" method="post">
             <!-- <header class="write-header">글 쓰 기</header> -->
             <div class="head-wrapper">

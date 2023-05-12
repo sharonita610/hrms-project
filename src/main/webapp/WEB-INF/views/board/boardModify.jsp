@@ -57,6 +57,7 @@
 
         
         <form action="/hrms/board-modify" method="post">
+            <input type="hidden" name="boardNo" value="${m.boardNo}">
             <header class="write-header">수정하기</header>
             <div class="head-wrapper">
                 <label id="write-title">제목</label>

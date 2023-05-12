@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
+import com.hrms.project4th.mvc.dto.Page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,7 +10,7 @@ import java.util.List;
 public interface BoardMapper {
 
     //게시글 전체 조회
-    List<Board> boardFindAll();
+    List<Board> boardFindAll(BoardSearch boardSearch);
 
     //사원번호를 통해 게시글 조회
     List<Board> boardFindOneByEno(Long empNo);
