@@ -26,19 +26,13 @@ import static com.hrms.project4th.mvc.entity.CheckStatus.*;
 @EqualsAndHashCode
 public class Mail {
 
-
     //보낸 사람이메일
-    private String empEmail;
-
+    private Long mailFrom;
+    //받을사람 이메일
+    private Long mailTo;
     //메일 제목
     private String mailTitle;
-
     //메일 내용
-    private CheckStatus status;
-
-
-    void CheckStatus(){
-        this.status = N;
-    }
+    private String mailContent;
 
 }

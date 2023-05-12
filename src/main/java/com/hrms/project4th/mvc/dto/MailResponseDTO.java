@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.dto;
 
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import static com.hrms.project4th.mvc.entity.CheckStatus.N;
 @Getter
 @Builder
 @Setter
+@EqualsAndHashCode
 public class MailResponseDTO {
 
     //메일 번호
@@ -24,9 +26,5 @@ public class MailResponseDTO {
     private CheckStatus status;
     //메일 작성시간(발송시간)
     private LocalDate mailDate;
-
-    void CheckStatus(){
-        this.status = N;
-    }
 
 }

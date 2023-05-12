@@ -13,7 +13,7 @@
 
     <!-- 접속한 사용자의 사원번호에맞는 이메일만 나온다-->
     <select id="getMailList" resultType="mailResponseDTO">
-        SELECT emp_email,mail_no,mail_to,mail_from,mail_title,mail_content,mail_date,mail_status
+        SELECT emp_email,mail_no,mail_to,mail_title,mail_date,mail_status
         FROM hr_employees he
         JOIN hr_email he2
         WHERE he.EMP_NO = he2.MAIL_TO AND he2.MAIL_TO =#{empNo} ;
