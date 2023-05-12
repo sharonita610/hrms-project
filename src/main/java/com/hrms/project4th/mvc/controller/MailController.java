@@ -1,17 +1,13 @@
 package com.hrms.project4th.mvc.controller;
 
-import com.hrms.project4th.mvc.dto.MailSendRequestDTO;
+import com.hrms.project4th.mvc.dto.MailResponseDTO;
 import com.hrms.project4th.mvc.entity.Mail;
 import com.hrms.project4th.mvc.service.MailService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -38,10 +34,9 @@ public class MailController {
     }
 
     //메일 불러오기서비스(로그인한 사용자 사번이 필요함)
+    public String getList(Model model,@Param(value = "mailTo") Long empNo){
 
-    public String getList(Model model,@Param(value = "mailTo") Long mailTo){
-
-        List<Mail> mailList = mailService.getMailList(mailTo);
+        List<MailResponseDTO> mailList = mailService.getMailList(empNo);
         model.addAttribute("maillist",mailList);
         return "";
 

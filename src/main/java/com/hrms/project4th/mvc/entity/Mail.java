@@ -1,9 +1,8 @@
 package com.hrms.project4th.mvc.entity;
 
-import com.hrms.project4th.mvc.dto.MailSendRequestDTO;
 import lombok.*;
 
-import java.time.LocalDate;
+import static com.hrms.project4th.mvc.entity.CheckStatus.*;
 //
 //-- 메일 테이블
 //        create table HR_EMAIL(
@@ -28,28 +27,18 @@ import java.time.LocalDate;
 public class Mail {
 
 
-    //메일 번호 pk
-    private Long mailNo;
-
-    //받을사람 이메일
-    private Long mailTo;
-
-    //보낸 사람 이름
-    private Long mailFrom;
+    //보낸 사람이메일
+    private String empEmail;
 
     //메일 제목
     private String mailTitle;
 
     //메일 내용
-    private String mailContent;
-
-    //메일 작성일자
-    private LocalDate mailDate;
-
-    //메일 상태( Y : 읽음 / N : 안읽음)
-    //열거형
-    private CheckStatus mailStatus;
+    private CheckStatus status;
 
 
+    void CheckStatus(){
+        this.status = N;
+    }
 
 }

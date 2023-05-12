@@ -14,7 +14,7 @@
         <typeAlias alias="bdType" type="com.hrms.project4th.mvc.entity.BdType"/>
 
         <typeAlias alias="mail" type="com.hrms.project4th.mvc.entity.Mail"/>
-
+        <typeAlias alias="mailResponseDTO" type="com.hrms.project4th.mvc.dto.MailResponseDTO"/>
 
     </typeAliases>
 
@@ -22,7 +22,6 @@
         <!-- Mapper XML files -->
         <mapper resource="mappers/BoardMapper.xml"/>
         <mapper resource="mappers/MailMapper.xml"/>
-
     </mappers>
 
 
