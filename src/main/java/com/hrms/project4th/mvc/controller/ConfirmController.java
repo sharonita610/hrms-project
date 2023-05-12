@@ -2,6 +2,8 @@ package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.RequestConfirmDto;
 import com.hrms.project4th.mvc.dto.ModifyConfirmDto;
+import com.hrms.project4th.mvc.dto.SimpleDateConfirmDto;
+import com.hrms.project4th.mvc.dto.getConfirmListDto;
 import com.hrms.project4th.mvc.entity.Confirm;
 import com.hrms.project4th.mvc.service.ConfirmService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,6 +24,11 @@ import java.util.List;
 public class ConfirmController {
 
     private final ConfirmService confirmService;
+
+    @GetMapping("list")
+    public String confirmList(){
+        return "/confirm/confirmList";
+    }
 
     //결재 신청폼
     @GetMapping("/rq-form")
@@ -37,19 +45,30 @@ public class ConfirmController {
     }
 
     //승인대기 리스트 불러오기
-    @GetMapping("/waiting")
+    @GetMapping("/list/{empNo}/{roleCode}/waiting")
     @ResponseBody
-    public ResponseEntity<List> getWaitingList(long empNo, @Nullable Long roleCode){
-        List<Confirm> waitingList = confirmService.getWaitingList(empNo, roleCode);
+    public ResponseEntity<List> getWaitingList(@PathVariable("empNo") long empNo,@PathVariable("roleCode") @Nullable String roleCode){
+        List<SimpleDateConfirmDto> waitingList = confirmService.getWaitingList(empNo, roleCode).stream()
+                .map(SimpleDateConfirmDto::new)
+                .collect(Collectors.toList());
+
         return ResponseEntity.ok().body(waitingList);
     }
 
     //승인 리스트 불러오기
-    @GetMapping("/checked")
+    @GetMapping("/checked/{empNo}")
     @ResponseBody
-    public ResponseEntity<List> getCheckedList(long empNo, Long roleCode){
-        List<Confirm> checkedList = confirmService.getCheckedList(empNo, roleCode);
+    public ResponseEntity<List> getCheckedList(@PathVariable("empNo") long empNo, @Nullable String roleCode){
+        List<getConfirmListDto> checkedList = confirmService.getCheckedList(empNo, roleCode);
         return ResponseEntity.ok().body(checkedList);
+    }
+
+    //반려리스트 불러오기
+    @GetMapping("/rejected/{empNo}")
+    @ResponseBody
+    public ResponseEntity<List> getRejectedList(@PathVariable("empNo") long empNo, @Nullable String roleCode){
+        List<getConfirmListDto> rejectedList = confirmService.getRejectedList(empNo, roleCode);
+        return ResponseEntity.ok().body(rejectedList);
     }
 
     //결재 승인하기

@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.RequestConfirmDto;
 import com.hrms.project4th.mvc.dto.ModifyConfirmDto;
+import com.hrms.project4th.mvc.dto.getConfirmListDto;
 import com.hrms.project4th.mvc.entity.Confirm;
 import com.hrms.project4th.mvc.repository.ConfirmMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,8 @@ public class ConfirmService {
 
     private final ConfirmMapper confirmMapper;
 
-    public List<Confirm> getWaitingList(long empNo, @Nullable Long roleCode) {
-        List<Confirm> cinList = confirmMapper.getWaitingList(empNo, roleCode);
-        return cinList;
+    public List<getConfirmListDto> getWaitingList(long empNo, @Nullable String roleCode) {
+        return confirmMapper.getWaitingList(empNo, roleCode);
     }
 
     public boolean requestConfirm(RequestConfirmDto dto) {
@@ -35,7 +35,7 @@ public class ConfirmService {
         return confirmMapper.checkConfirm(conNo);
     }
 
-    public List<Confirm> getCheckedList(long empNo, Long roleCode) {
+    public List<getConfirmListDto> getCheckedList(long empNo, String roleCode) {
         return confirmMapper.getCheckedList(empNo, roleCode);
     }
 
@@ -50,5 +50,9 @@ public class ConfirmService {
                 .conContent(dto.getConContent())
                 .build();
         return confirmMapper.modifyConfirm(confirm);
+    }
+
+    public List<getConfirmListDto> getRejectedList(long empNo, String roleCode) {
+        return confirmMapper.getRejectedList(empNo, roleCode);
     }
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/confirmlist.css">
+</head>
+
+<body>
+    <div class="confirm-page-wrapper">
+        <h1>결재문서함</h1>
+        <div class="confirm-outer-container">
+            <div class="confirm-box confirm-waiting-list">
+                <h2>결재대기문서</h2>
+                <table id = "waiting-table">
+                    <th class = "col1">N</th><th class = "col2">문서제목</th><th class = "col3">기안자</th><th class = "col4">기안부서</th><th class = "col5">기안일</th><th class = "col6">승인대기</th><th class = "col7">수정</th><th class = "col7">삭제</th>
+                    <!-- <tr class = "waiting-list"><td>conNo</td><td>conTitle</td><td>fromEmp</td><td>fromDept</td><td>conDate</td><td>conStatus</td><td><button id = "modify">수정</button></td><td><button id = "remove">삭제</button></td></tr> -->
+                </table>
+            </div>
+            <div class="confirm-box confirmed-list">
+                <h2>결재완료문서</h2>
+                <table id = "comfirmed-table">
+                    <th>NO</th><th>문서제목</th><th>기안자</th><th>기안부서</th><th>기안일</th><th>승인여부</th><th>승인일자</th>
+                </table>
+            </div>
+            <div class="confirm-box rejected-list">
+                <h2>반려문서</h2>
+                <table id = "rejected-teble">
+                    <th>NO</th><th>문서제목</th><th>기안자</th><th>기안부서</th><th>기안일</th><th>승인여부</th><th>반려일자</th>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

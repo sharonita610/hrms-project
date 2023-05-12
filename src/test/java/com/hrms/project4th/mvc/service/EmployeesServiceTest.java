@@ -32,20 +32,25 @@ class EmployeesServiceTest {
     @Test
     @DisplayName("사원을 추가하면 초기 비밀번호는 휴대폰번호 뒤의 4자리, 입사일자는 오늘로 생성된다.")
     void addEmployeeTest(){
-        AddEmployeesDTO dto = AddEmployeesDTO.builder()
-                .empName("테스트11")
+        for (int i = 1; i < 7; i++) {
+            for (int j = 0; j < 10; j++) {
+                
+            AddEmployeesDTO dto = AddEmployeesDTO.builder()
+                .empName("테스트사원" + i + j)
                 .empBirthDay("19980105")
-                .empEmail("test11@test.com")
+                .empEmail("test" + i + j+"@test.com")
                 .empGender(Gender.F)
                 .empSalary(2000000L)
-                .empPhone("01000005555")
-                .empMyBoss(6L)
-                .posCode("00001")
-                .deptCode("002")
+                .empPhone("010000055" + i + j)
+                .empMyBoss(1L)
+                .posCode("005")
+                .deptCode("00" + i)
                 .build();
+                boolean flag = employeesService.addEmployee(dto);
+                assertTrue(flag);
+            }
+        }
 
-        boolean flag = employeesService.addEmployee(dto);
-        assertTrue(flag);
     }
 
     @Test
@@ -76,4 +81,5 @@ class EmployeesServiceTest {
 
         assertTrue(flag);
     }
+
 }
