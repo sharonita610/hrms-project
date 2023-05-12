@@ -15,6 +15,12 @@
         values (#{empName}, #{empBirthDay}, current_timestamp, #{empEmail}, #{empPassword}, #{empGender}, #{empSalary}, #{empPhone}, #{empMyBoss}, #{posCode}, #{roleCode}, #{deptCode})
     </insert>
 
+    <update id="modifyEmployees">
+        update hr_employees set
+        emp_email = #{empEmail}, emp_password = #{empPassword}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}
+        where emp_no = #{empNo}
+    </update>
+
     <delete id="removeEmployee">
         delete from hr_employees where emp_no = #{empNo}
     </delete>

@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.AddEmployeesDTO;
+import com.hrms.project4th.mvc.dto.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.entity.Confirm;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.entity.Gender;
@@ -50,8 +51,28 @@ class EmployeesServiceTest {
     @Test
     @DisplayName("사원번호로 사원을 삭제할 수 있다")
     public void removeEmployeeTest(){
-        long empNo = 13L;
+        long empNo = 14L;
         boolean flag = employeesService.removeEmployee(empNo);
+
+        assertTrue(flag);
+    }
+
+    @Test
+    @DisplayName("사원 정보를 수정할 수 있다")
+    public void modifyEmployeesTest(){
+        ModifyEmployeeDTO emp = ModifyEmployeeDTO.builder()
+                .empNo(1L)
+                .empEmail("modifyTest@email.com")
+                .empPassword("1111")
+                .empSalary(22300000L)
+                .empPhone("01001001113")
+                .empMyBoss(6L)
+                .posCode("3")
+                .roleCode("00000")
+                .deptCode("001")
+                .build();
+
+        boolean flag = employeesService.modifyEmployees(emp);
 
         assertTrue(flag);
     }

@@ -13,4 +13,6 @@ public interface EmployeesMapper {
     boolean addEmployee(Employees emp);
 
     boolean removeEmployee(long empNo);
+
+    boolean modifyEmployees(Employees emp);
 }

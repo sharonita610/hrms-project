@@ -1,6 +1,8 @@
 package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.AddEmployeesDTO;
+import com.hrms.project4th.mvc.dto.ModifyEmployeeDTO;
+import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,5 +29,20 @@ public class EmployeesService {
 
     public boolean removeEmployee(long empNo){
         return employeesMapper.removeEmployee(empNo);
+    }
+
+    public boolean modifyEmployees(ModifyEmployeeDTO dto) {
+        Employees emp = Employees.builder()
+                .empNo(dto.getEmpNo())
+                .empEmail(dto.getEmpEmail())
+                .empPassword(dto.getEmpPassword())
+                .empSalary(dto.getEmpSalary())
+                .empPhone(dto.getEmpPhone())
+                .empMyBoss(dto.getEmpMyBoss())
+                .posCode(dto.getPosCode())
+                .roleCode(dto.getRoleCode())
+                .deptCode(dto.getDeptCode())
+                .build();
+        return employeesMapper.modifyEmployees(emp);
     }
 }
