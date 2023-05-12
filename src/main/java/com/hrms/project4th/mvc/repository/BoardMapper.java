@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.Page.BoardSearch;
+import com.hrms.project4th.mvc.entity.BdType;
 import com.hrms.project4th.mvc.entity.Board;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -29,4 +30,7 @@ public interface BoardMapper {
 
     //게시글 수정
     boolean boardModify(Board board);
+
+    //타입별 전체 게시글 갯수 구하는 기능
+    int countTypeBoard(BdType bdType);
 }

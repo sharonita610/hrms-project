@@ -68,7 +68,7 @@ public class BoardService {
     }
 
     /**
-     * 정보를 받아 저장하는 기능
+     * 게시글 정보를 받아 저장하는 기능
      *
      * @param dto 저장하기 위한 정보를 받는 DTO
      * @return SAVE 성공 TRUE / 실패 FALSE
@@ -100,4 +100,6 @@ public class BoardService {
 
         return boardMapper.boardModify(new Board(dto));
     }
+
+
 }

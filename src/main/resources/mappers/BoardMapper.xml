@@ -62,5 +62,19 @@
         SET bd_type=#{bdType}, bd_title=#{bdTitle}, bd_content=#{bdContent}
         WHERE board_no=#{boardNo}
     </update>
+    
+    <select id="countTypeBoard" resultType="int">
+        SELECT COUNT(bd_type)
+        FROM hr_board
+        <if test="BdType == 'NOTICE'">
+        WHERE  bd_type='NOTICE'
+        </if>
+        <if test="BdType == 'FREE'">
+            WHERE bd_type='FREE'
+        </if>
+        <if test="BdType == 'NONAME'">
+            WHERE bd_type='NONAME'
+        </if>
+    </select>
 
 </mapper>
