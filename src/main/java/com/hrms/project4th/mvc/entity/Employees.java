@@ -1,9 +1,12 @@
 package com.hrms.project4th.mvc.entity;
 
+import com.hrms.project4th.mvc.dto.AddEmployeesDTO;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 @Component
 @Setter @Getter
@@ -19,19 +22,19 @@ public class Employees {
     private String empName;
 
     //사원생일
-    private LocalDateTime empBirthDay;
+    private LocalDate empBirthDay;
 
     //사원 입사일
-    private LocalDateTime empHireDate;
+    private LocalDate empHireDate;
 
     //사원 이메일
     private String empEmail;
 
+    //사원 비밀번호
+    private String empPassword;
+
     //사원 성별
     private Gender empGender;
-
-    //사원 비밀번호
-    private String password;
 
     //사원 급여
     private long empSalary;
@@ -51,5 +54,23 @@ public class Employees {
     //사원 동호회
     private long deptCode;
 
+    public Employees(AddEmployeesDTO dto){
+        this.empName = dto.getEmpName();
+        this.empBirthDay = getLocalDate(dto.getEmpBirthDay());
+        this.empEmail = dto.getEmpEmail();
+        this.empPhone = dto.getEmpPhone();
+        this.empPassword = dto.getEmpPhone().substring(7);
+        this.empGender = dto.getEmpGender();
+        this.empSalary = dto.getEmpSalary();
+        this.empMyBoss = dto.getEmpMyBoss();
+        this.posCode = dto.getPosCode();
+        this.roleCode = dto.getRoleCode();
+        this.deptCode = dto.getDeptCode();
+    }
 
+    public LocalDate getLocalDate(String date){
+        //20201222
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+        return LocalDate.parse(date, dtf);
+    }
 }

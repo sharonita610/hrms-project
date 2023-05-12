@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.service;
 
+import com.hrms.project4th.mvc.dto.AddEmployeesDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,11 @@ public class EmployeesService {
     private final EmployeesMapper employeesMapper;
 
     public List<Employees> getEmployeesList() {
-        employeesMapper.getEmployeesList();
-        return null;
+       return employeesMapper.getEmployeesList();
+    }
+
+    public boolean addEmployee(AddEmployeesDTO dto) {
+        Employees emp = new Employees(dto);
+        return employeesMapper.addEmployee(emp);
     }
 }

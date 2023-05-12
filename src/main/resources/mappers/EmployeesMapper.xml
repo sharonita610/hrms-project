@@ -4,7 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.project4th.mvc.repository.EmployeesMapper">
 
-    <select id="getEmployeesList">
-
+    <select id="getEmployeesList" resultType="employees">
+        select * from hr_employees
+        order by dept_code, pos_code
     </select>
+
+    <insert id="addEmployee">
+        insert into hr_employees
+        (emp_name, emp_birth_day, emp_hire_date, emp_email, emp_password, emp_gender, emp_salary, emp_phone, emp_my_boss, pos_code, role_code, dept_code)
+        values (#{empName}, #{empBirthDay}, current_timestamp, #{empEmail}, #{empPassword}, #{empGender}, #{empSalary}, #{empPhone}, #{empMyBoss}, #{posCode}, #{roleCode}, #{deptCode})
+    </insert>
+
 </mapper>

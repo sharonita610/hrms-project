@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.controller;
 
+import com.hrms.project4th.mvc.dto.AddEmployeesDTO;
 import com.hrms.project4th.mvc.service.EmployeesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,8 +28,11 @@ public class EmployeesController {
         return ""; //jsp
     }
 
-//    @PostMapping("/add")
-//    public
+    @PostMapping("/add")
+    public String addEmployee(AddEmployeesDTO dto){
+        employeesService.addEmployee(dto);
+        return "";
+    }
 
 
 }

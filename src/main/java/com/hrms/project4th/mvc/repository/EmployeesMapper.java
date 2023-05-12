@@ -9,4 +9,6 @@ import java.util.List;
 public interface EmployeesMapper {
 
     List<Employees> getEmployeesList();
+
+    boolean addEmployee(Employees emp);
 }
