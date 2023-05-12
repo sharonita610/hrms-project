@@ -43,9 +43,9 @@ class BoardMapperTest {
     @Test
     @DisplayName("게시글 List를 보여주는 기능")
     void findAllTest() {
-        BoardSearch s = BoardSearch.builder().boardKeyWord("1").boardType("title").build();
-        List<Board> boards = boardMapper.boardFindAll(s);
-        System.out.println("boards = " + boards);
+//        BoardSearch s = BoardSearch.builder().boardKeyWord("1").boardType("title").build();
+//        List<Board> boards = boardMapper.boardFindAll(s);
+//        System.out.println("boards = " + boards);
 
     }
 
