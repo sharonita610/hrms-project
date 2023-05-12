@@ -79,12 +79,23 @@ public class BoardService {
         return boardMapper.boardSave(new Board(dto));
     }
 
-
+    /**
+     * 주어진 게시글 번호를 제거하는 기능
+     *
+     * @param boardNo 게시글 번호
+     * @return 삭제 성공 TRUE / 삭제 실패 FALSE
+     */
     public boolean boardDelete(Long boardNo) {
 
         return boardMapper.boardDelete(boardNo);
     }
 
+    /**
+     * DTO 를 ENTITY 로 변환하여 MAPPER로 전달하는 기능
+     *
+     * @param dto 수정정보를 담은 객체
+     * @return 수정 성공 TRUE / 수정 실패 FALSE
+     */
     public boolean boardModify(BoardModifyRequestDTO dto) {
 
         return boardMapper.boardModify(new Board(dto));
