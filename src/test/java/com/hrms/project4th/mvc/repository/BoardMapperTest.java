@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.hrms.project4th.mvc.entity.BdType.FREE;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -23,10 +24,10 @@ class BoardMapperTest {
     @DisplayName("게시글 10개 저장하는 기능")
     void saveTest() {
 
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 11; i <= 20; i++) {
             Board b = Board.builder()
                     .boardNo(i)
-                    .bdType(BdType.NOTICE)
+                    .bdType(BdType.valueOf("FREE"))
                     .bdTitle("board title" + i)
                     .bdContent("board content / board content" + i)
                     .empNo(i)
@@ -82,7 +83,7 @@ class BoardMapperTest {
                 .boardNo(1L)
                 .bdTitle("modifyTitle")
                 .bdContent("modifyContent")
-                .bdType(BdType.FREE)
+                .bdType(FREE)
                 .build();
 
         boolean flag = boardMapper.boardModify(b);

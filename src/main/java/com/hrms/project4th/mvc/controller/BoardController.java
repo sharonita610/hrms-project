@@ -68,11 +68,22 @@ public class BoardController {
     }
 
     // 게시글 수정 페이지를 보여주는 기능
-    @PostMapping("board-modify")
-    public String boardModify(Model model, BoardModifyRequestDTO dto) {
+    @PostMapping("show-modify")
+    public String showModify(Model model, BoardModifyRequestDTO dto) {
         log.info("/hrms/board-modify : POST / {}", dto);
         model.addAttribute("m", dto);
         return "/board/boardModify";
+    }
+
+    // 수정한 값을 입력받아 Detail page 에 다시 띄어준다.
+    @PostMapping("board-modify")
+    public String boardModify(BoardModifyRequestDTO dto,Model model){
+        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}",dto);
+        if(boardService.boardModify(dto)){
+            model.addAttribute("b", dto);
+        }
+
+        return "/board/boardDetail";
     }
 
 

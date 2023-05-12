@@ -54,26 +54,42 @@
 <body>
 
     <div class="write-wrapper">
-        <form action="/hrms/board-save" method="post">
+
+        
+        <form action="/hrms/board-modify" method="post">
             <header class="write-header">수정하기</header>
             <div class="head-wrapper">
                 <label id="write-title">제목</label>
-                <input name="bdTitle" value="${m.bdTitle}" required>
+                <input type="text" name="bdTitle" value="${m.bdTitle}">
                 <label id="bdTypeName">타입<label>
-                        <select name="bdType">
+                        <select name="bdType" value="${m.bdType}">
                             <option value="NOTICE">공지 게시판</option>
                             <option value="FREE">자유 게시판</option>
                             <option value="NONAME">익명 게시판</option>
                         </select>
             </div>
             <label id="content-label">내용</label>
-            <textarea name="bdContent" required>${m.bdContent}</textarea>
+            <textarea name="bdContent">${m.bdContent}</textarea>
             <div id="buttons">
                 <button id="backToList">목록</button>
                 <button type="submit">글쓰기</button>
         </form>
-        </form>
     </div>
+    <!-- <form action="/test/modify" method="post">
+        <div id="wrap" class="form-container">
+            <h1>내용 수정 하기 </h1>
+            <input type="hidden" name="boardNo" value="${c.boardNo}">
+            <label for="title">제목</label>
+            <input type="text" id="title" name="title" value="${c.title}">
+            <label for="content">내용</label>
+            <input type="text" id="content" name="content" value="${c.content}">
+            <div class="buttons">
+                <button class="list-btn" type="button">목록</button>
+                <button type="submit">수정완료</button>
+            </div>
+
+        </div>
+    </form> -->
 
 
 </body>

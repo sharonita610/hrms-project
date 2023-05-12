@@ -54,16 +54,16 @@
 <body>
 
     <div class="write-wrapper">
-        <form action="/hrms/board-modify" method="post">
+        <form action="/hrms/show-modify" method="post">
             <!-- <header class="write-header">글 쓰 기</header> -->
             <div class="head-wrapper">
                 <input type="hidden" name="boardNo" value="${b.boardNo}">
                 <label id="write-title">제목</label>
                 <input name="bdTitle" value="${b.bdTitle}" readonly>
-                <label id="bdTypeName">${b.bdType}<label>
-                        <select name="bdType">
+                <label id="bdTypeName">타입<label>
+                        <select class="type" name="bdType" value="${b.bdType}">
                             <option value="NOTICE">공지 게시판</option>
-                            <option value="FREE">자유 게시판</option>
+                             <option value="FREE">자유 게시판</option>
                             <option value="NONAME">익명 게시판</option>
                         </select>
             </div>
@@ -73,13 +73,34 @@
                 <button type="submit">수정하기</button>
         </form>
         <button id="backToList">목록</button>
-       
+
     </div>
     <script>
-         const $toList=document.getElementById('backToList');
-         $toList.onclick = function () {
+
+        function selectVal(){
+            if('${b.bdType=NOTICE}')
+            console.log('맞아');
+        }
+
+
+
+        const $type=document.querySelector('.type');
+        function typeChange() {
+            console.log($type.value);
+            if($type.value='FREE'){
+                console.log('맞아맞아');
+
+            }
+        }
+        typeChange();
+        
+
+        const $toList = document.getElementById('backToList');
+        $toList.onclick = function () {
             history.back();
         }
+
+        selectVal();
     </script>
 
 </body>

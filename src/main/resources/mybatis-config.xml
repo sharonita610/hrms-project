@@ -11,7 +11,7 @@
     <typeAliases>
         <!--  entity 클래스 별칭 설정      -->
         <typeAlias alias="board" type="com.hrms.project4th.mvc.entity.Board"/>
-        <typeAlias alias="bdType" type="com.hrms.project4th.mvc.entity.BdType"/>
+
 
     </typeAliases>
 

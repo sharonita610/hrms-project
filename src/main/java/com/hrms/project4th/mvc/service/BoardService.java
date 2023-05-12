@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.BoardDetailRequestDTO;
 import com.hrms.project4th.mvc.dto.BoardListResponseDTO;
+import com.hrms.project4th.mvc.dto.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.repository.BoardMapper;
@@ -48,7 +49,7 @@ public class BoardService {
      * @param boardNo 게시글 번호
      * @return Board 객체
      */
-    public Board boardFindOneByBoardNo(Long boardNo){
+    public Board boardFindOneByBoardNo(Long boardNo) {
 
         return boardMapper.boardFindOneByBoardNo(boardNo);
     }
@@ -72,8 +73,8 @@ public class BoardService {
      * @return SAVE 성공 TRUE / 실패 FALSE
      */
 
-    public boolean boardSave(BoardSaveRequestDTO dto){
-        
+    public boolean boardSave(BoardSaveRequestDTO dto) {
+
         return boardMapper.boardSave(new Board(dto));
     }
 
@@ -81,5 +82,10 @@ public class BoardService {
     public boolean boardDelete(Long boardNo) {
 
         return boardMapper.boardDelete(boardNo);
+    }
+
+    public boolean boardModify(BoardModifyRequestDTO dto) {
+
+        return boardMapper.boardModify(new Board(dto));
     }
 }

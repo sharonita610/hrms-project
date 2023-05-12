@@ -106,7 +106,7 @@
 
         //삭제기능
         const $cardWrapper = document.querySelector('.card-wrapper')
-        const $mainBox = document.querySelector('main-box');
+        const $mainBox = document.querySelector('.main-box');
 
         $cardWrapper.addEventListener('click', e => {
             if (e.target.matches('.main-box *')) {
