@@ -16,6 +16,9 @@
         <typeAlias alias="cnfm" type="com.hrms.project4th.mvc.entity.Confirm"/>
         <typeAlias alias="employees" type="com.hrms.project4th.mvc.entity.Employees"/>
 
+        <typeAlias alias="mail" type="com.hrms.project4th.mvc.entity.Mail"/>
+        <typeAlias alias="mailResponseDTO" type="com.hrms.project4th.mvc.dto.MailResponseDTO"/>
+
     </typeAliases>
 
     <mappers>
@@ -26,6 +29,7 @@
         <mapper resource="mappers/ConfirmMapper.xml"/>
         <mapper resource="mappers/EmployeesMapper.xml"/>
 
+        <mapper resource="mappers/MailMapper.xml"/>
     </mappers>
 
 
