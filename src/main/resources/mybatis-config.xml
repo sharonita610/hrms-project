@@ -10,15 +10,20 @@
 
     <typeAliases>
         <!--  entity 클래스 별칭 설정      -->
-        <typeAlias alias="hr" type="com.hrms.project4th.mvc.entity.HrEmployees"/>
+        <typeAlias alias="board" type="com.hrms.project4th.mvc.entity.Board"/>
+        <typeAlias alias="cnfm" type="com.hrms.project4th.mvc.entity.Confirm"/>
+        <typeAlias alias="employees" type="com.hrms.project4th.mvc.entity.Employees"/>
+        <typeAlias alias="mail" type="com.hrms.project4th.mvc.entity.Mail"/>
+        <typeAlias alias="mailResponseDTO" type="com.hrms.project4th.mvc.dto.MailResponseDTO"/>
 
     </typeAliases>
 
     <mappers>
         <!-- Mapper XML files -->
-
-        <mapper resource="mappers/HrEmployeesMapper.xml"/>
-
+        <mapper resource="mappers/BoardMapper.xml"/>
+        <mapper resource="mappers/ConfirmMapper.xml"/>
+        <mapper resource="mappers/EmployeesMapper.xml"/>
+        <mapper resource="mappers/MailMapper.xml"/>
     </mappers>
 
 
