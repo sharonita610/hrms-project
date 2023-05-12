@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.EmployeesMapper">
+
+    <select id="getEmployeesList" resultType="employees">
+        select * from hr_employees
+        order by dept_code, pos_code
+    </select>
+
+    <insert id="addEmployee">
+        insert into hr_employees
+        (emp_name, emp_birth_day, emp_hire_date, emp_email, emp_password, emp_gender, emp_salary, emp_phone, emp_my_boss, pos_code, role_code, dept_code)
+        values (#{empName}, #{empBirthDay}, current_timestamp, #{empEmail}, #{empPassword}, #{empGender}, #{empSalary}, #{empPhone}, #{empMyBoss}, #{posCode}, #{roleCode}, #{deptCode})
+    </insert>
+
+    <update id="modifyEmployees">
+        update hr_employees set
+        emp_email = #{empEmail}, emp_password = #{empPassword}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}
+        where emp_no = #{empNo}
+    </update>
+
+    <delete id="removeEmployee">
+        delete from hr_employees where emp_no = #{empNo}
+    </delete>
+</mapper>
