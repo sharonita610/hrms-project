@@ -46,13 +46,13 @@ public class Employees {
     private long empMyBoss;
 
     //사원 직급
-    private long posCode;
+    private String posCode;
 
     //사원 직책
-    private long roleCode;
+    private String roleCode;
 
-    //사원 동호회
-    private long deptCode;
+    //소속 부서
+    private String deptCode;
 
     public Employees(AddEmployeesDTO dto){
         this.empName = dto.getEmpName();

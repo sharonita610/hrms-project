@@ -11,4 +11,6 @@ public interface EmployeesMapper {
     List<Employees> getEmployeesList();
 
     boolean addEmployee(Employees emp);
+
+    boolean removeEmployee(long empNo);
 }

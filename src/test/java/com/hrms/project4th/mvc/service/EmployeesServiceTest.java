@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.lang.annotation.Documented;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,13 +37,22 @@ class EmployeesServiceTest {
                 .empEmail("test11@test.com")
                 .empGender(Gender.F)
                 .empSalary(2000000L)
-                .empPhone("01000000000")
+                .empPhone("01000005555")
                 .empMyBoss(6L)
-                .posCode(00001L)
-                .deptCode(002L)
+                .posCode("00001")
+                .deptCode("002")
                 .build();
 
         boolean flag = employeesService.addEmployee(dto);
+        assertTrue(flag);
+    }
+
+    @Test
+    @DisplayName("사원번호로 사원을 삭제할 수 있다")
+    public void removeEmployeeTest(){
+        long empNo = 13L;
+        boolean flag = employeesService.removeEmployee(empNo);
+
         assertTrue(flag);
     }
 }

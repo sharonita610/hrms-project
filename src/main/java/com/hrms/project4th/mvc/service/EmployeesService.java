@@ -24,4 +24,8 @@ public class EmployeesService {
         Employees emp = new Employees(dto);
         return employeesMapper.addEmployee(emp);
     }
+
+    public boolean removeEmployee(long empNo){
+        return employeesMapper.removeEmployee(empNo);
+    }
 }

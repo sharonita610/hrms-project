@@ -21,7 +21,7 @@ public class AddEmployeesDTO {
     private long empSalary;
     private String empPhone;
     private long empMyBoss;
-    private long posCode;
-    private long roleCode;
-    private long deptCode;
+    private String posCode;
+    private String roleCode;
+    private String deptCode;
 }

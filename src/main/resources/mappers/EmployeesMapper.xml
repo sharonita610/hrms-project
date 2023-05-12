@@ -15,4 +15,7 @@
         values (#{empName}, #{empBirthDay}, current_timestamp, #{empEmail}, #{empPassword}, #{empGender}, #{empSalary}, #{empPhone}, #{empMyBoss}, #{posCode}, #{roleCode}, #{deptCode})
     </insert>
 
+    <delete id="removeEmployee">
+        delete from hr_employees where emp_no = #{empNo}
+    </delete>
 </mapper>
