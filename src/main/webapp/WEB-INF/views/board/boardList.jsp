@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous">
+    </script>
 </head>
 <style>
     .head-wrapper {
@@ -119,6 +121,11 @@
         width: 10%;
         padding-top: 12px;
     }
+
+    .showPage {
+        display: flex;
+        justify-content: center;
+    }
 </style>
 
 
@@ -147,6 +154,7 @@
         </form>
     </header>
 
+
     <!-- end card container -->
 
     <div class="card-wrapper">
@@ -163,6 +171,18 @@
             </div>
         </c:forEach>
     </div>
+
+    <!-- PAGINATION -->
+    <nav class="showPage" aria-label="Page navigation example">
+        <ul class="pagination">
+
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <c:forEach var="i" begin="1" end="5">
+                <li class="page-item"><a class="page-link">${i}</a></li>
+            </c:forEach>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
 
     <script>
         //저장기능
@@ -192,6 +212,9 @@
             }
 
         })
+
+
+
     </script>
 
 </body>

@@ -19,6 +19,7 @@
         <if test="boardType == 'boardContent'">
             WHERE bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
         </if>
+<!--        Limit #{PageNum},#{boardAmount}-->
     </select>
 
     <select id="boardFindOneByEno" resultType="board">
@@ -64,17 +65,17 @@
     </update>
     
     <select id="countTypeBoard" resultType="int">
-        SELECT COUNT(bd_type)
+        SELECT COUNT(*)
         FROM hr_board
-        <if test="BdType == 'NOTICE'">
-        WHERE  bd_type='NOTICE'
-        </if>
-        <if test="BdType == 'FREE'">
-            WHERE bd_type='FREE'
-        </if>
-        <if test="BdType == 'NONAME'">
-            WHERE bd_type='NONAME'
-        </if>
+<!--        <if test="BdType == 'NOTICE'">-->
+<!--        WHERE  bd_type='NOTICE'-->
+<!--        </if>-->
+<!--        <if test="BdType == 'FREE'">-->
+<!--            WHERE bd_type='FREE'-->
+<!--        </if>-->
+<!--        <if test="BdType == 'NONAME'">-->
+<!--            WHERE bd_type='NONAME'-->
+<!--        </if>-->
     </select>
 
 </mapper>

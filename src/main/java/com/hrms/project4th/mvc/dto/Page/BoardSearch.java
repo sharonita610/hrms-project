@@ -7,7 +7,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class BoardSearch {
+public class BoardSearch extends BoardPage{
     private String boardKeyWord;
     private String boardType;
 

@@ -3,6 +3,8 @@ package com.hrms.project4th.mvc.controller;
 import com.hrms.project4th.mvc.dto.BoardListResponseDTO;
 import com.hrms.project4th.mvc.dto.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
+import com.hrms.project4th.mvc.dto.Page.BoardPage;
+import com.hrms.project4th.mvc.dto.Page.BoardPageMaker;
 import com.hrms.project4th.mvc.dto.Page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.service.BoardService;
@@ -27,11 +29,15 @@ public class BoardController {
     // 게시글을 보여주는 기능
     @GetMapping("/board-list")
     public String boardFindAll(BoardSearch search, Model model) {
-        List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
 
-//        log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
-        log.info("search : {}",search);
-        model.addAttribute("searchInfo",search);
+        List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
+//      log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
+//        log.info("search : {}", search);
+        BoardPageMaker boardPageMaker=new BoardPageMaker();
+//        log.info("{}",boardPageMaker.getPAGE_LEN());
+
+        model.addAttribute("b",boardPageMaker.getPAGE_LEN());
+        model.addAttribute("searchInfo", search);
         model.addAttribute("allList", boardListResponseDTOS);
         return "/board/boardList";
     }
@@ -48,7 +54,7 @@ public class BoardController {
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
         boardService.boardSave(dto);
-//        log.info("BoardSaveRequestDTO {}",dto);
+//      log.info("BoardSaveRequestDTO {}",dto);
         return "redirect:/hrms/board-list";
     }
 
