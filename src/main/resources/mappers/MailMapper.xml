@@ -16,6 +16,9 @@
         SELECT
         E.mail_no,
         P.emp_email,
+        P.emp_name,
+        P.role_code,
+        P.dept_code,
         E.mail_title,
         E.mail_status,
         E.mail_date
@@ -24,6 +27,10 @@
         ON E.MAIL_NO = P.EMP_NO
         WHERE E.mail_from = #{empNo}
     </select>
+
+
+
+
 
     <!--메일번호에 맞는 메일의 객체정보전체가 나온다    -->
     <select id="getMailDetail" resultType="mail">

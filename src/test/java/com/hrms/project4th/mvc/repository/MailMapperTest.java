@@ -20,20 +20,25 @@ class MailMapperTest {
 
 
    @Test
-   @DisplayName("사원번호가 1번인 사람의 메일을 2번사원에게 전송한다")
+   @DisplayName("사원번호가 n번인 사람의 메일을 n+1번사원에게 전송한다")
     void saveMailTest(){
-       Mail mailTest = Mail.builder().mailTitle("테스트용메일1").mailContent("테스트용").mailFrom(1L).mailTo(2L).build();
 
-       mailMapper.sendRequest(mailTest);
+       for (int i =1; i<=50; i++) {
+//           Mail mailTest = Mail.builder().mailTitle("테스트용메일"+i).mailContent("테스트용메일입니다"+i).mailFrom(8L).mailTo(10L).build();
+
+           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(1L).mailTo(2L).build();
+           mailMapper.sendRequest(mailTest);
+       }
    }
 
 
     @Test
     @DisplayName("사원번호가1번인 사람이 보낸 메일의 제목은 테스트용메일1이다")
     void getMailListTest(){
-       List<MailResponseDTO> mailList = mailMapper.getMailList(7L);
+       List<MailResponseDTO> mailList = mailMapper.getMailList(1L);
         for (MailResponseDTO mailResponseDTO : mailList) {
             System.out.println(mailResponseDTO);
+            System.out.println(mailList.size());
         }
    }
 
