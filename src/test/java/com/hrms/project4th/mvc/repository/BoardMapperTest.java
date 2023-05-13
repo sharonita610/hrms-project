@@ -25,7 +25,7 @@ class BoardMapperTest {
     @DisplayName("게시글 10개 저장하는 기능")
     void saveTest() {
 
-        for (int i = 11; i <= 20; i++) {
+        for (int i = 21; i <= 155; i++) {
             Board b = Board.builder()
                     .boardNo(i)
                     .bdType(BdType.valueOf("FREE"))

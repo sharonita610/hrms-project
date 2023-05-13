@@ -175,12 +175,16 @@
     <!-- PAGINATION -->
     <nav class="showPage" aria-label="Page navigation example">
         <ul class="pagination">
-
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <c:forEach var="i" begin="1" end="5">
+            <c:if test="${boardPageMaker.prev}">
+                <li class="page-item"><a class="page-link"
+                        href="/hrms/board-list/?boardPageNo=${boardPageMaker.start-1}">Previous</a></li>
+            </c:if>
+            <c:forEach var="i" begin="${boardPageMaker.start}" end="${boardPageMaker.end}">
                 <li class="page-item"><a class="page-link" href="/hrms/board-list/?boardPageNo=${i}">${i}</a></li>
             </c:forEach>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <c:if test="${boardPageMaker.next}">
+                <li class="page-item"><a class="page-link" href="/hrms/board-list/?boardPageNo=${boardPageMaker.end+1}">Next</a></li>
+            </c:if>
         </ul>
     </nav>
 
@@ -212,9 +216,6 @@
             }
 
         })
-
-
-
     </script>
 
 </body>

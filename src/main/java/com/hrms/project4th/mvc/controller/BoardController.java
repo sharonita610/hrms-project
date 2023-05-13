@@ -38,6 +38,7 @@ public class BoardController {
         log.info("hrms/board-list : GET / search : {}", search);
         log.info("hrms/board-list : GET / boardPageMaker : {}",boardPageMaker);
 
+//        model.addAttribute("search",search);
         model.addAttribute("boardPageMaker",boardPageMaker);
         model.addAttribute("allList", boardListResponseDTOS);
         return "/board/boardList";

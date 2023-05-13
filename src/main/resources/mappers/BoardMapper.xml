@@ -19,7 +19,7 @@
         <if test="boardType == 'boardContent'">
             WHERE bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
         </if>
-<!--        Limit #{PageNum},#{boardAmount}-->
+        Limit 1,#{boardAmount}
     </select>
 
     <select id="boardFindOneByEno" resultType="board">

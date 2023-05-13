@@ -15,4 +15,5 @@ public class BoardSearch extends BoardPage{
         this.boardKeyWord = "";
         this.boardType = "";
     }
+
 }

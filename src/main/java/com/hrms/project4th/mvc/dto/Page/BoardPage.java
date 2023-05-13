@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.dto.Page;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,6 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
 public class BoardPage{
 
     private int boardAmount;
@@ -14,18 +16,21 @@ public class BoardPage{
     private int boardPageNo;
 
     public BoardPage(){
-        boardAmount=10;
+        boardAmount=5;
         boardPageNo=1;
 
     }
 
 
-
-    public BoardPage(int boardPageNo){
-        this.boardPageNo=boardPageNo;
+    public void setBoardAmount(int boardAmount) {
+        this.boardAmount = boardAmount;
     }
 
-    public int getPageNum() {
+    public void setBoardPageNo(int boardPageNo) {
+        this.boardPageNo = boardPageNo;
+    }
+
+    public int getPageLimitNum() {
 
         return (boardPageNo-1)*boardAmount;
     }
