@@ -31,8 +31,10 @@ class MailMapperTest {
     @Test
     @DisplayName("사원번호가1번인 사람이 보낸 메일의 제목은 테스트용메일1이다")
     void getMailListTest(){
-       List<MailResponseDTO> mailList = mailMapper.getMailList(2L);
-        System.out.println(mailList.toString());
+       List<MailResponseDTO> mailList = mailMapper.getMailList(7L);
+        for (MailResponseDTO mailResponseDTO : mailList) {
+            System.out.println(mailResponseDTO);
+        }
    }
 
 

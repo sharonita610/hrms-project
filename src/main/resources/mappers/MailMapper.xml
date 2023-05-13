@@ -11,12 +11,18 @@
         (#{mailTo},#{mailFrom},#{mailTitle},#{mailContent})
     </insert>
 
-    <!-- 접속한 사용자의 사원번호에맞는 이메일만 나온다-->
-    <select id="getMailList" resultType="mailResponseDTO">
-        SELECT emp_email,mail_no,mail_to,mail_title,mail_date,mail_status
-        FROM hr_employees he
-        JOIN hr_email he2
-        WHERE he.EMP_NO = he2.MAIL_TO AND he2.MAIL_TO =#{empNo} ;
+<!--     접속한 사용자의 사원번호에맞는 이메일만 나온다-->
+    <select id="getMailList" resultType="MailResponseDTO">
+        SELECT
+        E.mail_no,
+        P.emp_email,
+        E.mail_title,
+        E.mail_status,
+        E.mail_date
+        FROM HR_EMAIL AS E
+        JOIN HR_EMPLOYEES AS P
+        ON E.MAIL_NO = P.EMP_NO
+        WHERE E.mail_from = #{empNo}
     </select>
 
     <!--메일번호에 맞는 메일의 객체정보전체가 나온다    -->
@@ -31,7 +37,6 @@
         SET mail_status = 'Y'
         WHERE mail_no = #{mailNo};
     </update>
-
 
 
 
