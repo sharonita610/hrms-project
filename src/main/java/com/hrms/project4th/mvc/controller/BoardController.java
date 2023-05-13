@@ -33,11 +33,12 @@ public class BoardController {
         List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
 //      log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
 //        log.info("search : {}", search);
-        BoardPageMaker boardPageMaker=new BoardPageMaker();
 //        log.info("{}",boardPageMaker.getPAGE_LEN());
+        BoardPageMaker boardPageMaker=new BoardPageMaker(search,boardService.boardPageCount());
+        log.info("hrms/board-list : GET / search : {}", search);
+        log.info("hrms/board-list : GET / boardPageMaker : {}",boardPageMaker);
 
-        model.addAttribute("b",boardPageMaker.getPAGE_LEN());
-        model.addAttribute("searchInfo", search);
+        model.addAttribute("boardPageMaker",boardPageMaker);
         model.addAttribute("allList", boardListResponseDTOS);
         return "/board/boardList";
     }

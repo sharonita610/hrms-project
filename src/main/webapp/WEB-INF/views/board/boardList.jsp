@@ -178,7 +178,7 @@
 
             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
             <c:forEach var="i" begin="1" end="5">
-                <li class="page-item"><a class="page-link">${i}</a></li>
+                <li class="page-item"><a class="page-link" href="/hrms/board-list/?boardPageNo=${i}">${i}</a></li>
             </c:forEach>
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>

@@ -32,6 +32,6 @@ public interface BoardMapper {
     //게시글 수정
     boolean boardModify(Board board);
 
-    //타입별 전체 게시글 갯수 구하는 기능
-    int countTypeBoard();
+    //전체 게시글 갯수 구하는 기능
+    int countBoardPage();
 }

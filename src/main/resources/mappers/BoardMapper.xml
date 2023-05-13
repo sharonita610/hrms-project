@@ -64,7 +64,7 @@
         WHERE board_no=#{boardNo}
     </update>
     
-    <select id="countTypeBoard" resultType="int">
+    <select id="countBoardPage" resultType="int">
         SELECT COUNT(*)
         FROM hr_board
 <!--        <if test="BdType == 'NOTICE'">-->

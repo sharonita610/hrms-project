@@ -26,6 +26,7 @@ public class BoardPage{
     }
 
     public int getPageNum() {
+
         return (boardPageNo-1)*boardAmount;
     }
 }

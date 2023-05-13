@@ -103,4 +103,8 @@ public class BoardService {
     }
 
 
+    public int boardPageCount(){
+        return  boardMapper.countBoardPage();
+    }
+
 }
