@@ -19,8 +19,8 @@
         (rep_content, board_no, emp_no)
         VALUES
         (#{repContent},#{boardNo},#{empNo})
-
     </insert>
+
     <select id="countReply" resultType="int">
         SELECT count(*)
         FROM hr_reply

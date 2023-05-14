@@ -1,17 +1,16 @@
 package com.hrms.project4th.mvc.api;
 
 import com.hrms.project4th.mvc.dto.BoardReplyListResponseDTO;
+import com.hrms.project4th.mvc.dto.BoardReplyWriteRequestDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardPage;
 import com.hrms.project4th.mvc.entity.BoardReply;
 import com.hrms.project4th.mvc.service.BoardReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLDataException;
 import java.util.List;
 
 
@@ -37,6 +36,24 @@ public class BoardReplyController {
                 = boardReplyService.getList(boardNo, page);
 
         return ResponseEntity.ok().body(replyList);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> writeReply(
+            @RequestBody BoardReplyWriteRequestDTO dto) {
+        log.info("/api/hrms/replies : POST!! / dto : {}", dto);
+        try {
+            boardReplyService.save(dto);
+        } catch (SQLDataException e) {
+            // fail
+            log.warn("500 error {}",e.getMessage());
+            ResponseEntity
+                    .internalServerError()
+                    .body(e.getMessage());
+        }
+        //success
+        return ResponseEntity.ok().body("success");
+
     }
 
 
