@@ -15,10 +15,6 @@
     <form action="/confirm/rq-cnfm" method="post">
         <div class="confirm-titleline">
             <h1>결재요청문</h1>
-            <div class="submit">
-                <button class="cancel">작성취소</button>
-                <button type="submit">결재요청</button>
-            </div>
         </div>
 <%--        헤더 --%>
         <div class="rqform-header">
@@ -48,19 +44,20 @@
         <div class="rqform-content-wrap">
             <div class="rqform-title">
                 <div>문서제목</div>
-                <div><input class="conTitle" type="text" name="conTitle" autofocus></div>
+                <div><label for="conTitle"></label><input id = "conTitle" class="conTitle" type="text" name="conTitle" autofocus></div>
             </div>
             <div class="rqform-content">
                 <div>내용</div>
-                <div><textarea class="conContent" type="text" name="conContent"></textarea></div>
+                <div><label for="conContent"></label><textarea id = "conContent" class="conContent" name="conContent"></textarea></div>
             </div>
         </div>
 
 <%--         제출버튼 --%>
         <div class="submit">
-            <button class="cancel" onclick="history.back()">작성취소</button>
-            <button type="submit">결재요청</button>
+            <div class="cancel" onclick="history.back()">작성취소</div>
+            <div id = "addConfirm">결재요청</div>
         </div>
+            <button id = "addBtn">결재요청</button>
 
     </form>
 </div>
@@ -76,6 +73,24 @@
     const date = today.getDate(); // 날짜
 
     $today.innerText = year + '-' + month + '-' + date;
+
+    const $addBtn = document.getElementById('addConfirm');
+    $addBtn.addEventListener('click', addConfirm);
+
+    function addConfirm() {
+        let $title = document.getElementById('conTitle').value;
+        let $content = document.getElementById('conContent').value;
+        if($title.trim().length === 0){
+            alert("문서 제목을 입력해주세요");
+            $title.cursor;
+        }else if($content.trim().length === 0) {
+            alert("결재 요청할 내용은 필수로 입력해야 합니다");
+            $title.cursor;
+        } else {
+            document.getElementById('addBtn').click();
+        }
+    }
+
 </script>
 
 </body>

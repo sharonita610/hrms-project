@@ -13,10 +13,6 @@
         <form action="/confirm/rq-cnfm" method="post">
             <div class="confirm-titleline">
                 <h1>결재요청문</h1>
-                <div class="submit">
-                    <button class="cancel">작성취소</button>
-                    <button type="submit">결재요청</button>
-                </div>
             </div>
             <!-- 헤더 -->
             <div class="rqform-header">
@@ -54,9 +50,10 @@
 
             <!-- 제출버튼 -->
             <div class="submit">
-                <button class="cancel" onclick="history.back()">작성취소</button>
-                <button type="submit">결재요청</button>
+                <div class="cancel" onclick="history.back()">작성취소</div>
+                <div id = "addConfirm">결재요청</div>
             </div>
+                <button id = "addBtn">결재요청</button>
 
         </form>
     </div>
