@@ -3,6 +3,7 @@
     text-decoration: none;
     font-weight: normal;
     box-sizing: border-box;
+    color: #000;
 }
 
 .confirm-page-wrapper {
@@ -10,8 +11,28 @@
     margin: 10px auto;
 }
 
+.confirm-page-wrapper .confirm-titleline {
+    display: flex;
+    margin-bottom: 50px;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid #000; */
+}
+
 .confirm-page-wrapper h1 {
-    margin-bottom: 30px;
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    width: fit-content;
+    margin: 0;
+    margin-right: 15px;
+}
+
+.confirm-page-wrapper .rq-confirm {
+    display: block;
+    border: 1px solid #000;
+    padding: 5px;
 }
 
 .confirm-page-wrapper .confirm-outer-container h2 {

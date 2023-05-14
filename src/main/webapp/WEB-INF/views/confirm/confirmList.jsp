@@ -10,7 +10,12 @@
 
 <body>
 <div class="confirm-page-wrapper">
-    <h1>결재문서함</h1>
+
+    <div class="confirm-titleline">
+        <h1>결재문서함</h1>
+        <a class = "rq-confirm" href="/rq-form">문서 작성하기</a>
+    </div>
+
     <div class="confirm-outer-container">
         <h2>&lt;결재대기문서&gt;</h2>
         <div class="confirm-box waiting-list">
@@ -25,7 +30,6 @@
         <h2>&lt;반려문서&gt;</h2>
         <div class="confirm-box rejected-list">
             <table id="rejected-table">
-
             </table>
         </div>
     </div>
