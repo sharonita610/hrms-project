@@ -9,6 +9,13 @@
         order by dept_code, pos_code
     </select>
 
+    <select id="getDeptBoss" resultType="deptBossDto">
+        select e.emp_no, e.emp_name, d.dept_name, e.role_code
+        from hr_employees e, hr_department d
+        where d.dept_code = #{deptCode}
+        and role_code = '11111';
+    </select>
+
     <insert id="addEmployee">
         insert into hr_employees
         (emp_name, emp_birth_day, emp_hire_date, emp_email, emp_password, emp_gender, emp_salary, emp_phone, emp_my_boss, pos_code, role_code, dept_code)

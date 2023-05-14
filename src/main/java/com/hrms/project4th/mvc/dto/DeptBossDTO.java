@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ModifyConfirmDto {
-
-    private long conNo;
-    private String conTitle;
-    private String conContent;
+public class DeptBossDTO {
+    long empNo;
+    private String empName;
+    private String deptName;
+    private String roleCode;
 }

@@ -1,8 +1,9 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.ModifyConfirmDto;
-import com.hrms.project4th.mvc.dto.RequestConfirmDto;
-import com.hrms.project4th.mvc.dto.getConfirmListDto;
+import com.hrms.project4th.mvc.dto.ModifyConfirmDTO;
+import com.hrms.project4th.mvc.dto.RequestConfirmDTO;
+import com.hrms.project4th.mvc.dto.SimpleDateConfirmDTO;
+import com.hrms.project4th.mvc.dto.getConfirmListDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ class ConfirmServiceTest {
 
         for (int i = 1; i < 20 ; i++) {
 
-        RequestConfirmDto dto = RequestConfirmDto.builder()
+        RequestConfirmDTO dto = RequestConfirmDTO.builder()
                 .fromEmpNo(i)
                 .toEmpNo(1L)
                 .conTitle("[제목] 테스트 결재 요청 " + i)
@@ -39,7 +40,7 @@ class ConfirmServiceTest {
     @Test
     @DisplayName("롤넘버가 11111이 아니면 요청한 미결재내역을 불러온다")
     void getWaitingListTest1(){
-        List<getConfirmListDto> list = confirmService.getWaitingList(4L, null);
+        List<SimpleDateConfirmDTO> list = confirmService.getWaitingList(4L, null);
         System.out.println(list);
         assertEquals(1, list.size());
     }
@@ -47,7 +48,7 @@ class ConfirmServiceTest {
     @Test
     @DisplayName("롤넘버가 11111이면 요청받은 미결재내역을 불러온다")
     void getWaitingListTest2(){
-        List<getConfirmListDto> list = confirmService.getWaitingList(1L, "11111");
+        List<SimpleDateConfirmDTO> list = confirmService.getWaitingList(1L, "11111");
         System.out.println(list);
 
     }
@@ -56,7 +57,7 @@ class ConfirmServiceTest {
     @Test
     @DisplayName("롤넘버가 11111이면 요청받은 승인내역을 불러온다")
     void getCheckedList1(){
-        List<getConfirmListDto> checkedList = confirmService.getCheckedList(1L, "11111");
+        List<SimpleDateConfirmDTO> checkedList = confirmService.getCheckedList(1L, "11111");
         System.out.println(checkedList);
         assertEquals(2, checkedList.size());
     }
@@ -64,7 +65,7 @@ class ConfirmServiceTest {
     @Test
     @DisplayName("롤넘버가 11111이 아니면 요청한 승인내역을 불러온다")
     void getCheckedLis2t(){
-        List<getConfirmListDto> checkedList = confirmService.getCheckedList(3L, null);
+        List<SimpleDateConfirmDTO> checkedList = confirmService.getCheckedList(3L, null);
         System.out.println(checkedList);
 
     }
@@ -90,7 +91,7 @@ class ConfirmServiceTest {
     @Test
     @DisplayName("결재요청건을 수정할 수 있다.")
     void modifyTest(){
-        ModifyConfirmDto confirm = ModifyConfirmDto.builder()
+        ModifyConfirmDTO confirm = ModifyConfirmDTO.builder()
                 .conNo(3L)
                 .conTitle("수정테스트제목")
                 .conContent("수정테스트내용")
