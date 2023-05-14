@@ -13,7 +13,7 @@
 
     <div class="confirm-titleline">
         <h1>결재문서함</h1>
-        <a class = "rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
+        <a class="rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
     </div>
 
     <div class="confirm-outer-container">
@@ -41,10 +41,11 @@
 
     const URL = "/confirm";
     const empNo = 1;
-    const roleCode = 11111;
+    const roleCode = '11111';
+    // const roleCode = null;
 
     //페이지 로딩
-    function startConfirmPage(){
+    function startConfirmPage() {
         getWaitingList();
         getCheckedList();
         getRejectedList();
@@ -74,7 +75,7 @@
     }
 
     //반려목록 불러오기 함수
-    function getRejectedList(){
+    function getRejectedList() {
         const $section = document.getElementById("rejected-table");
         fetch(`\${URL}/\${empNo}/\${roleCode}/rejected`)
             .then(res => res.json())
@@ -88,20 +89,35 @@
         let tag = '';
         if ($section.id === 'waiting-table') {
             tag += '<tr id = "waiting-th"><th class = "col1">NO</th>' +
-                '<th class = "col2">문서제목</th><th class = "col3">기안자</th>' +
-                '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
+                '<th class = "col2">문서제목</th>';
+            if (roleCode === '11111') {
+                tag += '<th class = "col3">기안자</th>';
+            } else {
+                tag += '<th class = "col3">부서장</th>';
+            }
+            tag += '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
                 '<th class = "col6">승인여부</th><th class = "col7">수정</th>' +
                 '<th class = "col7">삭제</th></tr>';
 
         } else if ($section.id === 'confirmed-table') {
             tag += '<tr id = " confirmed-th"><th class = "col1">NO</th>' +
-                '<th class = "col2">문서제목</th><th class = "col3">기안자</th>' +
-                '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
+                '<th class = "col2">문서제목</th>';
+            if (roleCode === '11111') {
+                tag += '<th class = "col3">기안자</th>';
+            } else {
+                tag += '<th class = "col3">부서장</th>';
+            }
+            tag += '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
                 '<th class = "col6">승인여부</th><th class = "col7">승인일자</th>';
-        } else if ($section.id === 'rejected-table'){
+        } else if ($section.id === 'rejected-table') {
             tag += '<tr id = " rejected-th"><th class = "col1">NO</th>' +
-                '<th class = "col2">문서제목</th><th class = "col3">기안자</th>' +
-                '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
+                '<th class = "col2">문서제목</th>';
+            if (roleCode === '11111') {
+                tag += '<th class = "col3">기안자</th>';
+            } else {
+                tag += '<th class = "col3">부서장</th>';
+            }
+            tag += '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
                 '<th class = "col6">승인여부</th><th class = "col7">반려일자</th>';
         }
 

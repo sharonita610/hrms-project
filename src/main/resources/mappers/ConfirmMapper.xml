@@ -20,7 +20,7 @@
                 and to_emp_no = #{empNo}
             </when>
             <otherwise>
-                select c.con_no, c.con_title, e.emp_name as toName, d.dept_name as fromDept, c.con_date, c.con_status
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
                 from hr_confirm c, hr_employees e, hr_department d
                 where c.to_emp_no = e.emp_no
                 and e.DEPT_CODE = d.DEPT_CODE
@@ -42,7 +42,7 @@
                 and to_emp_no = #{empNo}
             </when>
             <otherwise>
-                select c.con_no, c.con_title, e.emp_name as toName, d.dept_name as fromDept, c.con_date, c.con_status
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
                 from hr_confirm c, hr_employees e, hr_department d
                 where c.to_emp_no = e.emp_no
                 and e.DEPT_CODE = d.DEPT_CODE
@@ -64,7 +64,7 @@
                 and to_emp_no = #{empNo}
             </when>
             <otherwise>
-                select c.con_no, c.con_title, e.emp_name as toName, d.dept_name as fromDept, c.con_date, c.con_status
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
                 from hr_confirm c, hr_employees e, hr_department d
                 where c.to_emp_no = e.emp_no
                 and e.DEPT_CODE = d.DEPT_CODE

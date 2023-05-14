@@ -38,10 +38,9 @@ public class ConfirmController {
 
     //결재신청폼에서 받아온 값 DB에 전달
     @PostMapping("/rq-cnfm")
-    @ResponseBody
-    public ResponseEntity<Boolean> requestConfirm(RequestConfirmDTO dto){
-        boolean flag = confirmService.requestConfirm(dto);
-        return ResponseEntity.ok().body(flag);
+    public String requestConfirm(RequestConfirmDTO dto){
+        confirmService.requestConfirm(dto);
+        return "redirect:/confirm/list";
     }
 
     //승인대기 리스트 불러오기

@@ -10,8 +10,14 @@
 <body>
 
     <div class="rqform-container">
-        <h1>결재신청</h1>
-        <form action = "/confirm/rq-cnfm" method="post">
+        <form action="/confirm/rq-cnfm" method="post">
+            <div class="confirm-titleline">
+                <h1>결재요청문</h1>
+                <div class="submit">
+                    <button class="cancel">작성취소</button>
+                    <button type="submit">결재요청</button>
+                </div>
+            </div>
             <!-- 헤더 -->
             <div class="rqform-header">
                 <div class="fromEmp section">
@@ -21,7 +27,7 @@
                 </div>
                 <div class="rq-date section">
                     <div>기안일자</div>
-                    <div id = "today"></div>
+                    <div id="today"></div>
                 </div>
                 <div class="department section">
                     <div>부서</div>
@@ -30,7 +36,7 @@
                 <div class="dept-head section">
                     <div>결재자</div>
                     <div>${boss.empName}</div>
-                    <input type="hidden" name = "toEmpNo" value = "${boss.empNo}">
+                    <input type="hidden" name="toEmpNo" value="${boss.empNo}">
                 </div>
             </div>
             <!-- 본문 -->
@@ -38,32 +44,35 @@
             <div class="rqform-content-wrap">
                 <div class="rqform-title">
                     <div>문서제목</div>
-                    <div><input type="text" name = "conTitle"></div>
+                    <div><input class="conTitle" type="text" name="conTitle" autofocus></div>
                 </div>
                 <div class="rqform-content">
                     <div>내용</div>
-                    <div><textarea type="text" name = "conContent"></div>
+                    <div><textarea class="conContent" type="text" name="conContent"></textarea></div>
                 </div>
             </div>
 
-
+            <!-- 제출버튼 -->
+            <div class="submit">
+                <button class="cancel" onclick="history.back()">작성취소</button>
+                <button type="submit">결재요청</button>
+            </div>
 
         </form>
     </div>
 
 
 
-<script>
-    $today = document.getElementById('today');
+    <script>
+        $today = document.getElementById('today');
 
-    const today = new Date();
-    const year = today.getFullYear(); // 년도
-    const month = today.getMonth() + 1;  // 월
-    const date = today.getDate();  // 날짜
+        const today = new Date();
+        const year = today.getFullYear(); // 년도
+        const month = today.getMonth() + 1; // 월
+        const date = today.getDate(); // 날짜
 
-    $today.innerText = year + '-' + month + '-' + date;
-
-</script>
+        $today.innerText = year + '-' + month + '-' + date;
+    </script>
 
 </body>
 
