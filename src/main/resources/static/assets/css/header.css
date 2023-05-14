@@ -1,0 +1,33 @@
+/*==== HEADER BEGIN ===== */
+
+/* COMMON ADD */
+.common_wrap {
+    background: rgba(130, 186, 234, 0.14);
+    width: 100%;
+}
+
+/*  SECTION-TOP BEGIN  */
+.section-header .logo {
+    height: 10px;
+    padding: 20px 30px;
+    line-height: 20%;
+}
+
+.section-header .logo ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section-header .logo li {
+    display: flex;
+}
+
+/*  LOGO IMG  */
+.top_logo a img {
+    width: 20px;
+    margin-right: 20px;
+}
+
+/*  SECTION-TOP END  */
+
+/*==== HEADER END ===== */

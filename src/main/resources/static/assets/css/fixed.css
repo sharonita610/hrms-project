@@ -1,0 +1,119 @@
+
+
+
+/*==== BODY BEGIN ===== */
+
+
+/*  LEFT NAV START  */
+.fixed {
+    width: 100%;
+}
+
+/*  SECTION-SUB-HEADER BEGIN  */
+.section-sub-header {
+    width: 100%;
+    align-items: center;
+    display: flex;
+}
+
+.section-sub-header .nav-bar {
+    width: 100%;
+}
+
+.section-sub-header .nav-bar ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+
+.section-sub-header .nav-bar ul li {
+    width: 100%;
+    padding: 0px 15px;
+    font-size: 1.0em;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+
+}
+
+
+.section-sub-header .nav-bar ul li:hover {
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    transition: border-color 0.1s, color 0.1s;
+}
+
+/*  SECTION-SUB-HEADER END  */
+
+/*  SECTION-LEFT-BODY BEGIN  */
+.section-left-body {
+    width: 20%;
+    height: 100%;
+    position: fixed;
+
+}
+
+.section-left-body .left-fix {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+}
+.section-left-body .left-fix .line{
+    width: 20%;
+    height: 100%;
+    position: fixed;
+
+}
+.section-left-body .left-fix .line .information-box{
+    margin-top: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    border-right: 1px solid rgba(183, 183, 183, 0.35);
+}
+
+
+.section-left-body .left-fix .line ul li {
+    margin: 15px
+
+}
+
+.section-left-body .left-fix .line .information-box #profile #photo {
+    width: 170px;
+    height: 200px;
+    border: 1px solid rgba(198, 198, 199, 0.8);
+
+}
+section-left-body .left-fix .line.information-box #information{
+    font-size:1em;
+}
+
+.section-left-body .left-fix .line.information-box #information button{
+    margin-top: 10px;
+    width: 80px;
+}
+
+
+/*.section-left-body .left-fix .information-box{*/
+/*    position: relative;*/
+/*}*/
+/*.section-left-body .left-fix .information-box ul{*/
+/*    position: fixed;*/
+/*    display: block;*/
+/*    border: 1px solid #333;*/
+
+/*}*/
+/*.section-left-body .left-fix .information-box #information {*/
+/*    display: block;*/
+/*    position: fixed;*/
+/*    margin-top: 15%;*/
+/*    margin-left: 40px;*/
+/*    color: #000;*/
+/*    line-height: 30px;*/
+
+/*    */
+/*}*/
