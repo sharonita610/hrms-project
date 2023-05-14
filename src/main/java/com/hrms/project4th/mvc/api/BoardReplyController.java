@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.api;
 
+import com.hrms.project4th.mvc.dto.BoardReplyListResponseDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardPage;
 import com.hrms.project4th.mvc.entity.BoardReply;
 import com.hrms.project4th.mvc.service.BoardReplyService;
@@ -32,7 +33,7 @@ public class BoardReplyController {
         BoardPage page = new BoardPage();
         page.setBoardPageNo(pageNo);
         page.setBoardAmount(10);
-        List<BoardReply> replyList
+        BoardReplyListResponseDTO replyList
                 = boardReplyService.getList(boardNo, page);
 
         return ResponseEntity.ok().body(replyList);

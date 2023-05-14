@@ -21,7 +21,11 @@
         (#{repContent},#{boardNo},#{empNo})
 
     </insert>
-    <select id=""
+    <select id="countReply" resultType="int">
+        SELECT count(*)
+        FROM hr_reply
+        WHERE board_no=#{boardNo}
+    </select>
 
 
 

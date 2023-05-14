@@ -1,14 +1,16 @@
 package com.hrms.project4th.mvc.service;
 
+import com.hrms.project4th.mvc.dto.BoardReplyDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.BoardReplyListResponseDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardPage;
-import com.hrms.project4th.mvc.entity.BoardReply;
+import com.hrms.project4th.mvc.dto.Page.BoardPageMaker;
 import com.hrms.project4th.mvc.repository.BoardReplyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,12 +20,15 @@ public class BoardReplyService {
 
     // 게시판 댓글 목록 조회
     public BoardReplyListResponseDTO getList(long boardNo, BoardPage page){
-        List<BoardReply> boardReplyList = boardReplyMapper.findAll(boardNo, page);
+        List<BoardReplyDetailResponseDTO> boardReplyList
+                = boardReplyMapper.findAll(boardNo, page)
+                .stream().map(BoardReplyDetailResponseDTO::new)
+                .collect(Collectors.toList());
 
         return BoardReplyListResponseDTO.builder()
-                .replyCount()
-                .boardReplyPageMaker()
-                .boardReplies()
+                .replyCount(boardReplyMapper.countReply(boardNo))
+                .boardReplyPageMaker(new BoardPageMaker(page,boardReplyMapper.countReply(boardNo)))
+                .boardReplies(boardReplyList)
                 .build();
 
     }

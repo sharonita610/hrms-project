@@ -11,4 +11,6 @@ public interface BoardReplyMapper {
     List<BoardReply> findAll(long boardNo, BoardPage page);
 
     boolean save(BoardReply boardReply);
+
+    int countReply(long boardNo);
 }

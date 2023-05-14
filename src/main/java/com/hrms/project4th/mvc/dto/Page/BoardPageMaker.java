@@ -16,7 +16,7 @@ public class BoardPageMaker {
     private BoardPage boardPage;
     private int boardPageCount;
 
-    public BoardPageMaker(BoardSearch boardPage, int pageCount) {
+    public BoardPageMaker(BoardPage boardPage, int pageCount) {
         this.boardPage=boardPage;
         this.boardPageCount=pageCount;
         pageInfo();
