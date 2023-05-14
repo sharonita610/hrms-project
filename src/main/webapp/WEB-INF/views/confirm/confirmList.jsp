@@ -74,16 +74,16 @@
                 '<th class = "col2">문서제목</th><th class = "col3">기안자</th>' +
                 '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
                 '<th class = "col6">승인여부</th><th class = "col7">수정</th>' +
-                '<th class = "col8">삭제</th></tr>'
+                '<th class = "col7">삭제</th></tr>'
         }
         for (let c of list) {
             const {conNo, conTitle, fromName, fromDept, conDate, conStatus} = c;
 
-            tag += '<tr class = "waiting-list"><td>' + conNo + '</td><td>' + conTitle
-                + '</td><td>' + fromName + '</td><td>' + fromDept + '</td><td>' + conDate
-                + '</td><td>' + conStatus + '</td><td>' +
+            tag += '<tr class = "waiting-list"><td class = "col1">' + conNo + '</td><td class = "col2">' + conTitle
+                + '</td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
+                + '</td><td class = "col6">' + conStatus + '</td><td class = "col7">' +
                 '<button id = "modify">수정</button></td>' +
-                '<td><button id = "remove">삭제</button></td></tr>';
+                '<td class = "col7"><button id = "remove">삭제</button></td></tr>';
         }
         document.getElementById('waiting-table').innerHTML = tag;
     }
