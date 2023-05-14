@@ -21,4 +21,5 @@ public class getConfirmListDto {
     private String fromDept;
     private LocalDateTime conDate;
     private CheckStatus conStatus;
+    private LocalDateTime conCheckDate;
 }

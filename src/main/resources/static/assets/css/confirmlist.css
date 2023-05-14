@@ -6,23 +6,36 @@
 }
 
 .confirm-page-wrapper {
-    /* border: 1px solid #000; */
     width: 1000px;
     margin: 10px auto;
-    
+}
+
+.confirm-page-wrapper h1 {
+    margin-bottom: 30px;
+}
+
+.confirm-page-wrapper .confirm-outer-container h2 {
+    margin: 5px 0;
 }
 
 .confirm-box {
-    margin-top: 50px;
     border: 1px solid #000;
     height: 250px;
     overflow: auto;
+    margin-bottom: 30px;
+}
+
+.confirm-box h2 {
+    text-indent: 5px;
 }
 
 .confirm-box table {
-    background: rgb(236, 236, 236);
+    /* background: rgb(236, 236, 236); */
     border: 1px solid #000;
     border-collapse: collapse;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 50px;
 }
 
 .confirm-box table th {
@@ -49,7 +62,7 @@
 }
 
 .confirm-box table td.col2 {
-    width: 400px;
+    width: 280px;
     border: 1px solid #000;
     text-align: left;
     text-indent: 10px;
@@ -61,13 +74,31 @@
 }
 
 .confirm-box table .col4 {
-    width: 130px;
+    width: 110px;
 }
 
 .confirm-box table .col5 {
-    width: 150px;
+    width: 125px;
 }
 
-.confirm-box table .col5 {
-    width: 150px;
+.confirm-box table .col6 {
+    width: 80px;
+}
+
+.confirm-box table button {
+    height: 15px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.confirm-box #waiting-table .col7 {
+    width: 60px;
+}
+
+.confirm-box #confirmed-table .col7 {
+    width: 125px;
+}
+
+.confirm-box #rejected-table .col7 {
+    width: 125px;
 }

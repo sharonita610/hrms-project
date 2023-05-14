@@ -12,38 +12,20 @@
 <div class="confirm-page-wrapper">
     <h1>결재문서함</h1>
     <div class="confirm-outer-container">
-        <div class="confirm-box confirm-waiting-list">
-            <h2>결재대기문서</h2>
+        <h2>&lt;결재대기문서&gt;</h2>
+        <div class="confirm-box waiting-list">
             <table id="waiting-table">
-
             </table>
         </div>
+        <h2>&lt;결재완료문서&gt;</h2>
         <div class="confirm-box confirmed-list">
-            <h2>결재완료문서</h2>
-            <table id="comfirmed-table">
-                <tr id="confirmed-th">
-                    <th>NO</th>
-                    <th>문서제목</th>
-                    <th>기안자</th>
-                    <th>기안부서</th>
-                    <th>기안일</th>
-                    <th>승인여부</th>
-                    <th>승인일자</th>
-                </tr>
+            <table id="confirmed-table">
             </table>
         </div>
+        <h2>&lt;반려문서&gt;</h2>
         <div class="confirm-box rejected-list">
-            <h2>반려문서</h2>
-            <table id="rejected-teble">
-                <tr id="rejected-th">
-                    <th>NO</th>
-                    <th>문서제목</th>
-                    <th>기안자</th>
-                    <th>기안부서</th>
-                    <th>기안일</th>
-                    <th>승인여부</th>
-                    <th>반려일자</th>
-                </tr>
+            <table id="rejected-table">
+
             </table>
         </div>
     </div>
@@ -52,21 +34,52 @@
 </body>
 
 <script>
-    const empNo = 1;
+
     const URL = "/confirm";
-    const roleCode = "11111";
+    const empNo = 1;
+    const roleCode = 11111;
+
+    //페이지 로딩
+    function startConfirmPage(){
+        getWaitingList();
+        getCheckedList();
+        getRejectedList();
+    }
 
     //승인대기 목록 불러오기 함수
     function getWaitingList() {
         const $section = document.getElementById("waiting-table");
 
-        fetch(`\${URL}/list/\${empNo}/\${roleCode}/waiting`)
+        fetch(`\${URL}/\${empNo}/\${roleCode}/waiting`)
             .then(res => res.json())
             .then(result => {
                 renderConfirmList(result, $section)
             });
     }
 
+    //승인완료 목록 불러오기 함수
+    function getCheckedList() {
+        const $section = document.getElementById("confirmed-table");
+
+        fetch(`\${URL}/\${empNo}/\${roleCode}/checked`)
+            .then(res => res.json())
+            .then(result => {
+                renderConfirmList(result, $section)
+            });
+
+    }
+
+    //반려목록 불러오기 함수
+    function getRejectedList(){
+        const $section = document.getElementById("rejected-table");
+        fetch(`\${URL}/\${empNo}/\${roleCode}/rejected`)
+            .then(res => res.json())
+            .then(result => {
+                renderConfirmList(result, $section)
+            });
+    }
+
+    //목록 그리기 함수
     function renderConfirmList(list, $section) {
         let tag = '';
         if ($section.id === 'waiting-table') {
@@ -74,22 +87,39 @@
                 '<th class = "col2">문서제목</th><th class = "col3">기안자</th>' +
                 '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
                 '<th class = "col6">승인여부</th><th class = "col7">수정</th>' +
-                '<th class = "col7">삭제</th></tr>'
-        }
-        for (let c of list) {
-            const {conNo, conTitle, fromName, fromDept, conDate, conStatus} = c;
+                '<th class = "col7">삭제</th></tr>';
 
-            tag += '<tr class = "waiting-list"><td class = "col1">' + conNo + '</td><td class = "col2">' + conTitle
-                + '</td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
-                + '</td><td class = "col6">' + conStatus + '</td><td class = "col7">' +
-                '<button id = "modify">수정</button></td>' +
-                '<td class = "col7"><button id = "remove">삭제</button></td></tr>';
+        } else if ($section.id === 'confirmed-table') {
+            tag += '<tr id = " confirmed-th"><th class = "col1">NO</th>' +
+                '<th class = "col2">문서제목</th><th class = "col3">기안자</th>' +
+                '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
+                '<th class = "col6">승인여부</th><th class = "col7">승인일자</th>';
+        } else if ($section.id === 'rejected-table'){
+            tag += '<tr id = " rejected-th"><th class = "col1">NO</th>' +
+                '<th class = "col2">문서제목</th><th class = "col3">기안자</th>' +
+                '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
+                '<th class = "col6">승인여부</th><th class = "col7">반려일자</th>';
         }
-        document.getElementById('waiting-table').innerHTML = tag;
+
+        for (let c of list) {
+            const {conNo, conTitle, fromName, fromDept, conDate, conStatus, conCheckDate} = c;
+
+            tag += '<tr><td class = "col1">' + conNo + '</td><td class = "col2">' + conTitle
+                + '</td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
+                + '</td><td class = "col6">' + conStatus + '</td>';
+
+            if ($section.id === 'waiting-table') {
+                tag += '<td class="col7"><button id="modify"> </button></td>'
+                    + '<td class = "col7"><button id = "remove"> </button></td></tr>';
+            } else {
+                tag += '<td class = "col7">' + conCheckDate + '</td>';
+            }
+        }
+        $section.innerHTML = tag;
     }
 
     // 실행부
-    getWaitingList();
+    startConfirmPage();
 </script>
 
 </html>

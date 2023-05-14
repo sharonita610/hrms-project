@@ -45,29 +45,26 @@ public class ConfirmController {
     }
 
     //승인대기 리스트 불러오기
-    @GetMapping("/list/{empNo}/{roleCode}/waiting")
+    @GetMapping("/{empNo}/{roleCode}/waiting")
     @ResponseBody
-    public ResponseEntity<List> getWaitingList(@PathVariable("empNo") long empNo,@PathVariable("roleCode") @Nullable String roleCode){
-        List<SimpleDateConfirmDto> waitingList = confirmService.getWaitingList(empNo, roleCode).stream()
-                .map(SimpleDateConfirmDto::new)
-                .collect(Collectors.toList());
-
+    public ResponseEntity<List> getWaitingList(@PathVariable("empNo") long empNo, @PathVariable("roleCode") @Nullable String roleCode){
+        List<SimpleDateConfirmDto> waitingList = confirmService.getWaitingList(empNo, roleCode);
         return ResponseEntity.ok().body(waitingList);
     }
 
     //승인 리스트 불러오기
-    @GetMapping("/checked/{empNo}")
+    @GetMapping("/{empNo}/{roleCode}/checked")
     @ResponseBody
-    public ResponseEntity<List> getCheckedList(@PathVariable("empNo") long empNo, @Nullable String roleCode){
-        List<getConfirmListDto> checkedList = confirmService.getCheckedList(empNo, roleCode);
+    public ResponseEntity<List> getCheckedList(@PathVariable("empNo") long empNo, @PathVariable("roleCode") @Nullable String roleCode){
+        List<SimpleDateConfirmDto> checkedList = confirmService.getCheckedList(empNo, roleCode);
         return ResponseEntity.ok().body(checkedList);
     }
 
     //반려리스트 불러오기
-    @GetMapping("/rejected/{empNo}")
+    @GetMapping("/{empNo}/{roleCode}/rejected")
     @ResponseBody
-    public ResponseEntity<List> getRejectedList(@PathVariable("empNo") long empNo, @Nullable String roleCode){
-        List<getConfirmListDto> rejectedList = confirmService.getRejectedList(empNo, roleCode);
+    public ResponseEntity<List> getRejectedList(@PathVariable("empNo") long empNo, @PathVariable("roleCode") @Nullable String roleCode){
+        List<SimpleDateConfirmDto> rejectedList = confirmService.getRejectedList(empNo, roleCode);
         return ResponseEntity.ok().body(rejectedList);
     }
 

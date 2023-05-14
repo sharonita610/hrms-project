@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.RequestConfirmDto;
 import com.hrms.project4th.mvc.dto.ModifyConfirmDto;
+import com.hrms.project4th.mvc.dto.SimpleDateConfirmDto;
 import com.hrms.project4th.mvc.dto.getConfirmListDto;
 import com.hrms.project4th.mvc.entity.Confirm;
 import com.hrms.project4th.mvc.repository.ConfirmMapper;
@@ -10,6 +11,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,8 +19,11 @@ public class ConfirmService {
 
     private final ConfirmMapper confirmMapper;
 
-    public List<getConfirmListDto> getWaitingList(long empNo, @Nullable String roleCode) {
-        return confirmMapper.getWaitingList(empNo, roleCode);
+    public List<SimpleDateConfirmDto> getWaitingList(long empNo, @Nullable String roleCode) {
+        return confirmMapper.getWaitingList(empNo, roleCode)
+                .stream()
+                .map(SimpleDateConfirmDto::new)
+                .collect(Collectors.toList());
     }
 
     public boolean requestConfirm(RequestConfirmDto dto) {
@@ -35,8 +40,11 @@ public class ConfirmService {
         return confirmMapper.checkConfirm(conNo);
     }
 
-    public List<getConfirmListDto> getCheckedList(long empNo, String roleCode) {
-        return confirmMapper.getCheckedList(empNo, roleCode);
+    public List<SimpleDateConfirmDto> getCheckedList(long empNo, String roleCode) {
+        return confirmMapper.getCheckedList(empNo, roleCode)
+                .stream()
+                .map(SimpleDateConfirmDto::new)
+                .collect(Collectors.toList());
     }
 
     public boolean rejectConfirm(long conNo) {
@@ -52,7 +60,10 @@ public class ConfirmService {
         return confirmMapper.modifyConfirm(confirm);
     }
 
-    public List<getConfirmListDto> getRejectedList(long empNo, String roleCode) {
-        return confirmMapper.getRejectedList(empNo, roleCode);
+    public List<SimpleDateConfirmDto> getRejectedList(long empNo, String roleCode) {
+        return confirmMapper.getRejectedList(empNo, roleCode)
+                .stream()
+                .map(SimpleDateConfirmDto::new)
+                .collect(Collectors.toList());
     }
 }

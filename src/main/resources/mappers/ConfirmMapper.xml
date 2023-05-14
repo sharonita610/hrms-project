@@ -11,7 +11,7 @@
 
     <select id="getWaitingList" resultType="getConfirmListDto">
         <choose>
-            <when test="roleCode eq 11111">
+            <when test="roleCode eq '11111'">
                 select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
                 from hr_confirm c, hr_employees e, hr_department d
                 where c.from_emp_no = e.emp_no
@@ -33,8 +33,8 @@
 
     <select id="getCheckedList" resultType="getConfirmListDto">
         <choose>
-            <when test="roleCode eq 11111">
-                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+            <when test="roleCode eq '11111'">
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
                 from hr_confirm c, hr_employees e, hr_department d
                 where c.from_emp_no = e.emp_no
                 and e.DEPT_CODE = d.DEPT_CODE
@@ -55,7 +55,7 @@
 
     <select id="getRejectedList" resultType="getConfirmListDto">
         <choose>
-            <when test="roleCode eq 11111">
+            <when test="roleCode eq '11111'">
                 select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
                 from hr_confirm c, hr_employees e, hr_department d
                 where c.from_emp_no = e.emp_no
@@ -83,7 +83,7 @@
 
     <update id="rejectConfirm">
         update hr_confirm
-        set con_status = 'Z'
+        set con_status = 'Z', con_check_date = current_timestamp
         where con_no = #{conNo};
     </update>
 
