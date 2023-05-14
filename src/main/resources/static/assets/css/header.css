@@ -2,30 +2,31 @@
 
 /* COMMON ADD */
 .common_wrap {
-    background: rgba(130, 186, 234, 0.14);
+    background: rgba(198, 198, 199, 0.15);
     width: 100%;
 }
 
 /*  SECTION-TOP BEGIN  */
-.section-header .logo {
-    height: 10px;
-    padding: 20px 30px;
+.section-header{
+    height: 50px;
+}
+ .head {
     line-height: 20%;
+    padding: 20px 50px;
+}
+.head .logo-img img {
+    height: 50px;
+    width: 100px;
+
 }
 
-.section-header .logo ul {
+.section-header .head ul {
     display: flex;
     justify-content: space-between;
 }
 
-.section-header .logo li {
+.section-header .head li {
     display: flex;
-}
-
-/*  LOGO IMG  */
-.top_logo a img {
-    width: 20px;
-    margin-right: 20px;
 }
 
 /*  SECTION-TOP END  */

@@ -16,6 +16,7 @@
     display: flex;
 }
 
+
 .section-sub-header .nav-bar {
     width: 100%;
 }
@@ -27,6 +28,7 @@
     justify-content: space-around;
 
 }
+
 
 
 .section-sub-header .nav-bar ul li {
@@ -97,23 +99,16 @@ section-left-body .left-fix .line.information-box #information{
     width: 80px;
 }
 
-
-/*.section-left-body .left-fix .information-box{*/
-/*    position: relative;*/
-/*}*/
-/*.section-left-body .left-fix .information-box ul{*/
-/*    position: fixed;*/
-/*    display: block;*/
-/*    border: 1px solid #333;*/
-
-/*}*/
-/*.section-left-body .left-fix .information-box #information {*/
-/*    display: block;*/
-/*    position: fixed;*/
-/*    margin-top: 15%;*/
-/*    margin-left: 40px;*/
-/*    color: #000;*/
-/*    line-height: 30px;*/
-
-/*    */
-/*}*/
+/* SECTION CALENDAR BEGIN */
+.calendar {
+    margin-top: 20%;
+    margin-left: 5%;
+}
+td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+.today {
+    background-color: lightblue;
+}
