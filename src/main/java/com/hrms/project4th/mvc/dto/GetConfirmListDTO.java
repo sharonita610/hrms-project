@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class getConfirmListDTO {
+public class GetConfirmListDTO {
     private long conNo;
     private String conTitle;
     private String fromName;

@@ -71,4 +71,9 @@ public class ConfirmService {
         return employeesMapper.getDeptBoss(deptCode);
 
     }
+
+    public SimpleDateConfirmDTO findOne(long conNo) {
+        GetConfirmListDTO dto = confirmMapper.findOne(conNo);
+        return new SimpleDateConfirmDTO(dto);
+    }
 }

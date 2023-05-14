@@ -3,7 +3,6 @@ package com.hrms.project4th.mvc.service;
 import com.hrms.project4th.mvc.dto.ModifyConfirmDTO;
 import com.hrms.project4th.mvc.dto.RequestConfirmDTO;
 import com.hrms.project4th.mvc.dto.SimpleDateConfirmDTO;
-import com.hrms.project4th.mvc.dto.getConfirmListDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

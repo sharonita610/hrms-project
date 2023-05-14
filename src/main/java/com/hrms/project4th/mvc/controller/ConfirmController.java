@@ -86,8 +86,11 @@ public class ConfirmController {
 
     //결재 수정폼으로 이동
     @GetMapping("/modify")
-    public String modifyForm(long conNo){
-        return "/modify";
+    public String modifyForm(long conNo, Model model){
+        log.info(String.valueOf(conNo));
+        SimpleDateConfirmDTO dto = confirmService.findOne(conNo);
+        model.addAttribute("c", dto);
+        return "confirm/modify";
     }
 
     //수정폼에서 값 받아서 DB에 전달

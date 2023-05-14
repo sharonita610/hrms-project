@@ -24,7 +24,7 @@ public class SimpleDateConfirmDTO {
     private String conStatus;
     private String conCheckDate;
 
-    public SimpleDateConfirmDTO(getConfirmListDTO dto) {
+    public SimpleDateConfirmDTO(GetConfirmListDTO dto) {
         this.conNo = dto.getConNo();
         this.conTitle = dto.getConTitle();
         this.fromName = dto.getFromName();

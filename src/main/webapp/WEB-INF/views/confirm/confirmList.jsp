@@ -124,19 +124,34 @@
         for (let c of list) {
             const {conNo, conTitle, fromName, fromDept, conDate, conStatus, conCheckDate} = c;
 
-            tag += '<tr><td class = "col1">' + conNo + '</td><td class = "col2">' + conTitle
+            tag += '<tr id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2">' + conTitle
                 + '</td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
                 + '</td><td class = "col6">' + conStatus + '</td>';
 
             if ($section.id === 'waiting-table') {
-                tag += '<td class="col7"><button id="modify"> </button></td>'
-                    + '<td class = "col7"><button id = "remove"> </button></td></tr>';
+                tag += '<td class="col7"><div class = "button" id = "modify"></div></td>'
+                    + '<td class = "col7"><div class = "button" id = "remove"></div></td></tr>';
             } else {
                 tag += '<td class = "col7">' + conCheckDate + '</td>';
             }
         }
         $section.innerHTML = tag;
     }
+
+    $box = document.querySelector('.confirm-outer-container');
+    $box.addEventListener('mouseover', modifyConfirm);
+    function modifyConfirm(e) {
+        if(e.target.matches('#modify')) {
+            let $modiBtn = e.target.closest('#modify');
+            let $docInfo = e.target.closest('#doc-info');
+            let conNo = $docInfo.firstChild.innerText;
+
+            $modiBtn.onclick = () => {
+                window.location.href = '/confirm/modify?conNo=' + conNo;
+            }
+        }
+    }
+
 
     // 실행부
     startConfirmPage();

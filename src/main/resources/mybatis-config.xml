@@ -15,7 +15,7 @@
         <typeAlias alias="employees" type="com.hrms.project4th.mvc.entity.Employees"/>
         <typeAlias alias="mail" type="com.hrms.project4th.mvc.entity.Mail"/>
         <typeAlias alias="mailResponseDTO" type="com.hrms.project4th.mvc.dto.MailResponseDTO"/>
-        <typeAlias alias="getConfirmListDto" type="com.hrms.project4th.mvc.dto.getConfirmListDTO"/>
+        <typeAlias alias="getConfirmListDto" type="com.hrms.project4th.mvc.dto.GetConfirmListDTO"/>
         <typeAlias alias="deptBossDto" type="com.hrms.project4th.mvc.dto.DeptBossDTO"/>
 
     </typeAliases>

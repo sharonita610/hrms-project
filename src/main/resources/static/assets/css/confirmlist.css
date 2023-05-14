@@ -112,8 +112,10 @@
     width: 80px;
 }
 
-.confirm-box table button {
+.confirm-box table .button {
     height: 15px;
+    width: 15px;
+    margin: 0 auto;
     border: 1px solid gray;
     cursor: pointer;
 }
