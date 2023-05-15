@@ -3,7 +3,6 @@ package com.hrms.project4th.mvc.api;
 import com.hrms.project4th.mvc.dto.BoardReplyListResponseDTO;
 import com.hrms.project4th.mvc.dto.BoardReplyWriteRequestDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardPage;
-import com.hrms.project4th.mvc.entity.BoardReply;
 import com.hrms.project4th.mvc.service.BoardReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLDataException;
-import java.util.List;
 
 
 @RestController
@@ -33,13 +31,13 @@ public class BoardReplyController {
         page.setBoardPageNo(pageNo);
         page.setBoardAmount(10);
         BoardReplyListResponseDTO replyList
-                = boardReplyService.getList(boardNo, page);
+                = boardReplyService.findAll(boardNo, page);
 
         return ResponseEntity.ok().body(replyList);
     }
 
     @PostMapping
-    public ResponseEntity<?> writeReply(
+    public ResponseEntity<?> saveReply(
             @RequestBody BoardReplyWriteRequestDTO dto) {
         log.info("/api/hrms/replies : POST!! / dto : {}", dto);
         try {
@@ -55,6 +53,14 @@ public class BoardReplyController {
         return ResponseEntity.ok().body("success");
 
     }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteReply(long rePlyNo){
+
+
+        return ResponseEntity.ok().body("success");
+    }
+
 
 
 }

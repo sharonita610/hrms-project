@@ -22,7 +22,7 @@ public class BoardReplyService {
     private final BoardReplyMapper boardReplyMapper;
 
     // 게시판 댓글 목록 조회
-    public BoardReplyListResponseDTO getList(long boardNo, BoardPage page) {
+    public BoardReplyListResponseDTO findAll(long boardNo, BoardPage page) {
         List<BoardReplyDetailResponseDTO> boardReplyList
                 = boardReplyMapper.findAll(boardNo, page)
                 .stream().map(BoardReplyDetailResponseDTO::new)
@@ -38,12 +38,13 @@ public class BoardReplyService {
 
     public boolean save(BoardReplyWriteRequestDTO dto) throws SQLDataException {
         BoardReply boardReply = dto.changeEntity();
-        boolean flag = boardReplyMapper.save(boardReply);
 
+        boolean flag = boardReplyMapper.save(boardReply);
         if (!flag) {
             log.warn("fail to save Reply");
             throw new SQLDataException("fail to save Reply");
         }
-        return boardReplyMapper.save(boardReply);
+        return flag;
     }
+
 }

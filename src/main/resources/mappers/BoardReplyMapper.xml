@@ -10,7 +10,7 @@
         FROM
         hr_reply
         WHERE board_no = #{boardNo}
-        LIMIT 0, #{page.boardAmount}
+        LIMIT #{pge.pageLimitNum}, #{page.boardAmount}
 
     </select>
 
