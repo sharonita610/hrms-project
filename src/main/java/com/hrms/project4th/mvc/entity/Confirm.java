@@ -16,6 +16,7 @@ public class Confirm {
     private long conNo;
     private String conTitle;
     private String conContent;
+    private LocalDateTime conDate;
     private LocalDateTime conCheckDate;
     private CheckStatus conStatus;
     private long fromEmpNo;

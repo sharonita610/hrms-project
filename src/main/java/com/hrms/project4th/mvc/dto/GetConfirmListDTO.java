@@ -1,7 +1,10 @@
 package com.hrms.project4th.mvc.dto;
 
+import com.hrms.project4th.mvc.entity.CheckStatus;
 import lombok.*;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 @Component
 @Setter
@@ -11,9 +14,13 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ModifyConfirmDto {
-
+public class GetConfirmListDTO {
     private long conNo;
     private String conTitle;
     private String conContent;
+    private String fromName;
+    private String fromDept;
+    private LocalDateTime conDate;
+    private CheckStatus conStatus;
+    private LocalDateTime conCheckDate;
 }
