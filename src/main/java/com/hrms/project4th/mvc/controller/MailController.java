@@ -34,7 +34,7 @@ public class MailController {
     }
 
     //메일 불러오기서비스(로그인한 사용자 사번이 필요함)
-    public String getList(Model model,@Param(value = "mailTo") Long empNo){
+    public String getList(Model model,@Param(value = "empNo") Long empNo){
 
         List<MailResponseDTO> mailList = mailService.getMailList(empNo);
         model.addAttribute("maillist",mailList);

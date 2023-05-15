@@ -33,14 +33,30 @@ class MailMapperTest {
 
 
     @Test
-    @DisplayName("사원번호가1번인 사람이 보낸 메일의 제목은 테스트용메일1이다")
+    @DisplayName("2번사원에게 온 메일의 개수는 50개이다")
     void getMailListTest(){
-       List<MailResponseDTO> mailList = mailMapper.getMailList(1L);
+       List<MailResponseDTO> mailList = mailMapper.getMailList(2L);
         for (MailResponseDTO mailResponseDTO : mailList) {
             System.out.println(mailResponseDTO);
             System.out.println(mailList.size());
         }
    }
+
+    @Test
+    @DisplayName("메일번호가 50번 번호의 제목은 테스트용 메일50이다")
+    void getMailDetailTest(){
+        Mail mailDetail = mailMapper.getMailDetail(50L);
+
+        System.out.println(mailDetail.toString());
+    }
+
+    @Test
+    @DisplayName("1번 메일을 조회하면 조회상태가 Y가 되어야한다")
+    void updatemailVeiwTest(){
+       mailMapper.mailViewUpdate(1L);
+        List<MailResponseDTO> mailList = mailMapper.getMailList(2L);
+        System.out.println(mailList);
+    }
 
 
 
