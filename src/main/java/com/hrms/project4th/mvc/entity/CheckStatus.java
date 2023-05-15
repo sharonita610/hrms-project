@@ -1,4 +1,5 @@
 package com.hrms.project4th.mvc.entity;
 
-public class Position {
+public enum CheckStatus {
+    Y,N,Z
 }

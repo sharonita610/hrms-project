@@ -1,18 +1,49 @@
 package com.hrms.project4th.mvc.entity;
 
+import com.hrms.project4th.mvc.dto.BoardModifyRequestDTO;
+import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
+import lombok.*;
+
 import java.time.LocalDateTime;
-
+@Getter
+@Setter
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Board {
-    //
+    //게시글 번호
     private long boardNo;
-    private String bdType;
 
+    //게시글 종료(공지,자유,익명)
+    private BdType bdType;
+
+    //게시글 제목
     private String bdTitle;
 
+    //게시글 내용
     private String bdContent;
 
+    //게시글 작성 시간
     private LocalDateTime bdDate;
 
+    //사원 번호
     private long empNo;
 
+
+    public Board(BoardSaveRequestDTO dto) {
+        this.bdType=dto.getBdType();
+        this.bdTitle=dto.getBdTitle();
+        this.bdContent=dto.getBdContent();
+        this.empNo= dto.getEmpNo();
+    }
+
+    public Board(BoardModifyRequestDTO dto){
+        this.boardNo=dto.getBoardNo();
+        this.bdType= BdType.valueOf(dto.getBdType());
+        this.bdTitle=dto.getBdTitle();
+        this.bdContent=dto.getBdContent();
+//        this.empNo= dto.getEmpNo();
+    }
 }
