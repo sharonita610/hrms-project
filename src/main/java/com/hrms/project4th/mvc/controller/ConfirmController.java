@@ -95,7 +95,7 @@ public class ConfirmController {
     }
 
     //수정폼에서 값 받아서 DB에 전달
-    @PutMapping("/modify")
+    @PostMapping("/modify")
     public String modify(ModifyConfirmDTO dto){
         boolean flag = confirmService.modifyConfirm(dto);
         return "redirect:/confirm/list";
