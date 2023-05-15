@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class BoardReply {
+
     private long repNo;
     private String repContent;
     private LocalDateTime repDate;
     private long boardNo;
     private long empNo;
-
 
 }

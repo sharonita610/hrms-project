@@ -6,27 +6,22 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Setter
-@ToString
 @Getter
-public class BoardReplyWriteRequestDTO {
-    //게시글 번호
-    private long boardNo;
+@ToString
+public class BoardReplyModifyRequestDTO {
 
-    // 댓글 내용
+    private long repNo;
     private String repContent;
-
-    // 작성자의 사원 번호
+    private long boardNo;
     private long empNo;
-
 
     public BoardReply changeEntity() {
         return BoardReply.builder()
+                .repNo(this.repNo)
+                .repContent(this.repContent)
                 .boardNo(this.boardNo)
                 .empNo(this.empNo)
-                .repContent(this.repContent)
                 .build();
     }
-
-
 
 }

@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 public class BoardReplyDetailResponseDTO {
 
 
-    private long replyNo;
-    private String replyContent;
+    private long repNo;
+    private String repContent;
     private long empNo;
     @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime replyRegDate;
@@ -28,8 +28,8 @@ public class BoardReplyDetailResponseDTO {
 //        private long empNo;
 
     public BoardReplyDetailResponseDTO(BoardReply boardReply) {
-        this.replyNo = boardReply.getRepNo();
-        this.replyContent = boardReply.getRepContent();
+        this.repNo = boardReply.getRepNo();
+        this.repContent = boardReply.getRepContent();
         this.empNo = boardReply.getEmpNo();
         this.replyRegDate = boardReply.getRepDate();
 

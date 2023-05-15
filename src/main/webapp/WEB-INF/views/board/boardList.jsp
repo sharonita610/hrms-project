@@ -1,20 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html lang="en">
+<!doctype html>
+<html lang="kor">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous">
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>SAMJO SANGSA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/common.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/fixed.css">
 </head>
 <style>
     .head-wrapper {
         width: 100vh;
-        margin: 100px auto;
+        margin: 50px auto;
         position: relative;
     }
 
@@ -25,7 +30,7 @@
     }
 
     .card-wrapper {
-        margin: 100px auto;
+        margin: 10px auto;
         border: 2px solid #000;
         width: 1000px;
         display: flex;
@@ -128,8 +133,61 @@
     }
 </style>
 
-
 <body>
+
+    <header class="common_wrap">
+        <section class="section-header">
+            <div class="head">
+                <ul>
+                    <li>
+                        <div class="logo-img">
+                            <a href="#">
+                                <img src="/assets/img/samjo-logo.png" alt="로고">
+                            </a>
+                        </div>
+                    </li>
+                    <li>삼조상사에 오신 것을 환영합니다.</li>
+                    <li><a href="#"><span id="logout-button">로그아웃</span></a></li>
+                </ul>
+            </div>
+        </section>
+        <section class="section-sub-header">
+            <div class="nav-bar">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="/hrms/board-list">게시판</a></li>
+                    <li><a href="#">결재</a></li>
+                    <li><a href="#">메일</a></li>
+                    <li><a href="#">동호회</a></li>
+                </ul>
+            </div>
+        </section>
+
+    </header>
+    <section class="section-left-body">
+        <div id="left-body">
+            <div class="left-fix">
+                <div class="line">
+                    <div class="information-box">
+                        <ul id="profile">
+                            <li id="photo"><a href="#">사원사진</a></li>
+                        </ul>
+                        <ul id="information">
+                            <li>사원번호</li>
+                            <li>이름</li>
+                            <li>휴대폰번호</li>
+                            <li>부서</li>
+                            <li>직책</li>
+                            <li>
+                                <button id="change-info" type="submit">수정</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!--title -->
     <header class="head-wrapper">
         <ol>
@@ -175,6 +233,9 @@
     <!-- PAGINATION -->
     <nav class="showPage" aria-label="Page navigation example">
         <ul class="pagination">
+            <a class="page-link" href="/hrms/board-list/?boardPageNo=1" aria-label="Previous"><span
+                    aria-hidden="true">&laquo;</span>
+            </a>
             <c:if test="${boardPageMaker.prev}">
                 <li class="page-item"><a class="page-link"
                         href="/hrms/board-list/?boardPageNo=${boardPageMaker.start-1}">Previous</a></li>
@@ -183,11 +244,61 @@
                 <li class="page-item"><a class="page-link" href="/hrms/board-list/?boardPageNo=${i}">${i}</a></li>
             </c:forEach>
             <c:if test="${boardPageMaker.next}">
-                <li class="page-item"><a class="page-link" href="/hrms/board-list/?boardPageNo=${boardPageMaker.end+1}">Next</a></li>
+                <li class="page-item"><a class="page-link"
+                        href="/hrms/board-list/?boardPageNo=${boardPageMaker.end+1}">Next</a></li>
             </c:if>
+            <a class="page-link" href="/hrms/board-list/?boardPageNo=${boardPageMaker.final_page}"
+                aria-label="Next"><span aria-hidden="true">&raquo;</span>
+            </a>
         </ul>
     </nav>
 
+<!-- 
+
+    <%--    <section class="calendar">--%>
+    <%--        <div id="calendar">--%>
+    <%--            <table>--%>
+    <%--                <tr>--%>
+    <%--                    <th colspan="7">--%>
+    <%--                        <button onclick="prevMonth()">&#8249;</button>--%>
+    <%--                        <span id="currentMonth"></span>--%>
+    <%--                        <button onclick="nextMonth()">&#8250;</button>--%>
+    <%--                    </th>--%>
+    <%--                </tr>--%>
+    <%--                <tr>--%>
+    <%--                    <th>일</th>--%>
+    <%--                    <th>월</th>--%>
+    <%--                    <th>화</th>--%>
+    <%--                    <th>수</th>--%>
+    <%--                    <th>목</th>--%>
+    <%--                    <th>금</th>--%>
+    <%--                    <th>토</th>--%>
+    <%--                </tr>--%>
+    <%--            </table>--%>
+    <%--        </div>--%>
+    <%--    </section>--%>
+    </div>
+    <%--<script src="calendar.js"></script>--%>
+    <%--<script>--%>
+    <%--    var calendar = new Calendar({--%>
+    <%--        target: '#calendar',--%>
+    <%--        date: new Date(),--%>
+    <%--        onSelect: function(date) {--%>
+    <%--            console.log(date);--%>
+    <%--        }--%>
+    <%--    });--%>
+    <%--</script>--%>
+
+    <%--<script src="calendar.js"></script>--%>
+    <%--<script>--%>
+    <%--    var calendar = new Calendar({--%>
+    <%--        target: '#calendar',--%>
+    <%--        date: new Date(),--%>
+    <%--        onSelect: function(date) {--%>
+    <%--            console.log(date);--%>
+    <%--        }--%>
+    <%--    });--%>
+    <%--</script>--%> -->
     <script>
         //저장기능
         const $save = document.getElementById('save-Btn');

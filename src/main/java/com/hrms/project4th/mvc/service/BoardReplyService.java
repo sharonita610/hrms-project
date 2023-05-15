@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.requestDTO.BoarReplyDeleteRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyDeleteRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyListResponseDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyWriteRequestDTO;
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,9 @@ import java.util.stream.Collectors;
 @Slf4j
 public class BoardReplyService {
     private final BoardReplyMapper boardReplyMapper;
+
+//    public  modifyReply() {
+//    }
 
     // 게시판 댓글 목록 조회
     public BoardReplyListResponseDTO findAll(long boardNo, BoardPage page) {
@@ -37,7 +42,7 @@ public class BoardReplyService {
 
     }
 
-    public boolean save(BoardReplyWriteRequestDTO dto) throws SQLDataException {
+    public BoardReplyListResponseDTO save(BoardReplyWriteRequestDTO dto) throws SQLDataException {
         BoardReply boardReply = dto.changeEntity();
 
         boolean flag = boardReplyMapper.save(boardReply);
@@ -45,20 +50,28 @@ public class BoardReplyService {
             log.warn("fail to save Reply");
             throw new SQLDataException("fail to save Reply");
         }
-        return flag;
+        return findAll(dto.getBoardNo(),new BoardPage(5,1));
     }
 
-    public boolean delete(BoarReplyDeleteRequestDTO dto) throws SQLDataException {
+    public BoardReplyListResponseDTO delete(BoardReplyDeleteRequestDTO dto) throws SQLDataException {
 
         BoardReply boardReply = dto.changeEntity();
 
         boolean flag = boardReplyMapper.delete(boardReply);
         if(!flag){
-            log.warn("fila to delete Reply");
-            throw new SQLDataException("fila to delete Reply");
+            log.warn("fail to delete Reply");
+            throw new SQLDataException("fail to delete Reply");
         }
-        return flag;
+        return findAll(dto.getBoardNo(),new BoardPage(5,1));
+    }
 
+    public BoardReplyListResponseDTO modify(BoardReplyModifyRequestDTO dto) throws SQLException {
 
+        boolean flag=boardReplyMapper.modify(dto);
+        if(!flag){
+            log.warn("fail to modify Reply");
+            throw new SQLException("fail to modify Reply");
+        }
+        return findAll(dto.getBoardNo(),new BoardPage(5,1));
     }
 }
