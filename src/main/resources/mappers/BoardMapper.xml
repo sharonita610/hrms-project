@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.BoardMapper">
+
+
+    <select id="boardFindAll" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no
+        FROM hr_board
+        <if test="boardType == 'title'">
+            WHERE bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType == 'boardType'">
+            WHERE bd_type LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType == 'boardContent'">
+            WHERE bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+    </select>
+
+    <select id="boardFindOneByEno" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no
+        FROM hr_board
+        WHERE emp_no=#{empNo}
+    </select>
+
+    <select id="boardFindOneByBoardNo" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no
+        FROM hr_board
+        WHERE board_no=#{boardNo}
+    </select>
+
+    <select id="boardDetail" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no
+        FROM hr_board
+        WHERE board_no=#{boardNo}
+    </select>
+
+    <insert id="boardSave">
+        INSERT INTO hr_board
+        (bd_type, bd_title, bd_content, emp_no)
+        VALUES
+        (#{bdType},#{bdTitle},#{bdContent},#{empNo})
+    </insert>
+
+    <delete id="boardDelete">
+        DELETE FROM hr_board
+        WHERE board_no=#{boardNo}
+    </delete>
+
+    <update id="boardModify">
+        UPDATE hr_board
+        SET bd_type=#{bdType}, bd_title=#{bdTitle}, bd_content=#{bdContent}
+        WHERE board_no=#{boardNo}
+    </update>
+
+</mapper>
