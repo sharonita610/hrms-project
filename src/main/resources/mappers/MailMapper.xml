@@ -24,16 +24,46 @@
         E.mail_date
         FROM HR_EMAIL AS E
         JOIN HR_EMPLOYEES AS P
-        ON E.MAIL_TO = P.EMP_NO
-        WHERE E.mail_to = #{empNo}
+        <if test="s.mailType == 'mailto'">
+            ON E.MAIL_TO = P.EMP_NO
+            WHERE E.mail_to = #{empNo}
+        </if>
+        <if test="s.mailType == 'mailfrom'">
+            ON E.MAIL_FROM = P.EMP_NO
+            WHERE E.mail_from = #{empNo}
+        </if>
+
         ORDER BY
         E.mail_no DESC
     </select>
-
-
-
-
-
+<!--접속한 사용자의 번호에맞는 상태값에 따라 메일리스트가 나온다-->
+    <select id="getMailListByStatus" resultType="MailResponseDTO">
+        SELECT
+        E.mail_no,
+        P.emp_email,
+        P.emp_name,
+        P.role_code,
+        P.dept_code,
+        E.mail_title,
+        E.mail_status,
+        E.mail_date
+        FROM HR_EMAIL AS E
+        JOIN HR_EMPLOYEES AS P
+        ON E.MAIL_TO = P.EMP_NO
+        <choose>
+            <when test="status == 'Y'">
+                WHERE E.mail_to = #{empNo} AND E.MAIL_STATUS = 'Y'
+            </when>
+            <when test="status == 'N'">
+                WHERE E.mail_to = #{empNo} AND E.MAIL_STATUS = 'N'
+            </when>
+            <otherwise>
+                WHERE E.mail_to = #{empNo}
+            </otherwise>
+        </choose>
+        ORDER BY
+        E.mail_no desc
+    </select>
 
     <!--메일번호에 맞는 메일의 객체정보전체가 나온다    -->
     <select id="getMailDetail" resultType="mail">
