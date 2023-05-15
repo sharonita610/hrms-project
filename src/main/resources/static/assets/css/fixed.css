@@ -8,6 +8,9 @@
 .fixed {
     width: 100%;
 }
+.main-wrap{
+    position: relative;
+}
 
 /*  SECTION-SUB-HEADER BEGIN  */
 .section-sub-header {
@@ -60,7 +63,7 @@
 .section-left-body .left-fix {
     width: 100%;
     height: 100%;
-    position: relative;
+    position: fixed;
 
 }
 .section-left-body .left-fix .line{

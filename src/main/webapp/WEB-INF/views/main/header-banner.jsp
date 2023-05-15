@@ -27,7 +27,7 @@
                     </div>
                 </li>
                 <li>삼조상사에 오신 것을 환영합니다.</li>
-                <li><a href="#">로그아웃</a></li>
+                <li><a href="#"><span id="logout-button">로그아웃</span></a></li>
             </ul>
         </div>
     </section>
