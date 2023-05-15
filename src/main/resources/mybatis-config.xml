@@ -11,28 +11,19 @@
     <typeAliases>
         <!--  entity 클래스 별칭 설정      -->
         <typeAlias alias="board" type="com.hrms.project4th.mvc.entity.Board"/>
-        <typeAlias alias="boardReply" type="com.hrms.project4th.mvc.entity.BoardReply"/>
-<!--        <typeAlias alias="boardPage" type="com.hrms.project4th.mvc.entity.BoardPage"/>-->
         <typeAlias alias="cnfm" type="com.hrms.project4th.mvc.entity.Confirm"/>
         <typeAlias alias="employees" type="com.hrms.project4th.mvc.entity.Employees"/>
         <typeAlias alias="mail" type="com.hrms.project4th.mvc.entity.Mail"/>
         <typeAlias alias="mailResponseDTO" type="com.hrms.project4th.mvc.dto.MailResponseDTO"/>
-        <typeAlias alias="clubBoard" type="com.hrms.project4th.mvc.entity.ClubBoard" />
-        <typeAlias alias="clubJoin" type="com.hrms.project4th.mvc.entity.EmpClub" />
-        <typeAlias alias="getConfirmListDto" type="com.hrms.project4th.mvc.dto.GetConfirmListDTO"/>
-        <typeAlias alias="deptBossDto" type="com.hrms.project4th.mvc.dto.DeptBossDTO"/>
 
     </typeAliases>
 
     <mappers>
         <!-- Mapper XML files -->
         <mapper resource="mappers/BoardMapper.xml"/>
-        <mapper resource="mappers/BoardReplyMapper.xml"/>
         <mapper resource="mappers/ConfirmMapper.xml"/>
         <mapper resource="mappers/EmployeesMapper.xml"/>
         <mapper resource="mappers/MailMapper.xml"/>
-        <mapper resource="mappers/ClubBoardMapper.xml" />
-        <mapper resource="mappers/ClubJoinMapper.xml" />
     </mappers>
 
 
