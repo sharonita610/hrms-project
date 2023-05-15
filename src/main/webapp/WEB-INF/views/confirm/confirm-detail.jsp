@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
     <link rel="stylesheet" href="/assets/css/confirm-detail.css">
 </head>
 <body>
@@ -38,28 +38,32 @@
         <div class="rqform-content-wrap">
             <div class="rqform-title">
                 <div>문서제목</div>
-                <input type="hidden" name = "conNo" value="${c.conNo}">
-                <div><label for="conTitle"></label><input id = "conTitle" class="conTitle" type="text" name="conTitle" value = "${c.conTitle}" readonly></div>
+                <input type="hidden" id="conNo" name="conNo" value="${c.conNo}">
+                <div><label for="conTitle"></label><input id="conTitle" class="conTitle" type="text" name="conTitle"
+                                                          value="${c.conTitle}" readonly></div>
             </div>
             <div class="rqform-content">
                 <div>내용</div>
-                <div><label for="conContent"></label><textarea id = "conContent" class="conContent" name="conContent" readonly>${c.conContent}</textarea></div>
+                <div><label for="conContent"></label><textarea id="conContent" class="conContent" name="conContent"
+                                                               readonly>${c.conContent}</textarea></div>
             </div>
         </div>
 
-        <div class="submit">
-            <div class="cancel" onclick="history.back()">뒤로가기</div>
-            <div id = "modiConfirm">수정하기</div>
-        </div>
-        <button id = "addBtn">결재수정</button>
+                <div id = "submit" class="submit"></div>
+                <button id="addBtn">결재수정</button>
 
     </form>
 </div>
 
 
-
 <script>
-    $today = document.getElementById('today');
+
+    const roleCode = '11111';
+    const $submit = document.getElementById('submit');
+    const conNo = document.getElementById('conNo').value;
+
+    //기안일자 : 오늘
+    const $today = document.getElementById('today');
 
     const today = new Date();
     const year = today.getFullYear(); // 년도
@@ -68,30 +72,104 @@
 
     $today.innerText = year + '-' + month + '-' + date;
 
-    const $modiBtn = document.getElementById('modiConfirm');
-    $modiBtn.addEventListener('click', changeForm);
+    //  부서장일때 --------------------------------------------------------------
+    //결재 승인
 
-    function changeForm() {
-        document.getElementById('conTitle').removeAttribute('readonly');
-        document.getElementById('conContent').removeAttribute('readonly');
+    if(roleCode === '11111') {
 
-        $modiBtn.id = "addConfirm";
-        $modiBtn.innerText = "수정완료";
-        $modiBtn.addEventListener('click', addConfirm);
+        $submit.innerHTML = '<div id = "cancel" class="cancel" onclick="history.back()">뒤로가기</div>' +
+            '<div id="check">결재승인</div>' +
+            '<div id="reject">결재반려</div>';
+
+        const $checkBtn = document.getElementById('check');
+
+        $checkBtn.onclick = () => {
+            if (!confirm('결재요청을 승인합니다')) {
+                return;
+            }
+
+            fetch(`/confirm/check/\${conNo}`, {method: 'PUT'})
+                .then(res => res.json())
+                .then(result => {
+                        if (result) {
+                            window.location.href = "/confirm/list";
+                        }
+                    }
+                )
+        }
+
+        //결재 반려
+        const $rejectBtn = document.getElementById('reject');
+
+        $rejectBtn.onclick = () => {
+            if (!confirm('결재요청을 반려합니다')) {
+                return;
+            }
+
+            fetch(`/confirm/reject/\${conNo}`, {method: 'PUT'})
+                .then(res => res.json())
+                .then(result => {
+                        if (result) {
+                            window.location.href = "/confirm/list";
+                        }
+                    }
+                )
+        }
     }
+//사원일때 --------------------------------------------------------------
+   else {
+        $submit.innerHTML = ' <div id = "cancel" class="cancel" onclick="history.back()">뒤로가기</div>' +
+            '<div id="modiConfirm">수정하기</div>' +
+            '<div id="remove">삭제하기</div>';
 
 
-    function addConfirm() {
-        let $title = document.getElementById('conTitle').value;
-        let $content = document.getElementById('conContent').value;
-        if($title.trim().length === 0){
-            alert("문서 제목을 입력해주세요");
-            $title.cursor;
-        }else if($content.trim().length === 0) {
-            alert("결재 요청할 내용은 필수로 입력해야 합니다");
-            $title.cursor;
-        } else {
-            document.getElementById('addBtn').click();
+        //수정하기 버튼 누르면 textarea 입력가능으로 변경, 수정하기 버튼에 수정하기 함수 연결
+        const $modiBtn = document.getElementById('modiConfirm');
+        $modiBtn.addEventListener('click', changeForm);
+
+        function changeForm() {
+            document.getElementById('conTitle').removeAttribute('readonly');
+            document.getElementById('conContent').removeAttribute('readonly');
+
+            document.getElementById('conTitle').focus();
+
+            $modiBtn.id = "addConfirm";
+            $modiBtn.innerText = "수정완료";
+            $modiBtn.addEventListener('click', addConfirm);
+        }
+
+        //수정완료 버튼 누르면 수정 후 리스트로 복귀
+        function addConfirm() {
+            let $title = document.getElementById('conTitle').value;
+            let $content = document.getElementById('conContent').value;
+            if ($title.trim().length === 0) {
+                alert("문서 제목을 입력해주세요");
+                $title.cursor;
+            } else if ($content.trim().length === 0) {
+                alert("결재 요청할 내용은 필수로 입력해야 합니다");
+                $title.cursor;
+            } else {
+                document.getElementById('addBtn').click();
+            }
+        }
+
+        //삭제버튼 누르면 삭제
+        const $delBtn = document.getElementById('remove');
+        let conNo = document.getElementById('conNo').value;
+
+        $delBtn.onclick = () => {
+            if (!confirm('정말 삭제하시겠습니까?')) {
+                return;
+            }
+
+            fetch(`/confirm/delete/\${conNo}`, {method: 'delete'})
+                .then(res => res.json())
+                .then(result => {
+                        if (result) {
+                            window.location.href = "redirect:/confirm/list";
+                        }
+                    }
+                )
         }
     }
 

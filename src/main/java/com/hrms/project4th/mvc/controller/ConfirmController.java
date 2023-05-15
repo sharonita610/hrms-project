@@ -68,17 +68,17 @@ public class ConfirmController {
     }
 
     //결재 승인하기
-    @PostMapping("/check")
+    @PutMapping("/check/{conNo}")
     @ResponseBody
-    public ResponseEntity<Boolean> checkConfirm(long conNo){
+    public ResponseEntity<Boolean> checkConfirm(@PathVariable("conNo") long conNo){
         boolean flag = confirmService.checkConfirm(conNo);
         return ResponseEntity.ok().body(flag);
     }
 
     //승인거절하기
-    @PostMapping("/reject")
+    @PutMapping("/reject/{conNo}")
     @ResponseBody
-    public ResponseEntity<Boolean> rejectConfirm(long conNo){
+    public ResponseEntity<Boolean> rejectConfirm(@PathVariable("conNo") long conNo){
 
         boolean flag = confirmService.rejectConfirm(conNo);
         return ResponseEntity.ok().body(flag);

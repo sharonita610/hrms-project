@@ -1,7 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.ModifyConfirmDTO;
-import com.hrms.project4th.mvc.dto.RequestConfirmDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.RequestConfirmDTO;
 import com.hrms.project4th.mvc.dto.SimpleDateConfirmDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

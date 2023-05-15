@@ -10,7 +10,7 @@
     </insert>
 
     <select id="findOne" resultType="getConfirmListDto">
-        select c.con_no, c.con_title, c.con_content, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+        select c.con_no, c.con_title, c.con_content, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
         from hr_confirm c, hr_employees e, hr_department d
         where c.from_emp_no = e.emp_no
           and e.DEPT_CODE = d.DEPT_CODE
@@ -51,7 +51,7 @@
                 and to_emp_no = #{empNo}
             </when>
             <otherwise>
-                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
                 from hr_confirm c, hr_employees e, hr_department d
                 where c.to_emp_no = e.emp_no
                 and e.DEPT_CODE = d.DEPT_CODE
@@ -65,7 +65,7 @@
     <select id="getRejectedList" resultType="getConfirmListDto">
         <choose>
             <when test="roleCode eq '11111'">
-                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
                 from hr_confirm c, hr_employees e, hr_department d
                 where c.from_emp_no = e.emp_no
                 and e.DEPT_CODE = d.DEPT_CODE
@@ -73,7 +73,7 @@
                 and to_emp_no = #{empNo}
             </when>
             <otherwise>
-                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
                 from hr_confirm c, hr_employees e, hr_department d
                 where c.to_emp_no = e.emp_no
                 and e.DEPT_CODE = d.DEPT_CODE

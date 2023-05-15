@@ -50,6 +50,7 @@
         <div class="submit">
             <div class="cancel" onclick="history.back()">뒤로가기</div>
             <div id = "modiConfirm">수정하기</div>
+            <div id = "remove">삭제하기</div>
         </div>
         <button id = "addBtn">결재수정</button>
 
@@ -77,10 +78,9 @@
 
         $modiBtn.id = "addConfirm";
         $modiBtn.innerText = "수정완료";
+        $modiBtn.addEventListener('click', addConfirm);
     }
 
-    const $addBtn = document.getElementById('addConfirm');
-    $addBtn.addEventListener('click', addConfirm);
 
     function addConfirm() {
         let $title = document.getElementById('conTitle').value;
