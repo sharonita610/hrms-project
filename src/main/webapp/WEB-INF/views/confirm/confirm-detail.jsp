@@ -2,13 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-    <link rel="stylesheet" href="/assets/css/confirm-modify.css">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="/assets/css/confirm-detail.css">
 </head>
-
 <body>
 
 <div class="rqform-container">
@@ -41,17 +39,17 @@
             <div class="rqform-title">
                 <div>문서제목</div>
                 <input type="hidden" name = "conNo" value="${c.conNo}">
-                <div><label for="conTitle"></label><input id = "conTitle" class="conTitle" type="text" name="conTitle" value = "${c.conTitle}" autofocus></div>
+                <div><label for="conTitle"></label><input id = "conTitle" class="conTitle" type="text" name="conTitle" value = "${c.conTitle}" readonly></div>
             </div>
             <div class="rqform-content">
                 <div>내용</div>
-                <div><label for="conContent"></label><textarea id = "conContent" class="conContent" name="conContent">${c.conContent}</textarea></div>
+                <div><label for="conContent"></label><textarea id = "conContent" class="conContent" name="conContent" readonly>${c.conContent}</textarea></div>
             </div>
         </div>
 
         <div class="submit">
-            <div class="cancel" onclick="history.back()">수정취소</div>
-            <div id = "addConfirm">결재수정</div>
+            <div class="cancel" onclick="history.back()">뒤로가기</div>
+            <div id = "modiConfirm">수정하기</div>
         </div>
         <button id = "addBtn">결재수정</button>
 
@@ -70,8 +68,18 @@
 
     $today.innerText = year + '-' + month + '-' + date;
 
-    const $addBtn = document.getElementById('addConfirm');
-    $addBtn.addEventListener('click', addConfirm);
+    const $modiBtn = document.getElementById('modiConfirm');
+    $modiBtn.addEventListener('click', changeForm);
+
+    function changeForm() {
+        document.getElementById('conTitle').removeAttribute('readonly');
+        document.getElementById('conContent').removeAttribute('readonly');
+
+        $modiBtn.id = "addConfirm";
+        $modiBtn.innerText = "수정완료";
+        $modiBtn.addEventListener('click', addConfirm);
+    }
+
 
     function addConfirm() {
         let $title = document.getElementById('conTitle').value;

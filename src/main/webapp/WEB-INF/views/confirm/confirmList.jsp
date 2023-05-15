@@ -130,8 +130,8 @@
         for (let c of list) {
             const {conNo, conTitle, fromName, fromDept, conDate, conStatus, conCheckDate} = c;
 
-            tag += '<tr id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2">' + conTitle
-                + '</td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
+            tag += '<tr id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2"><a href="/confirm/detail?conNo=' + conNo + '">' + conTitle
+                + '</a></td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
                 + '</td><td class = "col6">' + conStatus + '</td>';
 
             if ($section.id === 'waiting-table' && roleCode === '11111') {
@@ -156,7 +156,7 @@
             let $modiBtn = e.target.closest('#modify');
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
-            console.log(conNo);
+            // console.log(conNo);
 
             $modiBtn.onclick = () => {
                 window.location.href = '/confirm/modify?conNo=' + conNo;
@@ -167,7 +167,7 @@
             let $remoBtn = e.target.closest('#remove');
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
-            console.log(conNo);
+            // console.log(conNo);
 
             $remoBtn.onclick = () => {
 

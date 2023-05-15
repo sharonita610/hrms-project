@@ -101,10 +101,21 @@ public class ConfirmController {
         return "redirect:/confirm/list";
     }
 
+    //결재 삭제
     @DeleteMapping("/delete/{conNo}")
     @ResponseBody
     public ResponseEntity<Boolean> deleteConfirm(@PathVariable("conNo") long conNo){
         return ResponseEntity.ok().body(confirmService.deleteConfirm(conNo));
+    }
+
+    //결재 상세보기로 이동
+    @GetMapping("/detail")
+    public String detail(long conNo, Model model){
+        DeptBossDTO deptBoss = confirmService.getDeptBoss("001");
+        model.addAttribute("boss", deptBoss);
+        SimpleDateConfirmDTO dto = confirmService.findOne(conNo);
+        model.addAttribute("c", dto);
+        return "confirm/confirm-detail";
     }
 
 }
