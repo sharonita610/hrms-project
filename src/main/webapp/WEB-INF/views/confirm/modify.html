@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/confirm-rqform.css">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/confirm-modify.css">
 </head>
 
 <body>
 
 <div class="rqform-container">
-    <form action="/confirm/rq-cnfm" method="post">
+    <form action="/confirm/modify" method="post">
         <div class="confirm-titleline">
             <h1>결재요청문 수정</h1>
         </div>
@@ -18,9 +18,7 @@
         <div class="rqform-header">
             <div class="fromEmp section">
                 <div>기안자</div>
-                <div>사원명</div>
-            <input type="hidden" name = "fromEmpNo" value = "${login.empNo}">
-                <input type="hidden" name = "fromEmpNo" value = "2">
+                <div>${c.fromName}</div>
             </div>
             <div class="rq-date section">
                 <div>기안일자</div>
@@ -31,10 +29,8 @@
                 <div>${boss.deptName}</div>
             </div>
             <div class="dept-head section">
-                <div>결재자</div>
+                <div>부서장</div>
                 <div>${boss.empName}</div>
-                <input type="hidden" name="toEmpNo" value="${boss.empNo}">
-                <input type="hidden" name="toEmpNo" value="1">
             </div>
         </div>
     
@@ -42,19 +38,20 @@
         <div class="rqform-content-wrap">
             <div class="rqform-title">
                 <div>문서제목</div>
-                <div><label for="conTitle"></label><input id = "conTitle" class="conTitle" type="text" name="conTitle" autofocus></div>
+                <input type="hidden" name = "conNo" value="${c.conNo}">
+                <div><label for="conTitle"></label><input id = "conTitle" class="conTitle" type="text" name="conTitle" value = "${c.conTitle}" autofocus></div>
             </div>
             <div class="rqform-content">
                 <div>내용</div>
-                <div><label for="conContent"></label><textarea id = "conContent" class="conContent" name="conContent"></textarea></div>
+                <div><label for="conContent"></label><textarea id = "conContent" class="conContent" name="conContent">${c.conContent}</textarea></div>
             </div>
         </div>
 
         <div class="submit">
             <div class="cancel" onclick="history.back()">작성취소</div>
-            <div id = "addConfirm">결재요청</div>
+            <div id = "addConfirm">결재수정</div>
         </div>
-        <button id = "addBtn">결재요청</button>
+        <button id = "addBtn">결재수정</button>
 
     </form>
 </div>

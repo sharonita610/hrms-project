@@ -40,9 +40,9 @@
 <script>
 
     const URL = "/confirm";
-    const empNo = 1;
-    const roleCode = '11111';
-    // const roleCode = null;
+    const empNo = 2;
+    // const roleCode = '11111';
+    const roleCode = null;
 
     //페이지 로딩
     function startConfirmPage() {

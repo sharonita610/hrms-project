@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 public class SimpleDateConfirmDTO {
     private long conNo;
     private String conTitle;
+    private String conContent;
     private String fromName;
     private String fromDept;
     private String conDate;
@@ -27,6 +28,7 @@ public class SimpleDateConfirmDTO {
     public SimpleDateConfirmDTO(GetConfirmListDTO dto) {
         this.conNo = dto.getConNo();
         this.conTitle = dto.getConTitle();
+        this.conContent = dto.getConContent();
         this.fromName = dto.getFromName();
         this.fromDept = dto.getFromDept();
         this.conDate = getSimpleDate(dto.getConDate());

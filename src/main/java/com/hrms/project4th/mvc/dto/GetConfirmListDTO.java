@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class GetConfirmListDTO {
     private long conNo;
     private String conTitle;
+    private String conContent;
     private String fromName;
     private String fromDept;
     private LocalDateTime conDate;

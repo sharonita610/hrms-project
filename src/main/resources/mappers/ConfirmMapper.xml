@@ -10,7 +10,7 @@
     </insert>
 
     <select id="findOne" resultType="getConfirmListDto">
-        select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+        select c.con_no, c.con_title, c.con_content, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
         from hr_confirm c, hr_employees e, hr_department d
         where c.from_emp_no = e.emp_no
           and e.DEPT_CODE = d.DEPT_CODE

@@ -33,7 +33,7 @@
                 <div>${boss.deptName}</div>
             </div>
             <div class="dept-head section">
-                <div>결재자</div>
+                <div>부서장</div>
                 <div>${boss.empName}</div>
 <%--                <input type="hidden" name="toEmpNo" value="${boss.empNo}">--%>
                 <input type="hidden" name="toEmpNo" value="1">

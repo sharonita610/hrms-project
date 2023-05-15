@@ -87,18 +87,18 @@ public class ConfirmController {
     //결재 수정폼으로 이동
     @GetMapping("/modify")
     public String modifyForm(long conNo, Model model){
-        log.info(String.valueOf(conNo));
+        DeptBossDTO deptBoss = confirmService.getDeptBoss("001");
+        model.addAttribute("boss", deptBoss);
         SimpleDateConfirmDTO dto = confirmService.findOne(conNo);
         model.addAttribute("c", dto);
         return "confirm/modify";
     }
 
     //수정폼에서 값 받아서 DB에 전달
-    @PutMapping
-    @ResponseBody
-    public ResponseEntity<Boolean> modify(ModifyConfirmDTO dto){
+    @PutMapping("/modify")
+    public String modify(ModifyConfirmDTO dto){
         boolean flag = confirmService.modifyConfirm(dto);
-        return ResponseEntity.ok().body(flag);
+        return "redirect:/confirm/list";
     }
 
 
