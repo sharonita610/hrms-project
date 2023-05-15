@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.api;
 
-import com.hrms.project4th.mvc.dto.requestDTO.BoarReplyDeleteRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyDeleteRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyListResponseDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyWriteRequestDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardPage;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLDataException;
+import java.sql.SQLException;
 
 
 @RestController
@@ -37,6 +39,7 @@ public class BoardReplyController {
         return ResponseEntity.ok().body(replyList);
     }
 
+    //댓글 저장
     @PostMapping
     public ResponseEntity<?> saveReply(
             @RequestBody BoardReplyWriteRequestDTO dto) {
@@ -54,9 +57,10 @@ public class BoardReplyController {
         return ResponseEntity.ok().body("success");
 
     }
-
+    // 댓글 제거
     @DeleteMapping
-    public ResponseEntity<?> deleteReply(@RequestBody BoarReplyDeleteRequestDTO dto) {
+    public ResponseEntity<?> deleteReply(
+            @RequestBody BoardReplyDeleteRequestDTO dto) {
         log.info("/api/hrms/replies : DELETE!! / replyNo : {}", dto);
         try {
             boardReplyService.delete(dto);
@@ -67,10 +71,27 @@ public class BoardReplyController {
                     .body(e.getMessage());
         }
 
-        return ResponseEntity.ok().body("success");
+        return ResponseEntity.ok().body("delete success");
     }
 
+
+    // 댓글 수정
     @PatchMapping
+    public ResponseEntity<?> modifyReply(
+            @RequestBody BoardReplyModifyRequestDTO dto) {
+
+        try {
+            boardReplyService.modify(dto);
+        } catch (SQLException e) {
+            log.warn("500 error {}", e.getMessage());
+            ResponseEntity.internalServerError()
+                    .body(e.getMessage());
+        }
+
+        return ResponseEntity.ok().body("modify success");
+
+
+    }
 
 
 }

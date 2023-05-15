@@ -18,6 +18,7 @@ public class BoardReplyListResponseDTO {
 
     //게시판 댓글 리스트
     private List<BoardReplyDetailResponseDTO> boardReplies;
+
     // 댓글 페이지 정보
     private BoardPageMaker boardReplyPageMaker;
 

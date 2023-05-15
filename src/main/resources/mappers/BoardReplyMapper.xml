@@ -10,8 +10,7 @@
         FROM
         hr_reply
         WHERE board_no = #{boardNo}
-        LIMIT #{pge.pageLimitNum}, #{page.boardAmount}
-
+        LIMIT #{page.pageLimitNum}, #{page.boardAmount}
     </select>
 
     <insert id="save">
@@ -31,7 +30,16 @@
         DELETE FROM hr_reply
         WHERE rep_no=#{repNo}
         AND emp_no=#{empNo}
+        AND board_no=#{boardNo}
     </delete>
+
+    <update id="modify">
+        UPDATE hr_reply
+        SET rep_content=#{repContent}
+        WHERE rep_no=#{repNo}
+        AND board_No=#{boardNo}
+        AND emp_No=#{empNo}
+    </update>
 
 
 

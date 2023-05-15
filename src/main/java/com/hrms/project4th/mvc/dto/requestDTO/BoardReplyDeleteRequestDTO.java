@@ -8,16 +8,18 @@ import lombok.ToString;
 @ToString
 @Setter
 @Getter
-public class BoarReplyDeleteRequestDTO {
+public class BoardReplyDeleteRequestDTO {
 
     private long empNo;
-    private long replyNo;
+    private long repNo;
+    private long boardNo;
 
 
     public BoardReply changeEntity() {
         return BoardReply.builder()
                 .empNo(this.empNo)
-                .repNo(this.replyNo)
+                .repNo(this.repNo)
+                .boardNo(this.boardNo)
                 .build();
     }
 
