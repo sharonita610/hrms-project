@@ -1,3 +1,4 @@
+
 package com.hrms.project4th.mvc.entity;
 
 import lombok.*;
@@ -10,10 +11,10 @@ import java.time.LocalDateTime;
 @ToString @EqualsAndHashCode
 @NoArgsConstructor @AllArgsConstructor
 @Builder
-public class ClubReply {
-    private long clubRepNo;
-    private String clubRepContent;
-    private LocalDateTime clubRepDate;
-    private long cbNo;
+public class Club {
+
+    private long clubCode;
+    private String clubName;
+    private LocalDateTime clubDate;
     private long empNo;
 }
