@@ -36,7 +36,7 @@
             <ul>
                 <li><a href="#">HOME</a></li>
                 <li><a href="#">게시판</a></li>
-                <li><a href="#">결재</a></li>
+                <li><a href="/confirm/list">결재</a></li>
                 <li><a href="#">메일</a></li>
                 <li><a href="#">동호회</a></li>
             </ul>
