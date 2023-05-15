@@ -1,12 +1,9 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.BoardListResponseDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 class BoardServiceTest {

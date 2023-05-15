@@ -1,6 +1,6 @@
 package com.hrms.project4th.mvc.entity;
 
-import com.hrms.project4th.mvc.dto.ClubJoinRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ClubJoinRequestDTO;
 import lombok.*;
 import org.springframework.stereotype.Component;
 

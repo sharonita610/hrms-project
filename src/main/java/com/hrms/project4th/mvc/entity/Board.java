@@ -1,7 +1,7 @@
 package com.hrms.project4th.mvc.entity;
 
-import com.hrms.project4th.mvc.dto.BoardModifyRequestDTO;
-import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;

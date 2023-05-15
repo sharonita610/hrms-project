@@ -1,4 +1,4 @@
-package com.hrms.project4th.mvc.dto;
+package com.hrms.project4th.mvc.dto.requestDTO;
 
 import lombok.*;
 import org.springframework.stereotype.Component;

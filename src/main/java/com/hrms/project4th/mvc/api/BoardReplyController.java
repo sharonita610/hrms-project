@@ -1,7 +1,7 @@
 package com.hrms.project4th.mvc.api;
 
-import com.hrms.project4th.mvc.dto.BoardReplyListResponseDTO;
-import com.hrms.project4th.mvc.dto.BoardReplyWriteRequestDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyListResponseDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyWriteRequestDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardPage;
 import com.hrms.project4th.mvc.service.BoardReplyService;
 import lombok.RequiredArgsConstructor;

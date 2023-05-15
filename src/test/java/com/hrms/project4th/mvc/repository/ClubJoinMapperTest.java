@@ -1,6 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
-import com.hrms.project4th.mvc.dto.ClubJoinRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ClubJoinRequestDTO;
 import com.hrms.project4th.mvc.entity.EmpClub;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

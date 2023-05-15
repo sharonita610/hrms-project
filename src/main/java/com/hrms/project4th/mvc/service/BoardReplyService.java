@@ -1,8 +1,8 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.BoardReplyDetailResponseDTO;
-import com.hrms.project4th.mvc.dto.BoardReplyListResponseDTO;
-import com.hrms.project4th.mvc.dto.BoardReplyWriteRequestDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyDetailResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyListResponseDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyWriteRequestDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardPage;
 import com.hrms.project4th.mvc.dto.Page.BoardPageMaker;
 import com.hrms.project4th.mvc.entity.BoardReply;

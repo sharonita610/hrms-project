@@ -1,12 +1,8 @@
-package com.hrms.project4th.mvc.dto;
+package com.hrms.project4th.mvc.dto.responseDTO;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.hrms.project4th.mvc.dto.Page.BoardPage;
 import com.hrms.project4th.mvc.dto.Page.BoardPageMaker;
-import com.hrms.project4th.mvc.entity.BoardReply;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Setter

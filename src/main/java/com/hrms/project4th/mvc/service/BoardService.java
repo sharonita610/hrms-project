@@ -1,10 +1,9 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.BoardDetailRequestDTO;
-import com.hrms.project4th.mvc.dto.BoardListResponseDTO;
-import com.hrms.project4th.mvc.dto.BoardModifyRequestDTO;
-import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
-import com.hrms.project4th.mvc.dto.Page.BoardPage;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardDetailRequestDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.repository.BoardMapper;

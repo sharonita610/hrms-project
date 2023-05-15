@@ -1,9 +1,8 @@
 package com.hrms.project4th.mvc.controller;
 
-import com.hrms.project4th.mvc.dto.BoardListResponseDTO;
-import com.hrms.project4th.mvc.dto.BoardModifyRequestDTO;
-import com.hrms.project4th.mvc.dto.BoardSaveRequestDTO;
-import com.hrms.project4th.mvc.dto.Page.BoardPage;
+import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardPageMaker;
 import com.hrms.project4th.mvc.dto.Page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;

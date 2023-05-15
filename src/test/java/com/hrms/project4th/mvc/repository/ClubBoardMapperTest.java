@@ -1,7 +1,7 @@
 package com.hrms.project4th.mvc.repository;
 
-import com.hrms.project4th.mvc.dto.ClubBoardModifyRequestDTO;
-import com.hrms.project4th.mvc.dto.ClubBoardSaveRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ClubBoardModifyRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ClubBoardSaveRequestDTO;
 import com.hrms.project4th.mvc.entity.ClubBoard;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

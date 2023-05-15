@@ -1,6 +1,6 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.ClubJoinRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ClubJoinRequestDTO;
 import com.hrms.project4th.mvc.entity.EmpClub;
 import com.hrms.project4th.mvc.repository.ClubJoinMapper;
 import lombok.RequiredArgsConstructor;

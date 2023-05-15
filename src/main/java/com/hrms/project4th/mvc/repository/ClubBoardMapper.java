@@ -1,6 +1,5 @@
 package com.hrms.project4th.mvc.repository;
 
-import com.hrms.project4th.mvc.dto.ClubBoardSaveRequestDTO;
 import com.hrms.project4th.mvc.entity.ClubBoard;
 import org.apache.ibatis.annotations.Mapper;
 
