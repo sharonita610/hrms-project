@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.service;
 
+import com.hrms.project4th.mvc.dto.requestDTO.BoarReplyDeleteRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyListResponseDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyWriteRequestDTO;
@@ -47,4 +48,17 @@ public class BoardReplyService {
         return flag;
     }
 
+    public boolean delete(BoarReplyDeleteRequestDTO dto) throws SQLDataException {
+
+        BoardReply boardReply = dto.changeEntity();
+
+        boolean flag = boardReplyMapper.delete(boardReply);
+        if(!flag){
+            log.warn("fila to delete Reply");
+            throw new SQLDataException("fila to delete Reply");
+        }
+        return flag;
+
+
+    }
 }

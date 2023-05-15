@@ -27,6 +27,12 @@
         WHERE board_no=#{boardNo}
     </select>
 
+    <delete id="delete">
+        DELETE FROM hr_reply
+        WHERE rep_no=#{repNo}
+        AND emp_no=#{empNo}
+    </delete>
+
 
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.api;
 
+import com.hrms.project4th.mvc.dto.requestDTO.BoarReplyDeleteRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyListResponseDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyWriteRequestDTO;
 import com.hrms.project4th.mvc.dto.Page.BoardPage;
@@ -44,7 +45,7 @@ public class BoardReplyController {
             boardReplyService.save(dto);
         } catch (SQLDataException e) {
             // fail
-            log.warn("500 error {}",e.getMessage());
+            log.warn("500 error {}", e.getMessage());
             ResponseEntity
                     .internalServerError()
                     .body(e.getMessage());
@@ -55,12 +56,21 @@ public class BoardReplyController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteReply(long rePlyNo){
-
+    public ResponseEntity<?> deleteReply(@RequestBody BoarReplyDeleteRequestDTO dto) {
+        log.info("/api/hrms/replies : DELETE!! / replyNo : {}", dto);
+        try {
+            boardReplyService.delete(dto);
+        } catch (SQLDataException e) {
+            log.warn("500 error {}", e.getMessage());
+            ResponseEntity
+                    .internalServerError()
+                    .body(e.getMessage());
+        }
 
         return ResponseEntity.ok().body("success");
     }
 
+    @PatchMapping
 
 
 }

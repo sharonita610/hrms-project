@@ -19,4 +19,5 @@ public class BoardReply {
     private long boardNo;
     private long empNo;
 
+
 }
