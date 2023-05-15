@@ -2,6 +2,8 @@ package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.requestDTO.ClubBoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ClubBoardSaveRequestDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.ClubBoardResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.MyClubBoardResponseDTO;
 import com.hrms.project4th.mvc.entity.ClubBoard;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,10 +23,36 @@ class ClubBoardMapperTest {
     @Test
     @DisplayName("전체 동호회 게시글이 조회되어야한다.")
     void clubBoardFindAllTest() {
-        List<ClubBoard> allClubBoard = clubBoardMapper.findAllClubBoard();
-        for (ClubBoard clubBoard : allClubBoard) {
+        List<ClubBoardResponseDTO> allClubBoard = clubBoardMapper.findAllClubBoard();
+        for (ClubBoardResponseDTO clubBoard : allClubBoard) {
             System.out.println("clubBoard = " + clubBoard);
         }
+    }
+
+    @Test
+    @DisplayName("사번으로 내가 가입한 동호회 게시글만 조회되어야한다.")
+    void findByEmpNoClubBoardTest() {
+        List<ClubBoardResponseDTO> byEmpNoClubBoard = clubBoardMapper.findByEmpNoClubBoard(1L);
+        for (ClubBoardResponseDTO clubBoard : byEmpNoClubBoard) {
+            System.out.println("clubBoard = " + clubBoard);
+        }
+    }
+
+    @Test
+    @DisplayName("내가 작성한 게시글의 목록만 조회되어야한다.")
+    void myClubBoardListTest() {
+        List<MyClubBoardResponseDTO> dto = clubBoardMapper.myClubBoardList(1L);
+        for (MyClubBoardResponseDTO myClubBoardResponseDTO : dto) {
+            System.out.println("myClubBoardResponseDTO = " + myClubBoardResponseDTO);
+
+        }
+    }
+
+    @Test
+    @DisplayName("클릭한 게시글만 상세조회되어야 한다.")
+    void detailClubBoardTest() {
+        ClubBoardResponseDTO clubBoard = clubBoardMapper.detailClubBoard(4L);
+        System.out.println("clubBoard = " + clubBoard);
     }
 
     @Test
