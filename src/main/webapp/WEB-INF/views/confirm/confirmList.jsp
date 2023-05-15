@@ -96,9 +96,15 @@
                 tag += '<th class = "col3">부서장</th>';
             }
             tag += '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
-                '<th class = "col6">승인여부</th><th class = "col7">수정</th>' +
-                '<th class = "col7">삭제</th></tr>';
+                '<th class = "col6">승인여부</th>'
 
+            if (roleCode === '11111') {
+                tag += '<th class = "col7">승인</th>' +
+                '<th class = "col7">거절</th></tr>';
+            } else {
+                tag += '<th class = "col7">수정</th>' +
+                    '<th class = "col7">삭제</th></tr>';
+            }
         } else if ($section.id === 'confirmed-table') {
             tag += '<tr id = " confirmed-th"><th class = "col1">NO</th>' +
                 '<th class = "col2">문서제목</th>';
@@ -128,10 +134,14 @@
                 + '</td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
                 + '</td><td class = "col6">' + conStatus + '</td>';
 
-            if ($section.id === 'waiting-table') {
+            if ($section.id === 'waiting-table' && roleCode === '11111') {
+                tag += '<td class="col7"><div class = "button" id = "check"></div></td>'
+                    + '<td class = "col7"><div class = "button" id = "reject"></div></td></tr>';
+            } else if ($section.id === 'waiting-table' && roleCode !== '11111') {
                 tag += '<td class="col7"><div class = "button" id = "modify"></div></td>'
                     + '<td class = "col7"><div class = "button" id = "remove"></div></td></tr>';
-            } else {
+            }
+            else {
                 tag += '<td class = "col7">' + conCheckDate + '</td>';
             }
         }
