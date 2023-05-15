@@ -18,8 +18,8 @@
         <typeAlias alias="mailResponseDTO" type="com.hrms.project4th.mvc.dto.MailResponseDTO"/>
         <typeAlias alias="clubBoard" type="com.hrms.project4th.mvc.entity.ClubBoard" />
         <typeAlias alias="clubJoin" type="com.hrms.project4th.mvc.entity.EmpClub" />
-        <typeAlias alias="getConfirmListDto" type="com.hrms.project4th.mvc.dto.GetConfirmListDTO"/>
-        <typeAlias alias="deptBossDto" type="com.hrms.project4th.mvc.dto.DeptBossDTO"/>
+        <typeAlias alias="getConfirmListDto" type="com.hrms.project4th.mvc.dto.responseDTO.GetConfirmListDTO"/>
+        <typeAlias alias="deptBossDto" type="com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO"/>
 
     </typeAliases>
 

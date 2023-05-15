@@ -1,4 +1,4 @@
-package com.hrms.project4th.mvc.dto;
+package com.hrms.project4th.mvc.dto.responseDTO;
 
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import lombok.*;

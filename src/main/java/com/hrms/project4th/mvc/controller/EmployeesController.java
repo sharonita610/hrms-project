@@ -1,7 +1,7 @@
 package com.hrms.project4th.mvc.controller;
 
-import com.hrms.project4th.mvc.dto.AddEmployeesDTO;
-import com.hrms.project4th.mvc.dto.ModifyEmployeeDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.service.EmployeesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

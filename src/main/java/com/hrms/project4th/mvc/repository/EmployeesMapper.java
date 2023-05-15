@@ -1,6 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
-import com.hrms.project4th.mvc.dto.DeptBossDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import org.apache.ibatis.annotations.Mapper;
 

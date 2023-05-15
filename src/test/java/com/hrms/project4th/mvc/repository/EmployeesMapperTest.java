@@ -1,7 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
-import com.hrms.project4th.mvc.dto.DeptBossDTO;
-import com.hrms.project4th.mvc.entity.Employees;
+import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

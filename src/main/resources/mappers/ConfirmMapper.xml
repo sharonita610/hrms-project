@@ -14,7 +14,6 @@
         from hr_confirm c, hr_employees e, hr_department d
         where c.from_emp_no = e.emp_no
           and e.DEPT_CODE = d.DEPT_CODE
-          and con_status = 'N'
           and con_no = #{conNo}
     </select>
 

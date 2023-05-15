@@ -1,12 +1,11 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.DeptBossDTO;
-import com.hrms.project4th.mvc.dto.GetConfirmListDTO;
-import com.hrms.project4th.mvc.dto.ModifyConfirmDTO;
-import com.hrms.project4th.mvc.dto.SimpleDateConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.GetConfirmListDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ModifyConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.SimpleDateConfirmDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.RequestConfirmDTO;
 import com.hrms.project4th.mvc.entity.Confirm;
-import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.repository.ConfirmMapper;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
 import lombok.RequiredArgsConstructor;

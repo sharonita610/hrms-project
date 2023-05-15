@@ -1,6 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
-import com.hrms.project4th.mvc.dto.GetConfirmListDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.GetConfirmListDTO;
 import com.hrms.project4th.mvc.entity.Confirm;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.lang.Nullable;
