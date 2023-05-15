@@ -31,8 +31,8 @@ class ClubBoardMapperTest {
     @DisplayName("동호회 게시글이 추가되어야한다.")
     void clubBoardSaveTest() {
         ClubBoardSaveRequestDTO dto = ClubBoardSaveRequestDTO.builder()
-                .cbTitle("추가제목테스트@@")
-                .cbContent("추가테스트내용@@")
+                .cbTitle("추가제목테스트1")
+                .cbContent("추가테스트내용1")
                 .cbURL("")
                 .clubCode(1)
                 .empNo(1)
@@ -53,7 +53,7 @@ class ClubBoardMapperTest {
     @DisplayName("동호회 게시글 수정에 성공해야한다.")
     void clubBoardModifyTest() {
         ClubBoardModifyRequestDTO dto = ClubBoardModifyRequestDTO.builder()
-                .cbNo(4L)
+                .cbNo(2L)
                 .cbTitle("추가한제목수정테스트**")
                 .cbContent("추가내용수정**")
                 .cbURL("")

@@ -3,9 +3,11 @@ package com.hrms.project4th.mvc.entity;
 import com.hrms.project4th.mvc.dto.ClubBoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.ClubBoardSaveRequestDTO;
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Component
 @Setter @Getter
 @ToString @EqualsAndHashCode
 @NoArgsConstructor @AllArgsConstructor
