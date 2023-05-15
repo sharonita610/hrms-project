@@ -1,87 +1,49 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시판 글쓰기</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-        }
-
-        header {
-            display: flex;
-        }
-
-        .select-wrapper {
-            margin-top: 20px;
-            height: 50px;
-        }
-
-        .search_box {
-            width: 520px;
-            height: 50px;
-            border: 2px solid #03cf5d;
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .search_box input {
-            width: 90%;
-            height: 46px;
-            padding-left: 12px;
-            padding-right: 12px;
-            border: none;
-            outline: none;
-            font-size: 18px;
-
-        }
-
-        .search_box button {
-            width: 10%;
-            height: 46px;
-            margin: 0;
-            padding: 0;
-            border: none;
-            background: #03cf5d;
-        }
-
-        .search_box i {
-            color: white;
-            font-size: 22px;
-            text-align: center;
-        }
-
-        #keyboard {
-            color: lightgray;
-            font-size: 20px;
-            text-align: center;
-            width: 10%;
-            padding-top: 12px;
-        }
-    </style>
+    <meta charset="utf-8">
+    <title></title>
 </head>
+<style>
+    .list-table {
+
+        border: 1px solid #000;
+    }
+</style>
 
 <body>
-    <header>
-        <select class="select-wrapper" name="boardType">
-            <option value="title">제목</option>
-            <option value="boardType">공지유형</option>
-            <option value="boardContent">내용</option>
-        </select>
-        <div class="search_box">
-            <input type="text" maxlength="225"> <i id="keyboard" class="fa fa-keyboard-o"></i>
-            <button>
-                <i class="fa fa-search">검색</i>
-            </button>
-        </div>
-    </header>
+    <div id="board_area">
+
+        <h1>공지사항</h1>
+        <table class="list-table">
+            <thead>
+                <tr>
+                    <th width="70">번호</th>
+                    <th width="500">제목</th>
+                    <th width="120">글쓴이</th>
+                    <th width="100">작성일</th>
+                    <th width="100">조회수</th>
+                </tr>
+                <c:forEach var="i" begin="1" ,end="5">
+                    <tr>
+                        <th width="70">1</th>
+                        <th width="500">1</th>
+                        <th width="120">1</th>
+                        <th width="100">1</th>
+                        <th width="100">1</th>
+                    </tr>
+                </c:forEach>
+            </thead>
+        </table>
+    </div>
+
+
+
+
+
+
+
 </body>
 
 </html>

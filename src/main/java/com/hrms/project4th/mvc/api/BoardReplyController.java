@@ -70,7 +70,6 @@ public class BoardReplyController {
         return ResponseEntity.ok().body("success");
     }
 
-    @PatchMapping
 
 
 }
