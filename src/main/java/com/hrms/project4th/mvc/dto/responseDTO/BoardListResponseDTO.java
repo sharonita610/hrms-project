@@ -55,7 +55,7 @@ public class BoardListResponseDTO {
      * @return 짧아진 게시글 제목
      */
     public String makeShortTitle(String bdTitle) {
-        return makeShort(bdTitle, 10);
+        return makeShort(bdTitle, 20);
     }
 
 

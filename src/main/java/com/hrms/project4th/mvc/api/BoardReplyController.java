@@ -9,6 +9,7 @@ import com.hrms.project4th.mvc.service.BoardReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLDataException;
@@ -42,7 +43,14 @@ public class BoardReplyController {
     //댓글 저장
     @PostMapping
     public ResponseEntity<?> saveReply(
-            @RequestBody BoardReplyWriteRequestDTO dto) {
+            @RequestBody BoardReplyWriteRequestDTO dto
+            , BindingResult result) {
+
+        //검증해서 틀리면 400 error
+        if(result.hasErrors()){
+            return ResponseEntity.badRequest().body(result.toString());
+        }
+
         log.info("/api/hrms/replies : POST!! / dto : {}", dto);
         try {
             boardReplyService.save(dto);
@@ -57,6 +65,7 @@ public class BoardReplyController {
         return ResponseEntity.ok().body("success");
 
     }
+
     // 댓글 제거
     @DeleteMapping
     public ResponseEntity<?> deleteReply(

@@ -94,4 +94,20 @@ public class BoardController {
         model.addAttribute("b", dto);
         return "redirect:/hrms/board-detail?boardNo=" + dto.getBoardNo();
     }
+    @GetMapping("/test")
+    public String test(Model model, BoardSearch search){
+        List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
+//      log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
+//        log.info("search : {}", search);
+//        log.info("{}",boardPageMaker.getPAGE_LEN());
+        BoardPageMaker boardPageMaker=new BoardPageMaker(search,boardService.boardPageCount());
+        log.info("hrms/board-list : GET / search : {}", search);
+        log.info("hrms/board-list : GET / boardPageMaker : {}",boardPageMaker);
+
+//        model.addAttribute("search",search);
+        model.addAttribute("boardPageMaker",boardPageMaker);
+        model.addAttribute("allList", boardListResponseDTOS);
+
+        return "/board/testjsp";
+    }
 }

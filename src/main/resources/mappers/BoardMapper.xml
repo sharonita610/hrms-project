@@ -19,6 +19,7 @@
         <if test="boardType == 'boardContent'">
             WHERE bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
         </if>
+        ORDER BY 1 DESC
         Limit #{pageLimitNum},#{boardAmount}
     </select>
 
