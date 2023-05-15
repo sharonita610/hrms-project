@@ -27,12 +27,10 @@
                     </div>
                 </li>
                 <li>삼조상사에 오신 것을 환영합니다.</li>
-                <li><a href="#">로그아웃</a></li>
+                <li><a href="#"><span id="logout-button">로그아웃</span></a></li>
             </ul>
         </div>
     </section>
-</header>
-<div class="mainwrap clearfix">
     <section class="section-sub-header">
         <div class="nav-bar">
             <ul>
@@ -45,11 +43,12 @@
         </div>
     </section>
 
-
-    <section class="section-left-body">
-        <div class="left-fix clearfix">
+</header>
+<section class="section-left-body">
+    <div id="left-body">
+        <div class="left-fix">
             <div class="line">
-                <div class="information-box clearfix">
+                <div class="information-box">
                     <ul id="profile">
                         <li id="photo"><a href="#">사원사진</a></li>
                     </ul>
@@ -65,31 +64,34 @@
                     </ul>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
-        </div>
-    </section>
-    <section class="calendar">
-        <div id="calendar">
-            <table>
-                <tr>
-                    <th colspan="7">
-                        <button onclick="prevMonth()">&#8249;</button>
-                        <span id="currentMonth"></span>
-                        <button onclick="nextMonth()">&#8250;</button>
-                    </th>
-                </tr>
-                <tr>
-                    <th>일</th>
-                    <th>월</th>
-                    <th>화</th>
-                    <th>수</th>
-                    <th>목</th>
-                    <th>금</th>
-                    <th>토</th>
-                </tr>
-            </table>
-        </div>
-    </section>
+
+
+<%--    <section class="calendar">--%>
+<%--        <div id="calendar">--%>
+<%--            <table>--%>
+<%--                <tr>--%>
+<%--                    <th colspan="7">--%>
+<%--                        <button onclick="prevMonth()">&#8249;</button>--%>
+<%--                        <span id="currentMonth"></span>--%>
+<%--                        <button onclick="nextMonth()">&#8250;</button>--%>
+<%--                    </th>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                    <th>일</th>--%>
+<%--                    <th>월</th>--%>
+<%--                    <th>화</th>--%>
+<%--                    <th>수</th>--%>
+<%--                    <th>목</th>--%>
+<%--                    <th>금</th>--%>
+<%--                    <th>토</th>--%>
+<%--                </tr>--%>
+<%--            </table>--%>
+<%--        </div>--%>
+<%--    </section>--%>
 </div>
 <%--<script src="calendar.js"></script>--%>
 <%--<script>--%>
