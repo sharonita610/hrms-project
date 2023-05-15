@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
+import com.hrms.project4th.mvc.dto.Page.MailSearch;
 import com.hrms.project4th.mvc.entity.Mail;
 import org.apache.ibatis.annotations.Mapper;
 

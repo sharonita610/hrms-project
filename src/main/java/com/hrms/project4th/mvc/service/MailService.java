@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
+import com.hrms.project4th.mvc.dto.Page.MailSearch;
 import com.hrms.project4th.mvc.entity.Mail;
 import com.hrms.project4th.mvc.repository.MailMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,9 +24,9 @@ public class MailService {
 
     //메일 리스트가져오기
     //(나와 관련된 내가보낸 내가 받은)
-    public List<MailResponseDTO> getMailList(Long empNo){
+    public List<MailResponseDTO> getMailList(Long mailNo){
 
-        return mailMapper.getMailList(empNo);
+        return mailMapper.getMailList(mailNo);
     }
 
     //특정 메일읽기 (메일상세보기) (메일의 번호가 필요함!)

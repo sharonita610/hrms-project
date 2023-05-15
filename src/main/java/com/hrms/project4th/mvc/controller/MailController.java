@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
+import com.hrms.project4th.mvc.dto.Page.MailSearch;
 import com.hrms.project4th.mvc.entity.Mail;
 import com.hrms.project4th.mvc.service.MailService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class MailController {
     }
 
     //메일 불러오기서비스(로그인한 사용자 사번이 필요함)
-    public String getList(Model model,@Param(value = "mailTo") Long empNo){
+    public String getList(Model model, @Param(value = "empNo") Long empNo){
 
         List<MailResponseDTO> mailList = mailService.getMailList(empNo);
         model.addAttribute("maillist",mailList);
