@@ -51,10 +51,10 @@
         JOIN HR_EMPLOYEES AS P
         ON E.MAIL_TO = P.EMP_NO
         <choose>
-            <when test="status == 'Y'">
+            <when test="status.desc == 'YES'">
                 WHERE E.mail_to = #{empNo} AND E.MAIL_STATUS = 'Y'
             </when>
-            <when test="status == 'N'">
+            <when test="status.desc  == 'NO'">
                 WHERE E.mail_to = #{empNo} AND E.MAIL_STATUS = 'N'
             </when>
             <otherwise>
@@ -77,6 +77,11 @@
         SET mail_status = 'Y'
         WHERE mail_no = #{mailNo};
     </update>
+
+    <delete id="deleteMailByNum">
+        DELETE FROM hr_email
+        WHERE mail_no = #{mailNo}
+    </delete>
 
 
 

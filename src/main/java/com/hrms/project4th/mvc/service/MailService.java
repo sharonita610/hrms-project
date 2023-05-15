@@ -42,4 +42,9 @@ public class MailService {
         //메일의 읽은상태 읽지않은상태(mailStatus로 메일을 조회할 수있다)
        return mailMapper.getMailListByStatus(empNo,status);
     }
+
+    public void deleteByNum(Long mailNo) {
+        //메일의 번호로 메일을 삭제 할 수 있다.
+        mailMapper.deleteMailByNum(mailNo);
+    }
 }

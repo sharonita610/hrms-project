@@ -5,6 +5,7 @@ import com.hrms.project4th.mvc.dto.Page.MailSearch;
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.entity.Mail;
 import org.apache.ibatis.annotations.ConstructorArgs;
+import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,10 @@ class MailMapperTest {
    @DisplayName("사원번호가 n번인 사람의 메일을 n+1번사원에게 전송한다")
     void saveMailTest(){
 
-       for (int i =1; i<=10; i++) {
+       for (int i =1; i<=15; i++) {
 //           Mail mailTest = Mail.builder().mailTitle("테스트용메일"+i).mailContent("테스트용메일입니다"+i).mailFrom(8L).mailTo(10L).build();
 
-           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(45L).mailTo(2L).build();
+           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(7L).mailTo(1L).build();
            mailMapper.sendRequest(mailTest);
        }
    }
@@ -57,13 +58,20 @@ class MailMapperTest {
 
 
     @Test
-    @DisplayName("사원번호 2번에게 온 메일 의 status가 y인 게시글만 조회되어야한다")
+    @DisplayName("사원번호 2번에게 온 메일 의 status가 N인 게시글만 조회되어야한다")
     void getMailListByStatusTest(){
-       MailSearch mailSearch = new MailSearch();
-        List<MailResponseDTO> mailListByStatus = mailMapper.getMailListByStatus(2L, valueOf(String.valueOf(Y)));
-        System.out.println(mailListByStatus.toString());
+        List<MailResponseDTO> mailListByStatus = mailMapper.getMailListByStatus(7L, CheckStatus.N);
+        for (MailResponseDTO listByStatus : mailListByStatus) {
+            System.out.println(listByStatus);
+        }
+        System.out.println(mailListByStatus.size());
     }
 
+    @Test
+    @DisplayName("메일번호가 121번인 메일이 삭제되어야한다")
+    void mailDeleteTest(){
+       mailMapper.deleteMailByNum(120L);
+    }
 
 
 
