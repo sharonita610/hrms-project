@@ -25,4 +25,6 @@ public interface ConfirmMapper {
     List<GetConfirmListDTO> getRejectedList(long empNo, String roleCode);
 
     GetConfirmListDTO findOne(long conNo);
+
+    boolean deleteConfirm(long conNo);
 }

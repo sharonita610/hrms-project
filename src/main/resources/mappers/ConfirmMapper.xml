@@ -101,4 +101,8 @@
         set con_title = #{conTitle}, con_content = #{conContent} where con_no = #{conNo}
     </update>
 
+    <delete id="deleteConfirm">
+        delete from hr_confirm
+        where con_no = #{conNo}
+    </delete>
 </mapper>

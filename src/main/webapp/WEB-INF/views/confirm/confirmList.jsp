@@ -100,7 +100,7 @@
 
             if (roleCode === '11111') {
                 tag += '<th class = "col7">승인</th>' +
-                '<th class = "col7">거절</th></tr>';
+                    '<th class = "col7">거절</th></tr>';
             } else {
                 tag += '<th class = "col7">수정</th>' +
                     '<th class = "col7">삭제</th></tr>';
@@ -140,26 +140,49 @@
             } else if ($section.id === 'waiting-table' && roleCode !== '11111') {
                 tag += '<td class="col7"><div class = "button" id = "modify"></div></td>'
                     + '<td class = "col7"><div class = "button" id = "remove"></div></td></tr>';
-            }
-            else {
+            } else {
                 tag += '<td class = "col7">' + conCheckDate + '</td>';
             }
         }
         $section.innerHTML = tag;
     }
 
+    //마우스오버 이벤트 -> 문서 수정, 삭제
     $box = document.querySelector('.confirm-outer-container');
     $box.addEventListener('mouseover', modifyConfirm);
+
     function modifyConfirm(e) {
-        if(e.target.matches('#modify')) {
+        if (e.target.matches('#modify')) {
             let $modiBtn = e.target.closest('#modify');
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
+            console.log(conNo);
 
             $modiBtn.onclick = () => {
                 window.location.href = '/confirm/modify?conNo=' + conNo;
             }
         }
+
+        if (e.target.matches('#remove')) {
+            let $remoBtn = e.target.closest('#remove');
+            let $docInfo = e.target.closest('#doc-info');
+            let conNo = $docInfo.firstChild.innerText;
+            console.log(conNo);
+
+            $remoBtn.onclick = () => {
+
+                fetch(`\${URL}/delete/\${conNo}`, {method : 'delete'})
+                    .then(res => res.json())
+                    .then(result => {
+                            if (result) {
+                                getWaitingList();
+                            }
+                        }
+                    )
+
+            }
+        }
+
     }
 
 
