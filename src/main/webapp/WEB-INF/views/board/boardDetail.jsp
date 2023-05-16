@@ -9,71 +9,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 글쓰기</title>
     <style>
-        .write-wrapper {
-            border: 1px solid #000;
-            margin: 100px auto;
-            width: 60vh;
-            padding: 10px;
-        }
+         body {
+                font-family: Arial, sans-serif;
+            }
+            .save-part{
+                margin-top: 200px;
+            }
 
-        .write-wrapper .write-header {
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2em;
-        }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
 
-        .write-wrapper .head-wrapper {
-            display: flex;
-            justify-content: start;
-        }
+            h1 {
+                text-align: center;
+            }
 
-        #content-label {
-            display: block;
-        }
+            .form-group {
+                margin-bottom: 20px;
+            }
 
-        textarea {
-            margin: 10px auto;
-            resize: none;
-            height: 200px;
-            width: 400px;
-        }
+            .form-group label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
 
-        .write-wrapper #buttons {
-            display: flex;
-            justify-content: end;
+            .form-group select {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+            }
 
-        }
+            .form-group textarea {
+                width: 100%;
+                height: 200px;
+                padding: 10px;
+                font-size: 16px;
+            }
 
-        #buttons button {
-            margin: 5px;
+            .form-group button {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #0d6efd;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
 
-        }
+            .form-group button:hover {
+                background-color: #0d6efd;
+            }
+            #content{
+                resize: none;
+            }
     </style>
 </head>
 
 <body>
 
-    <div class="write-wrapper">     
-        <form action="/hrms/show-modify" method="post">
-            <!-- <header class="write-header">글 쓰 기</header> -->
-            <div class="head-wrapper">
-                <input type="hidden" name="boardNo" value="${b.boardNo}">
-                <label id="write-title">제목</label>
-                <input name="bdTitle" value="${b.bdTitle}" readonly>
-                <label id="bdTypeName">타입<label>
-                        <select class="type" name="bdType" value="${b.bdType}">
-                            <option value="NOTICE">공지 게시판</option>
-                             <option value="FREE">자유 게시판</option>
-                            <option value="NONAME">익명 게시판</option>
-                        </select>
-            </div>
-            <label id="content-label">내용</label>
-            <textarea name="bdContent" readonly>${b.bdContent}</textarea>
-            <div id="buttons">
-                <button type="submit">수정하기</button>
-        </form>
-        <button id="backToList">목록</button>
+        <section class="save-part">
 
+            <div class="container">
+                <h1>게시글 작성</h1>
+                <form action="/hrms/show-modify" method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="boardNo" value="${b.boardNo}">
+                        <label for="board">게시판:</label>
+                        <select id="board" name="bdType">
+                            <option value="NOTICE">공지게시판</option>
+                            <option value="FREE">자유게시판</option>
+                            <option value="NONAME">익명게시판</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">제목:</label>
+                        <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">내용:</label>
+                        <textarea id="content" name="bdContent" placeholder="내용을 입력하세요" readonly>${b.bdContent}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <button id="backToList">목록</button>
+                        <button type="submit">수정</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </section>
+        <!--  -->
 
 
         <!-- 댓글 영역 -->

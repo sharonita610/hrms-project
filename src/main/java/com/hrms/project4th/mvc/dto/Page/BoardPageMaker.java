@@ -11,7 +11,7 @@ import lombok.*;
 public class BoardPageMaker {
 
     private boolean prev, next;
-    private final int PAGE_LEN = 3;
+    private final int PAGE_LEN = 8;
     private int start, end, final_page;
     private BoardPage boardPage;
     private int boardPageCount;
