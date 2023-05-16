@@ -14,14 +14,14 @@ class MailServiceTest {
     @Autowired
     MailService mailService;
 
-//    @Test
-//    void mailViewUpdateTest(){
-//        Mail mailDetail = mailService.getMailDetail(2L);
-//
-//        boolean b = mailDetail.getMailStatus().toString().charAt(0) == 'Y';
-//
-//        if (b){
-//            System.out.println("b = " + b);
-//        }
-//    }
+    @Test
+    void mailViewUpdateTest(){
+        Mail mailDetail = mailService.getMailDetail(50L);
+
+        boolean b = mailDetail.getMailStatus().toString().charAt(0) == 'Y';
+
+        if (b){
+            System.out.println("b = " + b);
+        }
+    }
 }
