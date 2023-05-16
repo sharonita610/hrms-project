@@ -50,7 +50,7 @@
         </div>
 
         <div class="submit">
-            <div class="cancel" onclick="history.back()">작성취소</div>
+            <div class="cancel" onclick="history.back()">수정취소</div>
             <div id = "addConfirm">결재수정</div>
         </div>
         <button id = "addBtn">결재수정</button>

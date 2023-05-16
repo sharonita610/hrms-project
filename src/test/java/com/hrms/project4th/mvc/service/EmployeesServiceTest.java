@@ -1,8 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.AddEmployeesDTO;
-import com.hrms.project4th.mvc.dto.ModifyEmployeeDTO;
-import com.hrms.project4th.mvc.entity.Confirm;
+import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.entity.Gender;
 import org.junit.jupiter.api.DisplayName;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.lang.annotation.Documented;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
