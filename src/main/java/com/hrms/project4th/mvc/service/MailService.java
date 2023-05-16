@@ -2,7 +2,8 @@ package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
 import com.hrms.project4th.mvc.dto.Page.MailSearch;
-import com.hrms.project4th.mvc.dto.responseDTO.GetMailDetailResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.entity.Mail;
 import com.hrms.project4th.mvc.repository.MailMapper;
@@ -33,10 +34,10 @@ public class MailService {
     }
 
     //특정 메일읽기 (메일상세보기) (메일의 번호가 필요함!)
-    public List<GetMailDetailResponseDTO> getMailDetail(Long mailNo) {
+    public List<MailDetailResponseDTO> getMailDetail(Long mailNo, MailSearch search, Long empNo) {
         //메일을 상세보기했으니 조회함(y)로 변경되어야한다
         mailMapper.mailViewUpdate(mailNo);
-        return mailMapper.getMailDetail(mailNo);
+        return mailMapper.getMailDetail(search,empNo,mailNo);
     }
 
     public List<MailResponseDTO> getMailListByStatus(Long empNo, CheckStatus status) {

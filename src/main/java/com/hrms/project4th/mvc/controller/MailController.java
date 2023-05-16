@@ -2,6 +2,8 @@ package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
 import com.hrms.project4th.mvc.dto.Page.MailSearch;
+import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.entity.Mail;
 import com.hrms.project4th.mvc.service.MailService;
@@ -12,11 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/hrms")
 @Slf4j
 public class MailController {
 
@@ -34,17 +38,18 @@ public class MailController {
         return "";
     }
 
+    @GetMapping("/mail-list")
     //메일 불러오기서비스(로그인한 사용자 사번이 필요함)
     public String getList(Model model, @Param("empNo") Long empNo,@Param("mailType") MailSearch search){
 
         List<MailResponseDTO> mailList = mailService.getMailList(empNo,search);
         model.addAttribute("mList",mailList);
-        return "";
+        return "/mail/mail";
     }
 
     //메일 하나확인하기(개개인 메일의 번호가필요함)
-    public String getMailDetail(Model model,Long mailNo){
-        Mail mailDetail = mailService.getMailDetail(mailNo);
+    public String getMailDetail(Model model,Long mailNo,MailSearch search,Long empNo){
+        List<MailDetailResponseDTO> mailDetail = mailService.getMailDetail(mailNo, search,empNo);
         model.addAttribute("md",mailDetail);
         return "";
     }

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.project4th.mvc.repository.MailMapper">
-
+    <!--메일 전송 요청-->
     <insert id="sendRequest">
         INSERT INTO hr_email
         (mail_to,mail_from,mail_title,mail_content)
@@ -24,10 +24,12 @@
         E.mail_date
         FROM HR_EMAIL AS E
         JOIN HR_EMPLOYEES AS P
+<!--나에게 온 메일 가져오기 -->
         <if test="s.mailType == 'mailto'">
             ON E.MAIL_TO = P.EMP_NO
             WHERE E.mail_to = #{empNo}
         </if>
+<!--내가 보낸메일 가져오기-->
         <if test="s.mailType == 'mailfrom'">
             ON E.MAIL_FROM = P.EMP_NO
             WHERE E.mail_from = #{empNo}
@@ -65,12 +67,23 @@
     </select>
 
     <!--메일번호에 맞는 메일의 객체정보전체가 나온다    -->
-    <select id="getMailDetail" resultType="mail">
-        SELECT *
-        FROM hr_email
-        WHERE mail_no = #{mailNo}
+    <select id="getMailDetail" resultType="MailDetailResponseDTO">
+                SELECT
+                P.emp_email,
+                P.emp_name,
+                P.emp_no,
+                P.role_code,
+                P.dept_code,
+                E.mail_title,
+                E.mail_content,
+                E.mail_date
+                FROM HR_EMAIL AS E
+                JOIN HR_EMPLOYEES AS P ON E.MAIL_FROM = P.EMP_NO
+                E.MAIL_NO = #{mailNo}
     </select>
-    
+
+
+
     <update id="mailViewUpdate">
         UPDATE hr_email
         SET mail_status = 'Y'
