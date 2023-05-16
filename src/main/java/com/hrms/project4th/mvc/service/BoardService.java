@@ -48,12 +48,12 @@ public class BoardService {
     /**
      * 게시글 번호를 입력받아 게시물을 보여주는 기능
      *
-     * @param dto 게시글 번호, viewCount 정보
+     * @param boardNo 게시글 번호
      * @return Board 객체
      */
-    public Board boardFindOneByBoardNo(BoardDetailResponseDTO dto) {
-        boardMapper.countUp(dto.getViewCount());
-        return boardMapper.boardFindOneByBoardNo(dto.getBoardNo());
+    public Board boardFindOneByBoardNo(long boardNo) {
+        boardMapper.countUp(boardNo);
+        return boardMapper.boardFindOneByBoardNo(boardNo);
     }
 
     /**
@@ -62,8 +62,8 @@ public class BoardService {
      * @param boardNo 게시글 번호
      * @return BoardDetailRequestDTO 객체
      */
-    public BoardDetailRequestDTO boardDetail(BoardDetailResponseDTO dto) {
-        Board board = boardFindOneByBoardNo(dto);
+    public BoardDetailRequestDTO boardDetail(long boardNo) {
+        Board board = boardFindOneByBoardNo(boardNo);
 
         return new BoardDetailRequestDTO(board);
     }

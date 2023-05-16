@@ -72,11 +72,11 @@ public class BoardController {
     // 상세 보기 페이지를 보여주는 기능
     @GetMapping("/board-detail")
     public String boardDetail(
-            BoardDetailResponseDTO dto,
-//            Long boardNo,
+//            BoardDetailResponseDTO dto,
+            Long boardNo,
             Model model) {
 //        log.info("board-detail / boardNo : {} ", boardNo);
-        Board board = boardService.boardFindOneByBoardNo(dto);
+        Board board = boardService.boardFindOneByBoardNo(boardNo);
         model.addAttribute("b", board);
         return "/board/boardDetail";
     }
