@@ -15,7 +15,7 @@ public class MainPageController {
 
         log.info("/main : GET 요청!");
 
-        return "/main/header-banner";
+        return "/main/main-page";
     }
     @GetMapping("/index")
     public String loginPage(){

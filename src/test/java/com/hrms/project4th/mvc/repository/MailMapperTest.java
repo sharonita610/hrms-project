@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
 import com.hrms.project4th.mvc.dto.Page.MailSearch;
+import com.hrms.project4th.mvc.dto.responseDTO.GetMailDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.entity.Mail;
 import org.apache.ibatis.annotations.ConstructorArgs;
@@ -41,7 +42,7 @@ class MailMapperTest {
     void getMailListTest(){
        MailSearch mailSearch = new MailSearch();
        mailSearch.setMailType("mailto");
-        List<MailResponseDTO> mailList = mailMapper.getMailList(2L,mailSearch);
+        List<MailResponseDTO> mailList = mailMapper.getMailList(1L,mailSearch);
         for (MailResponseDTO mailResponseDTO : mailList) {
             System.out.println(mailResponseDTO);
         }
@@ -50,10 +51,10 @@ class MailMapperTest {
     }
 
     @Test
-    @DisplayName("메일번호가 50번 번호의 제목은 테스트용 메일50이다")
+    @DisplayName("메일번호가 50번 번호의 제목은 테스트용 메일15이다")
     void getMailDetailTest(){
-        Mail mailDetail = mailMapper.getMailDetail(50L);
-        System.out.println(mailDetail.toString());
+        List<GetMailDetailResponseDTO> mailDetailList = mailMapper.getMailDetail(15L);
+        System.out.println(mailDetailList.toString());
     }
 
 

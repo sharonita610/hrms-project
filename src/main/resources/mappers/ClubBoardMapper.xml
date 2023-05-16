@@ -4,31 +4,52 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.project4th.mvc.repository.ClubBoardMapper">
 
-<select id="findAllClubBoard" resultType="clubBoard">
-    SELECT
-    CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, EMP_NO, CLUB_CODE
-    FROM TEST_CLUB_BOARD
-</select>
+    <select id="findAllClubBoard" resultType="clubBoardDTO">
+        SELECT
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME
+        FROM TEST_CLUB_BOARD B
+        JOIN TEST_CLUB C USING (CLUB_CODE)
+    </select>
 
-<insert id="clubBoardSave">
-    INSERT INTO TEST_CLUB_BOARD
-    (CB_TITLE, CB_CONTENT, CB_URL, EMP_NO, CLUB_CODE)
-    VALUES
-    (#{cbTitle}, #{cbContent}, #{cbURL}, #{empNo}, #{clubCode})
-</insert>
+    <select id="findByEmpNoClubBoard" resultType="clubBoardDTO">
+        SELECT
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, EMP_NO, CLUB_CODE
+        FROM TEST_CLUB_BOARD
+        WHERE CLUB_CODE IN(select CLUB_CODE
+        FROM test_emp_club
+        WHERE EMP_NO = #{empNo})
+    </select>
 
-<delete id="clubBoardDelete">
-    DELETE FROM TEST_CLUB_BOARD
-    WHERE CB_NO = #{cbNo}
-</delete>
+    <select id="myClubBoardList" resultType="myClubBoardListDTO">
+        select CB_NO, CB_TITLE, EMP_NO, CLUB_CODE
+        from test_club_board
+        where EMP_NO = #{empNo};
+    </select>
 
-<update id="clubBoardModify">
-    UPDATE TEST_CLUB_BOARD
-    SET CB_TITLE = #{cbTitle}, CB_CONTENT = #{cbContent}, CB_URL = #{cbURL}
-    WHERE CB_NO = #{cbNo}
-</update>
+    <select id="detailClubBoard" resultType="clubBoardDTO">
+        SELECT
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, EMP_NO, CLUB_CODE
+        FROM TEST_CLUB_BOARD
+        WHERE CB_NO = #{cbNo}
+    </select>
 
+    <insert id="clubBoardSave">
+        INSERT INTO TEST_CLUB_BOARD
+        (CB_TITLE, CB_CONTENT, CB_URL, EMP_NO, CLUB_CODE)
+        VALUES
+        (#{cbTitle}, #{cbContent}, #{cbURL}, #{empNo}, #{clubCode})
+    </insert>
 
+    <delete id="clubBoardDelete">
+        DELETE FROM TEST_CLUB_BOARD
+        WHERE CB_NO = #{cbNo}
+    </delete>
+
+    <update id="clubBoardModify">
+        UPDATE TEST_CLUB_BOARD
+        SET CB_TITLE = #{cbTitle}, CB_CONTENT = #{cbContent}, CB_URL = #{cbURL}
+        WHERE CB_NO = #{cbNo}
+    </update>
 
 
 </mapper>

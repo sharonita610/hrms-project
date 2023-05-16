@@ -38,7 +38,7 @@ public class MailController {
     public String getList(Model model, @Param("empNo") Long empNo,@Param("mailType") MailSearch search){
 
         List<MailResponseDTO> mailList = mailService.getMailList(empNo,search);
-        model.addAttribute("maillist",mailList);
+        model.addAttribute("mList",mailList);
         return "";
     }
 

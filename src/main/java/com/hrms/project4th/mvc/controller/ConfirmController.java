@@ -1,9 +1,10 @@
 package com.hrms.project4th.mvc.controller;
 
-import com.hrms.project4th.mvc.dto.DeptBossDTO;
-import com.hrms.project4th.mvc.dto.RequestConfirmDTO;
-import com.hrms.project4th.mvc.dto.ModifyConfirmDTO;
-import com.hrms.project4th.mvc.dto.SimpleDateConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ModifyConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.LongTitleResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.SimpleDateConfirmDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.RequestConfirmDTO;
 import com.hrms.project4th.mvc.service.ConfirmService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -68,17 +69,17 @@ public class ConfirmController {
     }
 
     //결재 승인하기
-    @PostMapping("/check")
+    @PutMapping("/check/{conNo}")
     @ResponseBody
-    public ResponseEntity<Boolean> checkConfirm(long conNo){
+    public ResponseEntity<Boolean> checkConfirm(@PathVariable("conNo") long conNo){
         boolean flag = confirmService.checkConfirm(conNo);
         return ResponseEntity.ok().body(flag);
     }
 
     //승인거절하기
-    @PostMapping("/reject")
+    @PutMapping("/reject/{conNo}")
     @ResponseBody
-    public ResponseEntity<Boolean> rejectConfirm(long conNo){
+    public ResponseEntity<Boolean> rejectConfirm(@PathVariable("conNo") long conNo){
 
         boolean flag = confirmService.rejectConfirm(conNo);
         return ResponseEntity.ok().body(flag);
@@ -89,18 +90,33 @@ public class ConfirmController {
     public String modifyForm(long conNo, Model model){
         DeptBossDTO deptBoss = confirmService.getDeptBoss("001");
         model.addAttribute("boss", deptBoss);
-        SimpleDateConfirmDTO dto = confirmService.findOne(conNo);
+        LongTitleResponseDTO dto = confirmService.findOne(conNo);
         model.addAttribute("c", dto);
         return "confirm/modify";
     }
 
     //수정폼에서 값 받아서 DB에 전달
-    @PutMapping("/modify")
+    @PostMapping("/modify")
     public String modify(ModifyConfirmDTO dto){
         boolean flag = confirmService.modifyConfirm(dto);
         return "redirect:/confirm/list";
     }
 
+    //결재 삭제
+    @DeleteMapping("/delete/{conNo}")
+    @ResponseBody
+    public ResponseEntity<Boolean> deleteConfirm(@PathVariable("conNo") long conNo){
+        return ResponseEntity.ok().body(confirmService.deleteConfirm(conNo));
+    }
 
+    //결재 상세보기로 이동
+    @GetMapping("/detail")
+    public String detail(long conNo, Model model){
+        DeptBossDTO deptBoss = confirmService.getDeptBoss("001");
+        model.addAttribute("boss", deptBoss);
+        LongTitleResponseDTO dto = confirmService.findOne(conNo);
+        model.addAttribute("c", dto);
+        return "confirm/confirm-detail";
+    }
 
 }

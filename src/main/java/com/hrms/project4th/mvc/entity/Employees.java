@@ -1,12 +1,11 @@
 package com.hrms.project4th.mvc.entity;
 
-import com.hrms.project4th.mvc.dto.AddEmployeesDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 
 @Component
 @Setter @Getter

@@ -1,8 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.AddEmployeesDTO;
-import com.hrms.project4th.mvc.dto.ModifyEmployeeDTO;
-import com.hrms.project4th.mvc.entity.Board;
+import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
 import lombok.RequiredArgsConstructor;

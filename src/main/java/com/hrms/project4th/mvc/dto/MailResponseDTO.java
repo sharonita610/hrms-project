@@ -12,7 +12,6 @@ import static com.hrms.project4th.mvc.entity.CheckStatus.N;
 @Setter
 @EqualsAndHashCode
 @ToString
-
 public class MailResponseDTO {
 
     //메일 번호

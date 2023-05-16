@@ -1,20 +1,64 @@
 
-/* 메인페이지 wrapper */
-.section-body-main{
-    margin-top:40px;
-    margin-left: 100px;
-    width: 500px;
-    height: 600px;
-    border: 1px solid #333;
+
+/*  메인 페이지 리스트 미리보기 속성 시작  */
+/*  메일 전체 틀  */
+.main-page-list {
+    margin-top: 6%;
+    width: 77%;
+    height: 750px;
+    position: relative;
+    display: block;
+
 }
 
-/* 메인페이지 리스트*/
-/*main-page-list {*/
-/*    display: flex;*/
-/*    background: #c39fe2;*/
-/*}*/
-/*setion{*/
-/*    width: 400px;*/
-/*    height: 600px;*/
-/*    border: 2px solid red;*/
-/*}*/
+/*  각자 box 사이즈 */
+.main-page-list #main-list ul {
+    width: 650px;
+    height: 320px;
+    border: 2px solid rgba(190, 193, 194, 0.49);
+    margin-top: 8%;
+
+}
+/*  미리보기 칸 두개씩 묶어서 정리  */
+.main-page-list #main-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.main-page-list #main-list #top-list{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.main-page-list #main-list #bottom-list{
+    display: flex;
+    flex-direction: column;
+}
+
+/*  ============================= */
+
+/*  제목리스트  */
+
+.main-page-list #main-list ul .title-list{
+    padding: 10px 0;
+    text-align: center;
+    background: rgba(234, 230, 230, 0.49);
+}
+
+/*  화면사이즈가 줄어들면 하얀색 화면으로 바뀜  */
+@media (max-width: 1600px) {
+    body {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+
+

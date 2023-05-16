@@ -1,12 +1,16 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.*;
-import com.hrms.project4th.mvc.dto.RequestConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.GetConfirmListDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ModifyConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.LongTitleResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.SimpleDateConfirmDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.RequestConfirmDTO;
 import com.hrms.project4th.mvc.entity.Confirm;
-import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.repository.ConfirmMapper;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class ConfirmService {
 
@@ -73,8 +78,12 @@ public class ConfirmService {
 
     }
 
-    public SimpleDateConfirmDTO findOne(long conNo) {
+    public LongTitleResponseDTO findOne(long conNo) {
         GetConfirmListDTO dto = confirmMapper.findOne(conNo);
-        return new SimpleDateConfirmDTO(dto);
+        return new LongTitleResponseDTO(dto);
+    }
+
+    public boolean deleteConfirm(long conNo) {
+        return confirmMapper.deleteConfirm(conNo);
     }
 }

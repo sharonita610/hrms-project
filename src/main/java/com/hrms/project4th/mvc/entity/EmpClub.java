@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor @AllArgsConstructor
 @Builder
 public class EmpClub {
-    private long ec_index;
+    private long ecIndex;
     private LocalDateTime empJoinDate;
     private long empNo;
     private long clubCode;

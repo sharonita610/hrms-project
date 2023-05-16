@@ -2,17 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
-<html lang="kor">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <title>SAMJO SANGSA</title>
+    <!-- 기본세팅 css	-->
     <link rel="stylesheet" href="/assets/css/common.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
-    <link rel="stylesheet" href="/assets/css/fixed.css">
+    <!-- 헤더, 배너 고정 틀용 css -->
+    <link rel="stylesheet" href="/assets/css/header-banner.css">
+    <!-- 메인 페이지 list 포함 css -->
+    <link rel="stylesheet" href="/assets/css/main-page.css">
 </head>
 <body>
 <header class="common_wrap">
@@ -33,7 +35,7 @@
     </section>
     <section class="section-sub-header">
         <div class="nav-bar">
-            <ul>
+            <ul id="tabs">
                 <li><a href="#">HOME</a></li>
                 <li><a href="#">게시판</a></li>
                 <li><a href="#">결재</a></li>
@@ -42,12 +44,12 @@
             </ul>
         </div>
     </section>
-
 </header>
-<section class="section-left-body">
-    <div id="left-body">
-        <div class="left-fix">
-            <div class="line">
+<!-- body-wrapper은 필수, 왼쪽 배너의 남은 부분을 나눠쓰기 위함 -->
+<div id="body-wrapper">
+    <section class="section-left-body">
+        <div id="left-body">
+            <div class="left-fix">
                 <div class="information-box">
                     <ul id="profile">
                         <li id="photo"><a href="#">사원사진</a></li>
@@ -63,46 +65,44 @@
                         </li>
                     </ul>
                 </div>
+
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <section class="main-page-list">
+        <div id="main-list">
+            <div id="top-list">
+                <ul>
+                    <li class="title-list"><h1>공지사항</h1></li>
+                    <li>공지사항</li>
+                    <li>공지사항</li>
+                </ul>
+                <ul>
+                    <li class="title-list"><h1>동호회</h1></li>
+                    <li>동호회</li>
+                    <li>동호회</li>
+                </ul>
+            </div>
+            <div id="bottom-list">
+                <ul>
+                    <li class="title-list"><h1>메일</h1></li>
+                    <li>메일</li>
+                    <li>메일</li>
+                </ul>
+                <ul>
+                    <li class="title-list"><h1>결재</h1></li>
+                    <li>결재</li>
+                    <li>결재</li>
+                </ul>
+            </div>
+        </div>
 
 
+    </section>
 
-<%--    <section class="calendar">--%>
-<%--        <div id="calendar">--%>
-<%--            <table>--%>
-<%--                <tr>--%>
-<%--                    <th colspan="7">--%>
-<%--                        <button onclick="prevMonth()">&#8249;</button>--%>
-<%--                        <span id="currentMonth"></span>--%>
-<%--                        <button onclick="nextMonth()">&#8250;</button>--%>
-<%--                    </th>--%>
-<%--                </tr>--%>
-<%--                <tr>--%>
-<%--                    <th>일</th>--%>
-<%--                    <th>월</th>--%>
-<%--                    <th>화</th>--%>
-<%--                    <th>수</th>--%>
-<%--                    <th>목</th>--%>
-<%--                    <th>금</th>--%>
-<%--                    <th>토</th>--%>
-<%--                </tr>--%>
-<%--            </table>--%>
-<%--        </div>--%>
-<%--    </section>--%>
+
 </div>
-<%--<script src="calendar.js"></script>--%>
-<%--<script>--%>
-<%--    var calendar = new Calendar({--%>
-<%--        target: '#calendar',--%>
-<%--        date: new Date(),--%>
-<%--        onSelect: function(date) {--%>
-<%--            console.log(date);--%>
-<%--        }--%>
-<%--    });--%>
-<%--</script>--%>
+
 
 </body>
 </html>

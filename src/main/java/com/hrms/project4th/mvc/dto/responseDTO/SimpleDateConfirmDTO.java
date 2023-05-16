@@ -1,4 +1,4 @@
-package com.hrms.project4th.mvc.dto;
+package com.hrms.project4th.mvc.dto.responseDTO;
 
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import lombok.*;
@@ -27,7 +27,7 @@ public class SimpleDateConfirmDTO {
 
     public SimpleDateConfirmDTO(GetConfirmListDTO dto) {
         this.conNo = dto.getConNo();
-        this.conTitle = dto.getConTitle();
+        this.conTitle = getShortenTitle(dto.getConTitle());
         this.conContent = dto.getConContent();
         this.fromName = dto.getFromName();
         this.fromDept = dto.getFromDept();
@@ -54,5 +54,12 @@ public class SimpleDateConfirmDTO {
                 return "승인거절";
         }
         return "";
+    }
+
+    public String getShortenTitle (String title) {
+        if(title.length() > 15) {
+            return title.substring(0,15) + "...";
+        }
+        return title;
     }
 }

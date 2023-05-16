@@ -32,7 +32,6 @@
             ON E.MAIL_FROM = P.EMP_NO
             WHERE E.mail_from = #{empNo}
         </if>
-
         ORDER BY
         E.mail_no DESC
     </select>
