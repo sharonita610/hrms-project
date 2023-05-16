@@ -35,4 +35,7 @@ public class Mail {
     //메일 내용
     private String mailContent;
 
+    //메일 상태
+    private CheckStatus mailStatus;
+
 }
