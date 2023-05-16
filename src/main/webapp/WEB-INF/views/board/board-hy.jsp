@@ -8,6 +8,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SAMJO SANGSA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <!-- 기본세팅 css	-->
     <link rel="stylesheet" href="/assets/css/common.css">
     <!-- 헤더, 배너 고정 틀용 css -->
@@ -106,7 +107,7 @@
                     </tr>
                     <c:forEach var="a" items="${allList}">
     
-                        <tr>
+                        <tr class="card-wrapper">
                             <tr>
                                 <th scope="row">${a.boardNo}</th>
                                 <td><a href="/hrms/board-detail/?boardNo=${a.boardNo}">${a.shortTitle}</a></td>
@@ -145,6 +146,36 @@
         </div>
 
     </section>
+    <script>
+//   //저장기능
+//   const $save = document.getElementById('save-Btn');
+//         $save.onclick = function () {
+//             window.location.href = '/hrms/board-save/'
+//         };
+
+        //삭제기능
+        const $cardWrapper = document.querySelector('.card-wrapper')
+        // const $mainBox = document.querySelector('.main-box');
+
+        // $cardWrapper.addEventListener('click', e => {
+        //     if (e.target.matches('.main-box *')) {
+        //         const $delBtn = e.target.closest('#delete-btn');
+        //         window.location.href = $delBtn.dataset.href;
+        //     }
+
+        // })
+
+        //디테일 기능
+
+        // $cardWrapper.addEventListener('click', e => {
+        //     if (e.target.matches('.main-box *')) {
+        //         const $detail = e.target.closest('#detail-btn');
+        //         window.location.href = $detail.dataset.href;
+        //     }
+
+        // })
+
+    </script>
 </div>
 </body>
 </html>

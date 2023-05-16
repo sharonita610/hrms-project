@@ -159,11 +159,11 @@
         </nav>
     </div>
     <script>
-        //저장기능
-        const $save = document.getElementById('save-Btn');
-        $save.onclick = function () {
-            window.location.href = '/hrms/board-save/'
-        };
+        // //저장기능
+        // const $save = document.getElementById('save-Btn');
+        // $save.onclick = function () {
+        //     window.location.href = '/hrms/board-save/'
+        // };
 
         //삭제기능
         const $cardWrapper = document.querySelector('.card-wrapper')
@@ -177,15 +177,15 @@
 
         // })
 
-        //디테일 기능
+        // 디테일 기능
 
-        // $cardWrapper.addEventListener('click', e => {
-        //     if (e.target.matches('.main-box *')) {
-        //         const $detail = e.target.closest('#detail-btn');
-        //         window.location.href = $detail.dataset.href;
-        //     }
+        $cardWrapper.addEventListener('click', e => {
+            if (e.target.matches('.main-box *')) {
+                const $detail = e.target.closest('#detail-btn');
+                window.location.href = $detail.dataset.href;
+            }
 
-        // })
+        })
     </script>
 
 
