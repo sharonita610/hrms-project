@@ -22,7 +22,7 @@
             </div>
             <div class="rq-date section">
                 <div>기안일자</div>
-                <div id="today"></div>
+                <div id="today">${c.conDate}</div>
             </div>
             <div class="department section">
                 <div>부서</div>
@@ -60,20 +60,10 @@
 
 <script>
 
-    const roleCode = '11111';
+    const roleCode = null;
     const $submit = document.getElementById('submit');
     const conNo = document.getElementById('conNo').value;
     const conStatus = '${c.conStatus}';
-
-    //기안일자 : 오늘
-    const $today = document.getElementById('today');
-
-    const today = new Date();
-    const year = today.getFullYear(); // 년도
-    const month = today.getMonth() + 1; // 월
-    const date = today.getDate(); // 날짜
-
-    $today.innerText = year + '-' + month + '-' + date;
 
     if(conStatus === '승인대기') {
 

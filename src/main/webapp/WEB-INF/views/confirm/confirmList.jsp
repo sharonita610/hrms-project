@@ -13,7 +13,7 @@
 
     <div class="confirm-titleline">
         <h1>결재문서함</h1>
-        <a class="rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
+            <a class="rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
     </div>
 
     <div class="confirm-outer-container">
@@ -40,9 +40,9 @@
 <script>
 
     const URL = "/confirm";
-    const empNo = 1;
-    const roleCode = '11111';
-    // const roleCode = null;
+    const empNo = 2;
+    // const roleCode = '11111';
+    const roleCode = null;
 
     //페이지 로딩
     function startConfirmPage() {

@@ -5,7 +5,7 @@
 <mapper namespace="com.hrms.project4th.mvc.repository.EmployeesMapper">
 
     <select id="getEmployeesList" resultType="employees">
-        select * from hr_employees
+        select from hr_employees
         order by dept_code, pos_code
     </select>
 
@@ -14,6 +14,15 @@
         from hr_employees e, hr_department d
         where d.dept_code = #{deptCode}
         and role_code = '11111';
+    </select>
+
+    <select id="getDetailEmployeesList">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_my_boss , POS_NAME, dept_name, club_name
+        from hr_employees e
+        left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+        join hr_position hp on e.POS_CODE = hp.POS_CODE
+        join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+        join hr_club cb on cb.CLUB_CODE in (select CLUB_CODE from hr_emp_club)
     </select>
 
     <insert id="addEmployee">

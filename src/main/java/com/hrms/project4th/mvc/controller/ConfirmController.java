@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ModifyConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.LongTitleResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.SimpleDateConfirmDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.RequestConfirmDTO;
 import com.hrms.project4th.mvc.service.ConfirmService;
@@ -89,7 +90,7 @@ public class ConfirmController {
     public String modifyForm(long conNo, Model model){
         DeptBossDTO deptBoss = confirmService.getDeptBoss("001");
         model.addAttribute("boss", deptBoss);
-        SimpleDateConfirmDTO dto = confirmService.findOne(conNo);
+        LongTitleResponseDTO dto = confirmService.findOne(conNo);
         model.addAttribute("c", dto);
         return "confirm/modify";
     }
@@ -113,7 +114,7 @@ public class ConfirmController {
     public String detail(long conNo, Model model){
         DeptBossDTO deptBoss = confirmService.getDeptBoss("001");
         model.addAttribute("boss", deptBoss);
-        SimpleDateConfirmDTO dto = confirmService.findOne(conNo);
+        LongTitleResponseDTO dto = confirmService.findOne(conNo);
         model.addAttribute("c", dto);
         return "confirm/confirm-detail";
     }

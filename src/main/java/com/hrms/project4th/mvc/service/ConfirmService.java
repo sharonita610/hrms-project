@@ -3,6 +3,7 @@ package com.hrms.project4th.mvc.service;
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.GetConfirmListDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ModifyConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.LongTitleResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.SimpleDateConfirmDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.RequestConfirmDTO;
 import com.hrms.project4th.mvc.entity.Confirm;
@@ -77,9 +78,9 @@ public class ConfirmService {
 
     }
 
-    public SimpleDateConfirmDTO findOne(long conNo) {
+    public LongTitleResponseDTO findOne(long conNo) {
         GetConfirmListDTO dto = confirmMapper.findOne(conNo);
-        return new SimpleDateConfirmDTO(dto);
+        return new LongTitleResponseDTO(dto);
     }
 
     public boolean deleteConfirm(long conNo) {

@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SimpleDateConfirmDTO {
+public class LongTitleResponseDTO {
     private long conNo;
     private String conTitle;
     private String conContent;
@@ -25,23 +25,15 @@ public class SimpleDateConfirmDTO {
     private String conStatus;
     private String conCheckDate;
 
-    public SimpleDateConfirmDTO(GetConfirmListDTO dto) {
+    public LongTitleResponseDTO(GetConfirmListDTO dto) {
         this.conNo = dto.getConNo();
-        this.conTitle = getShortenTitle(dto.getConTitle());
+        this.conTitle = dto.getConTitle();
         this.conContent = dto.getConContent();
         this.fromName = dto.getFromName();
         this.fromDept = dto.getFromDept();
         this.conDate = getSimpleDate(dto.getConDate());
         this.conStatus = getSimpleStatus(dto.getConStatus());
         this.conCheckDate = getSimpleDate(dto.getConCheckDate());
-    }
-
-
-    public String getSimpleDate(LocalDateTime date) {
-        if(date == null) return "";
-        // yyyy.MM.dd HH:mm (2022.01.01 00:00)
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
-        return dtf.format(date);
     }
 
     public String getSimpleStatus(CheckStatus status) {
@@ -56,10 +48,10 @@ public class SimpleDateConfirmDTO {
         return "";
     }
 
-    public String getShortenTitle (String title) {
-        if(title.length() > 15) {
-            return title.substring(0,15) + "...";
-        }
-        return title;
+    public String getSimpleDate(LocalDateTime date) {
+        if(date == null) return "";
+        // yyyy.MM.dd HH:mm (2022.01.01 00:00)
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
+        return dtf.format(date);
     }
 }
