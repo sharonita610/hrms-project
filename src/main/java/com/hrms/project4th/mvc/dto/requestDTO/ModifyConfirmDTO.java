@@ -1,4 +1,4 @@
-package com.hrms.project4th.mvc.dto;
+package com.hrms.project4th.mvc.dto.requestDTO;
 
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DeptBossDTO {
-    long empNo;
-    private String empName;
-    private String deptName;
-    private String roleCode;
+public class ModifyConfirmDTO {
+
+    private long conNo;
+    private String conTitle;
+    private String conContent;
 }

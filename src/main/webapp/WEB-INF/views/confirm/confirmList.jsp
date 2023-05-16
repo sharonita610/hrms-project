@@ -13,7 +13,7 @@
 
     <div class="confirm-titleline">
         <h1>결재문서함</h1>
-        <a class="rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
+            <a class="rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
     </div>
 
     <div class="confirm-outer-container">
@@ -100,7 +100,7 @@
 
             if (roleCode === '11111') {
                 tag += '<th class = "col7">승인</th>' +
-                '<th class = "col7">거절</th></tr>';
+                    '<th class = "col7">거절</th></tr>';
             } else {
                 tag += '<th class = "col7">수정</th>' +
                     '<th class = "col7">삭제</th></tr>';
@@ -130,8 +130,8 @@
         for (let c of list) {
             const {conNo, conTitle, fromName, fromDept, conDate, conStatus, conCheckDate} = c;
 
-            tag += '<tr id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2">' + conTitle
-                + '</td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
+            tag += '<tr id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2"><a href="/confirm/detail?conNo=' + conNo + '">' + conTitle
+                + '</a></td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
                 + '</td><td class = "col6">' + conStatus + '</td>';
 
             if ($section.id === 'waiting-table' && roleCode === '11111') {
@@ -140,18 +140,19 @@
             } else if ($section.id === 'waiting-table' && roleCode !== '11111') {
                 tag += '<td class="col7"><div class = "button" id = "modify"></div></td>'
                     + '<td class = "col7"><div class = "button" id = "remove"></div></td></tr>';
-            }
-            else {
+            } else {
                 tag += '<td class = "col7">' + conCheckDate + '</td>';
             }
         }
         $section.innerHTML = tag;
     }
 
+    //마우스오버 이벤트 -> 문서 수정, 삭제, 승인, 거절
     $box = document.querySelector('.confirm-outer-container');
     $box.addEventListener('mouseover', modifyConfirm);
+
     function modifyConfirm(e) {
-        if(e.target.matches('#modify')) {
+        if (e.target.matches('#modify')) {
             let $modiBtn = e.target.closest('#modify');
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
@@ -160,6 +161,67 @@
                 window.location.href = '/confirm/modify?conNo=' + conNo;
             }
         }
+
+        if (e.target.matches('#remove')) {
+            let $remoBtn = e.target.closest('#remove');
+            let $docInfo = e.target.closest('#doc-info');
+            let conNo = $docInfo.firstChild.innerText;
+
+            $remoBtn.onclick = () => {
+                if(!confirm('정말 삭제하시겠습니까?')){
+                    return;
+                }
+
+                fetch(`\${URL}/delete/\${conNo}`, {method: 'delete'})
+                    .then(res => res.json())
+                    .then(result => {
+                            if (result) {
+                                getWaitingList();
+                            }
+                        }
+                    )
+
+            }
+        }
+
+        if (e.target.matches('#check')) {
+            let $chkBtn = e.target.closest('#check');
+            let $docInfo = e.target.closest('#doc-info');
+            let conNo = $docInfo.firstChild.innerText;
+
+            $chkBtn.onclick = () => {
+                if (!confirm('결재요청을 승인합니다')) {
+                    return;
+                }
+                fetch(`\${URL}/check/\${conNo}`, {method: 'PUT'})
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result) {
+                            startConfirmPage();
+                        }
+                    });
+            }
+        }
+
+        if (e.target.matches('#reject')) {
+            let $rejBtn = e.target.closest('#reject');
+            let $docInfo = e.target.closest('#doc-info');
+            let conNo = $docInfo.firstChild.innerText;
+
+            $rejBtn.onclick = () => {
+                if (!confirm('결재요청을 반려합니다')) {
+                    return;
+                }
+                fetch(`\${URL}/reject/\${conNo}`, {method: 'PUT'})
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result) {
+                            startConfirmPage();
+                        }
+                    });
+            }
+        }
+
     }
 
 

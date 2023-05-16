@@ -1,7 +1,10 @@
-package com.hrms.project4th.mvc.dto;
+package com.hrms.project4th.mvc.dto.requestDTO;
 
+import com.hrms.project4th.mvc.entity.Gender;
 import lombok.*;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 @Component
 @Setter @Getter
@@ -9,11 +12,12 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ModifyEmployeeDTO {
+public class AddEmployeesDTO {
 
-    private long empNo;
+    private String empName;
+    private String empBirthDay;
     private String empEmail;
-    private String empPassword;
+    private Gender empGender;
     private long empSalary;
     private String empPhone;
     private long empMyBoss;
