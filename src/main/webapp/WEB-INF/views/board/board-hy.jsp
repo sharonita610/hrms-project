@@ -200,9 +200,9 @@
                                 <th scope="row" id="boardNo">${a.boardNo}</th>
                                 <td id="title"><a href="/hrms/board-detail/?boardNo=${a.boardNo}">${a.shortTitle}</a>
                                 </td>
-                                <td id="empNo">${a.empNo}</td>
+                                <td id="empNo">${a.empName}</td>
                                 <td id="date">${a.stringDate}</td>
-                                <td id="count">1</td>
+                                <td id="count">${a.viewCount}</td>
                             </tr>
                             </tr>
 

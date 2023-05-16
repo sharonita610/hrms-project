@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.controller;
 
+import com.hrms.project4th.mvc.dto.responseDTO.BoardDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
@@ -30,7 +31,7 @@ public class BoardController {
     public String boardFindAll(BoardSearch search, Model model) {
 
         List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
-//      log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
+      log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
 //        log.info("search : {}", search);
 //        log.info("{}",boardPageMaker.getPAGE_LEN());
         BoardPageMaker boardPageMaker=new BoardPageMaker(search,boardService.boardPageCount());
@@ -70,9 +71,12 @@ public class BoardController {
 
     // 상세 보기 페이지를 보여주는 기능
     @GetMapping("/board-detail")
-    public String boardDetail(Long boardNo, Model model) {
+    public String boardDetail(
+            BoardDetailResponseDTO dto,
+//            Long boardNo,
+            Model model) {
 //        log.info("board-detail / boardNo : {} ", boardNo);
-        Board board = boardService.boardFindOneByBoardNo(boardNo);
+        Board board = boardService.boardFindOneByBoardNo(dto);
         model.addAttribute("b", board);
         return "/board/boardDetail";
     }

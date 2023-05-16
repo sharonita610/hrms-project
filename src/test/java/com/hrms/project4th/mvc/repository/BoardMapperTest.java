@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
+import com.hrms.project4th.mvc.dto.Page.BoardPage;
 import com.hrms.project4th.mvc.dto.Page.BoardSearch;
 import com.hrms.project4th.mvc.entity.BdType;
 import com.hrms.project4th.mvc.entity.Board;
@@ -22,10 +23,10 @@ class BoardMapperTest {
     BoardMapper boardMapper;
 
     @Test
-    @DisplayName("게시글 10개 저장하는 기능")
+    @DisplayName("게시글 301개 저장하는 기능")
     void saveTest() {
 
-        for (int i = 21; i <= 155; i++) {
+        for (int i = 1; i <= 301; i++) {
             Board b = Board.builder()
                     .boardNo(i)
                     .bdType(BdType.valueOf("FREE"))
@@ -43,9 +44,11 @@ class BoardMapperTest {
     @Test
     @DisplayName("게시글 List를 보여주는 기능")
     void findAllTest() {
-//        BoardSearch s = BoardSearch.builder().boardKeyWord("1").boardType("title").build();
-//        List<Board> boards = boardMapper.boardFindAll(s);
-//        System.out.println("boards = " + boards);
+        long empNo=5L;
+        BoardSearch bs=new BoardSearch();
+        List<Board> boards = boardMapper.boardFindAll(bs);
+        System.out.println(boards);
+
 
     }
 

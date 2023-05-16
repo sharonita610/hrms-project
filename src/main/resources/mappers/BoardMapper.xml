@@ -7,17 +7,18 @@
 
     <select id="boardFindAll" resultType="board">
         SELECT
-        board_no, bd_type, bd_title, bd_content,
-        bd_date, emp_no
-        FROM hr_board
+        b.board_no, b.bd_type, b.bd_title, b.bd_content,
+        b.bd_date, b.emp_no, b.view_count, e.emp_name
+        FROM hr_board b
+        JOIN hr_employees e ON e.emp_no = b.emp_no
         <if test="boardType == 'title'">
-            WHERE bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
+            WHERE b.bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
         </if>
         <if test="boardType == 'boardType'">
-            WHERE bd_type LIKE CONCAT('%', #{boardKeyWord}, '%')
+            WHERE b.bd_type LIKE CONCAT('%', #{boardKeyWord}, '%')
         </if>
         <if test="boardType == 'boardContent'">
-            WHERE bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
+            WHERE b.bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
         </if>
         ORDER BY 1 DESC
         Limit #{pageLimitNum},#{boardAmount}
@@ -78,5 +79,9 @@
 <!--            WHERE bd_type='NONAME'-->
 <!--        </if>-->
     </select>
+    <update id="countUp">
+        UPDATE hr_board
+        SET view_count=view_count+1
+    </update>
 
 </mapper>

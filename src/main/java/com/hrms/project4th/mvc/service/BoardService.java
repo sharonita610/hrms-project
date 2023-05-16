@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.requestDTO.BoardDetailRequestDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.BoardDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
@@ -47,12 +48,12 @@ public class BoardService {
     /**
      * 게시글 번호를 입력받아 게시물을 보여주는 기능
      *
-     * @param boardNo 게시글 번호
+     * @param dto 게시글 번호, viewCount 정보
      * @return Board 객체
      */
-    public Board boardFindOneByBoardNo(Long boardNo) {
-
-        return boardMapper.boardFindOneByBoardNo(boardNo);
+    public Board boardFindOneByBoardNo(BoardDetailResponseDTO dto) {
+        boardMapper.countUp(dto.getViewCount());
+        return boardMapper.boardFindOneByBoardNo(dto.getBoardNo());
     }
 
     /**
@@ -61,8 +62,8 @@ public class BoardService {
      * @param boardNo 게시글 번호
      * @return BoardDetailRequestDTO 객체
      */
-    public BoardDetailRequestDTO boardDetail(Long boardNo) {
-        Board board = boardFindOneByBoardNo(boardNo);
+    public BoardDetailRequestDTO boardDetail(BoardDetailResponseDTO dto) {
+        Board board = boardFindOneByBoardNo(dto);
 
         return new BoardDetailRequestDTO(board);
     }

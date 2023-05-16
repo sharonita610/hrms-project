@@ -12,6 +12,7 @@ public interface BoardMapper {
     //게시글 전체 조회
     List<Board> boardFindAll(BoardSearch boardSearch);
 
+
     //사원번호를 통해 게시글 조회
     List<Board> boardFindOneByEno(Long empNo);
 
@@ -32,4 +33,8 @@ public interface BoardMapper {
 
     //전체 게시글 수 구하는 기능
     int countBoardPage();
+
+    // view count를 1 올리는 기능
+    long countUp(long viewCount);
+
 }

@@ -125,9 +125,9 @@
                         <tr>
                             <th scope="row">${a.boardNo}</th>
                             <td><a href="/hrms/board-detail/?boardNo=${a.boardNo}">${a.shortTitle}</a></td>
-                            <td>${a.empNo}</td>
+                            <td>${a.empName}</td>
                             <td>${a.stringDate}</td>
-                            <td>1</td>
+                            <td>${a.viewCount}</td>
                           </tr>
 
                     </tr>
