@@ -53,6 +53,13 @@ public class Employees {
     //소속 부서
     private String deptCode;
 
+    // 권한
+    private Auth auth;
+
+    // 프로필 사진
+    private String profileImage;
+
+
     public Employees(AddEmployeesDTO dto){
         this.empName = dto.getEmpName();
         this.empBirthDay = getLocalDate(dto.getEmpBirthDay());
@@ -72,4 +79,6 @@ public class Employees {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
         return LocalDate.parse(date, dtf);
     }
+
+
 }

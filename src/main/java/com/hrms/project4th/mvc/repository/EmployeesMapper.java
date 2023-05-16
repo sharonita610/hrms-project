@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
+import com.hrms.project4th.mvc.dto.AutoLoginDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
@@ -20,4 +21,9 @@ public interface  EmployeesMapper {
     boolean modifyEmployees(Employees emp);
 
     DeptBossDTO getDeptBoss(String deptCode);
+
+    Employees findEmployee(long empNo);
+
+    // 자동로그인 관련 속성 추가 기능
+    void saveAutoLogin(AutoLoginDTO dto);
 }

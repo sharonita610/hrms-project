@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
+import com.hrms.project4th.mvc.entity.Employees;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,16 @@ class EmployeesMapperTest {
 
 //    @Test
 //    @DisplayName("")
+
+    @Test
+    @DisplayName("사원 번호를 입력하면 이름을 리턴한다.")
+    public void findEmployeeTest(){
+        // given
+
+
+        Employees emp = employeesMapper.findEmployee(2L);
+        System.out.println("emp = " + emp.getEmpName());
+
+        assertEquals("김이번",employeesMapper.findEmployee(2L).getEmpName());
+    }
 }

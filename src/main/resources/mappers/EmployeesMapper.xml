@@ -40,4 +40,9 @@
     <delete id="removeEmployee">
         delete from hr_employees where emp_no = #{empNo}
     </delete>
+
+    <select id="findEmployee" resultType="employees">
+        select * from hr_employees
+        where emp_no = #{empNo}
+    </select>
 </mapper>
