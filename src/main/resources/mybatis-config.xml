@@ -18,6 +18,12 @@
         <typeAlias alias="mailResponseDTO" type="com.hrms.project4th.mvc.dto.MailResponseDTO"/>
         <typeAlias alias="clubBoard" type="com.hrms.project4th.mvc.entity.ClubBoard" />
         <typeAlias alias="clubJoin" type="com.hrms.project4th.mvc.entity.EmpClub" />
+        <typeAlias alias="getConfirmListDto" type="com.hrms.project4th.mvc.dto.GetConfirmListDTO"/>
+        <typeAlias alias="deptBossDto" type="com.hrms.project4th.mvc.dto.DeptBossDTO"/>
+        <typeAlias alias="clubBoardDTO" type="com.hrms.project4th.mvc.dto.responseDTO.ClubBoardResponseDTO" />
+        <typeAlias alias="myClubBoardListDTO" type="com.hrms.project4th.mvc.dto.responseDTO.MyClubBoardResponseDTO" />
+        <typeAlias alias="joinedClubListDTO" type="com.hrms.project4th.mvc.dto.responseDTO.JoinedClubListResponseDTO" />
+        <typeAlias alias="clubReplyListResponseDTO" type="com.hrms.project4th.mvc.dto.responseDTO.ClubReplyListResponseDTO" />
         <typeAlias alias="getConfirmListDto" type="com.hrms.project4th.mvc.dto.responseDTO.GetConfirmListDTO"/>
         <typeAlias alias="deptBossDto" type="com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO"/>
         <typeAlias alias="employeeDetailResponseDTO" type="com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO"/>
@@ -33,6 +39,7 @@
         <mapper resource="mappers/MailMapper.xml"/>
         <mapper resource="mappers/ClubBoardMapper.xml" />
         <mapper resource="mappers/ClubJoinMapper.xml" />
+        <mapper resource="mappers/ClubReplyMapper.xml" />
     </mappers>
 
 

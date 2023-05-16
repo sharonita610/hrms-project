@@ -1,6 +1,5 @@
-package com.hrms.project4th.mvc.entity;
+package com.hrms.project4th.mvc.dto.responseDTO;
 
-import com.hrms.project4th.mvc.dto.requestDTO.ClubJoinRequestDTO;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -11,14 +10,11 @@ import java.time.LocalDateTime;
 @ToString @EqualsAndHashCode
 @NoArgsConstructor @AllArgsConstructor
 @Builder
-public class EmpClub {
+public class JoinedClubListResponseDTO {
+
     private long ecIndex;
     private LocalDateTime empJoinDate;
     private long empNo;
     private long clubCode;
-
-    public EmpClub(ClubJoinRequestDTO dto) {
-        this.empNo = dto.getEmpNo();
-        this.clubCode = dto.getClubCode();
-    }
+    private String clubName;
 }

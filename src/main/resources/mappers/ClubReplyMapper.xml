@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.ClubReplyMapper">
+    <insert id="clubReplySave">
+        INSERT INTO TEST_CLUB_REPLY
+        (CLUB_REP_CONTENT, CB_NO, EMP_NO)
+        VALUES
+        (#{clubRepContent}, #{cbNo}, #{empNo})
+    </insert>
+
+    <select id="clubReplyListAll" resultType="clubReplyListResponseDTO">
+        SELECT CLUB_REP_NO, CLUB_REP_CONTENT, CLUB_REP_DATE, CB_NO, E.EMP_NO, EMP_NAME
+        FROM TEST_CLUB_REPLY R
+        JOIN TEST_EMPLOYEES E USING (EMP_NO)
+        WHERE CB_NO = #{cbNo}
+    </select>
+
+    <select id="clubReplyMyList" resultType="clubReplyListResponseDTO">
+        SELECT CLUB_REP_NO, CLUB_REP_CONTENT, CLUB_REP_DATE, CB_NO, E.EMP_NO, EMP_NAME
+        FROM TEST_CLUB_REPLY R
+        JOIN TEST_EMPLOYEES E USING (EMP_NO)
+        WHERE E.EMP_NO = #{empNo}
+    </select>
+
+    <delete id="clubReplyDelete">
+        DELETE FROM TEST_CLUB_REPLY
+        WHERE CLUB_REP_NO = #{clubRepNo}
+    </delete>
+
+    <update id="clubReplyModify">
+        UPDATE TEST_CLUB_REPLY
+        SET CLUB_REP_CONTENT = #{clubRepContent}
+        WHERE CLUB_REP_NO = #{clubRepNo}
+    </update>
+
+
+
+</mapper>
