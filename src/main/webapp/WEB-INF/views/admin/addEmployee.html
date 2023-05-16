@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/addEmployee.css">
+</head>
+
+<body>
+
+    <div class="addEmpFormWrapper">
+        <h1>사원 등록</h1>
+        <div class = "empProfileInput addInputForm">
+            <h2>사진 : </h2>
+            <input class = "inputblank" id = "prifileImage" name = "profile" type="file" accept="image/*" placeholder="홍길동">
+        </div>
+        <div class = "empNameInput addInputForm">
+            <h2>이름 : </h2>
+            <input class = "inputblank" type="text" name = "empName" placeholder="홍길동">
+        </div>
+        <div class = "empPhoneInput addInputForm">
+            <h2>전화번호 : </h2>
+            <input class = "inputblank" name = "empPhone" type="text" placeholder="0100000000">
+        </div>
+        <div class = "empEmailInput addInputForm">
+            <h2>이메일 : </h2>
+            <input class = "inputblank" type="text" name = "empEmail" placeholder="hong">
+            <h2 id = "email-address">&nbsp;@samjosangsa.com</h2>
+        </div>
+        <div class = "empGenderInput addInputForm">
+            <h2>성별 : </h2>
+            <label><input class = "genderOption" type = "radio" name = "empGender" value = "M" checked>남자</label>
+            <label><input class = "genderOption" type = "radio" name = "empGender" value = "F">여자</label>
+        </div>
+        <div class = "empBdayInput addInputForm">
+            <h2>생일 : </h2><input class = "inputblank" name = "empBirthDay" type="date" >
+        </div>
+        <div class = "empSalaryInput addInputForm">
+            <h2>급여 : </h2>
+            <input class = "inputblank" name = "empSalary" type="text" placeholder="1000000">
+        </div>
+        <div class = "empDeptInput addInputForm">
+            <h2>부서코드 : </h2>
+            <select class = "inputblank" name = "deptCode">
+                <option value = "none" disabled>부서를 선택하세요</option>
+                <option value = "001">IT</option>
+                <option value = "002">HR</option>
+                <option value = "003">SALES</option>
+                <option value = "004">MARKETING</option>
+                <option value = "005">FINANCE</option>
+                <option value = "006">MANAGEMENT</option>
+            </select>
+        </div>
+        <div class = "empPosInput addInputForm">
+            <h2>직급코드 : </h2>
+            <select class = "inputblank" name = "posCode">
+                
+            </select>
+        </div>
+        <div class = "empRoleInput addInputForm">
+            <h2>직책코드 : </h2>
+            <select class = "inputblank" name = "roleCode">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class = "empBossInput addInputForm">
+            <h2>직속상사 : </h2>
+            <select class = "inputblank" name = "empMyBoss">
+                <option value=""></option>
+            </select>
+        </div>
+
+
+    </div>
+
+</body>
+</html>

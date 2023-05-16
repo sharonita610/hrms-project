@@ -1,0 +1,40 @@
+* {
+    text-decoration: none;
+    color: black;
+    box-sizing: border-box;
+}
+
+.addEmpFormWrapper {
+    width: 600px;
+    margin: 50px auto;
+    border: 1px solid #000;
+    padding: 20px 10px;
+}
+
+.addEmpFormWrapper h1 {
+    font-size: 20px;
+    margin: 0;
+    padding-bottom: 20px;
+} 
+
+.addEmpFormWrapper h2 {
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    width: 80px;
+}
+
+.addEmpFormWrapper .addInputForm {
+    display: flex;
+    margin-top: 10px;
+}
+
+.addEmpFormWrapper .addInputForm .inputblank {
+    font-size: 15px;
+    outline-color: rgb(113, 150, 218);
+    width: 200px;
+}
+
+.addEmpFormWrapper #email-address {
+    font-weight: lighter;
+}

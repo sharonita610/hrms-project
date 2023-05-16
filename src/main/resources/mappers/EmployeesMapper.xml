@@ -17,18 +17,17 @@
     </select>
 
     <select id="getDetailEmployeesList">
-        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_my_boss , POS_NAME, dept_name, club_name
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_my_boss , POS_NAME, dept_name
         from hr_employees e
         left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
         join hr_position hp on e.POS_CODE = hp.POS_CODE
         join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
-        join hr_club cb on cb.CLUB_CODE in (select CLUB_CODE from hr_emp_club)
     </select>
 
     <insert id="addEmployee">
         insert into hr_employees
-        (emp_name, emp_birth_day, emp_hire_date, emp_email, emp_password, emp_gender, emp_salary, emp_phone, emp_my_boss, pos_code, role_code, dept_code)
-        values (#{empName}, #{empBirthDay}, current_timestamp, #{empEmail}, #{empPassword}, #{empGender}, #{empSalary}, #{empPhone}, #{empMyBoss}, #{posCode}, #{roleCode}, #{deptCode})
+        (emp_name, emp_birth_day, emp_hire_date, emp_email, emp_password, emp_gender, emp_salary, emp_phone, emp_my_boss, pos_code, role_code, dept_code, profile)
+        values (#{empName}, #{empBirthDay}, current_timestamp, #{empEmail}, #{empPassword}, #{empGender}, #{empSalary}, #{empPhone}, #{empMyBoss}, #{posCode}, #{roleCode}, #{deptCode}, #{profile})
     </insert>
 
     <update id="modifyEmployees">
