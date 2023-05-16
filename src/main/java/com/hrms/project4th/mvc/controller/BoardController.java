@@ -40,7 +40,7 @@ public class BoardController {
 //        model.addAttribute("search",search);
         model.addAttribute("boardPageMaker",boardPageMaker);
         model.addAttribute("allList", boardListResponseDTOS);
-        return "/board/boardList";
+        return "/board/board-hy";
     }
 
 
