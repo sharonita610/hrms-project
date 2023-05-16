@@ -107,7 +107,7 @@
                 </div>
             </form>
         </header>
-        <button id="save-Btn" type="button">새글 추가</button>
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="button">새글 추가</button>
 
 
         <table class="table">
