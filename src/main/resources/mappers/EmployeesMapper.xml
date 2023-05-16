@@ -24,6 +24,16 @@
         join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
     </select>
 
+    <select id="getMyBossNames" resultType="employees">
+        select emp_name, pos_code from hr_employees
+        where dept_code = #{deptCode}
+    </select>
+
+    <select id="isDuplicated" resultType="boolean">
+        select count(*) from hr_employees
+        where emp_email = #{email}
+    </select>
+
     <insert id="addEmployee">
         insert into hr_employees
         (emp_name, emp_birth_day, emp_hire_date, emp_email, emp_password, emp_gender, emp_salary, emp_phone, emp_my_boss, pos_code, role_code, dept_code, profile)

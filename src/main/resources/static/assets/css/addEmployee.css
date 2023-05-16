@@ -7,8 +7,11 @@
 .addEmpFormWrapper {
     width: 600px;
     margin: 50px auto;
-    border: 1px solid #000;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
     padding: 20px 10px;
+    position: relative;
+    /* border: 1px solid #000; */
 }
 
 .addEmpFormWrapper h1 {
@@ -22,6 +25,7 @@
     font-weight: normal;
     margin: 0;
     width: 80px;
+    /* margin-right: 10px; */
 }
 
 .addEmpFormWrapper .addInputForm {
@@ -37,4 +41,35 @@
 
 .addEmpFormWrapper #email-address {
     font-weight: lighter;
+}
+
+.empBossInput { 
+    width: 280px;
+    /* border: 1px solid #000; */
+}
+
+button {
+    display: none;
+}
+
+#emp-submit {
+    font-size: 15px;
+    position: absolute;
+    padding: 5px;
+    bottom: 20px;
+    right: 20px;
+    background: #e6e6e6;
+    border: 1px solid gray;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#duplicatedEmail {
+    color: red;
+    font-size: 13px;
+    font-weight: 700;
+    position: absolute;
+    right: 152px;
+    bottom: 225px;
+    display: none;
 }
