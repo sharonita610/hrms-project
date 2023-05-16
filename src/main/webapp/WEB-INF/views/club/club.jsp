@@ -69,50 +69,35 @@
     <section class="section-club-board">
         <div id="club-contents">
             <div class="club-drop-down-btn">
-                <button class="club-dropbtn"><span class="club-dropdown">클릭</span></button>
+                <button class="club-dropbtn"><span class="club-dropdown"></span></button>
                 <div class="club-drop-down-content">
                     <a href="#">전체보기</a>
-                    <a href="#">내 동호회</a>
+                    <a href="/club/joined-club-board-list?empNo=1">내 동호회</a>
                 </div>
             </div>
             <div id="club-board-list">
                 <div class="club-card-wrapper">
-                    <section class="club-card" data-bno="${c.clubBoardNo}">
-                        <div class="club-card-info">
-                            <ul>
-                                <li><img src="#" alt=""></li>
-                                <li>동호회명</li>
-                                <!-- 가입하기 버튼 -->
-                                <li>
-                                    <button class="join">가입하기</button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="club-card-content">
-                            <ul>
-                                <li>사진 || 영상</li>
-                                <li>텍스트블라블라</li>
-                            </ul>
-                        </div>
-                    </section>
-                    <section class="club-card" data-bno="${c.clubBoardNo}">
-                        <div class="club-card-info">
-                            <ul>
-                                <li><img src="#" alt="">사진</li>
-                                <li>동호회명</li>
-                                <!-- 가입하기 버튼 -->
-                                <li>
-                                    <button class="join">가입하기</button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="club-card-content">
-                            <ul>
-                                <li>사진 || 영상</li>
-                                <li>텍스트블라블라</li>
-                            </ul>
-                        </div>
-                    </section>
+                    <c:forEach var="c" items="${clubBoardList}">
+                        <section class="club-card" data-bno="${c.cbNo}">
+                            <div class="club-card-info">
+                                <ul>
+                                    <li><img src="#" alt=""></li>
+                                    <li>${c.clubName}</li>
+                                    <!-- 가입하기 버튼 -->
+                                    <li>
+                                        <button class="join">가입하기</button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="club-card-content">
+                                <ul>
+                                    <li>${c.cbURL}</li>
+                                    <li>${c.cbContent}</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </c:forEach>
+
                 </div>
             </div>
             <div id="club-board-information">
@@ -141,5 +126,15 @@
         </div>
     </section>
 </div>
+
+
+<script>
+
+
+    
+</script>
+
+
+
 </body>
 </html>

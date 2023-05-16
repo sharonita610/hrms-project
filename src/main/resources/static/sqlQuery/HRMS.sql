@@ -16,6 +16,7 @@ EMP_MY_BOSS INT(10),
 POS_CODE VARCHAR(10),
 ROLE_CODE VARCHAR(10),
 DEPT_CODE VARCHAR(10),
+PROFILE VARCHAR(1000),
 constraint PK_EMP_NO PRIMARY KEY (EMP_NO)
 );
 
@@ -147,8 +148,8 @@ MAIL_STATUS CHAR(1) default 'N',
 constraint PK_MAIL_NO primary key (MAIL_NO)
 );
 
-
-
+-- PROFILE 컬럼추가 ---------------------------------
+ALTER TABLE hr_employees ADD COLUMN PROFILE VARCHAR(1000);
 -- FK ADD query(일단 넣지 마세요!!!!)
 
 alter TABLE HR_EMPLOYEES add constraint FK_HR_EMPLOYEES_EMP_MY_BOSS
