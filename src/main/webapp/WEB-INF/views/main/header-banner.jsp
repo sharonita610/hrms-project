@@ -44,29 +44,33 @@
     </section>
 
 </header>
-<section class="section-left-body">
-    <div id="left-body">
-        <div class="left-fix">
-            <div class="line">
-                <div class="information-box">
-                    <ul id="profile">
-                        <li id="photo"><a href="#">사원사진</a></li>
-                    </ul>
-                    <ul id="information">
-                        <li>사원번호</li>
-                        <li>이름</li>
-                        <li>휴대폰번호</li>
-                        <li>부서</li>
-                        <li>직책</li>
-                        <li>
-                            <button id="change-info" type="submit">수정</button>
-                        </li>
-                    </ul>
+<!-- body-wrapper은 필수, 왼쪽 배너의 남은 부분을 나눠쓰기 위함 -->
+<div id="body-wrapper">
+    <section class="section-left-body">
+        <div id="left-body">
+            <div class="left-fix">
+                <div class="line">
+                    <div class="information-box">
+                        <ul id="profile">
+                            <li id="photo"><a href="#">사원사진</a></li>
+                        </ul>
+                        <ul id="information">
+                            <li>사원번호</li>
+                            <li>이름</li>
+                            <li>휴대폰번호</li>
+                            <li>부서</li>
+                            <li>직책</li>
+                            <li>
+                                <button id="change-info" type="submit">수정</button>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+
+    </section>
+</div>
 
 
 
