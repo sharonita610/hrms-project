@@ -8,14 +8,33 @@
     <title>board-list</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-</head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    </head>
 <style>
-    .board_area{
+    .board_area {
+        margin: 100px;
+        width: 80vh;
+        text-align: center;
 
     }
-    .list-table {
+    .board_area #board-title{
+        text-align: center;
+    }
 
+    .board_area .list-table {
+        margin: 5px auto;
         border: 1px solid #000;
+    }
+
+    .board_area .search {
+        margin: 5px auto;
+        text-align: center;
+    }
+
+    .board_area .showPage {
+        display: flex;
+        justify-content: center;
+        margin: 5px auto;
     }
 
     .write-wrapper {
@@ -57,50 +76,59 @@
         margin: 5px;
 
     }
+
+    .search-bar {
+        display: flex;
+        justify-content:center;
+    }
 </style>
 
 <body>
-
-
+    <!-- <%@ include file="../main/header-banner.jsp" %> -->
 
 
     <div class="board_area">
-        <h1>공지사항</h1>
+
+        <h1 id="board-title">공지사항</h1>
         <header class="search">
-            <form action="/hrms/board-list" method="get">
-                <select class="select-wrapper" name="boardType">
-                    <option value="title">제목</option>
-                    <option value="boardType">공지유형</option>
-                    <option value="boardContent">내용</option>
-                </select>
-                <div class="search_box">
-                    <input type="text" name="boardKeyWord" maxlength="225"> <i id="keyboard"
-                        class="fa fa-keyboard-o"></i>
-                    <button type="submit">검색</button>
+            <form class="form-inline" action="/hrms/board-list" method="get">
+                <div class="search-bar">
+                    <label for="category">카테고리:</label>
+                    <select class="form-control mr-sm-2" id="category" name="boardType">
+                        <option value="title">제목</option>
+                        <option value="boardType">공지유형</option>
+                        <option value="boardContent">내용</option>
+                    </select>
+                    <div class="search_box">
+                        <input class="form-control mr-sm-2" type="search" id="search" placeholder="검색어를 입력하세요" aria-label="Search" name="boardKeyWord" maxlength="225"> <i id="keyboard"
+                            class="fa fa-keyboard-o"></i>
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">검색</button>
+                    </div>
                 </div>
             </form>
         </header>
         <button id="save-Btn" type="button">새글 추가</button>
 
 
-        <table class="list-table">
+        <table class="table">
             <thead>
                 <tr>
-                    <th width="70">번호</th>
-                    <th width="500">제목</th>
-                    <th width="120">글쓴이</th>
-                    <th width="100">작성일</th>
-                    <th width="100">조회수</th>
+                    <th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성자</th>
+                    <th scope="col">작성일</th>
+                    <th scope="col">조회수</th>
                 </tr>
                 <c:forEach var="a" items="${allList}">
 
                     <tr>
-
-                        <th width="70">${a.boardNo}</th>
-                        <th width="500"> <a href="/hrms/board-detail/?boardNo=${a.boardNo}">${a.shortTitle}</a></th>
-                        <th width="120">${a.empNo}</th>
-                        <th width="100">${a.stringDate}</th>
-                        <th width="100">1</th>
+                        <tr>
+                            <th scope="row">${a.boardNo}</th>
+                            <td><a href="/hrms/board-detail/?boardNo=${a.boardNo}">${a.shortTitle}</a></td>
+                            <td>${a.empNo}</td>
+                            <td>${a.stringDate}</td>
+                            <td>1</td>
+                          </tr>
 
                     </tr>
 
@@ -139,25 +167,25 @@
 
         //삭제기능
         const $cardWrapper = document.querySelector('.card-wrapper')
-        const $mainBox = document.querySelector('.main-box');
+        // const $mainBox = document.querySelector('.main-box');
 
-        $cardWrapper.addEventListener('click', e => {
-            if (e.target.matches('.main-box *')) {
-                const $delBtn = e.target.closest('#delete-btn');
-                window.location.href = $delBtn.dataset.href;
-            }
+        // $cardWrapper.addEventListener('click', e => {
+        //     if (e.target.matches('.main-box *')) {
+        //         const $delBtn = e.target.closest('#delete-btn');
+        //         window.location.href = $delBtn.dataset.href;
+        //     }
 
-        })
+        // })
 
         //디테일 기능
 
-        $cardWrapper.addEventListener('click', e => {
-            if (e.target.matches('.main-box *')) {
-                const $detail = e.target.closest('#detail-btn');
-                window.location.href = $detail.dataset.href;
-            }
+        // $cardWrapper.addEventListener('click', e => {
+        //     if (e.target.matches('.main-box *')) {
+        //         const $detail = e.target.closest('#detail-btn');
+        //         window.location.href = $detail.dataset.href;
+        //     }
 
-        })
+        // })
     </script>
 
 

@@ -16,7 +16,7 @@ public class BoardPage{
     private int boardPageNo;
 
     public BoardPage(){
-        boardAmount=5;
+        boardAmount=10;
         boardPageNo=1;
 
     }
