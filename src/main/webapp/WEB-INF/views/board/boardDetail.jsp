@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.LocalDate" %>
 
 <!doctype html>
 <html lang="en">
@@ -18,6 +19,7 @@
 
     <head>
         <meta charset="UTF-8">
+
         <meta name="viewport"
             content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -28,12 +30,15 @@
         <link rel="stylesheet" href="/assets/css/header-banner.css">
         <!-- 메인 페이지 list 포함 css -->
         <link rel="stylesheet" href="/assets/css/main-page.css">
+        <!-- boot-strap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <style>
             body {
                 font-family: Arial, sans-serif;
             }
 
-         
+
             .detail-title {
                 font-weight: 700;
                 font-size: 50px;
@@ -48,7 +53,7 @@
             .container {
                 max-width: 800px;
                 margin: 0 auto;
-               
+
             }
 
             h1 {
@@ -109,7 +114,10 @@
             .detail-button #backToList {
                 margin-right: 10px;
             }
-          
+
+            #replyContent {
+                border: 1px solid #000;
+            }
         </style>
     </head>
 
@@ -368,8 +376,8 @@
                         const {
                             repNo,
                             empNo,
-                            repContent,
-                            regDate
+                            regDate,
+                            repContent
                         } = rep;
 
                         tag += "<div id='replyContent' class='card-body' data-replyId='" + repNo + "'>" +
@@ -414,7 +422,69 @@
 
             }
 
-            //
+            // 댓글 등록 처리 이벤트 함수
+            function makeReplyRegisterClickEvent() {
+
+                const $regBtn = document.getElementById('replyAddBtn');
+
+                $regBtn.onclick = e => {
+
+                    const $rt = document.getElementById('newReplyText');
+                    const $rw = document.getElementById('newReplyWriter');
+
+                    // console.log($rt.value);
+                    // console.log($rw.value);
+
+
+                    // 클라이언트 입력값 검증
+                    if ($rt.value.trim() === '') {
+                        alert('댓글 내용은 필수입니다!');
+                        return;
+                    } else if ($rw.value.trim() === '') {
+                        alert('댓글 작성자 이름은 필수입니다!');
+                        return;
+                    } else if ($rw.value.trim().length < 2 || $rw.value.trim().length > 8) {
+                        alert('댓글 작성자 이름은 2~8자 사이로 작성하세요!');
+                        return;
+                    }
+
+
+                    // # 서버로 보낼 데이터
+                    const payload = {
+                        text: $rt.value,
+                        author: $rw.value,
+                        bno: bno
+                    };
+
+                    // # GET방식을 제외하고 필요한 객체
+                    const requestInfo = {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    };
+
+                    // # 서버에 POST요청 보내기
+                    fetch(URL, requestInfo)
+                        .then(res => {
+                            if (res.status === 200) {
+                                alert('댓글이 정상 등록됨!');
+                                // 입력창 비우기
+                                $rt.value = '';
+                                $rw.value = '';
+
+                                // 마지막페이지 번호
+                                const lastPageNo = document.querySelector('.pagination').dataset.fp;
+                                getReplyList(lastPageNo);
+                            } else {
+                                alert('댓글 등록에 실패함!');
+                            }
+                        });
+                };
+            }
+
+
             (function () {
 
                 // 댓글 리스트 호출
