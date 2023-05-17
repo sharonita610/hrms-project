@@ -232,7 +232,7 @@
                                                 <div class="form-group">
                                                     <label for="newReplyWriter" hidden>댓글 작성자</label>
                                                     <input id="newReplyWriter" name="replyWriter" type="text"
-                                                        class="form-control" placeholder="작성자 이름" readonly
+                                                        class="form-control" placeholder="작성자 이름"
                                                         style="margin-bottom: 6px;">
                                                     <button id="replyAddBtn" type="button"
                                                         class="btn btn-dark form-control">등록</button>
@@ -406,6 +406,31 @@
                 renderPage(boardReplyPageMaker);
 
             }
+            //댓글 삭제 기능
+
+            //버블링을 이용하여 a태그 효과 제거
+            const $replyData = document.getElementById('replyData');
+
+            function removeAtagEffet() {
+                $replyData.onclick = e => {
+                    // console.log(e.target);
+                    // console.log('삭제버튼 클릭');
+                    e.preventDefault();
+                    if (e.target.matches('#replyDelBtn')) {
+                        // console.log('삭제떠줘');
+                        if (!confirm('삭제하시겠습니까?')) {
+                            return;
+                        }
+                        //삭제할 댓글의 PK값 읽기
+                        //삭제 요청
+                        fetch(URL+'/')
+
+
+
+                    }
+                }
+
+            }
 
 
 
@@ -422,7 +447,7 @@
 
             }
 
-            // 댓글 등록 처리 이벤트 함수
+            // 댓글 save기능
             function makeReplyRegisterClickEvent() {
 
                 const $regBtn = document.getElementById('replyAddBtn');
@@ -433,7 +458,7 @@
                     const $rw = document.getElementById('newReplyWriter');
 
                     // console.log($rt.value);
-                    // console.log($rw.value);
+                    console.log($rw.value);
 
 
                     // 클라이언트 입력값 검증
@@ -451,9 +476,9 @@
 
                     // # 서버로 보낼 데이터
                     const payload = {
-                        text: $rt.value,
-                        author: $rw.value,
-                        bno: bno
+                        repContent: $rt.value,
+                        empNo: $rw.value,
+                        boardNo: boardNo
                     };
 
                     // # GET방식을 제외하고 필요한 객체
@@ -486,11 +511,16 @@
 
 
             (function () {
+                //삭제버튼 a태그 효과 제거
+                removeAtagEffet()
 
                 // 댓글 리스트 호출
                 findAllReplies();
                 // 페이지 이동
                 makePageButtonClickEvent();
+                //댓글 save
+                makeReplyRegisterClickEvent();
+
 
             })()
         </script>
