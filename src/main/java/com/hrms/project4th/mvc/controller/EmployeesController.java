@@ -44,9 +44,9 @@ public class EmployeesController {
     }
 
     @GetMapping("/add/check")
-    public ResponseEntity<Boolean> isDuplicated(String email){
-        email += "@samjosangsa.com";
-        boolean flag = employeesService.isDuplicated(email);
+    public ResponseEntity<Boolean> isDuplicated(String empEmail){
+        empEmail += "@samjosangsa.com";
+        boolean flag = employeesService.isDuplicated(empEmail);
         return ResponseEntity.ok().body(flag);
     }
 

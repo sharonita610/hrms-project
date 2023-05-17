@@ -123,16 +123,19 @@
     $submit.addEventListener('click', addEmployee);
 
     $emailInput = document.getElementById('setEmail');
-    $emailInput.onkeyup = e => {
+    $emailInput.onkeyup = () => {
         const empEmail = $emailInput.value;
 
-        fetch(`\${URL}/add/check?empMail=` + empEmail)
+        fetch(`\${URL}/add/check?empEmail=` + empEmail)
             .then(res => res.json())
             .then(flag => {
-                if(flag){
-                    //이메일이 중복되었습니다
                     const dupleMessage = document.getElementById('duplicatedEmail');
+                if(flag){
+                    //이메일이 중복되었습니다 메세지 출력
                     dupleMessage.style.display = 'block';
+                } else {
+                    //이메일이 중복되었습니다 메세지 숨김
+                    dupleMessage.style.display = 'none';
                 }
             })
     }
