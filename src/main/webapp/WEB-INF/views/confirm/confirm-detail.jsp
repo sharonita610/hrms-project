@@ -161,7 +161,7 @@
                     .then(res => res.json())
                     .then(result => {
                             if (result) {
-                                window.location.href = "redirect:/confirm/list";
+                                window.location.href = "/confirm/list";
                             }
                         }
                     )
