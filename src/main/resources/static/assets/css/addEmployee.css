@@ -1,0 +1,75 @@
+* {
+    text-decoration: none;
+    color: black;
+    box-sizing: border-box;
+}
+
+.addEmpFormWrapper {
+    width: 600px;
+    margin: 50px auto;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    padding: 20px 10px;
+    position: relative;
+    /* border: 1px solid #000; */
+}
+
+.addEmpFormWrapper h1 {
+    font-size: 20px;
+    margin: 0;
+    padding-bottom: 20px;
+} 
+
+.addEmpFormWrapper h2 {
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    width: 80px;
+    /* margin-right: 10px; */
+}
+
+.addEmpFormWrapper .addInputForm {
+    display: flex;
+    margin-top: 10px;
+}
+
+.addEmpFormWrapper .addInputForm .inputblank {
+    font-size: 15px;
+    outline-color: rgb(113, 150, 218);
+    width: 200px;
+}
+
+.addEmpFormWrapper #email-address {
+    font-weight: lighter;
+}
+
+.empBossInput { 
+    width: 280px;
+    /* border: 1px solid #000; */
+}
+
+button {
+    display: none;
+}
+
+#emp-submit {
+    font-size: 15px;
+    position: absolute;
+    padding: 5px;
+    bottom: 20px;
+    right: 20px;
+    background: #e6e6e6;
+    border: 1px solid gray;
+    display: none;
+    cursor: pointer;
+}
+
+#duplicatedEmail {
+    color: red;
+    font-size: 13px;
+    font-weight: 700;
+    position: absolute;
+    right: 152px;
+    bottom: 225px;
+    display: none;
+}

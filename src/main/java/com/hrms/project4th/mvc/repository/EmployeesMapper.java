@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
+import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
@@ -20,4 +21,8 @@ public interface  EmployeesMapper {
     boolean modifyEmployees(Employees emp);
 
     DeptBossDTO getDeptBoss(String deptCode);
+
+    List<Employees> getMyBossNames(MyBossRequestDTO dto);
+
+    boolean isDuplicated(String email);
 }
