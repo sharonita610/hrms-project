@@ -33,7 +33,7 @@ public class LoginController {
     }
 
     // 로그인 양식 요청
-    @GetMapping("/index")
+    @GetMapping("/log-in")
     public String loginPage(HttpServletRequest request) {
         log.info("/index/ :  GET - forwarding to jsp");
 
@@ -41,17 +41,17 @@ public class LoginController {
         String referer = request.getHeader("Referer");
 
         log.info("referer : {}", referer);
-        return "/index";
+        return "/main/login";
     }
 
     // 로그인 검증 요청
-    @PostMapping("/index")
+    @PostMapping("/log-in")
     public String loginPage(LoginRequestDTO dto
                             // 리다이렉션시 2번째 응답에 데이터를 보내기 위함
             , RedirectAttributes ra
             , HttpServletResponse response
             , HttpServletRequest request) {
-        log.info("/members/sign-in POST ! - {}", dto);
+        log.info("/log-in POST ! - {}", dto);
 
         LoginResult result = loginService.authenticate(
                 dto, request.getSession(), response);
