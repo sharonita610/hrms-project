@@ -31,4 +31,5 @@ public interface MailMapper {
     //메일번호에 맞는 메일 삭제
     void deleteMailByNum(Long mailNo);
 
+    int getMailPageCount();
 }

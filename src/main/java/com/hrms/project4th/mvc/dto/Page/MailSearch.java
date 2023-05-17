@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @ToString
 @AllArgsConstructor
-public class MailSearch {
+public class MailSearch extends MailPage{
 
     //나에게 온 메일 or 내가 보낸메일
     //default 값 나에게 온 메일

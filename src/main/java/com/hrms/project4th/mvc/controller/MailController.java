@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
+import com.hrms.project4th.mvc.dto.Page.MailPageMaker;
 import com.hrms.project4th.mvc.dto.Page.MailSearch;
 import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
@@ -40,9 +41,10 @@ public class MailController {
 
     @GetMapping("/mail-list")
     //메일 불러오기서비스(로그인한 사용자 사번이 필요함)
-    public String getList(Model model, @Param("empNo") Long empNo,@Param("mailType") MailSearch search){
+    public String getList(Model model, Long empNo, MailSearch search){
 
         List<MailResponseDTO> mailList = mailService.getMailList(empNo,search);
+        MailPageMaker mailPageMaker = new MailPageMaker(search,mailService.mailPageCount());
         model.addAttribute("mList",mailList);
         return "/mail/mail";
     }

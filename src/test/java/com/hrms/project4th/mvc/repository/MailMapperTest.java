@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
+import com.hrms.project4th.mvc.dto.Page.MailPage;
 import com.hrms.project4th.mvc.dto.Page.MailSearch;
 import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
@@ -42,7 +43,6 @@ class MailMapperTest {
     @DisplayName("5번사원이 1번 사원에게 보낸 메일의 개수는 71개이다")
     void getMailListTest(){
        MailSearch mailSearch = new MailSearch();
-       mailSearch.setMailType("mailfrom");
         List<MailResponseDTO> mailList = mailMapper.getMailList(1L,mailSearch);
         for (MailResponseDTO mailResponseDTO : mailList) {
             System.out.println(mailResponseDTO);

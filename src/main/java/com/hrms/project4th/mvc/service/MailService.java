@@ -49,4 +49,8 @@ public class MailService {
         //메일의 번호로 메일을 삭제 할 수 있다.
         mailMapper.deleteMailByNum(mailNo);
     }
+
+    public int mailPageCount() {
+        return mailMapper.getMailPageCount();
+    }
 }

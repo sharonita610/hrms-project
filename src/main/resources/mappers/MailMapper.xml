@@ -36,6 +36,7 @@
         </if>
         ORDER BY
         E.mail_no DESC
+        LIMIT #{s.pageLimitNum},#{s.mailAmount}
     </select>
 <!--접속한 사용자의 번호에맞는 상태값에 따라 메일리스트가 나온다-->
     <select id="getMailListByStatus" resultType="MailResponseDTO">
@@ -95,6 +96,10 @@
         WHERE mail_no = #{mailNo}
     </delete>
 
+    <select id="getMailPageCount" resultType="int">
+        SELECT COUNT(*)
+        FROM hr_email
+    </select>
 
 
 </mapper>
