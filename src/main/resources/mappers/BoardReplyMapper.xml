@@ -12,6 +12,7 @@
         WHERE board_no = #{boardNo}
         LIMIT #{page.pageLimitNum}, #{page.boardAmount}
     </select>
+
     <select id="findOne" resultType="boardReply">
         SELECT
         rep_no, rep_content, rep_date, board_no,emp_no
@@ -44,7 +45,6 @@
         UPDATE hr_reply
         SET rep_content=#{repContent}
         WHERE rep_no=#{repNo}
-        AND board_No=#{boardNo}
         AND emp_No=#{empNo}
     </update>
 

@@ -102,7 +102,7 @@
 
             /* 제목 css */
             #title {
-                width: 800px;
+                width: 776px;
                 height: 40px;
             }
 
@@ -213,11 +213,11 @@
 
                         </form>
 
-                        <!-- 댓글 영역 -->
+                        <!-- 댓글 -->
 
                         <div id="replies" class="row">
                             <div class="offset-md-1 col-md-10">
-                                <!-- 댓글 쓰기 영역 -->
+                                <!-- 댓글 입력란 -->
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
@@ -240,51 +240,74 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> <!-- end reply write -->
+                                </div>
 
-                                <!--댓글 내용 영역-->
+
                                 <div class="card">
-                                    <!-- 댓글 내용 헤더 -->
+                                    <!-- 댓글 수 -->
                                     <div class="card-header text-white m-0" style="background: #343A40;">
                                         <div class="float-left">댓글 (<span id="replyCnt">0</span>)</div>
                                     </div>
 
-                                    <!-- 댓글 내용 바디 -->
+
                                     <div id="replyCollapse" class="card">
                                         <div id="replyData">
-                                            <!-- 
-                                < JS로 댓글 정보 DIV삽입 > 
-                            -->
+
                                         </div>
 
-                                        <!-- 댓글 페이징 영역 -->
                                         <ul class="pagination justify-content-center">
-                                            <!-- 
-                                < JS로 댓글 페이징 DIV삽입 > 
-                            -->
+
                                         </ul>
                                     </div>
-                                </div> <!-- end reply content -->
+                                </div>
                             </div>
                         </div>
-                        <!-- end replies row -->
 
+                        <!-- 수정 모달 -->
+
+                        <!-- Button trigger modal -->
+                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            Launch static backdrop modal
+                        </button> -->
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <input type="text" class="modal-body">
+                                    ...
+                                    </input>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">닫기</button>
+                                        <button type="button" class="btn btn-primary">수정</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </section>
             </section>
         </div>
 
-
+        <!-- bootstrap js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+        </script>
         <script>
             const $backToList = document.getElementById('backToList');
             $backToList.onclick = (e) => {
                 window.location.href = '/hrms/board-list?boardPageNo=${s.boardPageNo}';
             }
-
-
-
-
 
             // URI
             const URL = '/api/hrms/replies';
@@ -369,7 +392,7 @@
                 let tag = '';
 
                 if (boardReplies === null || boardReplies.length === 0) {
-                    tag += "<div id='replyContent' class='card-body'>댓글이 아직 없습니다! ㅠㅠ</div>";
+                    tag += "<div id='replyContent' class='card-body'>댓글을 입력해 주세요</div>";
 
                 } else {
                     for (let rep of boardReplies) {
@@ -394,12 +417,15 @@
 
                         // if (currentAccount === rep.account || auth === 'ADMIN') {
                         tag +=
-                            "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
+                            // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
+                            "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
                             "         <a id='replyDelBtn' class='btn btn-sm btn-outline-dark' href='#'>삭제</a>";
                         // }
                         tag += "       </div>" +
                             "    </div>" +
                             " </div>";
+
+
                     }
                 }
                 document.getElementById('replyData').innerHTML = tag;
@@ -411,63 +437,122 @@
             //버블링을 이용하여 a태그 효과 제거
             const $replyData = document.getElementById('replyData');
 
-            function removeAtagEffet() {
+            function deleteEvent() {
                 $replyData.onclick = e => {
-                    const $getReplyId = e.target.closest('.card-body').dataset.replyid;
+
+                    // repNo값 가져오기
+                    const $getReplyId = e.target.closest('#replyContent').dataset.replyid;
+                    // console.log($getReplyId);
+                    // empNo값 가져오기
                     const $getEmpNo = document.querySelector('#replyContent b').textContent;
-                    // console.log($getEmpNo);   
+                    // console.log($getEmpNo);
                     // console.log(e.target);
                     // console.log('삭제버튼 클릭');
                     e.preventDefault();
                     if (e.target.matches('#replyDelBtn')) {
                         // console.log('삭제떠줘');
-                        if (!confirm('삭제하시겠습니까?')) {
+                        if (!confirm('삭제하시겠습니까?'))
                             return;
 
+                        // 삭제시 서버로 보낼 데이터 json에 담기
+                        const deletInfo = {
+                            empNo: $getEmpNo,
+                            repNo: $getReplyId,
+                        };
 
-                            // 삭제시 서버로 보낼 데이터
-                            const deletInfo = {
-                                empNo: $getEmpNo,
-                                repNo: $getReplyId,
-                            };
+                        // 삭제 데이터 만들기
 
-                            // # GET방식을 제외하고 필요한 객체
-                            const requestDeleteInfo = {
-                                method: 'DELETE',
-                                headers: {
-                                    'content-type': 'application/json'
-                                },
-                                body: JSON.stringify(deletInfo)
-                            };
-                            console.log(requestInfo);
-
-                            fetch(URL, requestDeleteInfo)
-                                .then(res => {
-                                    if (res.status === 200) {
-                                        alert('댓글이 정상 삭제됨!');
-                                    } else {
-                                        alert('댓글 등록에 실패함!');
-                                    }
-                                }).then(responseResult => {
-
-                                    console.log(responseResult);
-                                    renderReplyList(responseResult)
-                                });
-                        } else {
-                            return;
-                        }
-                        //삭제할 댓글의 PK값 읽기
+                        const requestDeleteInfo = {
+                            method: 'DELETE',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(deletInfo)
+                        };
 
 
+                        // fetch 시작
+                        fetch(URL, requestDeleteInfo)
+                            .then(res => {
+                                if (res.status === 200) {
+                                    alert('삭제됬어!!!!!');
+                                } else {
+                                    alert('실패ㅠㅠㅠㅠㅠ제에발!');
+                                    return res.json();
+                                }
+                            }).then(responseResult => {
+                                findAllReplies(1)
+                            });
 
-                        // 서버에 삭제신호 보내기
+                    } else if (e.target.matches('#modifyBtn')) {
+                        // console.log("수정");
+                        // 모달에 뿌려줄 원래 댓글 text가져와서 모달에 repContent 넣어주기
+                        const rpCon = e.target.parentElement.parentElement.children[0].innerText;
+                        document.querySelector('.modal-body').value = rpCon;
+                        // console.log(rpCon);
 
+                        //모달에 repNo값 뽑아서 모달에 넣어주기
+                        const $rpRpNo = e.target.parentElement.parentElement.parentElement.dataset.replyid;
+                        // console.log(rpRpNo);
+                        document.querySelector('.modal-body').dataset.rno = $rpRpNo;
+
+
+                        //empNo 값 뽑아서 모달에 넣어주기(부모에 부모에 형제에 첫번째 자식에 자식에 0번 인덱스)
+                        const $rpEmpNo = e.target.parentElement.parentElement.previousElementSibling
+                            .previousElementSibling.firstElementChild.children[0].innerText;
+                        document.querySelector('.modal-body').dataset.reno = $rpEmpNo;
 
 
                     }
                 }
 
             }
+
+
+            // 수정버튼 클릭시 수정 처리
+
+            function modifyBoardReply() {
+
+
+                const $modifyButton = document.querySelector('.btn-primary');
+
+                $modifyButton.onclick = e => {
+                    const $getRepCont = document.querySelector('.modal-body').value;
+                    console.log($getRepCont);
+                    const $getRepNo = document.querySelector('.modal-body').dataset.rno;
+                    console.log($getRepNo);
+                    const $getEmpNo = document.querySelector('.modal-body').dataset.reno;
+                    console.log($getEmpNo);
+                    const modifyInfo = {
+                        method: 'PATCH',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            repNo: $getRepNo,
+                            repContent: $getRepCont,
+                            empNo: $getEmpNo,
+                        })
+                    };
+
+                    // console.log(modifyInfo);
+                    fetch(URL, modifyInfo)
+                        .then(res => {
+                            if (res.status == 200) {
+                                alert('댓글이 수정되었습니다.')
+                                //창 닫아줌
+                                document.querySelector('.btn-secondary').click();
+                            } else {
+                                alert('댓글 수정에 실패하였습니다.')
+                            }
+                        })
+                        .then(result=>{
+                            findAllReplies(1);
+                        });
+                };
+
+            }
+
 
 
 
@@ -548,8 +633,7 @@
 
 
             (function () {
-                //삭제버튼 a태그 효과 제거
-                removeAtagEffet()
+
 
                 // 댓글 리스트 호출
                 findAllReplies();
@@ -557,6 +641,11 @@
                 makePageButtonClickEvent();
                 //댓글 save
                 makeReplyRegisterClickEvent();
+
+                //삭제 기능
+                deleteEvent();
+                //댓글 수정기능
+                modifyBoardReply();
 
 
             })()

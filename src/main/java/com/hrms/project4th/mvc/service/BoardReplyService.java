@@ -57,14 +57,14 @@ public class BoardReplyService {
 
         BoardReply boardReply = dto.changeEntity();
         log.info("boardReply : {}",boardReply);
-
+        BoardReply one = boardReplyMapper.findOne(dto.getRepNo());
         boolean flag = boardReplyMapper.delete(boardReply);
         if(!flag){
             log.warn("fail to delete Reply");
             throw new SQLDataException("fail to delete Reply");
         }
-        BoardReply one = boardReplyMapper.findOne(dto.getRepNo());
-        log.info(
+
+        log.info("one : {}",one);
         return findAll(one.getBoardNo(),new BoardPage(5,1));
     }
 
@@ -75,6 +75,7 @@ public class BoardReplyService {
             log.warn("fail to modify Reply");
             throw new SQLException("fail to modify Reply");
         }
-        return findAll(dto.getBoardNo(),new BoardPage(5,1));
+        BoardReply boardReply = boardReplyMapper.findOne(dto.getRepNo());
+        return findAll(boardReply.getBoardNo(),new BoardPage(5,1));
     }
 }
