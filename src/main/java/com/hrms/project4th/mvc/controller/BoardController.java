@@ -30,19 +30,18 @@ public class BoardController {
     // 게시글을 보여주는 기능
     @GetMapping("/board-list")
     public String boardFindAll(BoardSearch search, Model model) {
-
         List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
-      log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
-//        log.info("search : {}", search);
+        log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
+//        log.info("searchInfo : {}", search);
 //        log.info("{}",boardPageMaker.getPAGE_LEN());
-        BoardPageMaker boardPageMaker=new BoardPageMaker(search,boardService.boardPageCount());
-        log.info("hrms/board-list : GET / search : {}", search);
-        log.info("hrms/board-list : GET / boardPageMaker : {}",boardPageMaker);
+        BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount());
+//        log.info("hrms/board-list : GET / search : {}", search);
+//        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);
 
 //        model.addAttribute("search",search);
-        model.addAttribute("boardPageMaker",boardPageMaker);
+        model.addAttribute("boardPageMaker", boardPageMaker);
         model.addAttribute("allList", boardListResponseDTOS);
-        return "/board/board-hy";
+        return "/board/boardList";
     }
 
 
@@ -73,11 +72,13 @@ public class BoardController {
     // 상세 보기 페이지를 보여주는 기능
     @GetMapping("/board-detail")
     public String boardDetail(
-//            BoardDetailResponseDTO dto,
+            BoardSearch search,
             Long boardNo,
             Model model) {
 //        log.info("board-detail / boardNo : {} ", boardNo);
         Board board = boardService.boardFindOneByBoardNo(boardNo);
+        log.info("searchInfo : {}", search);
+        model.addAttribute("s", search);
         model.addAttribute("b", board);
         return "/board/boardDetail";
     }
@@ -92,27 +93,28 @@ public class BoardController {
 
     // 수정한 값을 입력받아 Detail page 에 다시 띄어준다.
     @PostMapping("/board-modify")
-    public String boardModify(BoardModifyRequestDTO dto, Model model,@ModelAttribute("s") BoardSearch search) {
+    public String boardModify(BoardModifyRequestDTO dto, Model model, @ModelAttribute("s") BoardSearch search) {
 //        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}", dto);
         boolean flag = boardService.boardModify(dto);
 //        log.info("flag : {}",flag);
-
-        log.info("searchinfo : {}",search);
+        log.info("searchinfo : {}", search);
         model.addAttribute("b", dto);
+
         return "redirect:/hrms/board-detail?boardNo=" + dto.getBoardNo();
     }
+
     @GetMapping("/test")
-    public String test(Model model, BoardSearch search){
+    public String test(Model model, BoardSearch search) {
         List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
 //      log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
 //        log.info("search : {}", search);
 //        log.info("{}",boardPageMaker.getPAGE_LEN());
-        BoardPageMaker boardPageMaker=new BoardPageMaker(search,boardService.boardPageCount());
+        BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount());
         log.info("hrms/board-list : GET / search : {}", search);
-        log.info("hrms/board-list : GET / boardPageMaker : {}",boardPageMaker);
+        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);
 
 //        model.addAttribute("search",search);
-        model.addAttribute("boardPageMaker",boardPageMaker);
+        model.addAttribute("boardPageMaker", boardPageMaker);
         model.addAttribute("allList", boardListResponseDTOS);
 
         return "/board/testjsp";

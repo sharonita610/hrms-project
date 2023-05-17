@@ -198,7 +198,7 @@
                             <tr class="card-wrapper">
                             <tr>
                                 <th scope="row" id="boardNo">${a.boardNo}</th>
-                                <td id="title"><a href="/hrms/board-detail/?boardNo=${a.boardNo}">${a.shortTitle}</a>
+                                <td id="title"><a href="/hrms/board-detail/?boardNo=${a.boardNo}&boardPageNo=${boardPageMaker.boardPage.boardPageNo}">${a.shortTitle}</a>
                                 </td>
                                 <td id="empNo">${a.empName}</td>
                                 <td id="date">${a.stringDate}</td>

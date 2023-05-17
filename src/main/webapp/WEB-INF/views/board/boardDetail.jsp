@@ -33,14 +33,22 @@
                 font-family: Arial, sans-serif;
             }
 
+         
+            .detail-title {
+                font-weight: 700;
+                font-size: 50px;
+                margin-bottom: 30px;
+                letter-spacing: 20px;
+            }
+
             .detail-part {
-                margin-top: 200px;
+                margin-top: 100px;
             }
 
             .container {
-                max-width: 600px;
+                max-width: 800px;
                 margin: 0 auto;
-                padding: 20px;
+               
             }
 
             h1 {
@@ -54,7 +62,7 @@
             .form-group label {
                 display: block;
                 font-weight: bold;
-                margin-bottom: 5px;
+                margin-bottom: 10px;
             }
 
             .form-group select {
@@ -86,152 +94,190 @@
             #content {
                 resize: none;
             }
+
+            /* 제목 css */
+            #title {
+                width: 800px;
+                height: 40px;
+            }
+
+            .detail-button {
+                display: flex;
+                justify-content: end;
+            }
+
+            .detail-button #backToList {
+                margin-right: 10px;
+            }
+          
         </style>
     </head>
 
     <body>
-        <header class="common_wrap">
-            <section class="section-header">
-                <div class="head">
-                    <ul>
-                        <li>
-                            <div class="logo-img">
-                                <a href="#">
-                                    <img src="/resources/static/assets/img/samjo-logo.png" alt="로고">
-                                </a>
-                            </div>
-                        </li>
-                        <li>삼조상사에 오신 것을 환영합니다.</li>
-                        <li><a href="#"><span id="logout-button">로그아웃</span></a></li>
-                    </ul>
-                </div>
-            </section>
-            <section class="section-sub-header">
-                <div class="nav-bar">
-                    <ul id="tabs">
-                        <li><a href="#">HOME</a></li>
-                        <li><a href="#">게시판</a></li>
-                        <li><a href="#">결재</a></li>
-                        <li><a href="#">메일</a></li>
-                        <li><a href="#">동호회</a></li>
-                    </ul>
-                </div>
-            </section>
-        </header>
-        <div id="body-wrapper">
-            <section class="section-left-body">
-                <div id="left-body">
-                    <div class="left-fix">
-                        <div class="information-box">
-                            <ul id="profile">
-                                <li id="photo"><a href="#">사원사진</a></li>
-                            </ul>
-                            <ul id="information">
-                                <li>사원번호</li>
-                                <li>이름</li>
-                                <li>휴대폰번호</li>
-                                <li>부서</li>
-                                <li>직책</li>
+        <div id="content-wrapper">
+            <section class="detail-section">
+                <header class="common_wrap">
+                    <section class="section-header">
+                        <div class="head">
+                            <ul>
                                 <li>
-                                    <button id="change-info" type="submit">수정</button>
+                                    <div class="logo-img">
+                                        <a href="#">
+                                            <img src="/resources/static/assets/img/samjo-logo.png" alt="로고">
+                                        </a>
+                                    </div>
                                 </li>
+                                <li>삼조상사에 오신 것을 환영합니다.</li>
+                                <li><a href="#"><span id="logout-button">로그아웃</span></a></li>
                             </ul>
                         </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-        <section class="detail-part">
-            <div class="container">
-                <h1>게시글 작성</h1>
-                <form action="/hrms/show-modify" method="post">
-                    <div class="form-group">
-                        <input type="hidden" name="boardNo" value="${b.boardNo}">
-                        <label for="board">게시판:</label>
-                        <select id="board" name="bdType">
-                            <option value="NOTICE">공지게시판</option>
-                            <option value="FREE">자유게시판</option>
-                            <option value="NONAME">익명게시판</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="title">제목:</label>
-                        <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="content">내용:</label>
-                        <textarea id="content" name="bdContent" placeholder="내용을 입력하세요"
-                            readonly>${b.bdContent}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <button id="backToList">목록</button>
-                        <!--  onclick="'window.location.href=/hrms/'" -->
-                        <button type="submit">수정</button>
-                    </div>
-                </form>
-
-                <!-- 댓글 영역 -->
-
-                <div id="replies" class="row">
-                    <div class="offset-md-1 col-md-10">
-                        <!-- 댓글 쓰기 영역 -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="form-group">
-                                            <label for="newReplyText" hidden>댓글 내용</label>
-                                            <textarea rows="3" id="newReplyText" name="replyText" class="form-control"
-                                                placeholder="댓글을 입력해주세요."></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="newReplyWriter" hidden>댓글 작성자</label>
-                                            <input id="newReplyWriter" name="replyWriter" type="text"
-                                                class="form-control" placeholder="작성자 이름" readonly
-                                                style="margin-bottom: 6px;">
-                                            <button id="replyAddBtn" type="button"
-                                                class="btn btn-dark form-control">등록</button>
-                                        </div>
-                                    </div>
+                    </section>
+                    <section class="section-sub-header">
+                        <div class="nav-bar">
+                            <ul id="tabs">
+                                <li><a href="#">HOME</a></li>
+                                <li><a href="#">게시판</a></li>
+                                <li><a href="#">결재</a></li>
+                                <li><a href="#">메일</a></li>
+                                <li><a href="#">동호회</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                </header>
+                <div id="body-wrapper">
+                    <section class="section-left-body">
+                        <div id="left-body">
+                            <div class="left-fix">
+                                <div class="information-box">
+                                    <ul id="profile">
+                                        <li id="photo"><a href="#">사원사진</a></li>
+                                    </ul>
+                                    <ul id="information">
+                                        <li>사원번호</li>
+                                        <li>이름</li>
+                                        <li>휴대폰번호</li>
+                                        <li>부서</li>
+                                        <li>직책</li>
+                                        <li>
+                                            <button id="change-info" type="submit">수정</button>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </div>
-                        </div> <!-- end reply write -->
 
-                        <!--댓글 내용 영역-->
-                        <div class="card">
-                            <!-- 댓글 내용 헤더 -->
-                            <div class="card-header text-white m-0" style="background: #343A40;">
-                                <div class="float-left">댓글 (<span id="replyCnt">0</span>)</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <section class="detail-part">
+                    <div class="container">
+                        <h1 class="detail-title">게시글</h1>
+                        <form action="/hrms/show-modify" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="boardNo" value="${b.boardNo}">
+                                <label for="board">게시판</label>
+                                <select id="board" name="bdType">
+                                    <c:if test="${b.bdType=='NOTICE'}">
+                                        <option value="NOTICE">공지게시판</option>
+                                    </c:if>
+                                    <c:if test="${b.bdType=='FREE'}">
+                                        <option value="FREE">자유게시판</option>
+                                    </c:if>
+                                    <c:if test="${b.bdType=='NONAME'}">
+                                        <option value="NONAME">익명게시판</option>
+                                    </c:if>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="title" class="container">제목</label>
+                                <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요"
+                                    value='${b.bdTitle}' readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="content">내용</label>
+                                <textarea id="content" name="bdContent" placeholder="내용을 입력하세요"
+                                    readonly>${b.bdContent}</textarea>
+                            </div>
+                            <div class="form-group detail-button">
+                                <button id="backToList" type="button">목록</button>
+                                <button type="submit">수정</button>
+                                <!--   onclick="window.location.href='/hrms/board-list?boardPageNo=${s.boardPageNo}'" -->
                             </div>
 
-                            <!-- 댓글 내용 바디 -->
-                            <div id="replyCollapse" class="card">
-                                <div id="replyData">
-                                    <!-- 
+                        </form>
+
+                        <!-- 댓글 영역 -->
+
+                        <div id="replies" class="row">
+                            <div class="offset-md-1 col-md-10">
+                                <!-- 댓글 쓰기 영역 -->
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <div class="form-group">
+                                                    <label for="newReplyText" hidden>댓글 내용</label>
+                                                    <textarea rows="3" id="newReplyText" name="replyText"
+                                                        class="form-control" placeholder="댓글을 입력해주세요."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="newReplyWriter" hidden>댓글 작성자</label>
+                                                    <input id="newReplyWriter" name="replyWriter" type="text"
+                                                        class="form-control" placeholder="작성자 이름" readonly
+                                                        style="margin-bottom: 6px;">
+                                                    <button id="replyAddBtn" type="button"
+                                                        class="btn btn-dark form-control">등록</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- end reply write -->
+
+                                <!--댓글 내용 영역-->
+                                <div class="card">
+                                    <!-- 댓글 내용 헤더 -->
+                                    <div class="card-header text-white m-0" style="background: #343A40;">
+                                        <div class="float-left">댓글 (<span id="replyCnt">0</span>)</div>
+                                    </div>
+
+                                    <!-- 댓글 내용 바디 -->
+                                    <div id="replyCollapse" class="card">
+                                        <div id="replyData">
+                                            <!-- 
                                 < JS로 댓글 정보 DIV삽입 > 
                             -->
-                                </div>
+                                        </div>
 
-                                <!-- 댓글 페이징 영역 -->
-                                <ul class="pagination justify-content-center">
-                                    <!-- 
+                                        <!-- 댓글 페이징 영역 -->
+                                        <ul class="pagination justify-content-center">
+                                            <!-- 
                                 < JS로 댓글 페이징 DIV삽입 > 
                             -->
-                                </ul>
+                                        </ul>
+                                    </div>
+                                </div> <!-- end reply content -->
                             </div>
-                        </div> <!-- end reply content -->
+                        </div>
+                        <!-- end replies row -->
+
+
                     </div>
-                </div>
-                <!-- end replies row -->
+                </section>
+            </section>
+        </div>
 
-            </div>
 
-
-        </section>
         <script>
+            const $backToList = document.getElementById('backToList');
+            $backToList.onclick = (e) => {
+                window.location.href = '/hrms/board-list?boardPageNo=${s.boardPageNo}';
+            }
+
+
+
+
+
             // URI
             const URL = '/api/hrms/replies';
 

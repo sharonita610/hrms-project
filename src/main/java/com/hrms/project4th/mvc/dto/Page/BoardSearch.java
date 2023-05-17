@@ -4,7 +4,6 @@ import lombok.*;
 
 @Setter
 @Getter
-@ToString
 public class BoardSearch extends BoardPage{
     private String boardKeyWord;
     private String boardType;
@@ -14,6 +13,12 @@ public class BoardSearch extends BoardPage{
         this.boardType = "";
     }
 
-
-
+    @Override
+    public String toString() {
+        return "BoardSearch{" +
+                "boardPage=" + super.toString() +
+                ",boardKeyWord='" + boardKeyWord + '\'' +
+                ", boardType='" + boardType + '\'' +
+                '}';
+    }
 }

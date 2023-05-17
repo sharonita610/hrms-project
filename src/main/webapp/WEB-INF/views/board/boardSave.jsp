@@ -33,7 +33,8 @@
             body {
                 font-family: Arial, sans-serif;
             }
-            .save-part{
+
+            .save-part {
                 margin-top: 200px;
             }
 
@@ -82,7 +83,8 @@
             .form-group button:hover {
                 background-color: #0d6efd;
             }
-            #content{
+
+            #content {
                 resize: none;
             }
         </style>

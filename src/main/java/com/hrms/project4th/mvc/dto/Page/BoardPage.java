@@ -4,7 +4,7 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString
+
 @AllArgsConstructor
 @Builder
 public class BoardPage{
@@ -31,5 +31,13 @@ public class BoardPage{
     public int getPageLimitNum() {
 
         return (boardPageNo-1)*boardAmount;
+    }
+
+    @Override
+    public String toString() {
+        return "BoardPage{" +
+                "boardAmount=" + boardAmount +
+                ", boardPageNo=" + boardPageNo +
+                '}';
     }
 }
