@@ -413,6 +413,9 @@
 
             function removeAtagEffet() {
                 $replyData.onclick = e => {
+                    const $getReplyId = e.target.closest('.card-body').dataset.replyid;
+                    const $getEmpNo = document.querySelector('#replyContent b').textContent;
+                    // console.log($getEmpNo);   
                     // console.log(e.target);
                     // console.log('삭제버튼 클릭');
                     e.preventDefault();
@@ -420,10 +423,44 @@
                         // console.log('삭제떠줘');
                         if (!confirm('삭제하시겠습니까?')) {
                             return;
+
+
+                            // 삭제시 서버로 보낼 데이터
+                            const deletInfo = {
+                                empNo: $getEmpNo,
+                                repNo: $getReplyId,
+                            };
+
+                            // # GET방식을 제외하고 필요한 객체
+                            const requestDeleteInfo = {
+                                method: 'DELETE',
+                                headers: {
+                                    'content-type': 'application/json'
+                                },
+                                body: JSON.stringify(deletInfo)
+                            };
+                            console.log(requestInfo);
+
+                            fetch(URL, requestDeleteInfo)
+                                .then(res => {
+                                    if (res.status === 200) {
+                                        alert('댓글이 정상 삭제됨!');
+                                    } else {
+                                        alert('댓글 등록에 실패함!');
+                                    }
+                                }).then(responseResult => {
+
+                                    console.log(responseResult);
+                                    renderReplyList(responseResult)
+                                });
+                        } else {
+                            return;
                         }
                         //삭제할 댓글의 PK값 읽기
-                        //삭제 요청
-                        fetch(URL+'/')
+
+
+
+                        // 서버에 삭제신호 보내기
 
 
 

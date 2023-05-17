@@ -47,7 +47,7 @@ public class BoardReplyController {
             , BindingResult result) {
 
         //검증해서 틀리면 400 error
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(result.toString());
         }
 
@@ -75,7 +75,7 @@ public class BoardReplyController {
             boardReplyService.delete(dto);
         } catch (SQLDataException e) {
             log.warn("500 error {}", e.getMessage());
-            ResponseEntity
+            return ResponseEntity
                     .internalServerError()
                     .body(e.getMessage());
         }

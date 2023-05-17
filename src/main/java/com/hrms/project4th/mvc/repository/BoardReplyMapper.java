@@ -10,7 +10,7 @@ import java.util.List;
 public interface BoardReplyMapper {
 
     List<BoardReply> findAll(long boardNo, BoardPage page);
-
+    BoardReply findOne(long repNo);
     boolean save(BoardReply boardReply);
     boolean delete(BoardReply boardReply);
 

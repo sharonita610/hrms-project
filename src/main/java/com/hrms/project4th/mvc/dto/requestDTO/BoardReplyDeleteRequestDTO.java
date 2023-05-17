@@ -12,14 +12,13 @@ public class BoardReplyDeleteRequestDTO {
 
     private long empNo;
     private long repNo;
-    private long boardNo;
+
 
 
     public BoardReply changeEntity() {
         return BoardReply.builder()
                 .empNo(this.empNo)
                 .repNo(this.repNo)
-                .boardNo(this.boardNo)
                 .build();
     }
 

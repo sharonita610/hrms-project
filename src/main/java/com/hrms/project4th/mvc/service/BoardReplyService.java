@@ -56,13 +56,16 @@ public class BoardReplyService {
     public BoardReplyListResponseDTO delete(BoardReplyDeleteRequestDTO dto) throws SQLDataException {
 
         BoardReply boardReply = dto.changeEntity();
+        log.info("boardReply : {}",boardReply);
 
         boolean flag = boardReplyMapper.delete(boardReply);
         if(!flag){
             log.warn("fail to delete Reply");
             throw new SQLDataException("fail to delete Reply");
         }
-        return findAll(dto.getBoardNo(),new BoardPage(5,1));
+        BoardReply one = boardReplyMapper.findOne(dto.getRepNo());
+        log.info(
+        return findAll(one.getBoardNo(),new BoardPage(5,1));
     }
 
     public BoardReplyListResponseDTO modify(BoardReplyModifyRequestDTO dto) throws SQLException {
