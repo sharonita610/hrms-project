@@ -16,6 +16,8 @@ public class BoardListResponseDTO {
     private String shortContent;
     private String stringDate;
     private Long empNo;
+    private String empName;
+    private long viewCount;
 
     public BoardListResponseDTO(Board board) {
         this.boardNo = board.getBoardNo();
@@ -24,6 +26,8 @@ public class BoardListResponseDTO {
         this.shortContent = makeShortContent(board.getBdContent());
         this.stringDate=makeStringDate(board.getBdDate());
         this.empNo = board.getEmpNo();
+        this.empName= board.getEmpName();
+        this.viewCount=board.getViewCount();
     }
 
 

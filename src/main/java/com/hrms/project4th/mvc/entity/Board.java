@@ -27,9 +27,13 @@ public class Board {
 
     //게시글 작성 시간
     private LocalDateTime bdDate;
+    //게시글 조회수
+    private long viewCount;
 
     //사원 번호
     private long empNo;
+    //사원 이름
+    private String empName;
 
 
     public Board(BoardSaveRequestDTO dto) {

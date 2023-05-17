@@ -26,6 +26,9 @@
         <typeAlias alias="deptBossDto" type="com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO"/>
         <typeAlias alias="employeeDetailResponseDTO" type="com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO"/>
         <typeAlias alias="mailDetailResponseDTO" type="com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO"/>
+        <typeAlias alias="testEntity" type="com.hrms.project4th.mvc.entity.TestEntity"/>
+
+
     </typeAliases>
 
     <mappers>
@@ -38,6 +41,8 @@
         <mapper resource="mappers/ClubBoardMapper.xml" />
         <mapper resource="mappers/ClubJoinMapper.xml" />
         <mapper resource="mappers/ClubReplyMapper.xml" />
+        <mapper resource="mappers/TestEntityMapper.xml"/>
+
     </mappers>
 
 
