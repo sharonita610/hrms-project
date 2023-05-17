@@ -3,6 +3,7 @@ package com.hrms.project4th.mvc.dto.requestDTO;
 import com.hrms.project4th.mvc.entity.Gender;
 import lombok.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -24,5 +25,5 @@ public class AddEmployeesDTO {
     private String posCode;
     private String roleCode;
     private String deptCode;
-    private String profile;
+    private MultipartFile profile;
 }

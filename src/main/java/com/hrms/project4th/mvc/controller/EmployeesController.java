@@ -6,6 +6,7 @@ import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.GetMyBossResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.service.EmployeesService;
+import com.hrms.project4th.mvc.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class EmployeesController {
     @GetMapping("/list")
     public String getEmployeesList(){
         employeesService.getEmployeesList();
-        return ""; //관리자 사원 전체보기 jsp
+        return "redirect:/employees/add"; //관리자 사원 전체보기 jsp
     }
 
     //사원추가 폼으로 이동
@@ -39,8 +40,10 @@ public class EmployeesController {
     //사원 추가 디비 반영
     @PostMapping("/add")
     public String addEmployee(AddEmployeesDTO dto){
-        employeesService.addEmployee(dto);
-        return ""; //전체사원 리스트로 리다이렉트
+        String rootPath = "C:/hrms/employeesProfile";
+        String savePath = FileUtil.uploadFile(dto.getEmpPhone(), dto.getProfile(), rootPath);
+        employeesService.addEmployee(dto, savePath);
+        return "redirect:/employees/add"; //전체사원 리스트로 리다이렉트
     }
 
     @GetMapping("/add/check")

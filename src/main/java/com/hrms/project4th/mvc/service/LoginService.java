@@ -89,7 +89,7 @@ public class LoginService {
                 .empName(employee.getEmpName())
                 .auth(employee.getAuth().toString())
                 .email(employee.getEmpEmail())
-                .profile(employee.getProfileImage())
+//                .profile(employee.getProfile())
                 .build();
 
         // LoginUtil.LOGIN_KEY

@@ -8,7 +8,6 @@ import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +24,8 @@ public class EmployeesService {
        return employeesMapper.getEmployeesList();
     }
 
-    public boolean addEmployee(AddEmployeesDTO dto) {
-        Employees emp = new Employees(dto);
+    public boolean addEmployee(AddEmployeesDTO dto, String savePath) {
+        Employees emp = new Employees(dto, savePath);
         return employeesMapper.addEmployee(emp);
     }
 

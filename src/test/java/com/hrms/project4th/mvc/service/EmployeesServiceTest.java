@@ -44,7 +44,7 @@ class EmployeesServiceTest {
                 .posCode("005")
                 .deptCode("00" + i)
                 .build();
-                boolean flag = employeesService.addEmployee(dto);
+                boolean flag = employeesService.addEmployee(dto, savePath);
                 assertTrue(flag);
             }
         }

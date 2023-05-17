@@ -14,22 +14,25 @@
             <h1>사원 등록</h1>
             <div class="empProfileInput addInputForm">
                 <h2>사진 : </h2>
-                <input class="inputblank" id="prifileImage" name="profile" type="file" accept="image/*"
-                    placeholder="홍길동">
+                <input class="inputblank" id="profileImage" name="profile" type="file" accept="image/*">
+                <div id="noPic" class="alert">사진이 선택되지 않았습니다.</div>
             </div>
             <div class="empNameInput addInputForm">
                 <h2>이름 : </h2>
-                <input class="inputblank" type="text" name="empName" placeholder="홍길동">
+                <input id="empName" class="inputblank" type="text" name="empName" placeholder="홍길동">
+                <div id="noName" class="alert">최소 두 글자 이상의 이름을 입력해주세요.</div>
             </div>
             <div class="empPhoneInput addInputForm">
                 <h2>전화번호 : </h2>
-                <input class="inputblank" name="empPhone" type="text" placeholder="0100000000">
+                <input id="empPhone" class="inputblank" name="empPhone" type="text" placeholder="0100000000">
+                <div id="noPhone" class="alert">정확한 휴대폰 번호를 입력해주세요.</div>
             </div>
             <div class="empEmailInput addInputForm">
                 <h2>이메일 : </h2>
-                <input id = "setEmail" class="inputblank" type="text" name="empEmail" placeholder="hong">
+                <input id="setEmail" class="inputblank" type="text" name="empEmail" placeholder="hong">
                 <h2 id="email-address">&nbsp;@samjosangsa.com</h2>
-                <div id = "duplicatedEmail">이메일이 중복되었습니다.</div>
+                <div id="duplicatedEmail" class="alert">이메일이 중복되었습니다.</div>
+                <div id="noEmail" class="alert">이메일을 입력해주세요.</div>
             </div>
             <div class="empGenderInput addInputForm">
                 <h2>성별 : </h2>
@@ -37,11 +40,13 @@
                 <label><input class="genderOption" type="radio" name="empGender" value="F">여자</label>
             </div>
             <div class="empBdayInput addInputForm">
-                <h2>생일 : </h2><input class="inputblank" name="empBirthDay" type="date">
+                <h2>생일 : </h2><input id="empBirthDay" class="inputblank" name="empBirthDay" type="date">
+                <div id="isAdult" class="alert">정확한 생년월일을 입력해주세요.</div>
             </div>
             <div class="empSalaryInput addInputForm">
                 <h2>급여 : </h2>
-                <input class="inputblank" name="empSalary" type="text" placeholder="1000000">
+                <input id="empSalary" class="inputblank" name="empSalary" type="text" placeholder="1000000">
+                <div id="payCheck" class="alert">정확한 급여를 입력해주세요</div>
             </div>
             <div class="empDeptInput addInputForm">
                 <h2>부서코드 : </h2>
@@ -54,6 +59,7 @@
                     <option value="005">FINANCE</option>
                     <option value="006">MANAGEMENT</option>
                 </select>
+                <div id="noDept" class="alert">부서가 선택되지 않았습니다.</div>
             </div>
             <div class="empPosInput addInputForm">
                 <h2>직급코드 : </h2>
@@ -65,6 +71,7 @@
                     <option value="004">대리</option>
                     <option value="005">사원</option>
                 </select>
+                <div id="noPos" class="alert">직급이 선택되지 않았습니다.</div>
             </div>
             <div class="empRoleInput addInputForm">
                 <h2>직책코드 : </h2>
@@ -77,12 +84,13 @@
             <div class="empBossInput addInputForm">
                 <h2>직속상사 : </h2>
                 <select id="setBoss" class="inputblank" name="empMyBoss">
-
+    
                 </select>
+                <div id="noBoss" class="alert">직속상사를 선택해주세요.</div>
             </div>
-
-            <div id = "emp-submit">사원 등록</div>
-            <button type="submit">제출버튼</button>
+    
+            <div id="emp-submit">사원 등록</div>
+            <button id="addBtn" type="submit">제출버튼</button>
         </form>
     </div>
 
