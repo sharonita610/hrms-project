@@ -24,4 +24,5 @@ public class AddEmployeesDTO {
     private String posCode;
     private String roleCode;
     private String deptCode;
+    private String profile;
 }
