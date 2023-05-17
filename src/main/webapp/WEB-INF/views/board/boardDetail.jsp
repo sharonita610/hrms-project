@@ -376,7 +376,7 @@
                         const {
                             repNo,
                             empNo,
-                            regDate,
+                            replyRegDate,
                             repContent
                         } = rep;
 
@@ -385,7 +385,7 @@
                             "       <span class='col-md-3'>" +
                             "         <b>" + empNo + "</b>" +
                             "       </span>" +
-                            "       <span class='offset-md-6 col-md-3 text-right'><b>" + regDate +
+                            "       <span class='offset-md-6 col-md-3 text-right'><b>" + replyRegDate +
                             "</b></span>" +
                             "    </div><br>" +
                             "    <div class='row'>" +

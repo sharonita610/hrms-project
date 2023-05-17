@@ -5,6 +5,7 @@ import com.hrms.project4th.mvc.entity.BoardReply;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Setter
 @Getter
@@ -19,7 +20,7 @@ public class BoardReplyDetailResponseDTO {
     private String repContent;
     private long empNo;
     @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
-    private LocalDateTime replyRegDate;
+    private String replyRegDate;
 
 //        private long repNo;
 //        private String repContent;
@@ -31,8 +32,12 @@ public class BoardReplyDetailResponseDTO {
         this.repNo = boardReply.getRepNo();
         this.repContent = boardReply.getRepContent();
         this.empNo = boardReply.getEmpNo();
-        this.replyRegDate = boardReply.getRepDate();
+        this.replyRegDate = makeString(boardReply.getRepDate());
+    }
 
+    public String makeString(LocalDateTime localDateTime) {
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy:MM:dd HH:mm");
+        return pattern.format(localDateTime);
 
     }
 }
