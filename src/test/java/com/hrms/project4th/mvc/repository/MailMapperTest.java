@@ -1,7 +1,10 @@
 package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
+import com.hrms.project4th.mvc.dto.Page.MailPage;
 import com.hrms.project4th.mvc.dto.Page.MailSearch;
+import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.entity.Mail;
 import org.apache.ibatis.annotations.ConstructorArgs;
@@ -30,18 +33,17 @@ class MailMapperTest {
        for (int i =1; i<=15; i++) {
 //           Mail mailTest = Mail.builder().mailTitle("테스트용메일"+i).mailContent("테스트용메일입니다"+i).mailFrom(8L).mailTo(10L).build();
 
-           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(7L).mailTo(1L).build();
+           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(2L).mailTo(1L).build();
            mailMapper.sendRequest(mailTest);
        }
    }
 
 
     @Test
-    @DisplayName("2번사원이 보낸 메일의 개수는 71개이다")
+    @DisplayName("5번사원이 1번 사원에게 보낸 메일의 개수는 71개이다")
     void getMailListTest(){
        MailSearch mailSearch = new MailSearch();
-       mailSearch.setMailType("mailto");
-        List<MailResponseDTO> mailList = mailMapper.getMailList(2L,mailSearch);
+        List<MailResponseDTO> mailList = mailMapper.getMailList(1L,mailSearch);
         for (MailResponseDTO mailResponseDTO : mailList) {
             System.out.println(mailResponseDTO);
         }
@@ -50,17 +52,18 @@ class MailMapperTest {
     }
 
     @Test
-    @DisplayName("메일번호가 50번 번호의 제목은 테스트용 메일50이다")
+    @DisplayName("메일번호가 50번 번호의 제목은 테스트용 메일15이다")
     void getMailDetailTest(){
-        Mail mailDetail = mailMapper.getMailDetail(50L);
-        System.out.println(mailDetail.toString());
+       MailSearch mailSearch = new MailSearch();
+        List<MailDetailResponseDTO> mailDetailList = mailMapper.getMailDetail(mailSearch,5L,15L);
+        System.out.println(mailDetailList.toString());
     }
 
 
     @Test
     @DisplayName("사원번호 2번에게 온 메일 의 status가 N인 게시글만 조회되어야한다")
     void getMailListByStatusTest(){
-        List<MailResponseDTO> mailListByStatus = mailMapper.getMailListByStatus(7L, CheckStatus.N);
+        List<MailResponseDTO> mailListByStatus = mailMapper.getMailListByStatus(2L, CheckStatus.N);
         for (MailResponseDTO listByStatus : mailListByStatus) {
             System.out.println(listByStatus);
         }
