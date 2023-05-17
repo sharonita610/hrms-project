@@ -1,8 +1,6 @@
 package com.hrms.project4th.mvc.dto.Page;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Setter
 @Getter
@@ -15,5 +13,7 @@ public class BoardSearch extends BoardPage{
         this.boardKeyWord = "";
         this.boardType = "";
     }
+
+
 
 }

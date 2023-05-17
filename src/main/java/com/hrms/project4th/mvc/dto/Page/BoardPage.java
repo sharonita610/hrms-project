@@ -1,14 +1,12 @@
 package com.hrms.project4th.mvc.dto.Page;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
+@Builder
 public class BoardPage{
 
     private int boardAmount;

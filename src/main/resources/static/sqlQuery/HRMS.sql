@@ -1,3 +1,4 @@
+create database hrms;
 use hrms;
 
 -- 사원테이블

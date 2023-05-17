@@ -48,13 +48,12 @@
 }
 
 /*  화면사이즈가 줄어들면 하얀색 화면으로 바뀜  */
-@media (max-width: 1600px) {
+/* @media (max-width: 1600px) {
     body {
         display: none;
     }
 }
-
-
+*/
 
 
 
