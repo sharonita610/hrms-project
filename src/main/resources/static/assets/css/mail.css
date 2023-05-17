@@ -74,7 +74,7 @@
 }
 .section-mail #mail-wrapper .mail-sort-info .sendtime{
     text-align: center;
-    width: 15%;
+    width: 10%;
 }
 
 
@@ -96,6 +96,9 @@
 /*  스크롤 바 숨기기 */
 .section-mail #mail-wrapper #mail-list-box::-webkit-scrollbar {
     display: none;
+}
+.section-mail #mail-wrapper #mail-list-box li{
+    display: flex;
 }
 
 /*  메일 리스트 li 태그 각각 속성  */
@@ -148,8 +151,14 @@
 .section-mail #mail-wrapper #mail-list-box li a p:nth-child(8){
     text-align: center;
     background: red;
-    width: 15%;
+    width: 10%;
 }
+.section-mail #mail-wrapper #mail-list-box li .delete-button{
+    width: 35px;
+    height: 30px;
+    border-right: 1px solid #000;
+}
+
 
 
 .section-mail #mail-wrapper #mail-list-box li a:hover{
