@@ -166,6 +166,7 @@
                     </div>
                     <div class="form-group">
                         <button id="backToList">목록</button>
+                        <!--  onclick="'window.location.href=/hrms/'" -->
                         <button type="submit">수정</button>
                     </div>
                 </form>
@@ -274,7 +275,7 @@
                 $pageUl.innerHTML = tag;
 
                 // ul에 마지막페이지 번호 저장.
-                $pageUl.dataset.fp = finalPage;
+                $pageUl.dataset.fp = final_page;
 
 
             }

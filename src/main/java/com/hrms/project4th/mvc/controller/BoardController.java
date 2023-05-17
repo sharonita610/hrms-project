@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -91,10 +92,12 @@ public class BoardController {
 
     // 수정한 값을 입력받아 Detail page 에 다시 띄어준다.
     @PostMapping("/board-modify")
-    public String boardModify(BoardModifyRequestDTO dto, Model model) {
+    public String boardModify(BoardModifyRequestDTO dto, Model model,@ModelAttribute("s") BoardSearch search) {
 //        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}", dto);
         boolean flag = boardService.boardModify(dto);
 //        log.info("flag : {}",flag);
+
+        log.info("searchinfo : {}",search);
         model.addAttribute("b", dto);
         return "redirect:/hrms/board-detail?boardNo=" + dto.getBoardNo();
     }
