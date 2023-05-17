@@ -39,7 +39,7 @@
     justify-content: space-around;
     font-size: 1.1rem;
     font-weight: 700;
-    width: 95%;
+    width: 90%;
     margin: 0 auto;
 }
 .section-mail #mail-wrapper .mail-sort-info .number{
@@ -99,6 +99,7 @@
 }
 .section-mail #mail-wrapper #mail-list-box li{
     display: flex;
+    margin-bottom: 10px;
 }
 
 /*  메일 리스트 li 태그 각각 속성  */
@@ -109,7 +110,7 @@
     margin-top:10px;
     display: flex;
     justify-content: flex-start;
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
 }
 .section-mail #mail-wrapper #mail-list-box li a p:nth-child(1){
@@ -154,13 +155,15 @@
     width: 10%;
 }
 .section-mail #mail-wrapper #mail-list-box li .delete-button{
-    width: 35px;
+    width: 50px;
     height: 30px;
-    border-right: 1px solid #000;
+    margin-left: 15px;
+    font-size: 0.3em;
 }
 
 
 
+/* 메일 리스트 호버효과 */
 .section-mail #mail-wrapper #mail-list-box li a:hover{
     background-color: azure;
 }

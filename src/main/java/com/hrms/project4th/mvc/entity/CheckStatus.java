@@ -1,5 +1,8 @@
 package com.hrms.project4th.mvc.entity;
 
+import lombok.Getter;
+
+@Getter
 public enum CheckStatus {
     Y("YES"),
     N("NO"),
