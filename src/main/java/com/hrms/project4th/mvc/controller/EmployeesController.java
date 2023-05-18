@@ -8,11 +8,14 @@ import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.service.EmployeesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -45,7 +48,8 @@ public class EmployeesController {
 
     @GetMapping("/add/check")
     public ResponseEntity<Boolean> isDuplicated(String empEmail){
-        empEmail += "@samjosangsa.com";
+        // 김혜영이 잠시 주석 처리함
+//        empEmail += "@samjosangsa.com";
         boolean flag = employeesService.isDuplicated(empEmail);
         return ResponseEntity.ok().body(flag);
     }
@@ -82,5 +86,29 @@ public class EmployeesController {
                         .build());
         return ResponseEntity.ok().body(bossNames);
     }
+
+    // 사원 번호 수정하기
+    @PostMapping("/change-phone")
+    public ResponseEntity<String> updatePhoneNumber(@RequestBody Map<String, String> requestBody, HttpSession session) {
+        // Retrieve the new phone number from the request body
+        String newPhoneNumber = requestBody.get("phoneNumber");
+
+        // Retrieve the logged-in user from the session
+        Employees loggedInUser = (Employees) session.getAttribute("login");
+
+        // Check if the user is logged in and update the phone number
+        if (loggedInUser != null) {
+            loggedInUser.setEmpPhone(newPhoneNumber);
+            // You can save the updated user information in the database or perform any other necessary operations here
+
+            // Return a success response
+            return ResponseEntity.ok("Phone number updated successfully.");
+        }
+
+        // Return an error response if the user is not logged in
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in.");
+    }
+
+
 
 }

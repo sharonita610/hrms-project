@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.entity.Employees;
+import com.hrms.project4th.mvc.service.EmployeesService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,30 @@ class EmployeesMapperTest {
 //    @DisplayName("")
 
     @Test
-    @DisplayName("사원 번호를 입력하면 이름을 리턴한다.")
+    @DisplayName("사원의 이메일을 입력하면 이름을 리턴한다.")
     public void findEmployeeTest(){
         // given
 
 
-        Employees emp = employeesMapper.findEmployee(2L);
+        Employees emp = employeesMapper.findEmployee("one@samjosangsa.com");
         System.out.println("emp = " + emp.getEmpName());
 
-        assertEquals("김이번",employeesMapper.findEmployee(2L).getEmpName());
+        assertEquals("김일번",emp.getEmpName());
+    }
+
+
+    @Test
+    @DisplayName("2번 사원의 휴대폰 번로를 변경한다.")
+    public void updatePhoneNumberTest() {
+        // given
+        String mail = "two@samjosangsa.com";
+        String s = "02-2222-2222";
+
+
+        boolean b = employeesMapper.updatePhoneNumber(mail, s);
+
+        assertTrue(b);
+
+
     }
 }

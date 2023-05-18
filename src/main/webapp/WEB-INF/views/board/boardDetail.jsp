@@ -508,7 +508,6 @@
                             .previousElementSibling.firstElementChild.children[0].innerText;
                         document.querySelector('.modal-body').dataset.reno = $rpEmpNo;
 
-
                     }
                 }
 

@@ -13,8 +13,8 @@ public class LoginUserResponseDTO {
 
     private String empNo;
     private String empName;
-    private String email;
-    private String profile;
-    private String auth;
+    private String empPhone;
+    private String empEmail;
+
 
 }

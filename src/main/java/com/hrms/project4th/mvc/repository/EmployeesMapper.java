@@ -27,8 +27,11 @@ public interface  EmployeesMapper {
 
     boolean isDuplicated(String email);
 
-    Employees findEmployee(long empNo);
+    Employees findEmployee(String empEmail);
 
     // 자동로그인 관련 속성 추가 기능
     void saveAutoLogin(AutoLoginDTO dto);
+
+    // 사원 번호 바꾸는 mapper
+    boolean updatePhoneNumber(String empEmail, String newPhone);
 }

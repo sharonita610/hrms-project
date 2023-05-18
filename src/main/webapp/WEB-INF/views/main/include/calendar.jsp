@@ -1,44 +1,43 @@
-<!DOCTYPE html>
-<html lang="kor">
-<head>
-	<meta charset="UTF-8">
-	<title>Title</title>
-	<style>
-        table {
-            border-collapse: collapse;
-            margin-top: 29%;
-            margin-left: 20px;
-        }
-        td {
-            border: 1px solid black;
-            padding: 5px;
-            text-align: center;
-        }
-        .today {
-            background-color: lightblue;
-        }
-	</style>
-</head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!doctype html>
+<html lang="en">
+
+<style>
+    .calendar {
+        border-collapse: collapse;
+        margin-top: 29%;
+        /*margin-left: 20px;*/
+    }
+    td {
+        border: 1px solid #a3a3a3;
+        padding: 5px;
+        text-align: center;
+    }
+    .today {
+        background-color: lightblue;
+    }
+</style>
 <body>
-<h1>미니 달력</h1>
-<table>
-	<tr>
-		<th colspan="7">
-			<button onclick="prevMonth()">&#8249;</button>
-			<span id="currentMonth"></span>
-			<button onclick="nextMonth()">&#8250;</button>
-		</th>
-	</tr>
-	<tr>
-		<th>일</th>
-		<th>월</th>
-		<th>화</th>
-		<th>수</th>
-		<th>목</th>
-		<th>금</th>
-		<th>토</th>
-	</tr>
-	<tbody id="calendarBody"></tbody>
+<table class="calendar">
+    <tr>
+        <th colspan="7">
+            <button onclick="prevMonth()">&#8249;</button>
+            <span id="currentMonth"></span>
+            <button onclick="nextMonth()">&#8250;</button>
+        </th>
+    </tr>
+    <tr>
+        <th>일</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+        <th>토</th>
+    </tr>
+    <tbody id="calendarBody"></tbody>
 </table>
 </body>
 
