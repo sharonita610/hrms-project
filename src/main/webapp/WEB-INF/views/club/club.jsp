@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -111,21 +111,12 @@
                         </div>
                         <div class="club-my-board">
                             <div class="three-option">
-                                <!-- 
+                                
                                     <ul>
-                                        <li>리스트</li>
-                                        <li>리스트</li>
-                                        <li>리스트</li>
-                                        <li>리스트</li>
-                                        <li>리스트</li>
-                                        <li>리스트</li>
-                                        <li>리스트</li>
-                                        <li>리스트</li>
-                                        <li>리스트</li>
-                                        <li>리스트</li>
+                                        <li class="club-board-title" data-cbNo="cbNo" data-clubCode="clubCode">cbTitle</li>   
                                     </ul> 
-                                -->
-                                </div>
+                               
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,10 +129,10 @@
         // 내게시글, 가입동호회, 내댓글 관련 스크립트
 
         // 원본 글 번호
-        const bno = '${c.cbNo}';
+        const bno = '${clubBoardList.get(0).cbNo}';
 
         // 현재 로그인한 사원번호
-        const empNo = '#{c.empNo}';
+        const empNo = '${exEmp.empNo}';
 
         // 댓글 요청 URI
         const clubBoardURL = '/club';
@@ -160,11 +151,11 @@
         const $threeOption = document.querySelector('.three-option');
         const $myBoard = document.querySelector('.myBoard');
         const $myClub = document.querySelector('.myClub');
-        const $myReply = document.querySelector('myReply');
+        const $myReply = document.querySelector('.myReply');
 
         // three-option 안에 태그들을 전부 지우는 함수
         function removeAllOption() {
-            while($threeOption.firstChild) {
+            while ($threeOption.firstChild) {
                 $threeOption.removeChild($threeOption.firstChild);
             }
         }
@@ -173,18 +164,34 @@
         $myBoard.onclick = e => {
             let myBoardTag = '';
             removeAllOption();
-            fetch(clubBoardURL + '/myboardList?empNo=' + empNo)
-            .then(res => res.json())
-            .then(resResult => {
-                console.log(resResult);
-            });
+            fetch(clubBoardURL + '/myboardList/' + empNo)
+                .then(res => res.json())
+                .then(resResult => {
+                    console.log(resResult);
+
+                    if (resResult.length === 0) {
+                        myBoardTag += "<div> 작성한 게시글이 없습니다.</div>";
+                    } else {
+                        for (let oneboard of resResult) {
+                            const {cbNo, cbTitle, clubCode, empNo} = oneboard;
+
+                            myBoardTag +=   "<ul>
+                                              <li class="club-board-title" data-cbNo="cbNo" data-clubCode="clubCode">cbTitle</li>   
+                                            </ul> 
+
+
+                        }
+                    }
+
+
+                });
 
 
         };
 
-        // 내 
+        // 내
 
-    
+
 
         // function getMyBoardClubList() {
 
@@ -201,17 +208,17 @@
         //========= 메인 실행부 =========//
         // (function () {
 
-            // 내가 작성한 게시글 목록 불러오기
-            // getMyBoardClubList();
+        // 내가 작성한 게시글 목록 불러오기
+        // getMyBoardClubList();
 
-            // 댓글 등록 이벤트 등록
-            //makeReplyRegisterClickEvent();
+        // 댓글 등록 이벤트 등록
+        //makeReplyRegisterClickEvent();
 
-            // 삭제 이벤트 등록
-            // replyRemoveClickEvent();
+        // 삭제 이벤트 등록
+        // replyRemoveClickEvent();
 
-            // 수정 이벤트 등록
-            // replyModifyClickEvent();
+        // 수정 이벤트 등록
+        // replyModifyClickEvent();
 
         // })();
     </script>
