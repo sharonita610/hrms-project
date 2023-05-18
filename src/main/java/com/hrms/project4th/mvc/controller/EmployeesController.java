@@ -9,6 +9,7 @@ import com.hrms.project4th.mvc.service.EmployeesService;
 import com.hrms.project4th.mvc.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,8 @@ public class EmployeesController {
 
     private final EmployeesService employeesService;
 
+    @Value("${file.upload.root-path}")
+    private String rootPath;
 
     //사원 전체리스트 불러오기
     @GetMapping("/list")
@@ -40,8 +43,8 @@ public class EmployeesController {
     //사원 추가 디비 반영
     @PostMapping("/add")
     public String addEmployee(AddEmployeesDTO dto){
-        String rootPath = "C:/hrms/employeesProfile";
         String savePath = FileUtil.uploadFile(dto.getEmpPhone(), dto.getProfile(), rootPath);
+        log.info(rootPath);
         employeesService.addEmployee(dto, savePath);
         return "redirect:/employees/add"; //전체사원 리스트로 리다이렉트
     }

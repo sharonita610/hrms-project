@@ -16,7 +16,7 @@
         and role_code = '11111';
     </select>
 
-    <select id="getDetailEmployeesList">
+    <select id="getDetailEmployeesList" resultType="employeeDetailResponseDTO">
         select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_my_boss , POS_NAME, dept_name
         from hr_employees e
         left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)

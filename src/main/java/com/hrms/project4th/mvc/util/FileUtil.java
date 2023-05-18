@@ -14,7 +14,7 @@ public class FileUtil {
             String phoneNum, MultipartFile file, String path
     ){
         //원본파일명을 이메일 아이디로 변경
-        String newFileName = phoneNum.substring(3, 7);
+        String newFileName = phoneNum.substring(3, 7) + "_" + file.getOriginalFilename();
 
         //파일 저장할 폴더 날짜별로 생성
         String newPath = makeDirectory(path);
@@ -27,10 +27,12 @@ public class FileUtil {
         }
 
         //저장된 파일의 전체경로
-        return newPath + "/" + newFileName;
+        return newPath + newFileName;
     }
 
     private static String makeDirectory(String path) {
+
+
         LocalDateTime now = LocalDateTime.now();
         int y = now.getYear();
         int m = now.getMonthValue();
@@ -39,12 +41,13 @@ public class FileUtil {
         List<String> date = List.of(String.valueOf(y), len2(m), len2(d));
 
         String directory = path;
+
         for (String s : date) {
-            directory += "/" + s;
+            directory += s + "/";
             File file = new File(directory);
 
             if(!file.exists()){
-                file.mkdir();
+                file.mkdirs();
             }
         }
         return directory;
