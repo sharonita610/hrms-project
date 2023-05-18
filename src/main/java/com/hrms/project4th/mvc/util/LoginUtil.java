@@ -18,12 +18,12 @@ public class LoginUtil {
         return session.getAttribute(LOGIN_KEY) != null;
     }
 
-    // 로그인한 사람의 사원번호를 반환하는 메서드
+    // 로그인한 사람의 사원이메일를 반환하는 메서드
     public static String getCurrentLoginMemberAccount(HttpSession session){
 
         LoginUserResponseDTO loginUserInfo =
                 (LoginUserResponseDTO) session.getAttribute(LOGIN_KEY);
-        return loginUserInfo.getEmpNo();
+        return loginUserInfo.getEmpEmail();
 
     }
 
@@ -32,15 +32,7 @@ public class LoginUtil {
         return WebUtils.getCookie(request, AUTO_LOGIN_COOKIE) != null;
     }
 
-    // 관리자인지 확인해주는 메서드
-    public static boolean isAdmin(HttpSession session){
-        LoginUserResponseDTO loginUser
-                = (LoginUserResponseDTO) session.getAttribute(LOGIN_KEY);
 
-        return loginUser.getAuth().equals("ADMIN");
-
-
-    }
     // 내가 쓴 게시물인지 확인해주는 메서드
 
     public static boolean isMine(HttpSession session, String targetAccount){

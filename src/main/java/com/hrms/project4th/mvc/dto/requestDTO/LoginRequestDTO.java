@@ -7,7 +7,7 @@ import lombok.*;
 @ToString @EqualsAndHashCode
 public class LoginRequestDTO {
 
-    private Long empNo;
-    private String password;
-    private boolean autoLogin;
+    private String empEmail;
+    private String empPassword;
+//    private boolean autoLogin;
 }
