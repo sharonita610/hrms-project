@@ -1,20 +1,17 @@
 package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
-import com.hrms.project4th.mvc.dto.Page.MailPageMaker;
-import com.hrms.project4th.mvc.dto.Page.MailSearch;
-import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
+import com.hrms.project4th.mvc.dto.page.MailPageMaker;
+import com.hrms.project4th.mvc.dto.page.MailSearch;
 import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.entity.Mail;
 import com.hrms.project4th.mvc.service.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;

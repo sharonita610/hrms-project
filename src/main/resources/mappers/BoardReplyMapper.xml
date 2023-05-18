@@ -10,6 +10,7 @@
         FROM
         hr_reply
         WHERE board_no = #{boardNo}
+        ORDER BY 3 DESC
         LIMIT #{page.pageLimitNum}, #{page.boardAmount}
     </select>
 

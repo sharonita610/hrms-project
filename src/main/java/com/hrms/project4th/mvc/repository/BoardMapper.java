@@ -1,6 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
-import com.hrms.project4th.mvc.dto.Page.BoardSearch;
+import com.hrms.project4th.mvc.dto.page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,4 +1,4 @@
-package com.hrms.project4th.mvc.dto.Page;
+package com.hrms.project4th.mvc.dto.page;
 
 import lombok.*;
 

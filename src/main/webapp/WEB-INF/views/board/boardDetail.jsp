@@ -50,9 +50,11 @@
                 margin-top: 100px;
             }
 
-            .container {
+            .container-box {
                 max-width: 800px;
                 margin: 0 auto;
+                border: 1px solid #000;
+                padding: 20px
 
             }
 
@@ -82,6 +84,13 @@
                 padding: 10px;
                 font-size: 16px;
             }
+            #title{
+                width: 100%;
+                height: 40px;
+                padding: 10px;
+                font-size: 16px;
+
+            }
 
             .form-group button {
                 padding: 10px 20px;
@@ -101,10 +110,7 @@
             }
 
             /* 제목 css */
-            #title {
-                width: 776px;
-                height: 40px;
-            }
+        
 
             .detail-button {
                 display: flex;
@@ -177,7 +183,7 @@
                     </section>
                 </div>
                 <section class="detail-part">
-                    <div class="container">
+                    <div class="container-box">
                         <h1 class="detail-title">게시글</h1>
                         <form action="/hrms/show-modify" method="post">
                             <div class="form-group">
@@ -285,9 +291,9 @@
                                     ...
                                     </input>
                                     <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary">수정</button>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">닫기</button>
-                                        <button type="button" class="btn btn-primary">수정</button>
 
                                     </div>
                                 </div>
@@ -546,14 +552,12 @@
                                 alert('댓글 수정에 실패하였습니다.')
                             }
                         })
-                        .then(result=>{
+                        .then(result => {
                             findAllReplies(1);
                         });
                 };
 
             }
-
-
 
 
 
@@ -587,23 +591,16 @@
                     if ($rt.value.trim() === '') {
                         alert('댓글 내용은 필수입니다!');
                         return;
-                    } else if ($rw.value.trim() === '') {
-                        alert('댓글 작성자 이름은 필수입니다!');
-                        return;
-                    } else if ($rw.value.trim().length < 2 || $rw.value.trim().length > 8) {
-                        alert('댓글 작성자 이름은 2~8자 사이로 작성하세요!');
-                        return;
                     }
 
 
-                    // # 서버로 보낼 데이터
+                    // 저장시 서버로 보낼 데이터
                     const payload = {
                         repContent: $rt.value,
                         empNo: $rw.value,
                         boardNo: boardNo
                     };
 
-                    // # GET방식을 제외하고 필요한 객체
                     const requestInfo = {
                         method: 'POST',
                         headers: {
@@ -612,7 +609,7 @@
                         body: JSON.stringify(payload)
                     };
 
-                    // # 서버에 POST요청 보내기
+                    // SAVE FETCH 시작
                     fetch(URL, requestInfo)
                         .then(res => {
                             if (res.status === 200) {
@@ -622,8 +619,8 @@
                                 $rw.value = '';
 
                                 // 마지막페이지 번호
-                                const lastPageNo = document.querySelector('.pagination').dataset.fp;
-                                getReplyList(lastPageNo);
+                                // const lastPageNo = document.querySelector('.pagination').dataset.fp;
+                                findAllReplies(1);
                             } else {
                                 alert('댓글 등록에 실패함!');
                             }

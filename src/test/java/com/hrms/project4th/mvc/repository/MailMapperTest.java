@@ -1,25 +1,16 @@
 package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
-import com.hrms.project4th.mvc.dto.Page.MailPage;
-import com.hrms.project4th.mvc.dto.Page.MailSearch;
-import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
+import com.hrms.project4th.mvc.dto.page.MailSearch;
 import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.entity.Mail;
-import org.apache.ibatis.annotations.ConstructorArgs;
-import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
 
-import java.sql.SQLOutput;
 import java.util.List;
-
-import static com.hrms.project4th.mvc.entity.CheckStatus.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MailMapperTest {

@@ -4,7 +4,7 @@ import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyDeleteRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardReplyListResponseDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardReplyWriteRequestDTO;
-import com.hrms.project4th.mvc.dto.Page.BoardPage;
+import com.hrms.project4th.mvc.dto.page.BoardPage;
 import com.hrms.project4th.mvc.service.BoardReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

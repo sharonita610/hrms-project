@@ -1,6 +1,6 @@
 package com.hrms.project4th.mvc.dto.responseDTO;
 
-import com.hrms.project4th.mvc.dto.Page.BoardPageMaker;
+import com.hrms.project4th.mvc.dto.page.BoardPageMaker;
 import lombok.*;
 
 import java.util.List;

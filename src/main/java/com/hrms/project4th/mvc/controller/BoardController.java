@@ -1,11 +1,10 @@
 package com.hrms.project4th.mvc.controller;
 
-import com.hrms.project4th.mvc.dto.responseDTO.BoardDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
-import com.hrms.project4th.mvc.dto.Page.BoardPageMaker;
-import com.hrms.project4th.mvc.dto.Page.BoardSearch;
+import com.hrms.project4th.mvc.dto.page.BoardPageMaker;
+import com.hrms.project4th.mvc.dto.page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +55,7 @@ public class BoardController {
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
         boardService.boardSave(dto);
+//        log.info("{}",dto);
 //      log.info("BoardSaveRequestDTO {}",dto);
         return "redirect:/hrms/board-list";
     }
