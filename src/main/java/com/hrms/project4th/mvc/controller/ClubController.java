@@ -1,14 +1,18 @@
 package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.responseDTO.ClubBoardResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.MyClubBoardResponseDTO;
 import com.hrms.project4th.mvc.service.ClubBoardService;
 import com.hrms.project4th.mvc.service.ClubJoinService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -36,6 +40,15 @@ public class ClubController {
         model.addAttribute("clubBoardList", dto);
         log.info("dto : ", dto, empNo);
         return "club/club";
+    }
+
+    @ResponseBody
+    @GetMapping("/myboardList")
+    public ResponseEntity<?> myClubBoardList(Long empNo) {
+        List<MyClubBoardResponseDTO> myClubBoardResponseDTOS = clubBoardService.myClubBoardList(empNo);
+
+
+        return ResponseEntity.ok().body(myClubBoardResponseDTOS);
     }
 
 
