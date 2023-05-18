@@ -92,15 +92,24 @@
     overflow: scroll ;
 
 }
+.section-mail #mail-wrapper #mail-list-box ul{
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+.section-mail #mail-wrapper #mail-list-box ul li{
+    display: flex;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+
 
 /*  스크롤 바 숨기기 */
 .section-mail #mail-wrapper #mail-list-box::-webkit-scrollbar {
     display: none;
 }
-.section-mail #mail-wrapper #mail-list-box li{
-    display: flex;
-    margin-bottom: 10px;
-}
+
 
 /*  메일 리스트 li 태그 각각 속성  */
 .section-mail #mail-wrapper #mail-list-box li a{
@@ -110,7 +119,7 @@
     margin-top:10px;
     display: flex;
     justify-content: flex-start;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 }
 .section-mail #mail-wrapper #mail-list-box li a p:nth-child(1){
