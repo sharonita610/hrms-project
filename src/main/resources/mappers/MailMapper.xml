@@ -82,7 +82,6 @@
     </select>
 
 
-
     <update id="mailViewUpdate">
         UPDATE hr_email
         SET mail_status = 'Y'
