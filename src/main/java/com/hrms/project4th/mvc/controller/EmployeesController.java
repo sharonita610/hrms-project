@@ -91,27 +91,27 @@ public class EmployeesController {
         return ResponseEntity.ok().body(bossNames);
     }
 
-    // 사원 번호 수정하기
-    @PostMapping("/change-phone")
-    public ResponseEntity<String> updatePhoneNumber(@RequestBody Map<String, String> requestBody, HttpSession session) {
-        // Retrieve the new phone number from the request body
-        String newPhoneNumber = requestBody.get("phoneNumber");
-
-        // Retrieve the logged-in user from the session
-        Employees loggedInUser = (Employees) session.getAttribute("login");
-
-        // Check if the user is logged in and update the phone number
-        if (loggedInUser != null) {
-            loggedInUser.setEmpPhone(newPhoneNumber);
-            // You can save the updated user information in the database or perform any other necessary operations here
-
-            // Return a success response
-            return ResponseEntity.ok("Phone number updated successfully.");
-        }
-
-        // Return an error response if the user is not logged in
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in.");
-    }
+//    // 사원 번호 수정하기
+//    @PostMapping("/change-phone")
+//    public ResponseEntity<String> updatePhoneNumber(@RequestBody Map<String, String> requestBody, HttpSession session) {
+//        // Retrieve the new phone number from the request body
+//        String newPhoneNumber = requestBody.get("phoneNumber");
+//
+//        // Retrieve the logged-in user from the session
+//        Employees loggedInUser = (Employees) session.getAttribute("login");
+//
+//        // Check if the user is logged in and update the phone number
+//        if (loggedInUser != null) {
+//            loggedInUser.setEmpPhone(newPhoneNumber);
+//            // You can save the updated user information in the database or perform any other necessary operations here
+//
+//            // Return a success response
+//            return ResponseEntity.ok("Phone number updated successfully.");
+//        }
+//
+//        // Return an error response if the user is not logged in
+////        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in.");
+////    }
 
 
 

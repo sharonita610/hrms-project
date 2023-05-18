@@ -16,9 +16,9 @@ class MailControllerTest {
     @Autowired
     MailService mailService;
     void pageMakerTest(){
-        MailPage page =new MailSearch();
-        MailPageMaker mailPageMaker = new MailPageMaker(page,mailService.getMailPageCountByStatus(2L, CheckStatus.Y));
-
-        System.out.println(mailPageMaker.toString());
+//        MailPage page =new MailSearch();
+//        MailPageMaker mailPageMaker = new MailPageMaker(page,mailService.getMailPageCountByStatus(2L, CheckStatus.Y));
+//
+//        System.out.println(mailPageMaker.toString());
     }
 }
