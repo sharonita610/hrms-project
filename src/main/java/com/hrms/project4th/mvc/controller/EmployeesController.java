@@ -60,8 +60,9 @@ public class EmployeesController {
 
     //사원 수정 폼으로 이동
     @GetMapping("/modify")
-    public String modifyEmployees(long empNo){
-        return "";
+//    public String modifyEmployees(long empNo){
+    public String modifyEmployees(){
+        return "admin/modifyEmployee";
     }
 
     //사원 수정 디비 반영

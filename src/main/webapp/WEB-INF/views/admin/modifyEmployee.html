@@ -1,23 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/assets/css/addEmployee.css">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/modifyEmployee.css">
 </head>
 
 <body>
 
 <div class="addEmpFormWrapper">
     <form action="/employees/add" method="post" enctype="multipart/form-data">
-        <h1>사원 등록</h1>
+        <h1>사원 정보 수정</h1>
         <div class="empProfileInput addInputForm">
             <h2>사진 : </h2>
-            <input class="inputblank" id="profileImage" name="profile" type="file" accept="image/*">
+            <input class="inputblank" id="profileImage" name="profile" type="file" accept="image/*" value = "">
             <div id="noPic" class="alert">사진이 선택되지 않았습니다.</div>
         </div>
+
+        <div id = "picFrame" class = "profilePic"><img id = "showPic" src="/hrms/2023/05/18/1234_hoshino.jpg"></div>
+
+
         <div class="empNameInput addInputForm">
             <h2>이름 : </h2>
             <input id="empName" class="inputblank" type="text" name="empName" placeholder="홍길동">
@@ -90,7 +92,7 @@
             <div id="noBoss" class="alert">직속상사를 선택해주세요.</div>
         </div>
 
-        <div id="emp-submit">사원 등록</div>
+        <div id="emp-submit">변경사항 등록</div>
         <button id="addBtn" type="submit">제출버튼</button>
     </form>
 </div>
@@ -242,10 +244,25 @@
 
     //프로필 사진 입력 검사
     $profile.onchange = () => {
+
+        //새로운 파일 선택시 미리보기칸 src 변경
+        const $showPic = document.getElementById('showPic');
+        
+        
+        
         if ($profile.files.length !== 0) {
             document.getElementById('noPic').style.display = 'none';
             readyToAdd[0] = true;
-            console.log($profile.value);
+            console.log(readyToAdd[0]);
+            
+            const $file = $profile.files[0];
+            console.log($file.readAsDataURL);
+            const reader = new FileReader();
+            reader.readAsDataURL($file);
+            
+            $showPic.removeAttribute('src');
+            $showPic.setAttribute('src', reader.result);
+
         } else {
             document.getElementById('noPic').style.display = 'block';
             readyToAdd[0] = false;
