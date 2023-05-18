@@ -89,6 +89,10 @@
     transform: translateY(5px);
 }
 
+#profileImage {
+    text-indent: 0;
+}
+
 .profilePic {
     width: 120px;
     height: 140px;
@@ -104,8 +108,4 @@
 
 #showPic {
     width: 100%;
-}
-
-#profileImage {
-    text-indent: 0;
 }

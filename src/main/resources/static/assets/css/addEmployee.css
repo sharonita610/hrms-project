@@ -92,3 +92,20 @@
 #profileImage {
     text-indent: 0;
 }
+
+.profilePic {
+    width: 120px;
+    height: 140px;
+    /* border: 1px solid #000; */
+    position: absolute;
+}
+
+#picFrame {
+    right: 20px;
+    top: 30px;
+    overflow: hidden;
+}
+
+#showPic {
+    width: 100%;
+}
