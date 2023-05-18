@@ -62,6 +62,7 @@ public class EmployeesController {
     @GetMapping("/modify")
 //    public String modifyEmployees(long empNo){
     public String modifyEmployees(){
+        long empNo = 2L;
         return "admin/modifyEmployee";
     }
 
@@ -69,7 +70,7 @@ public class EmployeesController {
     @PostMapping("/modify")
     public String modifyEmployees(ModifyEmployeeDTO dto){
         employeesService.modifyEmployees(dto);
-        return ""; //리스트로 리다이렉트
+        return "admin/modifyEmployee"; //리스트로 리다이렉트로 변경 예정 !
     }
 
     //사원 삭제

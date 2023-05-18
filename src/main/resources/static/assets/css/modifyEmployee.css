@@ -48,7 +48,7 @@
     width: 280px;
 }
 
-#addBtn {
+#modiBtn {
     display: none;
 }
 
@@ -104,6 +104,7 @@
     right: 20px;
     top: 30px;
     overflow: hidden;
+    border: 1px solid gray;
 }
 
 #showPic {

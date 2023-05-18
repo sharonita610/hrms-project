@@ -9,7 +9,7 @@
 <body>
 
 <div class="addEmpFormWrapper">
-    <form action="/employees/add" method="post" enctype="multipart/form-data">
+    <form action="/employees/modify" method="post" enctype="multipart/form-data">
         <h1>사원 정보 수정</h1>
         <div class="empProfileInput addInputForm">
             <h2>사진 : </h2>
@@ -22,33 +22,39 @@
 
         <div class="empNameInput addInputForm">
             <h2>이름 : </h2>
-            <input id="empName" class="inputblank" type="text" name="empName" placeholder="홍길동">
+            <input id="empName" class="inputblank" type="text" name="empName" value = "${emp.empName}">
             <div id="noName" class="alert">최소 두 글자 이상의 이름을 입력해주세요.</div>
         </div>
         <div class="empPhoneInput addInputForm">
             <h2>전화번호 : </h2>
-            <input id="empPhone" class="inputblank" name="empPhone" type="text" placeholder="0100000000">
+            <input id="empPhone" class="inputblank" name="empPhone" type="text" value = "${emp.empPhone}">
             <div id="noPhone" class="alert">정확한 휴대폰 번호를 입력해주세요.</div>
         </div>
         <div class="empEmailInput addInputForm">
             <h2>이메일 : </h2>
-            <input id="setEmail" class="inputblank" type="text" name="empEmail" placeholder="hong">
+            <input id="setEmail" class="inputblank" type="text" name="empEmail" value = "${emp.empEmail}">
             <h2 id="email-address">&nbsp;@samjosangsa.com</h2>
             <div id="duplicatedEmail" class="alert">이메일이 중복되었습니다.</div>
             <div id="noEmail" class="alert">이메일을 입력해주세요.</div>
         </div>
         <div class="empGenderInput addInputForm">
             <h2>성별 : </h2>
-            <label><input class="genderOption" type="radio" name="empGender" value="M" checked>남자</label>
-            <label><input class="genderOption" type="radio" name="empGender" value="F">여자</label>
+            <c:if test = "${emp.empGender.equals('M')}">
+                <label><input class="genderOption" type="radio" name="empGender" value="M" checked>남자</label>
+                <label><input class="genderOption" type="radio" name="empGender" value="F">여자</label>
+            </c:if>
+            <c:if test = "${emp.empGender.equals('F')}">
+                <label><input class="genderOption" type="radio" name="empGender" value="M">남자</label>
+                <label><input class="genderOption" type="radio" name="empGender" value="F" checked>여자</label>
+            </c:if>
         </div>
         <div class="empBdayInput addInputForm">
-            <h2>생일 : </h2><input id="empBirthDay" class="inputblank" name="empBirthDay" type="date">
+            <h2>생일 : </h2><input id="empBirthDay" class="inputblank" name="empBirthDay" type="date" value="2005-04-25">
             <div id="isAdult" class="alert">정확한 생년월일을 입력해주세요.</div>
         </div>
         <div class="empSalaryInput addInputForm">
             <h2>급여 : </h2>
-            <input id="empSalary" class="inputblank" name="empSalary" type="text" placeholder="1000000">
+            <input id="empSalary" class="inputblank" name="empSalary" type="text" value = "${emp.empSalary}">
             <div id="payCheck" class="alert">정확한 급여를 입력해주세요</div>
         </div>
         <div class="empDeptInput addInputForm">
@@ -93,7 +99,7 @@
         </div>
 
         <div id="emp-submit">변경사항 등록</div>
-        <button id="addBtn" type="submit">제출버튼</button>
+        <button id="modiBtn" type="submit">제출버튼</button>
     </form>
 </div>
 
@@ -469,7 +475,7 @@
             }
         }
         if (flag) {
-            document.getElementById('addBtn').click();
+            document.getElementById('modiBtn').click();
         }
     }
 
