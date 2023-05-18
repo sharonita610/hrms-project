@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import static com.hrms.project4th.mvc.entity.LoginResult.SUCCESS;
+import static com.hrms.project4th.mvc.entity.LoginResult.WRONG_PW;
 import static com.hrms.project4th.mvc.util.LoginUtil.isAutoLogin;
 import static com.hrms.project4th.mvc.util.LoginUtil.isLogin;
 
@@ -53,8 +55,7 @@ public class LoginController {
             , HttpServletRequest request) {
         log.info("/log-in POST ! - {}", dto);
 
-        LoginResult result = loginService.authenticate(
-                dto);
+        LoginResult result = loginService.authenticate(dto, request.getSession());
 
 
         // 로그인 성공시
@@ -65,16 +66,28 @@ public class LoginController {
 
 
             return "/main/main-page";
+        } else if (result == WRONG_PW) {
+
+            ra.addFlashAttribute("wrongPwd", "비밀번호가 일치하지 않습니다.");
+
+            return "/main/login";
+
         }
 
         // 1회용으로 쓰고 버릴 데이터
-        ra.addFlashAttribute("msg", result);
+        ra.addFlashAttribute("wrongMail", "사원이 존재하지 않습니다.");
 
         // 로그인 실패시
-        return "redirect:/index";
+        return "/main/login";
+
     }
 
-
+    // 로그아웃
+    @RequestMapping("/log-out")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
 
 
 
