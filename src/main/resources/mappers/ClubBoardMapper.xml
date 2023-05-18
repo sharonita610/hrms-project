@@ -13,8 +13,9 @@
 
     <select id="findByEmpNoClubBoard" resultType="clubBoardDTO">
         SELECT
-        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, EMP_NO, CLUB_CODE
-        FROM TEST_CLUB_BOARD
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME
+        FROM TEST_CLUB_BOARD B
+        JOIN TEST_CLUB C USING (CLUB_CODE)
         WHERE CLUB_CODE IN(select CLUB_CODE
         FROM test_emp_club
         WHERE EMP_NO = #{empNo})
