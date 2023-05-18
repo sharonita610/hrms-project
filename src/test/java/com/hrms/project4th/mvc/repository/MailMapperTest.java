@@ -54,7 +54,7 @@ class MailMapperTest {
     @Test
     @DisplayName("사원번호 2번에게 온 메일 의 status가 N인 게시글만 조회되어야한다")
     void getMailListByStatusTest(){
-        List<MailResponseDTO> mailListByStatus = mailMapper.getMailListByStatus(2L, CheckStatus.N);
+        List<MailResponseDTO> mailListByStatus = mailMapper.getMailListByStatus(2L, new MailSearch(), CheckStatus.N);
         for (MailResponseDTO listByStatus : mailListByStatus) {
             System.out.println(listByStatus);
         }

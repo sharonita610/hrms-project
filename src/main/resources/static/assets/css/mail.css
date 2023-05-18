@@ -39,7 +39,7 @@
     justify-content: space-around;
     font-size: 1.1rem;
     font-weight: 700;
-    width: 95%;
+    width: 90%;
     margin: 0 auto;
 }
 .section-mail #mail-wrapper .mail-sort-info .number{
@@ -74,7 +74,7 @@
 }
 .section-mail #mail-wrapper .mail-sort-info .sendtime{
     text-align: center;
-    width: 15%;
+    width: 10%;
 }
 
 
@@ -92,11 +92,24 @@
     overflow: scroll ;
 
 }
+.section-mail #mail-wrapper #mail-list-box ul{
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+.section-mail #mail-wrapper #mail-list-box ul li{
+    display: flex;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+
 
 /*  스크롤 바 숨기기 */
 .section-mail #mail-wrapper #mail-list-box::-webkit-scrollbar {
     display: none;
 }
+
 
 /*  메일 리스트 li 태그 각각 속성  */
 .section-mail #mail-wrapper #mail-list-box li a{
@@ -148,10 +161,18 @@
 .section-mail #mail-wrapper #mail-list-box li a p:nth-child(8){
     text-align: center;
     background: red;
-    width: 15%;
+    width: 10%;
+}
+.section-mail #mail-wrapper #mail-list-box li .delete-button{
+    width: 50px;
+    height: 30px;
+    margin-left: 15px;
+    font-size: 0.3em;
 }
 
 
+
+/* 메일 리스트 호버효과 */
 .section-mail #mail-wrapper #mail-list-box li a:hover{
     background-color: azure;
 }

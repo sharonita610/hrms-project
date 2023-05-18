@@ -38,9 +38,9 @@ public class MailService {
         return mailMapper.getMailDetail(search,empNo,mailNo);
     }
 
-    public List<MailResponseDTO> getMailListByStatus(Long empNo, CheckStatus status) {
+    public List<MailResponseDTO> getMailListByStatus(Long empNo,MailSearch search, CheckStatus status) {
         //메일의 읽은상태 읽지않은상태(mailStatus로 메일을 조회할 수있다)
-       return mailMapper.getMailListByStatus(empNo,status);
+       return mailMapper.getMailListByStatus(empNo,search,status);
     }
 
     public void deleteByNum(Long mailNo) {
@@ -48,7 +48,11 @@ public class MailService {
         mailMapper.deleteMailByNum(mailNo);
     }
 
-    public int mailPageCount() {
-        return mailMapper.getMailPageCount();
+    public int mailPageCount(Long empNo,MailSearch search) {
+        return mailMapper.getMailPageCount(empNo ,search);
+    }
+
+    public int getMailPageCountByStatus(Long empNo, CheckStatus status) {
+        return mailMapper.getMailPageCountByStatus(empNo,status);
     }
 }

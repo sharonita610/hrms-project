@@ -46,8 +46,8 @@
 				<div class="mail-sort">
 					<div><a href="/hrms/mail-list/?empNo=${2}">받은 메일</a></div>
 					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
-					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y">읽은 메일</a></div>
-					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N">안읽은 메일</a></div>
+					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
+					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
 					<div><a href="#">메일쓰기</a></div>
 				</div>
 				<div class="mail-sort-info">
@@ -63,7 +63,8 @@
 				<div id="mail-list-box">
 					<ul class="maillist">
 						<c:forEach var="m" items="${mList}">
-							<li class="mail"><a href="">
+							<li class="mail">
+                                <a href="">
 									<p>${m.mailNo}</p>
 									<p>${m.empEmail}</p>
 									<p>${m.empName}</p>
@@ -72,7 +73,9 @@
 									<p>${m.mailTitle}</p>
 									<p>${m.mailStatus}</p>
 									<p>${m.mailDate}</p>
-								</a><button type="button" class="btn btn-danger delete-button">삭제</button></li>
+								</a>
+                                <button type="button" class="btn btn-danger delete-button">삭제</button>
+                            </li>
 						</c:forEach>
 					</ul>
 				</div>
@@ -82,14 +85,14 @@
 					
 					<c:if test="${mailPageMaker.prev}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.start-1}&empNo=${2}&mailType=${ms.mailType}">Previous</a></li>
+								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.start-1}&empNo=${2}&status=${status}&mailType=${ms.mailType}">Previous</a></li>
 					</c:if>
 					<c:forEach var="i" begin="${mailPageMaker.start}" end="${mailPageMaker.end}">
-						<li class="page-item"><a class="page-link" href="/hrms/mail-list/?mailPageNo=${i}&empNo=${2}&mailType=${ms.mailType}">${i}</a></li>
+						<li class="page-item"><a class="page-link" href="/hrms/mail-list-status/?mailPageNo=${i}&empNo=${2}&status=${status}&mailType=${ms.mailType}">${i}</a></li>
 					</c:forEach>
 					<c:if test="${mailPageMaker.next}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.end+1}&empNo=${2}&mailType=${ms.mailType}">Next</a></li>
+								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.end+1}&empNo=${2}&status=${status}&mailType=${ms.mailType}">Next</a></li>
 					</c:if>
 					
 				</ul>

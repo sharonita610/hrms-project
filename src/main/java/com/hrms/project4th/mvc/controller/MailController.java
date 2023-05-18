@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -41,11 +42,16 @@ public class MailController {
     public String getList(Model model, Long empNo, MailSearch search){
 
         List<MailResponseDTO> mailList = mailService.getMailList(empNo,search);
-        MailPageMaker mailPageMaker = new MailPageMaker(search,mailService.mailPageCount());
+        MailPageMaker mailPageMaker = new MailPageMaker(search,mailService.mailPageCount(empNo,search));
+
+        model.addAttribute("mailPageMaker",mailPageMaker);
         model.addAttribute("mList",mailList);
+        model.addAttribute("ms",search);
+//        model.addAttribute("num",empNo);
         return "/mail/mail";
     }
 
+    @GetMapping("")
     //메일 하나확인하기(개개인 메일의 번호가필요함)
     public String getMailDetail(Model model,Long mailNo,MailSearch search,Long empNo){
         List<MailDetailResponseDTO> mailDetail = mailService.getMailDetail(mailNo, search,empNo);
@@ -53,17 +59,26 @@ public class MailController {
         return "";
     }
 
+    @GetMapping("/mail-list-status")
     //사원번호에맞는 메일 리스트리턴(상태값에 따라 구분 Y/N)
-    public String getMailListByStatus(Model model, Long empNo, CheckStatus status){
-        List<MailResponseDTO> mailListByStatus = mailService.getMailListByStatus(empNo, status);
+    public String getMailListByStatus(Model model, @RequestParam("empNo") Long empNo, @RequestParam("status") CheckStatus status, MailSearch search){
+        log.info("status: {}", status);
+        log.info("search : {}",search);
+        List<MailResponseDTO> mailListByStatus = mailService.getMailListByStatus(empNo,search, status);
+        MailPageMaker mailPageMaker = new MailPageMaker(search,mailService.getMailPageCountByStatus(empNo,status));
+        log.info("mailPageMaker :{}",mailPageMaker);
+        model.addAttribute("mailPageMaker",mailPageMaker);
         model.addAttribute("mList",mailListByStatus);
-        return "";
+        model.addAttribute("status",status);
+        model.addAttribute("ms",search);
+
+        return "/mail/mailstatus";
     }
 
     //메일 삭제하기(사원번호에 맞는메일을 삭제해야함)
-    public String MailDelteByNum(Long mailNo){
+    public void MailDelteByNum(Long mailNo){
         mailService.deleteByNum(mailNo);
-        return "";
+
     }
 
 
