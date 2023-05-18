@@ -3,6 +3,7 @@ package com.hrms.project4th.mvc.entity;
 import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
 import lombok.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,15 +30,10 @@ public class Employees {
     private String roleCode;
     private String deptCode;
     private String profile;
-
-    // 권한
     private Auth auth;
 
-    // 프로필 사진
-    private String profileImage;
 
-
-    public Employees(AddEmployeesDTO dto){
+    public Employees(AddEmployeesDTO dto, String path){
         this.empName = dto.getEmpName();
         this.empBirthDay = getLocalDate(dto.getEmpBirthDay());
         this.empEmail = setEmpEmail(dto.getEmpEmail());
@@ -49,6 +45,7 @@ public class Employees {
         this.posCode = dto.getPosCode();
         this.roleCode = dto.getRoleCode();
         this.deptCode = dto.getDeptCode();
+        this.profile = path;
     }
 
     public LocalDate getLocalDate(String date){

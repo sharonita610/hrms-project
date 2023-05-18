@@ -6,9 +6,10 @@ import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.GetMyBossResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.service.EmployeesService;
+import com.hrms.project4th.mvc.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +26,14 @@ public class EmployeesController {
 
     private final EmployeesService employeesService;
 
+    @Value("${file.upload.root-path}")
+    private String rootPath;
 
     //사원 전체리스트 불러오기
     @GetMapping("/list")
     public String getEmployeesList(){
         employeesService.getEmployeesList();
-        return ""; //관리자 사원 전체보기 jsp
+        return "redirect:/employees/add"; //관리자 사원 전체보기 jsp
     }
 
     //사원추가 폼으로 이동
@@ -42,14 +45,15 @@ public class EmployeesController {
     //사원 추가 디비 반영
     @PostMapping("/add")
     public String addEmployee(AddEmployeesDTO dto){
-        employeesService.addEmployee(dto);
-        return ""; //전체사원 리스트로 리다이렉트
+        String savePath = FileUtil.uploadFile(dto.getEmpPhone(), dto.getProfile(), rootPath);
+        log.info(rootPath);
+        employeesService.addEmployee(dto, savePath);
+        return "redirect:/employees/add"; //전체사원 리스트로 리다이렉트
     }
 
     @GetMapping("/add/check")
     public ResponseEntity<Boolean> isDuplicated(String empEmail){
-        // 김혜영이 잠시 주석 처리함
-//        empEmail += "@samjosangsa.com";
+        empEmail += "@samjosangsa.com";
         boolean flag = employeesService.isDuplicated(empEmail);
         return ResponseEntity.ok().body(flag);
     }
