@@ -55,11 +55,11 @@
             }
 
             .detail-part {
-                margin-top: 100px;
+                margin: 200px auto;
             }
 
             .container-box {
-                max-width: 800px;
+                max-width: 1000px;
                 margin: 0 auto;
                 border: 1px solid #000;
                 padding: 20px
@@ -132,6 +132,23 @@
             #replyContent {
                 border: 1px solid #000;
             }
+
+            /* 댓글 창 css */
+            .card {
+                height: 150px;
+                width: 100%;
+            }
+
+            .form-group textarea {
+                height: 120px;
+
+            }
+            .col-md-4{
+                display: inline-block;
+                width: 200px;
+            }
+
+    
         </style>
     </head>
 
@@ -281,11 +298,7 @@
 
                         <!-- 수정 모달 -->
 
-                        <!-- Button trigger modal -->
-                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                            Launch static backdrop modal
-                        </button> -->
+
 
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
