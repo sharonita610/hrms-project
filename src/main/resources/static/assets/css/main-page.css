@@ -3,11 +3,19 @@
 /*  메인 페이지 리스트 미리보기 속성 시작  */
 /*  메일 전체 틀  */
 .main-page-list {
-    margin-top: 6%;
-    width: 77%;
-    height: 750px;
-    position: relative;
+    width: 100%;
+    height: 790px;
     display: block;
+    /*background: #434374;*/
+}
+
+
+/*  미리보기 칸 두개씩 묶어서 정리  */
+.main-page-list #main-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
 
 }
 
@@ -15,17 +23,11 @@
 .main-page-list #main-list ul {
     width: 650px;
     height: 320px;
-    border: 2px solid rgba(190, 193, 194, 0.49);
-    margin-top: 8%;
+    margin-top: 40px;
+    border: 2px solid rgba(190, 193, 194, 0.65);
 
 }
-/*  미리보기 칸 두개씩 묶어서 정리  */
-.main-page-list #main-list{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
 
-}
 .main-page-list #main-list #top-list{
     display: flex;
     flex-direction: column;
@@ -47,13 +49,13 @@
     background: rgba(234, 230, 230, 0.49);
 }
 
-/*  화면사이즈가 줄어들면 하얀색 화면으로 바뀜  */
-/* @media (max-width: 1600px) {
-    body {
-        display: none;
-    }
-}
-*/
+  /*화면사이즈가 줄어들면 하얀색 화면으로 바뀜  */
+/*@media screen and (max-width: 1600px) {*/
+/*    body {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
 
 
 
