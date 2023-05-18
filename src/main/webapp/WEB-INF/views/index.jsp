@@ -26,6 +26,16 @@
             text-align: center;
 
         }
+        #start-btn {
+            margin-top: 10px;
+            border: none;
+            background-color: #d9d7d7;
+            padding: 15px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+
+        }
 
     </style>
 

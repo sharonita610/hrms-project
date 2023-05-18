@@ -63,4 +63,25 @@ public class EmployeesService {
     }
 
 
+    // 사원의 번호 수정
+    public boolean updatePhoneNumber(String empEmail, String newPhoneNumber){
+
+
+        Employees employee = employeesMapper.findEmployee(empEmail);
+
+        if(employee == null){
+            log.info("사용자를 찾지 못했습니다");
+            return false;
+
+        }
+
+
+        employeesMapper.updatePhoneNumber(empEmail, newPhoneNumber);
+
+        String empName = employeesMapper.findEmployee(empEmail).getEmpName();
+        log.info( empName+ " 님의 휴대폰 번호가 정상적으로 수정되었습니다!");
+        return true;
+    }
+
+
 }

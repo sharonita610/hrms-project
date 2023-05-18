@@ -117,11 +117,11 @@
             <form action="/log-in" name="log-in"method="post">
                 <div class="container">
                     <b>사원번호</b>
-                    <input type="text" placeholder="사원번호를 입력해주세요" name="empNo"
+                    <input type="text" placeholder="email을 입력해주세요" name="empEmail"
                            required="required" aria-required="true" >
 
                     <b>비밀번호</b>
-                    <input type="password" placeholder="비밀번호를 입력해주세요" name="empPwd"
+                    <input type="password" placeholder="비밀번호를 입력해주세요" name="empPassword"
                            required="required" aria-required="true" >
 
                     <button type="submit" class="submit-btn" id="login-button">로그인</button>

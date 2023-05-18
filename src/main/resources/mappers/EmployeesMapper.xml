@@ -51,7 +51,15 @@
     </delete>
 
     <select id="findEmployee" resultType="employees">
-        select * from hr_employees
-        where emp_no = #{empNo}
+
+        select *
+        from hr_employees
+        where emp_email = #{empEmail}
     </select>
+
+    <update id="updatePhoneNumber">
+        update hr_employees
+        set emp_phone = #{newPhone}
+        where emp_email = #{empEmail}
+    </update>
 </mapper>

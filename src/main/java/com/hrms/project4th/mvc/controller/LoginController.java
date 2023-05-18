@@ -35,7 +35,7 @@ public class LoginController {
     // 로그인 양식 요청
     @GetMapping("/log-in")
     public String loginPage(HttpServletRequest request) {
-        log.info("/index/ :  GET - forwarding to jsp");
+        log.info("/log-in :  GET - forwarding to jsp");
 
 
         String referer = request.getHeader("Referer");
@@ -54,18 +54,17 @@ public class LoginController {
         log.info("/log-in POST ! - {}", dto);
 
         LoginResult result = loginService.authenticate(
-                dto, request.getSession(), response);
+                dto);
 
 
         // 로그인 성공시
         if (result == SUCCESS) {
 
             // 서버에서 세션 로그인 정보 저장
-            loginService.maintainLoginState(request.getSession(), loginService.toString());
+            loginService.maintainLoginState(request.getSession(), dto.getEmpEmail());
 
 
-
-            return "redirect:/main/main-page";
+            return "/main/main-page";
         }
 
         // 1회용으로 쓰고 버릴 데이터
@@ -75,30 +74,8 @@ public class LoginController {
         return "redirect:/index";
     }
 
-    // 로그아웃 요청 처리
-    @GetMapping("/log-out")
-    public String signOut(HttpServletRequest request, HttpServletResponse response) {
 
-        HttpSession session = request.getSession();
-        // 로그인 중인지 확인
-        if (isLogin(session)) {
 
-            // 자동 로그인 상태라면 해제한다.
-            if(isAutoLogin(request)){
 
-                loginService.autoLoginReset(request, response);
-            }
-
-            // 세션에서 login 정보를 제거
-            session.removeAttribute("login");
-
-            // 세션을 아예 초기화(세션만료 시간 초기화)
-            session.invalidate();
-
-            return "redirect:/";
-
-        }
-        return "redirect:/index";
-    }
 
 }

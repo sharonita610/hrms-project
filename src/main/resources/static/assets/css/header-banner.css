@@ -94,6 +94,7 @@
 /* 왼쪽 사원 정보란 width */
 .section-left-body {
     width: 20%;
+
     /*height: 1080px;*/
 }
 .section-left-body #left-body{
@@ -114,15 +115,15 @@
     position: fixed;
     border-right: 1px solid rgba(183, 183, 183, 0.35);
 }
-
+/*  사원 정보란 개인정보*/
 .section-left-body .left-fix ul li {
-    margin: 15px
-
+    margin: 15px 5px;
+    font-size: 1rem;
 }
 
 .section-left-body .left-fix  .information-box #profile #photo {
-    width: 170px;
-    height: 200px;
+    width: 160px;
+    height: 180px;
     border: 1px solid rgba(198, 198, 199, 0.8);
 
 }
@@ -130,9 +131,20 @@
     font-size:1em;
 }
 
-.section-left-body .left-fix .information-box #information button{
-    margin-top: 10px;
-    width: 80px;
+.section-left-body .left-fix .information-box #information .change-info{
+    border: none;
+    background-color: #d9d7d7;
+    padding: 5px;
+    width: 100px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+#calendar {
+    margin-top: 600px;
+    margin-left: 60px;
 }
 /* ***  왼쪽 고정 탭이랑 나란히 사용하기위한 필수속성 *** */
 #body-wrapper {
