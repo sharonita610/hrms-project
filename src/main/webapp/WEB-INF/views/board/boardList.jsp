@@ -23,7 +23,8 @@
 
             margin-bottom: 50px;
         }
-        #board-title{
+
+        #board-title {
             font-weight: 700;
             font-size: 30px;
         }
@@ -82,7 +83,8 @@
             line-height: 1em;
 
         }
-        .table .table-top{
+
+        .table .table-top {
             background-color: #f5f5f5;
         }
 
@@ -111,8 +113,13 @@
             height: 18px;
         }
 
-        .table td,th {
+        .table td,
+        th {
             border-bottom: 1px solid #f4f4f4;
+        }
+
+        .replyConut {
+            color: orangered;
         }
     </style>
 </head>
@@ -198,7 +205,13 @@
                             <tr class="card-wrapper">
                             <tr>
                                 <th scope="row" id="boardNo">${a.boardNo}</th>
-                                <td id="title"><a href="/hrms/board-detail/?boardNo=${a.boardNo}&boardPageNo=${boardPageMaker.boardPage.boardPageNo}&bdType=${a.bdType}">${a.shortTitle}</a>
+                                <td id="title">
+                                    <a
+                                        href="/hrms/board-detail/?boardNo=${a.boardNo}&boardPageNo=${boardPageMaker.boardPage.boardPageNo}&bdType=${a.bdType}">${a.shortTitle}
+                                        <c:if test="${a.repNo!=0}" >
+                                            <span class="replyConut">[${a.repNo}]</span>
+                                        </c:if>
+                                    </a>
                                 </td>
                                 <td id="empNo">${a.empName}</td>
                                 <td id="date">${a.stringDate}</td>
@@ -240,7 +253,8 @@
                         <select class="form-control mr-sm-2" id="category" name="boardType">
                             <option value="title">제목</option>
                             <option value="boardContent">내용</option>
-                            <option value="boardType">작성자</option>
+                            <option value="empName">작성자</option>
+                            <option value="titleAndContent">제목+내용</option>
                         </select>
                         <input class="form-control mr-sm-2" type="search" id="search" placeholder="검색어를 입력하세요"
                             aria-label="Search" name="boardKeyWord"> <i id="keyboard" class="fa fa-keyboard-o"></i>
@@ -255,11 +269,11 @@
 
         </section>
         <script>
-              //저장기능
-              const $save = document.getElementById('save-Btn');
-                    $save.onclick = function () {
-                        window.location.href = '/hrms/board-save/'
-                    };
+            //저장기능
+            const $save = document.getElementById('save-Btn');
+            $save.onclick = function () {
+                window.location.href = '/hrms/board-save/'
+            };
 
             //삭제기능
             const $cardWrapper = document.querySelector('.card-wrapper')

@@ -406,6 +406,7 @@
             .then(flag => {
                 const dupleMessage = document.getElementById('duplicatedEmail');
                 if (flag) {
+            
                     //이메일이 중복되었습니다 메세지 출력
                     dupleMessage.style.display = 'block';
                     readyToAdd[3] = false;

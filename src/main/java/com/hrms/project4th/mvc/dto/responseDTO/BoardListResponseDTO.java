@@ -18,6 +18,7 @@ public class BoardListResponseDTO {
     private Long empNo;
     private String empName;
     private long viewCount;
+    private long repNo;
 
     public BoardListResponseDTO(Board board) {
         this.boardNo = board.getBoardNo();
@@ -28,6 +29,7 @@ public class BoardListResponseDTO {
         this.empNo = board.getEmpNo();
         this.empName= board.getEmpName();
         this.viewCount=board.getViewCount();
+        this.repNo=board.getRepNo();
     }
 
 

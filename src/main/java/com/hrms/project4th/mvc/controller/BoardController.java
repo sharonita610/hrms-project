@@ -31,13 +31,14 @@ public class BoardController {
     public String boardFindAll(BoardSearch search, Model model) {
         List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
         log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
-//        log.info("searchInfo : {}", search);
+        log.info("searchInfo : {}", search);
 //        log.info("{}",boardPageMaker.getPAGE_LEN());
-        BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount());
-//        log.info("hrms/board-list : GET / search : {}", search);
-//        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);
 
-//        model.addAttribute("search",search);
+        BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount(search));
+//        log.info("hrms/board-list : GET / search : {}", search);
+        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);
+
+        model.addAttribute("search", search);
         model.addAttribute("boardPageMaker", boardPageMaker);
         model.addAttribute("allList", boardListResponseDTOS);
         return "/board/boardList";
@@ -55,7 +56,7 @@ public class BoardController {
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
         boardService.boardSave(dto);
-//        log.info("{}",dto);
+        log.info("BoardSaveRequestDTO {}", dto);
 //      log.info("BoardSaveRequestDTO {}",dto);
         return "redirect:/hrms/board-list";
     }
@@ -103,20 +104,5 @@ public class BoardController {
         return "redirect:/hrms/board-detail?boardNo=" + dto.getBoardNo();
     }
 
-    @GetMapping("/test")
-    public String test(Model model, BoardSearch search) {
-        List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
-//      log.info("/hrms/board-list : GET {}",boardListResponseDTOS);
-//        log.info("search : {}", search);
-//        log.info("{}",boardPageMaker.getPAGE_LEN());
-        BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount());
-        log.info("hrms/board-list : GET / search : {}", search);
-        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);
 
-//        model.addAttribute("search",search);
-        model.addAttribute("boardPageMaker", boardPageMaker);
-        model.addAttribute("allList", boardListResponseDTOS);
-
-        return "/board/testjsp";
-    }
 }

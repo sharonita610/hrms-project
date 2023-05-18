@@ -33,6 +33,14 @@
         <!-- boot-strap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <!-- ck editor -->
+        <script src="https://cdn.tiny.cloud/1/2h0oiwycjeu5k9ts481odi4en2v8u1wf7k3zi3va3lw2j0uy/tinymce/6/tinymce.min.js"
+            referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+                selector: '#mytextarea'
+            });
+        </script>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -55,7 +63,6 @@
                 margin: 0 auto;
                 border: 1px solid #000;
                 padding: 20px
-
             }
 
             h1 {
@@ -84,7 +91,8 @@
                 padding: 10px;
                 font-size: 16px;
             }
-            #title{
+
+            #title {
                 width: 100%;
                 height: 40px;
                 padding: 10px;
@@ -110,7 +118,7 @@
             }
 
             /* 제목 css */
-        
+
 
             .detail-button {
                 display: flex;
@@ -208,8 +216,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="content">내용</label>
-                                <textarea id="content" name="bdContent" placeholder="내용을 입력하세요"
-                                    readonly>${b.bdContent}</textarea>
+                                <textarea id="mytextarea" name="bdContent" readonly>${b.bdContent}</textarea>
+
+                                <!-- <textarea id="content" name="bdContent" placeholder="내용을 입력하세요"
+                                    readonly>${b.bdContent}</textarea> -->
                             </div>
                             <div class="form-group detail-button">
                                 <button id="backToList" type="button">목록</button>
