@@ -227,7 +227,6 @@
 
     }
 
-
     // 실행부
     startConfirmPage();
 </script>
