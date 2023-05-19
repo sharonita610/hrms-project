@@ -4,43 +4,21 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>SAMJO SANGSA</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<link rel="stylesheet" href="/assets/css/common.css">
-	<link rel="stylesheet" href="/assets/css/header-banner.css">
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<%@ include file="../main/include/header.jsp" %>
 	<link rel="stylesheet" href="/assets/css/mail.css">
-	<link rel="stylesheet" href="/assets/css/mail.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+	</script> 
 
 </head>
 
 <body>
-
-
-	<!-- HEADER IMPORT 해야됨 -->
+	<div id="body-wrapper"> 
+		<%@ include file="../main/include/left-banner.jsp" %>
+	
 	<div id="body-wrapper">
-		<section class="section-left-body">
-			<div id="left-body">
-				<div class="left-fix">
-					<div class="information-box">
-						<ul id="profile">
-							<li id="photo"><a href="#">사원사진</a></li>
-						</ul>
-						<ul id="information">
-							<li>사원번호</li>
-							<li>이름</li>
-							<li>휴대폰번호</li>
-							<li>부서</li>
-							<li>직책</li>
-							<li>
-								<button id="change-info" type="submit">수정</button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
 		<section class="section-mail">
 			<div id="mail-wrapper">
 				<div class="mail-sort">
@@ -85,24 +63,22 @@
 					
 					<c:if test="${mailPageMaker.prev}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.start-1}&empNo=${2}&status=${status}&mailType=${ms.mailType}">Previous</a></li>
+								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.start-1}&empNo=${num}&mailType=${ms.mailType}">Previous</a></li>
 					</c:if>
 					<c:forEach var="i" begin="${mailPageMaker.start}" end="${mailPageMaker.end}">
-						<li class="page-item"><a class="page-link" href="/hrms/mail-list-status/?mailPageNo=${i}&empNo=${2}&status=${status}&mailType=${ms.mailType}">${i}</a></li>
+						<li class="page-item"><a class="page-link" href="/hrms/mail-list/?mailPageNo=${i}&empNo=${2}&mailType=${ms.mailType}">${i}</a></li>
 					</c:forEach>
 					<c:if test="${mailPageMaker.next}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.end+1}&empNo=${2}&status=${status}&mailType=${ms.mailType}">Next</a></li>
+								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.end+1}&empNo=${num}&mailType=${ms.mailType}">Next</a></li>
 					</c:if>
 					
 				</ul>
 			</nav>
 		</section>
 	</div>
+	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-	</script>
 
 <script>
 	function dletemail(){
@@ -128,7 +104,8 @@
 	(function () {
 	dletemail();
 	})();
-
+	
+	
 </script>
 
 </body>

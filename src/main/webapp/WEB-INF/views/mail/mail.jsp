@@ -4,49 +4,27 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>SAMJO SANGSA</title>
+	<link rel="stylesheet" href="/assets/css/mail.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<link rel="stylesheet" href="/assets/css/common.css">
-	<link rel="stylesheet" href="/assets/css/header-banner.css">
-	<link rel="stylesheet" href="/assets/css/mail.css">
-	<link rel="stylesheet" href="/assets/css/mail.css">
-
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<%@ include file="../main/include/header.jsp" %>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+	</script> 
 </head>
 
 <body>
-
+	<div id="body-wrapper"> 
+		<%@ include file="../main/include/left-banner.jsp" %>
 
 	<div id="body-wrapper">
-		<section class="section-left-body">
-			<div id="left-body">
-				<div class="left-fix">
-					<div class="information-box">
-						<ul id="profile">
-							<li id="photo"><a href="#">사원사진</a></li>
-						</ul>
-						<ul id="information">
-							<li>사원번호</li>
-							<li>이름</li>
-							<li>휴대폰번호</li>
-							<li>부서</li>
-							<li>직책</li>
-							<li>
-								<button id="change-info" type="submit">수정</button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
 		<section class="section-mail">
 			<div id="mail-wrapper">
 				<div class="mail-sort">
 					<div><a href="/hrms/mail-list/?empNo=${2}">받은 메일</a></div>
 					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
-					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y">읽은 메일</a></div>
-					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N">안읽은 메일</a></div>
+					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
+					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
 					<div><a href="#">메일쓰기</a></div>
 				</div>
 				<div class="mail-sort-info">
@@ -73,7 +51,7 @@
 									<p>${m.mailStatus}</p>
 									<p>${m.mailDate}</p>
 								</div>
-								<button type="button" class="btn btn-danger delete-button">삭제</button>
+								<button type="button" class="btn btn-danger delete-button" id="deletebtn">삭제</button>
 							</li>
 						</c:forEach>
 					</ul>
@@ -98,39 +76,50 @@
 			</nav>
 		</section>
 	</div>
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-	</script>
-
+	</div>
 	<script>
 		
-		function dletemail(){
+	// 	function dletemail(){
 
-		const $mailli = document.querySelector('.mail');
+	// 	const $mailli = document.querySelector('.mail');
 
-		$mailli.addEventListener('click', (e) =>{
-			if(e.target.matches('.delete-button')){
-				console.log(e.target);
-				const $mailNo = +e.target.previousElementSibling.firstElementChild.innerText;
+	// 	$mailli.addEventListener('click', e=>{
+	// 		if(e.target.matches('.delete-button')){
+	// 			console.log(e.target.innerText);
+	// 				//console.log(e.target.previousElementSibling.firstElementChild.innerText);
+	// 				const $mailNo = +e.target.previousElementSibling.firstElementChild.innerText;
 
-				const $confirm =confirm(e.target.previousElementSibling.firstElementChild.innerText + '번 메일을 삭제할까요?');
+	// 				const $confirm =confirm(e.target.previousElementSibling.firstElementChild.innerText + '번 메일을 삭제할까요?');
 
-				if($confirm){
-					window.location.href = '/hrms/mail-delete?mailNo='+ $mailNo +'&empNo='+'2'+'&mailpageNo=${i}';
-				}
-				return ;
-				}
-			});
-		}
+	// 				if($confirm){
+	// 					window.location.href = '/hrms/mail-delete?mailNo='+ $mailNo +'&empNo='+'2';
+	// 				}
+	// 					return ;
+	// 			}
+	// 		});
+	// 	}
 
-		
+	// (function () {
+	// dletemail();
+	// })();
 
+function dletemail() {
+  const $maillist = document.querySelectorAll('.mail');
+  $maillist.forEach($mail => {
+    const $deleteButton = $mail.querySelector('.delete-button');
+    $deleteButton.addEventListener('click', () => {
+      const $mailNo = +$mail.querySelector('div > p:first-child').innerText;
+      const $confirm = confirm($mail.querySelector('div > p:first-child').innerText + '번 메일을 삭제할까요?');
+      if ($confirm) {
+        window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=2';
+      }
+    });
+  });
+}
 
-	 (function () {
-		dletemail();
-        })();
-
+(function () {
+  dletemail();
+})();
 	</script>
 
 </body>

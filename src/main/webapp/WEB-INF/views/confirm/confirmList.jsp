@@ -2,43 +2,45 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <%@ include file="../main/include/header.jsp" %>
     <link rel="stylesheet" href="/assets/css/confirmlist.css">
 </head>
 
 <body>
-<div class="confirm-page-wrapper">
+    <div id="body-wrapper">
+        <%@ include file="../main/include/left-banner.jsp" %>
+        <div class="confirm-page-wrapper">
 
-    <div class="confirm-titleline">
-        <h1>결재문서함</h1>
-        <a class="rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
+            <div class="confirm-titleline">
+                <h1>결재문서함</h1>
+                <a class="rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
+            </div>
+
+            <div class="confirm-outer-container">
+                <h2>&lt;결재대기문서&gt;</h2>
+                <div class="confirm-box waiting-list">
+                    <table id="waiting-table">
+                    </table>
+                </div>
+                <h2>&lt;결재완료문서&gt;</h2>
+                <div class="confirm-box confirmed-list">
+                    <table id="confirmed-table">
+                    </table>
+                </div>
+                <h2>&lt;반려문서&gt;</h2>
+                <div class="confirm-box rejected-list">
+                    <table id="rejected-table">
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="confirm-outer-container">
-        <h2>&lt;결재대기문서&gt;</h2>
-        <div class="confirm-box waiting-list">
-            <table id="waiting-table">
-            </table>
-        </div>
-        <h2>&lt;결재완료문서&gt;</h2>
-        <div class="confirm-box confirmed-list">
-            <table id="confirmed-table">
-            </table>
-        </div>
-        <h2>&lt;반려문서&gt;</h2>
-        <div class="confirm-box rejected-list">
-            <table id="rejected-table">
-            </table>
-        </div>
     </div>
-</div>
-
 </body>
 
 <script>
-
     const URL = "/confirm";
     const empNo = 2;
     // const roleCode = '11111';
@@ -128,18 +130,28 @@
         }
 
         for (let c of list) {
-            const {conNo, conTitle, fromName, fromDept, conDate, conStatus, conCheckDate} = c;
+            const {
+                conNo,
+                conTitle,
+                fromName,
+                fromDept,
+                conDate,
+                conStatus,
+                conCheckDate
+            } = c;
 
-            tag += '<tr id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2"><a href="/confirm/detail?conNo=' + conNo + '">' + conTitle
-                + '</a></td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
-                + '</td><td class = "col6">' + conStatus + '</td>';
+            tag += '<tr id = "doc-info"><td class = "col1">' + conNo +
+                '</td><td class = "col2"><a href="/confirm/detail?conNo=' + conNo + '">' + conTitle +
+                '</a></td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept +
+                '</td><td class = "col5">' + conDate +
+                '</td><td class = "col6">' + conStatus + '</td>';
 
             if ($section.id === 'waiting-table' && roleCode === '11111') {
-                tag += '<td class="col7"><div class = "button" id = "check"></div></td>'
-                    + '<td class = "col7"><div class = "button" id = "reject"></div></td></tr>';
+                tag += '<td class="col7"><div class = "button" id = "check"></div></td>' +
+                    '<td class = "col7"><div class = "button" id = "reject"></div></td></tr>';
             } else if ($section.id === 'waiting-table' && roleCode !== '11111') {
-                tag += '<td class="col7"><div class = "button" id = "modify"></div></td>'
-                    + '<td class = "col7"><div class = "button" id = "remove"></div></td></tr>';
+                tag += '<td class="col7"><div class = "button" id = "modify"></div></td>' +
+                    '<td class = "col7"><div class = "button" id = "remove"></div></td></tr>';
             } else {
                 tag += '<td class = "col7">' + conCheckDate + '</td>';
             }
@@ -168,18 +180,19 @@
             let conNo = $docInfo.firstChild.innerText;
 
             $remoBtn.onclick = () => {
-                if(!confirm('정말 삭제하시겠습니까?')){
+                if (!confirm('정말 삭제하시겠습니까?')) {
                     return;
                 }
 
-                fetch(`\${URL}/delete/\${conNo}`, {method: 'delete'})
+                fetch(`\${URL}/delete/\${conNo}`, {
+                        method: 'delete'
+                    })
                     .then(res => res.json())
                     .then(result => {
-                            if (result) {
-                                getWaitingList();
-                            }
+                        if (result) {
+                            getWaitingList();
                         }
-                    )
+                    })
 
             }
         }
@@ -193,7 +206,9 @@
                 if (!confirm('결재요청을 승인합니다')) {
                     return;
                 }
-                fetch(`\${URL}/check/\${conNo}`, {method: 'PUT'})
+                fetch(`\${URL}/check/\${conNo}`, {
+                        method: 'PUT'
+                    })
                     .then(res => res.json())
                     .then(result => {
                         if (result) {
@@ -212,7 +227,9 @@
                 if (!confirm('결재요청을 반려합니다')) {
                     return;
                 }
-                fetch(`\${URL}/reject/\${conNo}`, {method: 'PUT'})
+                fetch(`\${URL}/reject/\${conNo}`, {
+                        method: 'PUT'
+                    })
                     .then(res => res.json())
                     .then(result => {
                         if (result) {
