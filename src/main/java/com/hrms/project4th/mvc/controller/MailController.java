@@ -39,7 +39,6 @@ public class MailController {
     @GetMapping("/mail-list")
     //메일 불러오기서비스(로그인한 사용자 사번이 필요함)
     public String getList(Model model, Long empNo, MailSearch search){
-
         List<MailResponseDTO> mailList = mailService.getMailList(empNo,search);
         MailPageMaker mailPageMaker = new MailPageMaker(search,mailService.mailPageCount(empNo,search));
 
@@ -76,11 +75,12 @@ public class MailController {
 
     @GetMapping("/mail-delete")
     // 메일 삭제하기(사원번호에 맞는 메일을 삭제해야함)
-    public String mailDeleteByNum(Long mailNo, @Param(value = "empNo") Long empNo, MailSearch search) {
-        mailService.deleteByNum(mailNo);
+    public String mailDeleteByNum(Long mailNo, @RequestParam(value = "empNo") Long empNo, MailSearch search) {
         log.info("mailNo {}: ", mailNo);
         log.info("search {}: ", search);
         log.info("empNo {} : ",empNo);
+        log.info("mailPageNo {} : ",search.getMailPageNo());
+        mailService.deleteByNum(mailNo);
         //메일 타입에 따라 리턴값 달라진다
         String mailType = search.getMailType();
         if(mailType.equals("mailto")) {

@@ -2,7 +2,7 @@
 
 /*  클럽 전체 틀  */
 .section-club-board {
-    margin-top: 8%;
+    /* margin-top: 2%; */
     width: 77%;
     height: 840px;
     position: relative;
@@ -87,7 +87,7 @@
 }
 /* 2등분  중간단계 기본 속성 무한스크롤 */
 #club-board-list .club-card-wrapper{
-    background: rgb(218, 238, 245);
+    /* background: rgb(218, 238, 245); */
     width: 70%;     /* 90% */
     height: 200%;
     margin: 20px auto;
@@ -118,7 +118,8 @@
 /*  3등분  필터링 속성  */
 #club-board-information{
     width: 25%;
-    background: rgb(218, 238, 245);
+    /* background: rgb(218, 238, 245); */
+    border: 4px double rgb(145, 145, 145);
 }
 /*  3등분 안에 칸 */
 #club-board-reply {
@@ -139,11 +140,44 @@
 
 /*  내게시글, 내동호회, 내가쓴 댓글 속성  */
 #club-board-reply .club-board-sort div{
-    padding: 10px;
-    border-right: 2px solid rgb(156, 152, 152);
+    padding: 5px;
+    width: 33%;
+    border: 2px solid rgb(156, 152, 152);
 }
 
 .board-height {
     padding: 15px;
     border-bottom: 1px solid rgb(156, 152, 152);
 }
+
+/*  */
+.club-board-title {
+    /* line-height: 30px; */
+    padding: 16px;
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+}
+
+/* .sample {
+    width: 900px;
+    height: 700px;
+    border: 3px solid red;
+    position: absolute;
+    margin-left: 500px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

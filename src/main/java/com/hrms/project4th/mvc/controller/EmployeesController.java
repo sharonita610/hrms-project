@@ -21,7 +21,7 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/employees")
+@RequestMapping("/hrms/employees")
 public class EmployeesController {
 
     private final EmployeesService employeesService;
