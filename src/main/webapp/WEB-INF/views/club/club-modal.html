@@ -8,17 +8,40 @@
 	<style>
         .club-modal-wrapper {
             width: 900px;
-            height: 500px;
+            height: 700px;
             border: 4px solid red;
+            margin: 50px auto;
+	        overflow-y: scroll;
         }
 
+        .club-modal-wrapper::-webkit-scrollbar {
+            display: none ;
+        }
         .club-modal-test {
             display: flex;
-            height: 500px;
             flex-direction: row;
+	        height: 1000px;
         }
 
+        .club-modal-content{
+            background: #eedec1;
+            width: 60%;
 
+        }
+        .club-modal-replies {
+            background: #bebef8;
+            width: 40%;
+        }
+
+        #contents .club-modal-image {
+
+
+        }
+
+        #replies {
+
+
+        }
 
 	</style>
 </head>
@@ -28,16 +51,17 @@
 <div class="club-modal-wrapper">
 	<div class="club-modal-test">
 		<div class="club-modal-content">
-			<ul class="">
-				<li>
-					<img src="#" alt="동호회사진">동호회 사진
-				</li>
-				<li>동호회이름</li>
-				<li>
+			<ul id="contents">
+				<li class="club-modal-image">
+					<img src="#" alt="동호회사진">
+
+					<div>동호회이름</div>
 					<form action="#" method="post">
 						<button>가입하기</button>
 					</form>
+
 				</li>
+
 				<li>
 					<div class="club-modal-content">
 						댓글란, 사진란
@@ -49,7 +73,7 @@
 		</div>
 		<div class="club-modal-replies">
 			<div class="club-modal-replies-head">
-				<ul>
+				<ul id="replies">
 					<li>작성자</li>
 					<li>
 						<input type="text">댓글입력란
