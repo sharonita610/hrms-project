@@ -31,7 +31,11 @@
                 <c:if test="${login != null}">
                     <li>${login.empName} 님 환영합니다!!!!!</li>
                 </c:if>
-                <li><a href="#"><span id="logout-button">로그아웃</span></a></li>
+                <li>
+                    <a href="#"><span id="updateInfo-button">정보수정</span></a>
+                    <a href="/log-out"><span id="logout-button">로그아웃</span></a>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -39,7 +43,7 @@
         <div class="nav-bar">
             <ul id="tabs">
                 <li><a href="/main">HOME</a></li>
-                <li><a href="/hrms/board-list">게시판</a></li>
+                <li id="board"><a href="board-list">게시판</a></li>
                 <li><a href="/confirm/list">결재</a></li>
                 <li><a href="/hrms/mail-list">메일</a></li>
                 <li><a href="#">동호회</a></li>
@@ -47,3 +51,12 @@
         </div>
     </div>
 </header>
+<script>
+    const $board = document.getElementById('board');
+    $board.onclick = e =>{
+      window.location.href = '/hrms/board-list';
+    };
+
+
+
+</script>

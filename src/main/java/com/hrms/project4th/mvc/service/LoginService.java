@@ -29,10 +29,14 @@ import static com.hrms.project4th.mvc.util.LoginUtil.LOGIN_KEY;
 public class LoginService {
 
     private final EmployeesMapper employeesMapper;
-    // 로그인 검증 처리하기
+    // 비밀번호 암호화 하기 위한 코드
+    // private final PasswordEncoder encoder;
 
+
+    // 로그인 검증 처리하기
     public LoginResult authenticate(
-            LoginRequestDTO dto) {
+            LoginRequestDTO dto,
+            HttpSession session) {
 
         Employees foundEmployee = employeesMapper.findEmployee(dto.getEmpEmail());
 
@@ -40,37 +44,52 @@ public class LoginService {
         // 사원이 등록되어있는지 확인
         if (null == foundEmployee) {
             log.info("{} - 사원 등록이 되어있지 않습니다.", dto.getEmpEmail());
-            return NO_EMP_NO;
+            return NO_EMP_EMAIL;
         }
         // 비밀번호 매칭 확인
-        if (!(dto.getEmpPassword().matches(foundEmployee.getEmpPassword()))){
+        if (!(dto.getEmpPassword().matches(foundEmployee.getEmpPassword()))) {
             log.info("비밀번호 불일치합니다!");
-            return NO_PW;
+            return WRONG_PW;
+        }
+
+        // 자동 로그인 체크 여부 확인, dto가 자동 로그인 처리 되어있다면
+        if (dto.isAutoLogin()) {
+
+            // 1. 세션에 로그인 상태를 저장
+            session.setAttribute(LOGIN_KEY, true);
+
+            // 2. 세션의 수명을 설정하기 (12시간)
+            session.setMaxInactiveInterval(60 * 60 * 12);
         }
 
         log.info("{}님 로그인 성공!", employeesMapper.findEmployee(dto.getEmpEmail()));
         return SUCCESS;
     }
+
+
     public void maintainLoginState(HttpSession session, String empEmail) {
 
-//        // 현재 로그인한 사람의 모든 정보
+        // 현재 로그인한 사람의 모든 정보
         Employees employee = getMember(empEmail);
-//
-//        // 현재 로그인한 사람의 화면에 보여줄 일부정보
+
+        // 현재 로그인한 사람의 화면에 보여줄 일부정보
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
                 .empNo(String.valueOf(employee.getEmpNo()))
                 .empName(employee.getEmpName())
                 .empPhone(employee.getEmpPhone())
                 .empEmail(employee.getEmpEmail())
+                .posCode(employee.getPosCode())
+                .deptCode(employee.getDeptCode())
                 .build();
 
-//         LoginUtil.LOGIN_KEY
-//        // 그정보를 세션에 저장
+        //  세션에 저장
         session.setAttribute(LOGIN_KEY, dto);
 
-//        // 세션의 수명을 설정
+        // 세션의 수명을 설정
         session.setMaxInactiveInterval(60 * 60); // 1시간
     }
+
+
 
     //  멤버 정보를 가져오는 서비스 기능
     public Employees getMember(String empEmail) {

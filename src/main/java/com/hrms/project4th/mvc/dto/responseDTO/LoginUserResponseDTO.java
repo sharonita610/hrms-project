@@ -10,11 +10,14 @@ import lombok.*;
 @EqualsAndHashCode
 @Builder
 public class LoginUserResponseDTO {
+    // 로그인한 객체의 정보를 db에서 클라이언트한데 되돌려줄 정보
 
     private String empNo;
     private String empName;
     private String empPhone;
     private String empEmail;
+    private String posCode;
+    private String deptCode;
 
 
 }

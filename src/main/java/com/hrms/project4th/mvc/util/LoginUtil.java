@@ -11,8 +11,10 @@ public class LoginUtil {
 
     // 로그인 세션 키
     public static final String LOGIN_KEY =  "login";
+
     // 자동로그인 쿠키 이름
     public static final String AUTO_LOGIN_COOKIE =  "auto";
+
     // 로그인 여부 확인
     public static boolean isLogin(HttpSession session){
         return session.getAttribute(LOGIN_KEY) != null;
@@ -34,8 +36,7 @@ public class LoginUtil {
 
 
     // 내가 쓴 게시물인지 확인해주는 메서드
-
-    public static boolean isMine(HttpSession session, String targetAccount){
+    public static boolean myPost(HttpSession session, String targetAccount){
         return targetAccount.equals(getCurrentLoginMemberAccount(session));
     }
 

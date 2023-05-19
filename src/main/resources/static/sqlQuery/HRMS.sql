@@ -21,6 +21,14 @@ PROFILE VARCHAR(1000),
 constraint PK_EMP_NO PRIMARY KEY (EMP_NO)
 );
 
+# 사원테이블에 세션 아이디 칼럼
+alter table hr_employees
+    ADD EMP_SESSION VARCHAR(200) DEFAULT 'NONE';
+
+# 사원테이블에 쿠키 유효시간 칼럼 추가
+ALTER TABLE hr_employees
+    ADD COOKIE_LIMIT_TIME DATETIME;
+
 
 -- 직급 테이블
 drop table HR_POSITION; 
