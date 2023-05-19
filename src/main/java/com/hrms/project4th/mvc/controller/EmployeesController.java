@@ -31,20 +31,20 @@ public class EmployeesController {
 
     //사원 전체리스트 불러오기
     @GetMapping("/list")
-    public String getEmployeesList(){
-        employeesService.getEmployeesList();
-        return "redirect:/employees/add"; //관리자 사원 전체보기 jsp
+    public String getEmployeesList() {
+//        employeesService.getEmployeesList();
+        return "admin/employeeslist"; //관리자 사원 전체보기 jsp
     }
 
     //사원추가 폼으로 이동
     @GetMapping("/add")
-    public String addEmployee(){
+    public String addEmployee() {
         return "admin/addEmployee"; //jsp
     }
 
     //사원 추가 디비 반영
     @PostMapping("/add")
-    public String addEmployee(AddEmployeesDTO dto){
+    public String addEmployee(AddEmployeesDTO dto) {
         String savePath = FileUtil.uploadFile(dto.getEmpPhone(), dto.getProfile(), rootPath);
         log.info(rootPath);
         employeesService.addEmployee(dto, savePath);
@@ -52,7 +52,7 @@ public class EmployeesController {
     }
 
     @GetMapping("/add/check")
-    public ResponseEntity<Boolean> isDuplicated(String empEmail){
+    public ResponseEntity<Boolean> isDuplicated(String empEmail) {
         empEmail += "@samjosangsa.com";
         boolean flag = employeesService.isDuplicated(empEmail);
         return ResponseEntity.ok().body(flag);
@@ -61,15 +61,15 @@ public class EmployeesController {
     //사원 수정 폼으로 이동
     @GetMapping("/modify")
 //    public String modifyEmployees(long empNo){
-    public String modifyEmployees(){
+    public String modifyEmployees() {
         long empNo = 2L;
         return "admin/modifyEmployee";
     }
 
     //사원 수정 디비 반영
     @PostMapping("/modify")
-    public String modifyEmployees(ModifyEmployeeDTO dto){
-        if(dto.getProfile().isEmpty()) {
+    public String modifyEmployees(ModifyEmployeeDTO dto) {
+        if (dto.getProfile().isEmpty()) {
             log.info("프로파일이 널입니다");
             employeesService.modifyEmployeesWithNoProfile(dto);
         } else {
@@ -83,14 +83,14 @@ public class EmployeesController {
     //사원 삭제
     @PostMapping("/delete")
     @ResponseBody
-    public ResponseEntity<Boolean> removeEmployee(long empNo){
+    public ResponseEntity<Boolean> removeEmployee(long empNo) {
         boolean flag = employeesService.removeEmployee(empNo);
         return ResponseEntity.ok().body(flag);
     }
 
     @GetMapping("/boss/{dept}/{pos}")
     @ResponseBody
-    public ResponseEntity<List> getDeptName(@PathVariable("dept") String dept, @PathVariable("pos") String pos){
+    public ResponseEntity<List> getDeptName(@PathVariable("dept") String dept, @PathVariable("pos") String pos) {
         log.info("controller : {}, {}", dept, pos);
         List<GetMyBossResponseDTO> bossNames = employeesService.getMyBossNames(
                 MyBossRequestDTO.builder()
@@ -121,7 +121,6 @@ public class EmployeesController {
 //        // Return an error response if the user is not logged in
 ////        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in.");
 ////    }
-
 
 
 }

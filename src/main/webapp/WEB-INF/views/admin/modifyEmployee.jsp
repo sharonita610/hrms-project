@@ -96,7 +96,8 @@
                 <div id="noBoss" class="alert">직속상사를 선택해주세요.</div>
             </div>
 
-            <div id="emp-submit">변경사항 등록</div>
+            <div class = "goBack" onclick="goBack()">뒤로 가기</div>
+            <div id="emp-submit">변경 등록</div>
             <button id="modiBtn" type="submit">제출버튼</button>
         </form>
     </div>
@@ -502,6 +503,9 @@
         }
     }
 
+    function goBack(){
+        window.location.href = '/hrms/employees/list';
+    }
 
 </script>
 
