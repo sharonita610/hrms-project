@@ -18,7 +18,6 @@
 <body>
 
 
-	<!-- HEADER IMPORT 해야됨 -->
 	<div id="body-wrapper">
 		<section class="section-left-body">
 			<div id="left-body">
@@ -63,7 +62,8 @@
 				<div id="mail-list-box">
 					<ul class="maillist">
 						<c:forEach var="m" items="${mList}">
-							<li class="mail"><a href="">
+							<li class="mail">
+								<div>
 									<p>${m.mailNo}</p>
 									<p>${m.empEmail}</p>
 									<p>${m.empName}</p>
@@ -72,7 +72,9 @@
 									<p>${m.mailTitle}</p>
 									<p>${m.mailStatus}</p>
 									<p>${m.mailDate}</p>
-								</a><button type="button" class="btn btn-danger delete-button">삭제</button></li>
+								</div>
+								<button type="button" class="btn btn-danger delete-button">삭제</button>
+							</li>
 						</c:forEach>
 					</ul>
 				</div>
@@ -82,14 +84,14 @@
 					
 					<c:if test="${mailPageMaker.prev}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.start-1}&empNo=${2}&mailType=${ms.mailType}">Previous</a></li>
+								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.start-1}&empNo=${num}&mailType=${ms.mailType}">Previous</a></li>
 					</c:if>
 					<c:forEach var="i" begin="${mailPageMaker.start}" end="${mailPageMaker.end}">
 						<li class="page-item"><a class="page-link" href="/hrms/mail-list/?mailPageNo=${i}&empNo=${2}&mailType=${ms.mailType}">${i}</a></li>
 					</c:forEach>
 					<c:if test="${mailPageMaker.next}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.end+1}&empNo=${2}&mailType=${ms.mailType}">Next</a></li>
+								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.end+1}&empNo=${num}&mailType=${ms.mailType}">Next</a></li>
 					</c:if>
 					
 				</ul>
@@ -99,6 +101,36 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+	</script>
+
+	<script>
+		
+		function dletemail(){
+
+		const $mailli = document.querySelector('.mail');
+
+		$mailli.addEventListener('click', (e) =>{
+			if(e.target.matches('.delete-button')){
+				console.log(e.target);
+				const $mailNo = +e.target.previousElementSibling.firstElementChild.innerText;
+
+				const $confirm =confirm(e.target.previousElementSibling.firstElementChild.innerText + '번 메일을 삭제할까요?');
+
+				if($confirm){
+					window.location.href = '/hrms/mail-delete?mailNo='+ $mailNo +'&empNo='+'2'+'&mailpageNo=${i}';
+				}
+				return ;
+				}
+			});
+		}
+
+		
+
+
+	 (function () {
+		dletemail();
+        })();
+
 	</script>
 
 </body>

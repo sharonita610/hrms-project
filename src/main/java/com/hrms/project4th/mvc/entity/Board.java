@@ -35,6 +35,9 @@ public class Board {
     //사원 이름
     private String empName;
 
+    //해당 게시물에 걸린 댓글수
+    private long repNo;
+
 
     public Board(BoardSaveRequestDTO dto) {
         this.bdType=dto.getBdType();
@@ -50,4 +53,6 @@ public class Board {
         this.bdContent=dto.getBdContent();
 //        this.empNo= dto.getEmpNo();
     }
+
+
 }

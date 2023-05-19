@@ -33,6 +33,14 @@
         <!-- boot-strap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <!-- ck editor -->
+        <script src="https://cdn.tiny.cloud/1/2h0oiwycjeu5k9ts481odi4en2v8u1wf7k3zi3va3lw2j0uy/tinymce/6/tinymce.min.js"
+            referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+                selector: '#mytextarea'
+            });
+        </script>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -47,15 +55,15 @@
             }
 
             .detail-part {
-                margin-top: 100px;
+                margin: 200px auto;
             }
 
             .container-box {
-                max-width: 800px;
+                max-width: 1000px;
+                height: fit-content;
                 margin: 0 auto;
                 border: 1px solid #000;
                 padding: 20px
-
             }
 
             h1 {
@@ -84,7 +92,8 @@
                 padding: 10px;
                 font-size: 16px;
             }
-            #title{
+
+            #title {
                 width: 100%;
                 height: 40px;
                 padding: 10px;
@@ -109,8 +118,15 @@
                 resize: none;
             }
 
+            /* content 영역 */
+            #mytextarea {
+                height: 600px;
+
+            }
+
+
             /* 제목 css */
-        
+
 
             .detail-button {
                 display: flex;
@@ -124,6 +140,35 @@
             #replyContent {
                 border: 1px solid #000;
             }
+
+            /* 댓글 창 css */
+            .card {
+                height: 150px;
+                width: 100%;
+            }
+
+            .form-group textarea {
+                height: 120px;
+
+            }
+
+            .col-md-4 {
+                /* margin-top; */
+                display: inline-block;
+                width: 200px;
+            }
+
+            #newReplyText {
+                overflow: auto;
+                resize: none;
+            }
+
+
+            .form-control {
+                margin-bottom: 35px;
+            }
+
+            /* empNo hidden 처리 */
         </style>
     </head>
 
@@ -208,8 +253,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="content">내용</label>
-                                <textarea id="content" name="bdContent" placeholder="내용을 입력하세요"
-                                    readonly>${b.bdContent}</textarea>
+                                <textarea id="mytextarea" name="bdContent" readonly>${b.bdContent}</textarea>
+
+                                <!-- <textarea id="content" name="bdContent" placeholder="내용을 입력하세요"
+                                    readonly>${b.bdContent}</textarea> -->
                             </div>
                             <div class="form-group detail-button">
                                 <button id="backToList" type="button">목록</button>
@@ -271,11 +318,7 @@
 
                         <!-- 수정 모달 -->
 
-                        <!-- Button trigger modal -->
-                        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                            Launch static backdrop modal
-                        </button> -->
+
 
                         <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -400,26 +443,45 @@
                 if (boardReplies === null || boardReplies.length === 0) {
                     tag += "<div id='replyContent' class='card-body'>댓글을 입력해 주세요</div>";
 
+                    //         "repNo": 2536,
+                    // "repContent": "reply content536",
+                    // "empNo": 69,
+                    // "replyRegDate": "2023:05:17 14:46",
+                    // "deptName": "hrRESOURCE`",
+                    // "posName": "chef",
+                    // "roleName": "cook"
+
+
                 } else {
                     for (let rep of boardReplies) {
                         const {
                             repNo,
                             empNo,
                             replyRegDate,
-                            repContent
+                            repContent,
+                            deptName,
+                            posName,
+                            roleName,
+                            empName
                         } = rep;
+                        // +'/'+postName+'/'+roleName
+                        tag += `
+                                <div id='replyContent' class='card-body' data-replyId='\${repNo}'>
+                                    <div class='row user-block'>
+                                    <span class='col-md-3'>
+                                        <span>\${deptName}</span><span>/</span>
+                                        <span>\${posName}</span><span>/</span>
+                                        <span>\${roleName}</span><span>/</span>
+                                        <span>\${empName}</span>
+                                        <input type='hidden' name='empNo' value='\${empNo}'>
+                                    </span>
+                                    <span class='offset-md-6 col-md-3 text-right'><b>\${replyRegDate}</b></span>
+                                    </div><br>
+                                    <div class='row'>
+                                    <div class='col-md-6'>\${repContent}</div>
+                                    <div class='et-md-2 col-md-4 text-right'>
+                                `;
 
-                        tag += "<div id='replyContent' class='card-body' data-replyId='" + repNo + "'>" +
-                            "    <div class='row user-block'>" +
-                            "       <span class='col-md-3'>" +
-                            "         <b>" + empNo + "</b>" +
-                            "       </span>" +
-                            "       <span class='offset-md-6 col-md-3 text-right'><b>" + replyRegDate +
-                            "</b></span>" +
-                            "    </div><br>" +
-                            "    <div class='row'>" +
-                            "       <div class='col-md-6'>" + repContent + "</div>" +
-                            "       <div et-md-2 col-md-4 text-right'>";
 
                         // if (currentAccount === rep.account || auth === 'ADMIN') {
                         tag +=
@@ -445,15 +507,14 @@
 
             function deleteEvent() {
                 $replyData.onclick = e => {
-
                     // repNo값 가져오기
                     const $getReplyId = e.target.closest('#replyContent').dataset.replyid;
-                    // console.log($getReplyId);
+                    console.log($getReplyId);
                     // empNo값 가져오기
-                    const $getEmpNo = document.querySelector('#replyContent b').textContent;
-                    // console.log($getEmpNo);
-                    // console.log(e.target);
-                    // console.log('삭제버튼 클릭');
+                    const $getEmpNo = document.querySelector('#replyContent span input').value;
+                    console.log($getEmpNo);
+                    console.log(e.target);
+                    console.log('삭제버튼 클릭');
                     e.preventDefault();
                     if (e.target.matches('#replyDelBtn')) {
                         // console.log('삭제떠줘');
@@ -525,9 +586,9 @@
                     const $getRepCont = document.querySelector('.modal-body').value;
                     console.log($getRepCont);
                     const $getRepNo = document.querySelector('.modal-body').dataset.rno;
-                    console.log($getRepNo);
+                    // console.log($getRepNo);
                     const $getEmpNo = document.querySelector('.modal-body').dataset.reno;
-                    console.log($getEmpNo);
+                    // console.log($getEmpNo);
                     const modifyInfo = {
                         method: 'PATCH',
                         headers: {

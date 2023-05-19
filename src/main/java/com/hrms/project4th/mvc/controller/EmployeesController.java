@@ -60,15 +60,17 @@ public class EmployeesController {
 
     //사원 수정 폼으로 이동
     @GetMapping("/modify")
-    public String modifyEmployees(long empNo){
-        return "";
+//    public String modifyEmployees(long empNo){
+    public String modifyEmployees(){
+        long empNo = 2L;
+        return "admin/modifyEmployee";
     }
 
     //사원 수정 디비 반영
     @PostMapping("/modify")
     public String modifyEmployees(ModifyEmployeeDTO dto){
         employeesService.modifyEmployees(dto);
-        return ""; //리스트로 리다이렉트
+        return "admin/modifyEmployee"; //리스트로 리다이렉트로 변경 예정 !
     }
 
     //사원 삭제
