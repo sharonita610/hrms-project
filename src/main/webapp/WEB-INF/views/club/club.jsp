@@ -4,17 +4,159 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <%@ include file="../main/include/header.jsp" %>
-    <link rel="stylesheet" href="/assets/css/club.css">
-
-</head>
-
-<body>
-
+    
+    <head>
+        <%@ include file="../main/include/header.jsp" %>
+        <link rel="stylesheet" href="/assets/css/club.css">
+        <link rel="stylesheet" href="/assets/css/club-modal.css"
+    </head>
+    
+    <body>
+    <!-- ================ 클럽 모달 ============================================================================ -->
     <div id="body-wrapper">
         <%@ include file="../main/include/left-banner.jsp" %>
+        <div class="club-modal-wrapper common-club-modal">
+        <div class="club-modal-separator">
+            <section class="club-modal-content-container">
+                <ul class="contents-wrapper">
+                    <li class="club-modal-club-info">
+                        <ul class="club-modal-informations">
+                            <li class="club-modal-image"><img src="/resources/static/assets/img/samjo-logo.png" alt="동호회사진">
+                            </li>
+                            <li>동호회이름</li>
+                            <li>[작성자이름]</li>
+                            <li>
+                                <form action="#" method="post">
+                                    <!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
+                                    <button id="join-club-btn">가입하기</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="club-modal-contents">
+                                게시글 <br>
+                                사진란
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section class="club-modal-replies-container">
+                <div class="club-modal-replies-head">
+                    <ul class="replies-wrapper">
+                        <li class="club-modal-add-reply">
+                            <form action="#" method>
+                                <input class="write-reply" type="text" placeholder="댓글을 작성해보세요!">
+                                <button id="add-reply" type="submit">등록</button>
+                                <button id="cancel-reply" type="reset">취소</button>
+                            </form>
+                        </li>
+                        <li class="club-modal-reply-list">
+                            <div class="club-modal-reply-list-one">
+                                <ul>
+                                    <li>작성자</li>
+                                    <li>시간</li>
+                                    <li>내용내용내용내용내용내용내용내용내용</li>
+                                </ul>
+                            </div>
+                            <div class="club-modal-reply-list-one">
+                                <ul>
+                                    <li>작성자</li>
+                                    <li>시간</li>
+                                    <li>내용내용내용내용내용내용내용내용내용</li>
+                                </ul>
+                            </div>
+                            <div class="club-modal-reply-list-one">
+                                <ul>
+                                    <li>작성자</li>
+                                    <li>시간</li>
+                                    <li>내용내용내용내용내용내용내용내용내용</li>
+                                </ul>
+                            </div>
+                            <div class="club-modal-reply-list-one">
+                                <ul>
+                                    <li>작성자</li>
+                                    <li>시간</li>
+                                    <li>내용내용내용내용내용내용내용내용내용</li>
+                                </ul>
+                            </div>
+    
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+<!-- ============================================================================================ -->
+<!-- club-my-modal ============================================================================== -->
+<div class="club-modal-wrapper my-modal">
+	<div class="club-modal-separator">
+		<section class="club-modal-content-container">
+			<ul class="contents-wrapper">
+				<li class="club-modal-club-info">
+					<ul class="club-modal-informations">
+						<li class="club-modal-image"><img src="/resources/static/assets/img/samjo-logo.png" alt="동호회사진">
+						</li>
+						<li>동호회이름</li>
+						<li>[작성자이름]</li>
+						<li>
+							<form action="#" method="post">
+								<!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
+								<button id="update-club-btn">수정하기</button>
+								<button id="quit-club-btn">탈퇴하기</button>
+							</form>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<div class="club-modal-contents">
+							게시글 <br>
+							사진란
+					</div>
+				</li>
+			</ul>
+		</section>
+		<section class="club-modal-replies-container">
+			<div class="club-modal-replies-head">
+				<ul class="replies-wrapper">
+					<li class="club-modal-reply-list">
+						<div class="club-modal-reply-list-one">
+							<ul>
+								<li>작성자</li>
+								<li>시간</li>
+								<li>내용내용내용내용내용내용내용내용내용</li>
+							</ul>
+						</div>
+						<div class="club-modal-reply-list-one">
+							<ul>
+								<li>작성자</li>
+								<li>시간</li>
+								<li>내용내용내용내용내용내용내용내용내용</li>
+							</ul>
+						</div>
+						<div class="club-modal-reply-list-one">
+							<ul>
+								<li>작성자</li>
+								<li>시간</li>
+								<li>내용내용내용내용내용내용내용내용내용</li>
+							</ul>
+						</div>
+						<div class="club-modal-reply-list-one">
+							<ul>
+								<li>작성자</li>
+								<li>시간</li>
+								<li>내용내용내용내용내용내용내용내용내용</li>
+							</ul>
+						</div>
+
+					</li>
+				</ul>
+			</div>
+		</section>
+	</div>
+</div>
+
+<!-- ======================================================================================= -->
         <!-- <div class="sample">안녕</div> -->
         <section class="section-club-board">
             <div id="club-contents">
@@ -178,6 +320,13 @@
                     document.querySelector('.three-option').innerHTML = myReplyTag;
 
             });
+        };
+
+        // 게시글 컨텐츠 클릭시 모달창 띄우기
+        const $commonModal = document.querySelector('.common-club-modal');
+        const $clubCard = document.querySelector('.club-card');
+        $clubCard.onclick = e => {
+            $commonModal.style.display = 'block';
         };
 
 

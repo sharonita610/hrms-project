@@ -113,6 +113,8 @@
     border: 2px solid lightgray;
     margin-top: 20px;
     padding: 20px; 
+    position: relative;
+    z-index: -1;
 }
 
 /*  3등분  필터링 속성  */
