@@ -50,6 +50,7 @@ public class BoardController {
         return "/board/boardSave";
     }
 
+
     // 저장 페이지의 정보를 저장하는 기능
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
