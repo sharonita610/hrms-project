@@ -11,7 +11,12 @@
     border-bottom: 2px solid gray;
     padding: 20px 10px 30px 10px;
     position: relative;
+    height: fit-content;
     /* border: 1px solid #000; */
+}
+
+.genderOption {
+    font-size: 15px;
 }
 
 .addEmpFormWrapper h1 {

@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/confirm")
+@RequestMapping("/hrms/confirm")
 public class ConfirmController {
 
     private final ConfirmService confirmService;

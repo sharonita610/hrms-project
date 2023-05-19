@@ -3,34 +3,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <%@ include file="../main/include/header.jsp" %>
     <link rel="stylesheet" href="/assets/css/confirmlist.css">
 </head>
 
 <body>
-<div class="confirm-page-wrapper">
+<div id="body-wrapper">
+    <%@ include file="../main/include/left-banner.jsp" %>
 
-    <div class="confirm-titleline">
-        <h1>결재문서함</h1>
-        <a class="rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
-    </div>
+    <div class="confirm-page-wrapper">
 
-    <div class="confirm-outer-container">
-        <h2>&lt;결재대기문서&gt;</h2>
-        <div class="confirm-box waiting-list">
-            <table id="waiting-table">
-            </table>
+        <div class="confirm-titleline">
+            <h1>결재문서함</h1>
+            <a class="rq-confirm" href="/hrms/confirm/rq-form">문서 작성하기</a>
         </div>
-        <h2>&lt;결재완료문서&gt;</h2>
-        <div class="confirm-box confirmed-list">
-            <table id="confirmed-table">
-            </table>
-        </div>
-        <h2>&lt;반려문서&gt;</h2>
-        <div class="confirm-box rejected-list">
-            <table id="rejected-table">
-            </table>
+
+        <div class="confirm-outer-container">
+            <h2>&lt;결재대기문서&gt;</h2>
+            <div class="confirm-box waiting-list">
+                <table id="waiting-table">
+                </table>
+            </div>
+            <h2>&lt;결재완료문서&gt;</h2>
+            <div class="confirm-box confirmed-list">
+                <table id="confirmed-table">
+                </table>
+            </div>
+            <h2>&lt;반려문서&gt;</h2>
+            <div class="confirm-box rejected-list">
+                <table id="rejected-table">
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -39,7 +42,7 @@
 
 <script>
 
-    const URL = "/confirm";
+    const URL = "/hrms/confirm";
     const empNo = 2;
     // const roleCode = '11111';
     const roleCode = null;
@@ -88,7 +91,7 @@
     function renderConfirmList(list, $section) {
         let tag = '';
         if ($section.id === 'waiting-table') {
-            tag += '<tr id = "waiting-th"><th class = "col1">NO</th>' +
+            tag += '<tr class = "confirm-tr" id = "waiting-th"><th class = "col1">NO</th>' +
                 '<th class = "col2">문서제목</th>';
             if (roleCode === '11111') {
                 tag += '<th class = "col3">기안자</th>';
@@ -106,7 +109,7 @@
                     '<th class = "col7">삭제</th></tr>';
             }
         } else if ($section.id === 'confirmed-table') {
-            tag += '<tr id = " confirmed-th"><th class = "col1">NO</th>' +
+            tag += '<tr class = "confirm-tr" id = " confirmed-th"><th class = "col1">NO</th>' +
                 '<th class = "col2">문서제목</th>';
             if (roleCode === '11111') {
                 tag += '<th class = "col3">기안자</th>';
@@ -116,7 +119,7 @@
             tag += '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
                 '<th class = "col6">승인여부</th><th class = "col7">승인일자</th>';
         } else if ($section.id === 'rejected-table') {
-            tag += '<tr id = " rejected-th"><th class = "col1">NO</th>' +
+            tag += '<tr class = "confirm-tr" id = " rejected-th"><th class = "col1">NO</th>' +
                 '<th class = "col2">문서제목</th>';
             if (roleCode === '11111') {
                 tag += '<th class = "col3">기안자</th>';
@@ -130,7 +133,7 @@
         for (let c of list) {
             const {conNo, conTitle, fromName, fromDept, conDate, conStatus, conCheckDate} = c;
 
-            tag += '<tr id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2"><a href="/confirm/detail?conNo=' + conNo + '">' + conTitle
+            tag += '<tr class = "confirm-tr" id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2"><a href="/hrms/confirm/detail?conNo=' + conNo + '">' + conTitle
                 + '</a></td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
                 + '</td><td class = "col6">' + conStatus + '</td>';
 
@@ -168,7 +171,7 @@
             let conNo = $docInfo.firstChild.innerText;
 
             $remoBtn.onclick = () => {
-                if(!confirm('정말 삭제하시겠습니까?')){
+                if (!confirm('정말 삭제하시겠습니까?')) {
                     return;
                 }
 

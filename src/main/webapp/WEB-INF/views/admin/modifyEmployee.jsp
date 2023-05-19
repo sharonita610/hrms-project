@@ -3,15 +3,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <%@ include file="../main/include/header.jsp" %>
     <link rel="stylesheet" href="/assets/css/modifyEmployee.css">
 </head>
 
 <body>
-
+<div id="body-wrapper">
+    <%@ include file="../main/include/left-banner.jsp" %>
 <div class="addEmpFormWrapper">
-    <form action="/employees/add" method="post" enctype="multipart/form-data">
+    <form action="/hrms/employees/modify" method="post" enctype="multipart/form-data">
         <h1>사원 등록</h1>
         <div class="empProfileInput addInputForm">
             <h2>사진 : </h2>
@@ -40,8 +40,8 @@
         </div>
         <div class="empGenderInput addInputForm">
             <h2>성별 : </h2>
-            <label><input class="genderOption" type="radio" name="empGender" value="M" checked>남자</label>
-            <label><input class="genderOption" type="radio" name="empGender" value="F">여자</label>
+            <label class="genderOption"><input class="genderOption" type="radio" name="empGender" value="M" checked>남자</label>
+            <label class="genderOption"><input class="genderOption" type="radio" name="empGender" value="F">여자</label>
         </div>
         <div class="empBdayInput addInputForm">
             <h2>생일 : </h2><input id="empBirthDay" class="inputblank" name="empBirthDay" type="date">
@@ -97,9 +97,9 @@
         <button id="addBtn" type="submit">제출버튼</button>
     </form>
 </div>
-
+</div>
 <script>
-    const URL = '/employees';
+    const URL = '/hrms/employees';
     const $setDept = document.getElementById('setDept');
     const $setPos = document.getElementById('setPos');
     const readyToAdd = [false, false, false, false, false, false, false, false, false];

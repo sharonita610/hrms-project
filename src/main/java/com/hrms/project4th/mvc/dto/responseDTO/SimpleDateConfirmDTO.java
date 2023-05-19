@@ -57,8 +57,8 @@ public class SimpleDateConfirmDTO {
     }
 
     public String getShortenTitle (String title) {
-        if(title.length() > 15) {
-            return title.substring(0,15) + "...";
+        if(title.length() > 20) {
+            return title.substring(0,20) + "...";
         }
         return title;
     }
