@@ -322,7 +322,7 @@
 
 
 
-                <!-- MODIFY Modal -->
+                <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -332,36 +332,15 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <input type="text" class="modal-body modMod"></input>
+                            <input type="text" class="modal-body"></input>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary">수정</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- DELETE Modal -->
-                <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <input type="text" class="modal-body modDEL" value="삭제하시겠습니까?" readonly></input>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary delBtn-primary">삭제</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
             </section>
         </section>
     </div>
@@ -460,6 +439,9 @@
 
             if (boardReplies === null || boardReplies.length === 0) {
                 tag += "<div id='replyContentWriter' class='card-body'>댓글을 입력해 주세요</div>";
+
+
+
             } else {
                 for (let rep of boardReplies) {
                     const {
@@ -494,7 +476,7 @@
                     tag +=
                         // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
                         "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
-                        "         <button id='replyDelBtn' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop2'>삭제</button>";
+                        "         <a id='replyDelBtn' class='btn btn-primary' href='#'>삭제</a>";
                     // }
                     tag += "       </div>" +
                         "    </div>" +
@@ -514,7 +496,7 @@
         //버블링을 이용하여 a태그 효과 제거
         const $replyData = document.getElementById('replyData');
 
-        function deleteAndModifyEvent() {
+        function deleteEvent() {
             $replyData.onclick = e => {
                 // repNo값 가져오기
                 const $getReplyId = e.target.closest('#replyContent').dataset.replyid;
@@ -530,87 +512,65 @@
                 e.preventDefault();
                 if (e.target.matches('#replyDelBtn')) {
 
-                    const $rpRpNo = e.target.parentElement.parentElement.parentElement.dataset.replyid;
-                    console.log($rpRpNo);
-                    document.querySelector('.modDEL').dataset.rno = $rpRpNo;
-                    //empNo 값 뽑아서 모달에 넣어주기(부모에 부모에 형제에 첫번째 자식에 자식에 0번 인덱스)
-                    const $rpEmpNo = e.target.parentElement.parentElement.previousElementSibling.
-                    previousElementSibling.firstElementChild.lastElementChild.value;
-                    console.log($rpEmpNo);
-                    document.querySelector('.modDEL').dataset.reno = $rpEmpNo;
+                    
 
 
+                    console.log('삭제떠줘제에에에발~~~');
+                    if (!confirm('삭제하시겠습니까?'))
+                        return;
+
+                    // 삭제시 서버로 보낼 데이터 json에 담기
+                    const deletInfo = {
+                        empNo: $rpdelEmpNo,
+                        repNo: $getReplyId,
+                    };
+
+                    // 삭제 데이터 만들기
+
+                    const requestDeleteInfo = {
+                        method: 'DELETE',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(deletInfo)
+                    };
 
 
-                } else if (e.target.matches('#modifyBtn')) {
-                    console.log("수정");
+                    // fetch 시작
+                    fetch(URL, requestDeleteInfo)
+                        .then(res => {
+                            if (res.status === 200) {
+                                alert('삭제됬어!!!!!');
+                            } else {
+                                alert('실패ㅠㅠㅠㅠㅠ제에발!');
+                                return res.json();
+                            }
+                        }).then(responseResult => {
+                            findAllReplies(1)
+                        });
+
+                } else if (e.target.matches('#modifyBtn ')) {
+                    // console.log("수정");
 
                     // 모달에 뿌려줄 원래 댓글 text가져와서 모달에 repContent 넣어주기
                     const rpCon = e.target.parentElement.parentElement.children[0].innerText;
-                    document.querySelector('.modMod').value = rpCon;
-                    console.log(rpCon);
+                    document.querySelector('.modal-body').value = rpCon;
+                    // console.log(rpCon);
 
                     //댓글에서 repNo값 뽑아서 모달에 넣어주기
                     const $rpRpNo = e.target.parentElement.parentElement.parentElement.dataset.replyid;
-                    console.log($rpRpNo);
-                    document.querySelector('.modMod').dataset.rno = $rpRpNo;
+                    // console.log($rpRpNo);
+                    document.querySelector('.modal-body').dataset.rno = $rpRpNo;
 
 
                     //empNo 값 뽑아서 모달에 넣어주기(부모에 부모에 형제에 첫번째 자식에 자식에 0번 인덱스)
                     const $rpEmpNo = e.target.parentElement.parentElement.previousElementSibling.
                     previousElementSibling.firstElementChild.lastElementChild.value;
-                    // console.log('고급추적:', e.target);
-                    document.querySelector('.modMod').dataset.reno = $rpEmpNo;
+                    // console.log($rpEmpNo);
+                    document.querySelector('.modal-body').dataset.reno = $rpEmpNo;
 
                 }
             }
-
-        }
-
-        // 삭제버튼시 삭제 처리
-
-        function deleteBoardReply() {
-
-            // 삭제시 서버로 보낼 데이터 json에 담기
-            const $makedelButton = document.querySelector('.delBtn-primary');
-            $makedelButton.onclick = e => {
-                const $rpEmpNo = e.target.parentElement.parentElement.previousElementSibling.
-                previousElementSibling.firstElementChild.lastElementChild.value;
-
-                const $rpRpNo = e.target.parentElement.parentElement.parentElement.dataset.replyid;
-
-
-                const deletInfo = {
-                    empNo: $rpRpNo,
-                    repNo: $rpEmpNo,
-                };
-
-                // 삭제 데이터 만들기
-
-                const requestDeleteInfo = {
-                    method: 'DELETE',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(deletInfo)
-                };
-
-
-                // fetch 시작
-                fetch(URL, requestDeleteInfo)
-                    .then(res => {
-                        if (res.status === 200) {
-                            alert('삭제됬어!!!!!');
-                        } else {
-                            alert('실패ㅠㅠㅠㅠㅠ제에발!');
-                            return res.json();
-                        }
-                    }).then(responseResult => {
-                        findAllReplies(1)
-                    });
-
-            }
-
 
         }
 
@@ -623,12 +583,12 @@
             const $modifyButton = document.querySelector('.btn-primary');
 
             $modifyButton.onclick = e => {
-                const $getRepCont = document.querySelector('.modMod').value;
-                console.log($getRepCont);
-                const $getRepNo = document.querySelector('.modMod').dataset.rno;
-                console.log($getRepNo);
-                const $getEmpNo = document.querySelector('.modMod').dataset.reno;
-                console.log($getEmpNo);
+                const $getRepCont = document.querySelector('.modal-body').value;
+                // console.log($getRepCont);
+                const $getRepNo = document.querySelector('.modal-body').dataset.rno;
+                // console.log($getRepNo);
+                const $getEmpNo = document.querySelector('.modal-body').dataset.reno;
+                // console.log($getEmpNo);
                 const modifyInfo = {
                     method: 'PATCH',
                     headers: {
@@ -739,14 +699,10 @@
             //댓글 save
             makeReplyRegisterClickEvent();
 
-            // modal에 값 집어넣는 기능
-            deleteAndModifyEvent();
-
+            //삭제 기능
+            deleteEvent();
             //댓글 수정기능
             modifyBoardReply();
-
-            //삭제 기능
-            deleteBoardReply();
 
 
         })()
