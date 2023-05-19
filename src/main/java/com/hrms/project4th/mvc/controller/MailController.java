@@ -58,9 +58,9 @@ public class MailController {
         log.info("mailNo {}",mailNo);
         log.info("search {}",search);
         log.info("empNo {}",empNo);
-        List<MailDetailResponseDTO> mailDetail = mailService.getMailDetail(mailNo, search);
+        MailDetailResponseDTO mailDetail = mailService.getMailDetail(mailNo, search);
         model.addAttribute("md",mailDetail);
-        return "/mail/write";
+        return "/mail/detail";
     }
 
     @GetMapping("/mail-list-status")

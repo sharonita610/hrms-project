@@ -20,7 +20,7 @@ public interface MailMapper {
     List<MailResponseDTO> getMailList(@Param("empNo")Long empNo,@Param("s")MailSearch search);
 
     //메일 상세보기
-    List<MailDetailResponseDTO> getMailDetail(@Param("s") MailPage search,@Param("mailNo")Long mailNo);
+    MailDetailResponseDTO getMailDetail(@Param("s") MailPage search,@Param("mailNo")Long mailNo);
 
     //메일 상태값 변경 확인을하면 상태값이 y로 변경되어야한다
     void mailViewUpdate(Long mailNo);

@@ -103,8 +103,21 @@
   });
 }
 
+function detailmail() {
+  const $maillist = document.querySelectorAll('.mail');
+  $maillist.forEach($mail => {
+    const $targetmail = $mail.querySelector('.maildetail');
+    $targetmail.addEventListener('click', () => {
+      const $mailNo = +$mail.querySelector('div > p:first-child').innerText;
+	  console.log($mailNo);
+    	window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}';
+    });
+  });
+}
+
 (function () {
   dletemail();
+  detailmail()
 })();
 	
 	

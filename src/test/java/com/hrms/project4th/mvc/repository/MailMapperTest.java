@@ -47,7 +47,7 @@ class MailMapperTest {
     @DisplayName("메일번호가 50번 번호의 제목은 테스트용 메일15이다")
     void getMailDetailTest(){
        MailSearch mailSearch = new MailSearch();
-        List<MailDetailResponseDTO> mailDetailList = mailMapper.getMailDetail((MailPage) mailSearch, 284L);
+        MailDetailResponseDTO mailDetailList = mailMapper.getMailDetail((MailPage) mailSearch, 284L);
         System.out.println(mailDetailList.toString());
     }
 

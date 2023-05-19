@@ -33,7 +33,7 @@ public class MailService {
     }
 
     //특정 메일읽기 (메일상세보기) (메일의 번호가 필요함!)
-    public List<MailDetailResponseDTO> getMailDetail(Long mailNo, MailPage search) {
+    public MailDetailResponseDTO getMailDetail(Long mailNo, MailPage search) {
         //메일을 상세보기했으니 조회함(y)로 변경되어야한다
         mailMapper.mailViewUpdate(mailNo);
         return mailMapper.getMailDetail(search,mailNo);
