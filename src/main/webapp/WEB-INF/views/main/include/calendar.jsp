@@ -7,9 +7,10 @@
 <style>
     .calendar {
         border-collapse: collapse;
-        margin-top: 29%;
-        /*margin-left: 20px;*/
+        width: 250px;
+        height: fit-content;
     }
+
     td {
         border: 1px solid #a3a3a3;
         padding: 5px;
@@ -18,14 +19,19 @@
     .today {
         background-color: lightblue;
     }
+    .calendar-btn{
+        /*border: 1px solid darkslategrey;*/
+        /*border-radius: 25px;*/
+    }
 </style>
-<body>
-<table class="calendar">
+
+
+<table id="calendar"class="calendar">
     <tr>
         <th colspan="7">
-            <button onclick="prevMonth()">&#8249;</button>
+            <button class="calendar-btn" onclick="prevMonth()">&#8249;</button>
             <span id="currentMonth"></span>
-            <button onclick="nextMonth()">&#8250;</button>
+            <button class="calendar-btn" onclick="nextMonth()">&#8250;</button>
         </th>
     </tr>
     <tr>
@@ -39,7 +45,7 @@
     </tr>
     <tbody id="calendarBody"></tbody>
 </table>
-</body>
+
 
 <script>
     let today = new Date();
