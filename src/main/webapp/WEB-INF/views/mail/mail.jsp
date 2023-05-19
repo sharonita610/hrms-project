@@ -112,10 +112,14 @@
 		$mailli.addEventListener('click', (e) =>{
 			if(e.target.matches('.delete-button')){
 				console.log(e.target);
-					//console.log(e.target.previousElementSibling.firstElementChild.innerText);
-					const $mailNo = +e.target.previousElementSibling.firstElementChild.innerText;
+				const $mailNo = +e.target.previousElementSibling.firstElementChild.innerText;
 
-					window.location.href = '/hrms/mail-delete?mailNo='+ $mailNo +'&empNo='+'2';
+				const $confirm =confirm(e.target.previousElementSibling.firstElementChild.innerText + '번 메일을 삭제할까요?');
+
+				if($confirm){
+					window.location.href = '/hrms/mail-delete?mailNo='+ $mailNo +'&empNo='+'2'+'&mailpageNo=${i}';
+				}
+				return ;
 				}
 			});
 		}

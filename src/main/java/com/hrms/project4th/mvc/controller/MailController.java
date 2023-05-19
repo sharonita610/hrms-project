@@ -81,7 +81,13 @@ public class MailController {
         log.info("mailNo {}: ", mailNo);
         log.info("search {}: ", search);
         log.info("empNo {} : ",empNo);
-        return "redirect:/hrms/mail-list/?empNo="+empNo+"&mailType"+search.getMailType();
+        //메일 타입에 따라 리턴값 달라진다
+        String mailType = search.getMailType();
+        if(mailType.equals("mailto")) {
+            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType();
+        }else{
+            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType();
+        }
     }
 
 
