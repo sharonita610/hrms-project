@@ -24,7 +24,7 @@ class MailMapperTest {
        for (int i =1; i<=15; i++) {
 //           Mail mailTest = Mail.builder().mailTitle("테스트용메일"+i).mailContent("테스트용메일입니다"+i).mailFrom(8L).mailTo(10L).build();
 
-           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(2L).mailTo(1L).build();
+           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(15L).mailTo(2L).build();
            mailMapper.sendRequest(mailTest);
        }
    }
