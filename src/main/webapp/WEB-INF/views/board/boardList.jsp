@@ -4,23 +4,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SAMJO SANGSA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <!-- 기본세팅 css	-->
-    <link rel="stylesheet" href="/assets/css/common.css">
-    <!-- 헤더, 배너 고정 틀용 css -->
-    <link rel="stylesheet" href="/assets/css/header-banner.css">
-    <!-- 메인 페이지 list 포함 css -->
-    <link rel="stylesheet" href="/assets/css/main-page.css">
-    <link rel="stylesheet" href="/assets/css/board.css">
+    <%@ include file="../main/include/header.jsp" %>
+
+    <!-- <link rel="stylesheet" href="/assets/css/board.css"> -->
     <style>
+        .text{
+            margin-left :50px;
+            width: 70%;
+        }
         .search {
-            margin-bottom: 100px;
+            /* margin-left: 50px; */
+            width: 100%;
         }
 
         #board-title {
@@ -61,7 +57,7 @@
 
         .board_area .top-box #save-Btn {
             /* margin: 10px; */
-            margin-right: 50px;
+            /* margin-right: 10px; */
             margin-bottom: 10px;
 
         }
@@ -114,9 +110,10 @@
             height: 18px;
         }
 
-        .table td,
-        th {
+        .table td,th {
+            border: none;
             border-bottom: 1px solid #f4f4f4;
+            
         }
 
         .replyConut {
@@ -134,69 +131,17 @@
             background-color: #f7f7f7;
         }
 
-    
     </style>
 </head>
 
 
 <body>
-    <header class="common_wrap">
-        <section class="section-header">
-            <div class="head">
-                <ul>
-                    <li>
-                        <div class="logo-img">
-                            <a href="#">
-                                <img src="/resources/static/assets/img/samjo-logo.png" alt="로고">
-                            </a>
-                        </div>
-                    </li>
-                    <li>삼조상사에 오신 것을 환영합니다.</li>
-                    <li><a href="#"><span id="logout-button">로그아웃</span></a></li>
-                </ul>
-            </div>
-        </section>
-        <section class="section-sub-header">
-            <div class="nav-bar">
-                <ul id="tabs">
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">게시판</a></li>
-                    <li><a href="#">결재</a></li>
-                    <li><a href="#">메일</a></li>
-                    <li><a href="#">동호회</a></li>
-                </ul>
-            </div>
-        </section>
-    </header>
+
+
+    <!-- 게시판 시작 -->
     <div id="body-wrapper">
-        <section class="section-left-body">
-            <div id="left-body">
-                <div class="left-fix">
-                    <div class="information-box">
-                        <ul id="profile">
-                            <li id="photo"><a href="#">사원사진</a></li>
-                        </ul>
-                        <ul id="information">
-                            <li>사원번호</li>
-                            <li>이름</li>
-                            <li>휴대폰번호</li>
-                            <li>부서</li>
-                            <li>직책</li>
-                            <li>
-                                <button id="change-info" type="submit">수정</button>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- 게시판 시작 -->
-
+        <%@ include file="../main/include/left-banner.jsp" %>
         <section class="text">
-
-
             <div class="board_area">
                 <div class="top-box">
 
@@ -221,7 +166,7 @@
                                 <th scope="row" id="boardNo">${a.boardNo}</th>
                                 <td id="title">
                                     <a
-                                        href="/hrms/board-detail/?boardNo=${a.boardNo}&boardPageNo=${boardPageMaker.boardPage.boardPageNo}&bdType=${a.bdType}">${a.shortTitle}
+                                        href="/hrms/board/board-detail/?boardNo=${a.boardNo}&boardPageNo=${boardPageMaker.boardPage.boardPageNo}&bdType=${a.bdType}">${a.shortTitle}
                                         <c:if test="${a.repNo!=0}">
                                             <span class="replyConut">[${a.repNo}]</span>
                                         </c:if>
@@ -239,15 +184,15 @@
 
                 <nav class="showPage" aria-label="Page navigation example">
                     <ul class="pagination">
-                        <a class="page-link" href="/hrms/board-list/?boardPageNo=1" aria-label="Previous"><span
+                        <a class="page-link" href="/hrms/board/board-list/?boardPageNo=1" aria-label="Previous"><span
                                 aria-hidden="true">&laquo;</span>
                         </a>
                         <c:if test="${boardPageMaker.prev}">
                             <li class="page-item"><a class="page-link"
-                                    href="/hrms/board-list/?boardPageNo=${boardPageMaker.start-1}">이전</a></li>
+                                    href="/hrms/board/board-list/?boardPageNo=${boardPageMaker.start-1}">이전</a></li>
                         </c:if>
                         <c:forEach var="i" begin="${boardPageMaker.start}" end="${boardPageMaker.end}">
-                            <li class="page-item"><a class="page-link" href="/hrms/board-list/?boardPageNo=${i}"
+                            <li class="page-item"><a class="page-link" href="/hrms/board/board-list/?boardPageNo=${i}"
                                     data-pNo="${i}">${i}</a></li>
                         </c:forEach>
                         <c:if test="${boardPageMaker.next}">
@@ -262,7 +207,7 @@
             </div>
             <!-- 검색기능  -->
             <header class="search">
-                <form class="form-inline" action="/hrms/board-list" method="get">
+                <form class="form-inline" action="/hrms/board/board-list" method="get">
                     <div class="search-bar">
                         <select class="form-control mr-sm-2" id="category" name="boardType">
                             <option value="title">제목</option>
@@ -274,64 +219,62 @@
                             aria-label="Search" name="boardKeyWord"> <i id="keyboard" class="fa fa-keyboard-o"></i>
                         <button class="btn btn-outline-primary my-2 my-sm-0" id="search-button"
                             type="submit">검색</button>
-
                     </div>
-
                 </form>
-
             </header>
 
         </section>
-        <script>
-            //저장기능
-            const $save = document.getElementById('save-Btn');
-            $save.onclick = function () {
-                window.location.href = '/hrms/board-save/'
-            };
-
-            // const link = document.querySelector('.page-link');
-            // link.onclick = () => {
-            //     link.style.color = "red";
-            // }
-
-
-            function colorSwitch() {
-
-                const curPageNum = '${boardPageMaker.boardPage.boardPageNo}'
-                console.log(curPageNum);
-
-                const $ul = document.querySelector('.pagination');
-
-           
-
-            }
-            colorSwitch();
-
-
-
-            //삭제기능
-            const $cardWrapper = document.querySelector('.card-wrapper')
-            // const $mainBox = document.querySelector('.main-box');
-
-            // $cardWrapper.addEventListener('click', e => {
-            //     if (e.target.matches('.main-box *')) {
-            //         const $delBtn = e.target.closest('#delete-btn');
-            //         window.location.href = $delBtn.dataset.href;
-            //     }
-
-            // })
-
-            //디테일 기능
-
-            // $cardWrapper.addEventListener('click', e => {
-            //     if (e.target.matches('.main-box *')) {
-            //         const $detail = e.target.closest('#detail-btn');
-            //         window.location.href = $detail.dataset.href;
-            //     }
-
-            // })
-        </script>
     </div>
+    <script>
+        //저장기능
+        const $save = document.getElementById('save-Btn');
+        $save.onclick = function () {
+            window.location.href = '/hrms/board/board-save/'
+        };
+
+        // const link = document.querySelector('.page-link');
+        // link.onclick = () => {
+        //     link.style.color = "red";
+        // }
+
+
+        function colorSwitch() {
+
+            const curPageNum = '${boardPageMaker.boardPage.boardPageNo}'
+            console.log(curPageNum);
+
+            const $ul = document.querySelector('.pagination');
+
+
+
+        }
+        colorSwitch();
+
+
+
+        //삭제기능
+        const $cardWrapper = document.querySelector('.card-wrapper')
+        // const $mainBox = document.querySelector('.main-box');
+
+        // $cardWrapper.addEventListener('click', e => {
+        //     if (e.target.matches('.main-box *')) {
+        //         const $delBtn = e.target.closest('#delete-btn');
+        //         window.location.href = $delBtn.dataset.href;
+        //     }
+
+        // })
+
+        //디테일 기능
+
+        // $cardWrapper.addEventListener('click', e => {
+        //     if (e.target.matches('.main-box *')) {
+        //         const $detail = e.target.closest('#detail-btn');
+        //         window.location.href = $detail.dataset.href;
+        //     }
+
+        // })
+    </script>
+
 </body>
 
 </html>

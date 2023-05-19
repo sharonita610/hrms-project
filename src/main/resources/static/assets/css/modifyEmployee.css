@@ -11,6 +11,11 @@
     border-bottom: 2px solid gray;
     padding: 20px 10px 30px 10px;
     position: relative;
+    height: fit-content;
+}
+
+.genderOption {
+    font-size: 15px;
 }
 
 .addEmpFormWrapper h1 {
@@ -48,7 +53,7 @@
     width: 280px;
 }
 
-#modiBtn {
+#addBtn {
     display: none;
 }
 
