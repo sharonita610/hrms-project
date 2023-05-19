@@ -161,7 +161,7 @@
                 </section>
             </div>
             <section class="detail-part">
-                <section class="mofidy-part">
+                <section class="modify-part">
                     <section class="container">
                         <h1 class="detail-title">수정하기</h1>
                         <form action="/hrms/board-modify" method="post">

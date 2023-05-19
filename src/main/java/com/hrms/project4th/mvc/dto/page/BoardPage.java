@@ -7,7 +7,7 @@ import lombok.*;
 
 @AllArgsConstructor
 @Builder
-public class BoardPage{
+public class    BoardPage{
 
     private int boardAmount;
 

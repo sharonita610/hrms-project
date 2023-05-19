@@ -32,9 +32,10 @@ public interface BoardMapper {
     boolean boardModify(Board board);
 
     //전체 게시글 수 구하는 기능
-    int countBoardPage();
+    int countBoardPage(BoardSearch boardSearch);
 
     // view count를 1 올리는 기능
     long countUp(long viewCount);
+
 
 }

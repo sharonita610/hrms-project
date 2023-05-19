@@ -102,8 +102,13 @@ public class BoardService {
     }
 
 
-    public int boardPageCount(){
-        return  boardMapper.countBoardPage();
+    /**
+     *  검색시 검색어와 타입 정보를 가지고 조건에 맞는 정보의 개수를 알려주는 기능
+     * @param boardSearch
+     * @return 조건에 맞는 정보의 개수 리턴
+     */
+    public int boardPageCount(BoardSearch boardSearch){
+        return  boardMapper.countBoardPage(boardSearch);
     }
 
 }

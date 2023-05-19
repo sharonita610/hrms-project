@@ -8,18 +8,24 @@
     <select id="boardFindAll" resultType="board">
         SELECT
         b.board_no, b.bd_type, b.bd_title, b.bd_content,
-        b.bd_date, b.emp_no, b.view_count, e.emp_name
+        b.bd_date, b.emp_no, b.view_count, e.emp_name, count(r.rep_no) AS repNo
         FROM hr_board b
-        JOIN hr_employees e ON e.emp_no = b.emp_no
+        LEFT JOIN hr_reply r ON b.board_no = r.board_no
+        LEFT JOIN hr_employees e ON e.emp_no = b.emp_no
         <if test="boardType == 'title'">
             WHERE b.bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
-        </if>
-        <if test="boardType == 'boardType'">
-            WHERE b.bd_type LIKE CONCAT('%', #{boardKeyWord}, '%')
         </if>
         <if test="boardType == 'boardContent'">
             WHERE b.bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
         </if>
+        <if test="boardType=='empName'">
+            WHERE e.EMP_NAME LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType=='titleAndContent'">
+            WHERE b.bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
+            OR b.bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        GROUP BY b.board_no
         ORDER BY 1 DESC
         Limit #{pageLimitNum},#{boardAmount}
     </select>
@@ -65,20 +71,30 @@
         SET bd_type=#{bdType}, bd_title=#{bdTitle}, bd_content=#{bdContent}
         WHERE board_no=#{boardNo}
     </update>
-    
+
     <select id="countBoardPage" resultType="int">
         SELECT COUNT(*)
         FROM hr_board
-<!--        <if test="BdType == 'NOTICE'">-->
-<!--        WHERE  bd_type='NOTICE'-->
-<!--        </if>-->
-<!--        <if test="BdType == 'FREE'">-->
-<!--            WHERE bd_type='FREE'-->
-<!--        </if>-->
-<!--        <if test="BdType == 'NONAME'">-->
-<!--            WHERE bd_type='NONAME'-->
-<!--        </if>-->
+        <if test="boardType=='title'">
+            WHERE bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType=='boardContent'">
+            WHERE bd_content LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType=='empName'">
+            JOIN hr_employees ON hr_board.EMP_NO = hr_employees.EMP_NO
+            WHERE hr_employees.EMP_NAME LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType=='titleAndContent'">
+            WHERE bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
+            OR bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <!--SELECT COUNT(*) AS emp_count
+FROM hr_board
+JOIN hr_employees ON hr_board.EMP_NO = hr_employees.EMP_NO
+WHERE hr_employees.EMP_NAME = 'JACKSON300'-->
     </select>
+
     <update id="countUp">
         UPDATE hr_board
         SET view_count=view_count+1
