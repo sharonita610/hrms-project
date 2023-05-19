@@ -86,6 +86,7 @@
 
         .table .table-top {
             background-color: #f5f5f5;
+            font-weight: 600;
         }
 
         .table #boardNo {

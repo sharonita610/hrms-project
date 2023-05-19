@@ -60,6 +60,7 @@
 
             .container-box {
                 max-width: 1000px;
+                height: fit-content;
                 margin: 0 auto;
                 border: 1px solid #000;
                 padding: 20px
@@ -116,6 +117,12 @@
             #content {
                 resize: none;
             }
+            /* content 영역 */
+            #mytextarea{
+                height: 600px;
+
+            }
+
 
             /* 제목 css */
 
@@ -147,7 +154,8 @@
                 display: inline-block;
                 width: 200px;
             }
-
+            
+       
     
         </style>
     </head>
