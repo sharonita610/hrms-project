@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/assets/css/addEmployee.css">
+    <link rel="stylesheet" href="/assets/css/modifyEmployee.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
             <div id="noPic" class="alert">사진이 선택되지 않았습니다.</div>
         </div>
 
-        <div id="picFrame" class="profilePic"><img id="showPic" src=""></div>
+        <div id="picFrame" class="profilePic"><img id="showPic" src="/hrms/2023/05/18/1234_hoshino.jpg"></div>
 
         <div class="empNameInput addInputForm">
             <h2>이름 : </h2>
@@ -111,6 +111,25 @@
     const $salary = document.getElementById('empSalary');
     const $myBoss = document.getElementById('setBoss');
     const $emailInput = document.getElementById('setEmail');
+    const posCode = "005";
+    const deptCode = "001";
+    const empMyBoss = "1";
+
+    //부서 자동 선택
+    const $defaultDept = document.getElementById('setDept').children;
+    for (let option of $defaultDept) {
+        if (option.value === deptCode) {
+            option.setAttribute('selected', 'selected');
+        }
+    }
+
+    //직급 자동선택
+    const $defaultPos = document.getElementById('setPos').children;
+    for (let option of $defaultPos) {
+        if (option.value === posCode) {
+            option.setAttribute('selected', 'selected');
+        }
+    }
 
     //입력 검증
     function readyToAddCheck() {
@@ -390,6 +409,14 @@
             .then(result => {
                 renderBossList(result);
             })
+
+        //직속상사 자동선택
+        const $defaultBoss = document.getElementById('setBoss').children;
+        for (let option of $defaultBoss) {
+            if (option.value === empMyBoss) {
+                option.setAttribute('selected', 'selected');
+            }
+        }
     }
 
     function renderBossList(result) {
@@ -424,7 +451,6 @@
             .then(flag => {
                 const dupleMessage = document.getElementById('duplicatedEmail');
                 if (flag) {
-            
                     //이메일이 중복되었습니다 메세지 출력
                     dupleMessage.style.display = 'block';
                     readyToAdd[3] = false;
