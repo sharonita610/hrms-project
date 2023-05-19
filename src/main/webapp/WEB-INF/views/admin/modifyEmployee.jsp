@@ -123,6 +123,7 @@
         }
     }
 
+
     //직급 자동선택
     const $defaultPos = document.getElementById('setPos').children;
     for (let option of $defaultPos) {
