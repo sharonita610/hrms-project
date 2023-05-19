@@ -60,6 +60,7 @@
 
             .container-box {
                 max-width: 1000px;
+                height: 810px;
                 margin: 0 auto;
                 border: 1px solid #000;
                 padding: 20px
@@ -143,12 +144,22 @@
                 height: 120px;
 
             }
-            .col-md-4{
+
+            .col-md-4 {
+                /* margin-top; */
                 display: inline-block;
                 width: 200px;
             }
 
-    
+            #newReplyText {
+                overflow: auto;
+                resize: none;
+            }
+
+         
+            .form-control{
+                margin-bottom: 35px;
+            }
         </style>
     </head>
 
@@ -423,20 +434,37 @@
                 if (boardReplies === null || boardReplies.length === 0) {
                     tag += "<div id='replyContent' class='card-body'>댓글을 입력해 주세요</div>";
 
+            //         "repNo": 2536,
+            // "repContent": "reply content536",
+            // "empNo": 69,
+            // "replyRegDate": "2023:05:17 14:46",
+            // "deptName": "hrRESOURCE`",
+            // "posName": "chef",
+            // "roleName": "cook"
+
+
                 } else {
                     for (let rep of boardReplies) {
                         const {
                             repNo,
                             empNo,
                             replyRegDate,
-                            repContent
+                            repContent,
+                            deptName,
+                            posName,
+                            roleName,
+                            empName
                         } = rep;
-
+                        // +'/'+postName+'/'+roleName
                         tag += "<div id='replyContent' class='card-body' data-replyId='" + repNo + "'>" +
                             "    <div class='row user-block'>" +
                             "       <span class='col-md-3'>" +
+                            "           <span>"+deptName+"</span><span>/</span>" +
+                            "           <span>"+posName+"</span><span>/</span>"+
+                            "            <span>"+roleName+"</span><span>/</span>"+
+                            "            <span>"+empName+"</span><span>/</span>"+
                             "         <b>" + empNo + "</b>" +
-                            "       </span>" +
+                            "       </.span>" +
                             "       <span class='offset-md-6 col-md-3 text-right'><b>" + replyRegDate +
                             "</b></span>" +
                             "    </div><br>" +
