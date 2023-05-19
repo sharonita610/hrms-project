@@ -5,7 +5,7 @@
 }
 
 .addEmpFormWrapper {
-    width: 600px;
+    width: 800px;
     margin: 50px auto;
     border-top: 2px solid gray;
     border-bottom: 2px solid gray;
@@ -21,7 +21,7 @@
 .addEmpFormWrapper h1 {
     font-size: 20px;
     margin: 0;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 } 
 
 .addEmpFormWrapper h2 {
@@ -34,7 +34,7 @@
 .addEmpFormWrapper .addInputForm {
     width: fit-content;
     display: flex;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .addEmpFormWrapper .addInputForm .inputblank {
@@ -53,7 +53,7 @@
     width: 280px;
 }
 
-#addBtn {
+#modiBtn {
     display: none;
 }
 

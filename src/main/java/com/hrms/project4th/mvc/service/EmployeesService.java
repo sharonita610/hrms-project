@@ -33,19 +33,13 @@ public class EmployeesService {
         return employeesMapper.removeEmployee(empNo);
     }
 
-    public boolean modifyEmployees(ModifyEmployeeDTO dto) {
-        Employees emp = Employees.builder()
-                .empNo(dto.getEmpNo())
-                .empEmail(dto.getEmpEmail())
-                .empPassword(dto.getEmpPassword())
-                .empSalary(dto.getEmpSalary())
-                .empPhone(dto.getEmpPhone())
-                .empMyBoss(dto.getEmpMyBoss())
-                .posCode(dto.getPosCode())
-                .roleCode(dto.getRoleCode())
-                .deptCode(dto.getDeptCode())
-                .build();
+    public boolean modifyEmployees(ModifyEmployeeDTO dto, String savePath) {
+        Employees emp = new Employees(dto, savePath);
         return employeesMapper.modifyEmployees(emp);
+    }
+    public boolean modifyEmployeesWithNoProfile(ModifyEmployeeDTO dto) {
+        Employees emp = new Employees(dto);
+        return employeesMapper.modifyEmployeesWithNoProfile(emp);
     }
 
     public List<GetMyBossResponseDTO> getMyBossNames(MyBossRequestDTO dto) {

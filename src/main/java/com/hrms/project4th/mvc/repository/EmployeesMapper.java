@@ -34,4 +34,6 @@ public interface  EmployeesMapper {
 
     // 사원 번호 바꾸는 mapper
     boolean updatePhoneNumber(String empEmail, String newPhone);
+
+    boolean modifyEmployeesWithNoProfile(Employees emp);
 }

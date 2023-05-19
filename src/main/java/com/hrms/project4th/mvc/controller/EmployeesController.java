@@ -48,7 +48,7 @@ public class EmployeesController {
         String savePath = FileUtil.uploadFile(dto.getEmpPhone(), dto.getProfile(), rootPath);
         log.info(rootPath);
         employeesService.addEmployee(dto, savePath);
-        return "redirect:/employees/add"; //전체사원 리스트로 리다이렉트
+        return "redirect:/hrms/employees/add"; //전체사원 리스트로 리다이렉트
     }
 
     @GetMapping("/add/check")
@@ -69,7 +69,14 @@ public class EmployeesController {
     //사원 수정 디비 반영
     @PostMapping("/modify")
     public String modifyEmployees(ModifyEmployeeDTO dto){
-        employeesService.modifyEmployees(dto);
+        if(dto.getProfile().isEmpty()) {
+            log.info("프로파일이 널입니다");
+            employeesService.modifyEmployeesWithNoProfile(dto);
+        } else {
+            log.info("프로파일이 널이 아닙니다");
+            String savePath = FileUtil.uploadFile(dto.getEmpPhone(), dto.getProfile(), rootPath);
+            employeesService.modifyEmployees(dto, savePath);
+        }
         return "admin/modifyEmployee"; //리스트로 리다이렉트로 변경 예정 !
     }
 

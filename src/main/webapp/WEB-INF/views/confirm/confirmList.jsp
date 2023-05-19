@@ -10,29 +10,30 @@
 <body>
 <div id="body-wrapper">
     <%@ include file="../main/include/left-banner.jsp" %>
+    <div class="forscroll">
+        <div class="confirm-page-wrapper">
 
-    <div class="confirm-page-wrapper">
-
-        <div class="confirm-titleline">
-            <h1>결재문서함</h1>
-            <a class="rq-confirm" href="/hrms/confirm/rq-form">문서 작성하기</a>
-        </div>
-
-        <div class="confirm-outer-container">
-            <h2>&lt;결재대기문서&gt;</h2>
-            <div class="confirm-box waiting-list">
-                <table id="waiting-table">
-                </table>
+            <div class="confirm-titleline">
+                <h1>결재문서함</h1>
+                <a class="rq-confirm" href="/hrms/confirm/rq-form">문서 작성하기</a>
             </div>
-            <h2>&lt;결재완료문서&gt;</h2>
-            <div class="confirm-box confirmed-list">
-                <table id="confirmed-table">
-                </table>
-            </div>
-            <h2>&lt;반려문서&gt;</h2>
-            <div class="confirm-box rejected-list">
-                <table id="rejected-table">
-                </table>
+
+            <div class="confirm-outer-container">
+                <h2>&lt;결재대기문서&gt;</h2>
+                <div class="confirm-box waiting-list">
+                    <table id="waiting-table">
+                    </table>
+                </div>
+                <h2>&lt;결재완료문서&gt;</h2>
+                <div class="confirm-box confirmed-list">
+                    <table id="confirmed-table">
+                    </table>
+                </div>
+                <h2>&lt;반려문서&gt;</h2>
+                <div class="confirm-box rejected-list">
+                    <table id="rejected-table">
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -5,14 +5,14 @@
 }
 
 .addEmpFormWrapper {
-    width: 600px;
+    width: 800px;
     margin: 50px auto;
     border-top: 2px solid gray;
     border-bottom: 2px solid gray;
     padding: 20px 10px 30px 10px;
     position: relative;
     height: fit-content;
-    /* border: 1px solid #000; */
+    /*border: 1px solid #000;*/
 }
 
 .genderOption {
@@ -22,7 +22,7 @@
 .addEmpFormWrapper h1 {
     font-size: 20px;
     margin: 0;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 } 
 
 .addEmpFormWrapper h2 {
@@ -34,7 +34,7 @@
 
 .addEmpFormWrapper .addInputForm {
     display: flex;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .addEmpFormWrapper .addInputForm .inputblank {

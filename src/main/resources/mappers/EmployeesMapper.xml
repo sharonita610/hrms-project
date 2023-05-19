@@ -25,7 +25,7 @@
     </select>
 
     <select id="getMyBossNames" resultType="employees">
-        select emp_name, pos_code from hr_employees
+        select emp_name, pos_code, emp_no from hr_employees
         where dept_code = #{deptCode}
     </select>
 
@@ -41,6 +41,12 @@
     </insert>
 
     <update id="modifyEmployees">
+        update hr_employees set
+        emp_email = #{empEmail}, emp_password = #{empPassword}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}, profile = #{profile}
+        where emp_no = #{empNo}
+    </update>
+
+    <update id="modifyEmployeesWithNoProfile">
         update hr_employees set
         emp_email = #{empEmail}, emp_password = #{empPassword}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}
         where emp_no = #{empNo}

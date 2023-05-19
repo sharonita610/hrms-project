@@ -10,99 +10,102 @@
 <body>
 <div id="body-wrapper">
     <%@ include file="../main/include/left-banner.jsp" %>
-<div class="addEmpFormWrapper">
-    <form action="/hrms/employees/modify" method="post" enctype="multipart/form-data">
-        <h1>사원 등록</h1>
-        <div class="empProfileInput addInputForm">
-            <h2>사진 : </h2>
-            <input class="inputblank" id="profileImage" name="profile" type="file" accept="image/*">
-            <div id="noPic" class="alert">사진이 선택되지 않았습니다.</div>
-        </div>
+    <div class="addEmpFormWrapper">
 
-        <div id="picFrame" class="profilePic"><img id="showPic" src="/hrms/2023/05/18/1234_hoshino.jpg"></div>
+        <form action="/hrms/employees/modify" method="post" enctype="multipart/form-data">
+            <h1>사원 정보 수정</h1>
+            <div class="empProfileInput addInputForm">
+                <h2>사진 : </h2>
+                <input class="inputblank" id="profileImage" name="profile" type="file" accept="image/*">
+                <div id="noPic" class="alert">사진이 선택되지 않았습니다.</div>
+            </div>
 
-        <div class="empNameInput addInputForm">
-            <h2>이름 : </h2>
-            <input id="empName" class="inputblank" type="text" name="empName" placeholder="홍길동">
-            <div id="noName" class="alert">최소 두 글자 이상의 이름을 입력해주세요.</div>
-        </div>
-        <div class="empPhoneInput addInputForm">
-            <h2>전화번호 : </h2>
-            <input id="empPhone" class="inputblank" name="empPhone" type="text" placeholder="0100000000">
-            <div id="noPhone" class="alert">정확한 휴대폰 번호를 입력해주세요.</div>
-        </div>
-        <div class="empEmailInput addInputForm">
-            <h2>이메일 : </h2>
-            <input id="setEmail" class="inputblank" type="text" name="empEmail" placeholder="hong">
-            <h2 id="email-address">&nbsp;@samjosangsa.com</h2>
-            <div id="duplicatedEmail" class="alert">이메일이 중복되었습니다.</div>
-            <div id="noEmail" class="alert">이메일을 입력해주세요.</div>
-        </div>
-        <div class="empGenderInput addInputForm">
-            <h2>성별 : </h2>
-            <label class="genderOption"><input class="genderOption" type="radio" name="empGender" value="M" checked>남자</label>
-            <label class="genderOption"><input class="genderOption" type="radio" name="empGender" value="F">여자</label>
-        </div>
-        <div class="empBdayInput addInputForm">
-            <h2>생일 : </h2><input id="empBirthDay" class="inputblank" name="empBirthDay" type="date">
-            <div id="isAdult" class="alert">정확한 생년월일을 입력해주세요.</div>
-        </div>
-        <div class="empSalaryInput addInputForm">
-            <h2>급여 : </h2>
-            <input id="empSalary" class="inputblank" name="empSalary" type="text" placeholder="1000000">
-            <div id="payCheck" class="alert">정확한 급여를 입력해주세요</div>
-        </div>
-        <div class="empDeptInput addInputForm">
-            <h2>부서코드 : </h2>
-            <select id="setDept" class="inputblank" name="deptCode">
-                <option value="none" selected disabled hidden>부서를 선택하세요</option>
-                <option value="001">IT</option>
-                <option value="002">HR</option>
-                <option value="003">SALES</option>
-                <option value="004">MARKETING</option>
-                <option value="005">FINANCE</option>
-                <option value="006">MANAGEMENT</option>
-            </select>
-            <div id="noDept" class="alert">부서가 선택되지 않았습니다.</div>
-        </div>
-        <div class="empPosInput addInputForm">
-            <h2>직급코드 : </h2>
-            <select id="setPos" class="inputblank" name="posCode">
-                <option value="none" selected disabled hidden>직급을 선택하세요</option>
-                <option value="001">대표이사</option>
-                <option value="002">부장</option>
-                <option value="003">과장</option>
-                <option value="004">대리</option>
-                <option value="005">사원</option>
-            </select>
-            <div id="noPos" class="alert">직급이 선택되지 않았습니다.</div>
-        </div>
-        <div class="empRoleInput addInputForm">
-            <h2>직책코드 : </h2>
-            <select class="inputblank" name="roleCode">
-                <option value="none" selected disabled hidden>직책을 선택하세요</option>
-                <option value="00000">관리자</option>
-                <option value="11111">부서장</option>
-            </select>
-        </div>
-        <div class="empBossInput addInputForm">
-            <h2>직속상사 : </h2>
-            <select id="setBoss" class="inputblank" name="empMyBoss">
+            <div id="picFrame" class="profilePic"><img id="showPic"  src="/hrms/2023/05/18/1234_hoshino.jpg"></div>
 
-            </select>
-            <div id="noBoss" class="alert">직속상사를 선택해주세요.</div>
-        </div>
 
-        <div id="emp-submit">사원 등록</div>
-        <button id="addBtn" type="submit">제출버튼</button>
-    </form>
-</div>
+            <div class="empNameInput addInputForm">
+                <input type="hidden" name="empNo" value="78">
+                <h2>이름 : </h2>
+                <input id="empName" class="inputblank" type="text" name="empName" value="김중앙">
+                <div id="noName" class="alert">최소 두 글자 이상의 이름을 입력해주세요.</div>
+            </div>
+            <div class="empPhoneInput addInputForm">
+                <h2>전화번호 : </h2>
+                <input id="empPhone" class="inputblank" name="empPhone" type="text" value="01022222222">
+                <div id="noPhone" class="alert">정확한 휴대폰 번호를 입력해주세요.</div>
+            </div>
+            <div class="empEmailInput addInputForm">
+                <h2>이메일 : </h2>
+                <input id="setEmail" class="inputblank" type="text" name="empEmail" value="center">
+                <h2 id="email-address">&nbsp;@samjosangsa.com</h2>
+                <div id="duplicatedEmail" class="alert">이메일이 중복되었습니다.</div>
+                <div id="noEmail" class="alert">이메일을 입력해주세요.</div>
+            </div>
+            <div class="empPasswordInput addInputForm">
+                <h2>비밀번호 : </h2>
+                <input id="setPassword" class="inputblank" type="text" name="empPassword">
+            </div>
+            <div class="empBdayInput addInputForm">
+                <h2>생일 : </h2><input id="empBirthDay" class="inputblank" name="empBirthDay" type="date"
+                                     value="2000-01-15">
+                <div id="isAdult" class="alert">정확한 생년월일을 입력해주세요.</div>
+            </div>
+            <div class="empSalaryInput addInputForm">
+                <h2>급여 : </h2>
+                <input id="empSalary" class="inputblank" name="empSalary" type="text" value="2200000">
+                <div id="payCheck" class="alert">정확한 급여를 입력해주세요</div>
+            </div>
+            <div class="empDeptInput addInputForm">
+                <h2>부서코드 : </h2>
+                <select id="setDept" class="inputblank" name="deptCode">
+                    <option value="none" selected disabled hidden>부서를 선택하세요</option>
+                    <option value="001">IT</option>
+                    <option value="002">HR</option>
+                    <option value="003">SALES</option>
+                    <option value="004">MARKETING</option>
+                    <option value="005">FINANCE</option>
+                    <option value="006">MANAGEMENT</option>
+                </select>
+                <div id="noDept" class="alert">부서가 선택되지 않았습니다.</div>
+            </div>
+            <div class="empPosInput addInputForm">
+                <h2>직급코드 : </h2>
+                <select id="setPos" class="inputblank" name="posCode">
+                    <option value="none" selected disabled hidden>직급을 선택하세요</option>
+                    <option value="001">대표이사</option>
+                    <option value="002">부장</option>
+                    <option value="003">과장</option>
+                    <option value="004">대리</option>
+                    <option value="005">사원</option>
+                </select>
+                <div id="noPos" class="alert">직급이 선택되지 않았습니다.</div>
+            </div>
+            <div class="empRoleInput addInputForm">
+                <h2>직책코드 : </h2>
+                <select class="inputblank" name="roleCode">
+                    <option value="none" selected>직책을 선택하세요</option>
+                    <option value="00000">관리자</option>
+                    <option value="11111">부서장</option>
+                </select>
+            </div>
+            <div class="empBossInput addInputForm">
+                <h2>직속상사 : </h2>
+                <select id="setBoss" class="inputblank" name="empMyBoss">
+
+                </select>
+                <div id="noBoss" class="alert">직속상사를 선택해주세요.</div>
+            </div>
+
+            <div id="emp-submit">변경사항 등록</div>
+            <button id="modiBtn" type="submit">제출버튼</button>
+        </form>
+    </div>
 </div>
 <script>
     const URL = '/hrms/employees';
     const $setDept = document.getElementById('setDept');
     const $setPos = document.getElementById('setPos');
-    const readyToAdd = [false, false, false, false, false, false, false, false, false];
+    const readyToAdd = [false, false, false, false, false, false, false];
     const $setBoss = document.getElementById('setBoss');
     const $profile = document.getElementById('profileImage');
     const $empName = document.getElementById('empName');
@@ -111,9 +114,11 @@
     const $salary = document.getElementById('empSalary');
     const $myBoss = document.getElementById('setBoss');
     const $emailInput = document.getElementById('setEmail');
+    const $showPic = document.getElementById('showPic');
     const posCode = "005";
     const deptCode = "001";
     const empMyBoss = "1";
+
 
     //부서 자동 선택
     const $defaultDept = document.getElementById('setDept').children;
@@ -132,19 +137,31 @@
         }
     }
 
+    setMyBoss();
+    // pickMyBoss();
+    //
+    // //직속상사 자동선택
+    // function pickMyBoss() {
+    //     const $defaultBoss = document.getElementById('setBoss').children;
+    //     for (let option of $defaultBoss) {
+    //         if (option.value === empMyBoss) {
+    //             option.setAttribute('selected', 'selected');
+    //         }
+    //     }
+    // }
+
     //입력 검증
     function readyToAddCheck() {
 
-        //프로필사진 검사
-        if ($profile.files.length !== 0) {
-            document.getElementById('noPic').style.display = 'none';
-            readyToAdd[0] = true;
-            console.log(readyToAdd[0]);
-        } else {
-            document.getElementById('noPic').style.display = 'block';
-            readyToAdd[0] = false;
-            console.log(readyToAdd[0]);
-        }
+        // //프로필사진 검사
+        // if ($profile.files.length !== 0) {
+        //     document.getElementById('noPic').style.display = 'none;';
+        //     readyToAdd[0] = true;
+        // } else {
+        //     document.getElementById('noPic').style.display = 'none;';
+        //     readyToAdd[0] = true;
+        //     console.log(readyToAdd[0]);
+        // }
 
         //이름 검사
         if ($empName.value.trim().length >= 2) {
@@ -240,55 +257,43 @@
 
         //직급코드 검사
         if ($setPos.value === 'none') {
-            readyToAdd[7] = false;
+            readyToAdd[0] = false;
             document.getElementById('noPos').style.display = 'block';
-            console.log(readyToAdd[7]);
+            console.log(readyToAdd[0]);
         } else {
-            readyToAdd[7] = true;
-            console.log(readyToAdd[7]);
+            readyToAdd[0] = true;
+            console.log(readyToAdd[0]);
             document.getElementById('noPos').style.display = 'none';
         }
 
-        //직속상사 검사
-
-        if ($myBoss.value !== 'none') {
-            readyToAdd[8] = true;
-            document.getElementById('noBoss').style.display = 'block';
-            console.log(readyToAdd[8]);
-        } else {
-            readyToAdd[8] = false;
-            document.getElementById('noBoss').style.display = 'none';
-            console.log(readyToAdd[8]);
-        }
+        // //직속상사 검사
+        // if ($myBoss.value !== '001' && $myBoss.value !== '002') {
+        //     if ($myBoss.value !== 'none') {
+        //         readyToAdd[8] = true;
+        //         document.getElementById('noBoss').style.display = 'block';
+        //         console.log(readyToAdd[8]);
+        //     } else {
+        //         readyToAdd[8] = false;
+        //         document.getElementById('noBoss').style.display = 'none';
+        //         console.log(readyToAdd[8]);
+        //     }
+        // }
 
     }
 
-    //프로필 사진 입력 검사
+    //프로필 사진 입력
     $profile.onchange = () => {
-        if ($profile.files.length !== 0) {
-            //새로운 파일 선택시 미리보기칸 src 변경
-            const $showPic = document.getElementById('showPic');
 
-            if ($profile.files.length !== 0) {
-                document.getElementById('noPic').style.display = 'none';
-                readyToAdd[0] = true;
-                console.log(readyToAdd[0]);
+        const $file = $profile.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL($file);
 
-                const $file = $profile.files[0];
-                const reader = new FileReader();
-                reader.readAsDataURL($file);
-
-                reader.onloadend = e => {
-                    $showPic.removeAttribute('src');
-                    $showPic.setAttribute('src', reader.result);
-                }
-
-            } else {
-                document.getElementById('noPic').style.display = 'block';
-                readyToAdd[0] = false;
-                console.log(readyToAdd[0]);
-            }
+        reader.onloadend = e => {
+            $showPic.removeAttribute('src');
+            $showPic.setAttribute('src', reader.result);
         }
+
+
     }
 
     //이름 입력했는지 검사 -> 두글자 이상일때 true
@@ -364,18 +369,20 @@
         }
     }
 
-    //직속상사 입력 여부 확인
-    $myBoss.onchange = () => {
-        if ($myBoss.value !== 'none') {
-            readyToAdd[8] = true;
-            document.getElementById('noBoss').style.display = 'none';
-            console.log(readyToAdd[8]);
-        } else {
-            readyToAdd[8] = false;
-            document.getElementById('noBoss').style.display = 'block';
-            console.log(readyToAdd[8]);
-        }
-    }
+    // //직속상사 입력 여부 확인
+    // $myBoss.onchange = () => {
+    //     if ($myBoss.value !== '001' && $myBoss.value !== '002') {
+    //         if ($myBoss.value !== 'none') {
+    //             readyToAdd[8] = true;
+    //             document.getElementById('noBoss').style.display = 'none';
+    //             console.log(readyToAdd[8]);
+    //         } else {
+    //             readyToAdd[8] = false;
+    //             document.getElementById('noBoss').style.display = 'block';
+    //             console.log(readyToAdd[8]);
+    //         }
+    //     }
+    // }
 
 
     //부서, 직급 선택시 마이보스 선택란에 같은 부서 내 윗직급 리스트 불러오기
@@ -395,13 +402,13 @@
         }
 
         if ($setPos.value === 'none') {
-            readyToAdd[7] = false;
+            readyToAdd[0] = false;
             document.getElementById('noPos').style.display = 'block';
-            console.log(readyToAdd[7])
+            console.log(readyToAdd[0])
         } else {
-            readyToAdd[7] = true;
+            readyToAdd[0] = true;
             document.getElementById('noPos').style.display = 'none';
-            console.log(readyToAdd[7]);
+            console.log(readyToAdd[0]);
         }
 
 
@@ -411,13 +418,6 @@
                 renderBossList(result);
             })
 
-        //직속상사 자동선택
-        const $defaultBoss = document.getElementById('setBoss').children;
-        for (let option of $defaultBoss) {
-            if (option.value === empMyBoss) {
-                option.setAttribute('selected', 'selected');
-            }
-        }
     }
 
     function renderBossList(result) {
@@ -498,7 +498,7 @@
             }
         }
         if (flag) {
-            document.getElementById('addBtn').click();
+            document.getElementById('modiBtn').click();
         }
     }
 

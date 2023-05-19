@@ -80,7 +80,7 @@
             <div class="empRoleInput addInputForm">
                 <h2>직책코드 : </h2>
                 <select class="inputblank" name="roleCode">
-                    <option value="none" selected disabled hidden>직책을 선택하세요</option>
+                    <option value="none" selected>직책을 선택하세요</option>
                     <option value="00000">관리자</option>
                     <option value="11111">부서장</option>
                 </select>
@@ -102,7 +102,7 @@
     const URL = '/hrms/employees';
     const $setDept = document.getElementById('setDept');
     const $setPos = document.getElementById('setPos');
-    const readyToAdd = [false, false, false, false, false, false, false, false, false];
+    const readyToAdd = [false, false, false, false, false, false, false, false];
     const $setBoss = document.getElementById('setBoss');
     const $profile = document.getElementById('profileImage');
     const $empName = document.getElementById('empName');
@@ -229,18 +229,18 @@
             document.getElementById('noPos').style.display = 'none';
         }
 
-        //직속상사 검사
-
-        if ($myBoss.value !== 'none') {
-            readyToAdd[8] = true;
-            document.getElementById('noBoss').style.display = 'block';
-            console.log(readyToAdd[8]);
-        } else {
-            readyToAdd[8] = false;
-            document.getElementById('noBoss').style.display = 'none';
-            console.log(readyToAdd[8]);
-        }
-
+        // //직속상사 검사
+        // if ($myBoss.value !== '001' && $myBoss.value !== '002') {
+        //     if ($myBoss.value !== 'none') {
+        //         readyToAdd[8] = true;
+        //         document.getElementById('noBoss').style.display = 'block';
+        //         console.log(readyToAdd[8]);
+        //     } else {
+        //         readyToAdd[8] = false;
+        //         document.getElementById('noBoss').style.display = 'none';
+        //         console.log(readyToAdd[8]);
+        //     }
+        // }
     }
 
     //프로필 사진 입력 검사
@@ -344,18 +344,20 @@
         }
     }
 
-    //직속상사 입력 여부 확인
-    $myBoss.onchange = () => {
-        if ($myBoss.value !== 'none') {
-            readyToAdd[8] = true;
-            document.getElementById('noBoss').style.display = 'none';
-            console.log(readyToAdd[8]);
-        } else {
-            readyToAdd[8] = false;
-            document.getElementById('noBoss').style.display = 'block';
-            console.log(readyToAdd[8]);
-        }
-    }
+    // //직속상사 입력 여부 확인
+    // $myBoss.onchange = () => {
+    //     if ($myBoss.value !== '001' && $myBoss.value !== '002') {
+    //         if ($myBoss.value !== 'none') {
+    //             readyToAdd[8] = true;
+    //             document.getElementById('noBoss').style.display = 'none';
+    //             console.log(readyToAdd[8]);
+    //         } else {
+    //             readyToAdd[8] = false;
+    //             document.getElementById('noBoss').style.display = 'block';
+    //             console.log(readyToAdd[8]);
+    //         }
+    //     }
+    // }
 
 
     //부서, 직급 선택시 마이보스 선택란에 같은 부서 내 윗직급 리스트 불러오기
@@ -396,6 +398,9 @@
         const $setBoss = document.getElementById('setBoss');
 
         let tag = '<option value = "none" selected disabled hidden>직속상사를 선택하세요</option>';
+        if(result.length === 0) {
+            tag += '<option value = "">직속상사 없음</option>';
+        }
         for (const boss of result) {
             const {empName, empNo} = boss;
             tag += '<option value="' + empNo + '">' + empName + '</option>';
