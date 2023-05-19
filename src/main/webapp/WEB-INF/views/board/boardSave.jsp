@@ -159,7 +159,7 @@
                     <label for="content">내용:</label>              
                     <!-- <textarea id="content" name="bdContent" placeholder="내용을 입력하세요" required> -->
                         <textarea id="mytextarea" name="bdContent"></textarea>
-                    </textarea>
+                    <!-- </textarea> -->
                 </div>
                 <div class="form-group">
                     <button id="backToList">목록</button>

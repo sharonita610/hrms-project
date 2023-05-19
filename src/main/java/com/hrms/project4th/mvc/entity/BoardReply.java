@@ -19,5 +19,10 @@ public class BoardReply {
     private LocalDateTime repDate;
     private long boardNo;
     private long empNo;
+    private String deptName;
+    private String posName;
+    private String roleName;
+    private String empName;
+
 
 }

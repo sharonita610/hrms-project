@@ -4,14 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hrms.project4th.mvc.repository.BoardReplyMapper">
 
+<!--    -->
+
     <select id="findAll" resultType="boardReply">
         SELECT
-        rep_no, rep_content, rep_date, board_no,emp_no
-        FROM
-        hr_reply
-        WHERE board_no = #{boardNo}
-        ORDER BY 3 DESC
+        re.emp_no, re.rep_date,re.board_no, hd.dept_name,
+        hp.pos_name,hr.role_name, re.rep_content,re.rep_no,em.emp_name
+        FROM hr_reply re
+        JOIN hr_employees em
+        ON re.emp_nO=em.emp_no
+        JOIN hr_department hd
+        ON em.dept_code =hd.dept_code
+        JOIN hr_position hp
+        ON em.pos_code=hp.pos_code
+        JOIN hr_role hr
+        ON hr.role_code =em.role_code
+        WHERE re.board_no=#{boardNo}
+        ORDER BY 2 desc
         LIMIT #{page.pageLimitNum}, #{page.boardAmount}
+
+<!--        SELECT-->
+<!--        rep_no, rep_content, rep_date, board_no,emp_no-->
+<!--        FROM-->
+<!--        hr_reply-->
+<!--        WHERE board_no = #{boardNo}-->
+<!--        ORDER BY 3 DESC-->
+<!--        LIMIT #{page.pageLimitNum}, #{page.boardAmount}-->
     </select>
 
     <select id="findOne" resultType="boardReply">

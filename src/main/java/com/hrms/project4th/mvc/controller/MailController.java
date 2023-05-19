@@ -9,11 +9,10 @@ import com.hrms.project4th.mvc.entity.Mail;
 import com.hrms.project4th.mvc.service.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class MailController {
         model.addAttribute("mailPageMaker",mailPageMaker);
         model.addAttribute("mList",mailList);
         model.addAttribute("ms",search);
-//        model.addAttribute("num",empNo);
+        model.addAttribute("num",empNo);
         return "/mail/mail";
     }
 
@@ -75,11 +74,23 @@ public class MailController {
         return "/mail/mailstatus";
     }
 
-    //메일 삭제하기(사원번호에 맞는메일을 삭제해야함)
-    public void MailDelteByNum(Long mailNo){
+    @GetMapping("/mail-delete")
+    // 메일 삭제하기(사원번호에 맞는 메일을 삭제해야함)
+    public String mailDeleteByNum(Long mailNo, @Param(value = "empNo") Long empNo, MailSearch search) {
         mailService.deleteByNum(mailNo);
-
+        log.info("mailNo {}: ", mailNo);
+        log.info("search {}: ", search);
+        log.info("empNo {} : ",empNo);
+        //메일 타입에 따라 리턴값 달라진다
+        String mailType = search.getMailType();
+        if(mailType.equals("mailto")) {
+            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType();
+        }else{
+            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType();
+        }
     }
+
+
 
 
 

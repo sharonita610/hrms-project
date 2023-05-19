@@ -21,6 +21,10 @@ public class BoardReplyDetailResponseDTO {
     private long empNo;
     @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
     private String replyRegDate;
+    private String deptName;
+    private String posName;
+    private String roleName;
+    private String empName;
 
 //        private long repNo;
 //        private String repContent;
@@ -33,6 +37,10 @@ public class BoardReplyDetailResponseDTO {
         this.repContent = boardReply.getRepContent();
         this.empNo = boardReply.getEmpNo();
         this.replyRegDate = makeString(boardReply.getRepDate());
+        this.deptName = boardReply.getDeptName();
+        this.posName = boardReply.getPosName();
+        this.roleName = boardReply.getRoleName();
+        this.empName= boardReply.getEmpName();
     }
 
     public String makeString(LocalDateTime localDateTime) {

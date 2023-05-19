@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Component
@@ -31,6 +32,8 @@ public class Employees {
     private String deptCode;
     private String profile;
     private Auth auth;
+    private String empSession;
+    private LocalDateTime cookieLimitTime;
 
 
     public Employees(AddEmployeesDTO dto, String path){

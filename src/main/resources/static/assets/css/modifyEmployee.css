@@ -11,7 +11,6 @@
     border-bottom: 2px solid gray;
     padding: 20px 10px 30px 10px;
     position: relative;
-    /* border: 1px solid #000; */
 }
 
 .addEmpFormWrapper h1 {
@@ -28,6 +27,7 @@
 }
 
 .addEmpFormWrapper .addInputForm {
+    width: fit-content;
     display: flex;
     margin-top: 10px;
 }
@@ -37,6 +37,7 @@
     outline-color: rgb(113, 150, 218);
     width: 200px;
     text-indent: 5px;
+    /* border: 1px solid #000; */
 }
 
 .addEmpFormWrapper #email-address {
@@ -45,10 +46,9 @@
 
 .empBossInput { 
     width: 280px;
-    /* border: 1px solid #000; */
 }
 
-#addBtn {
+#modiBtn {
     display: none;
 }
 

@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.entity;
 
+import com.hrms.project4th.mvc.dto.page.MailSearch;
 import lombok.Getter;
 
 @Getter
