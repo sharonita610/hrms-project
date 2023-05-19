@@ -117,8 +117,9 @@
             #content {
                 resize: none;
             }
+
             /* content 영역 */
-            #mytextarea{
+            #mytextarea {
                 height: 600px;
 
             }
@@ -163,12 +164,11 @@
             }
 
 
-            .form-control{
+            .form-control {
                 margin-bottom: 35px;
             }
 
-
-
+            /* empNo hidden 처리 */
         </style>
     </head>
 
@@ -443,13 +443,13 @@
                 if (boardReplies === null || boardReplies.length === 0) {
                     tag += "<div id='replyContent' class='card-body'>댓글을 입력해 주세요</div>";
 
-            //         "repNo": 2536,
-            // "repContent": "reply content536",
-            // "empNo": 69,
-            // "replyRegDate": "2023:05:17 14:46",
-            // "deptName": "hrRESOURCE`",
-            // "posName": "chef",
-            // "roleName": "cook"
+                    //         "repNo": 2536,
+                    // "repContent": "reply content536",
+                    // "empNo": 69,
+                    // "replyRegDate": "2023:05:17 14:46",
+                    // "deptName": "hrRESOURCE`",
+                    // "posName": "chef",
+                    // "roleName": "cook"
 
 
                 } else {
@@ -465,21 +465,23 @@
                             empName
                         } = rep;
                         // +'/'+postName+'/'+roleName
-                        tag += "<div id='replyContent' class='card-body' data-replyId='" + repNo + "'>" +
-                            "    <div class='row user-block'>" +
-                            "       <span class='col-md-3'>" +
-                            "           <span>"+deptName+"</span><span>/</span>" +
-                            "           <span>"+posName+"</span><span>/</span>"+
-                            "            <span>"+roleName+"</span><span>/</span>"+
-                            "            <span>"+empName+"</span><span>/</span>"+
-                            "         <b>" + empNo + "</b>" +
-                            "       </.span>" +
-                            "       <span class='offset-md-6 col-md-3 text-right'><b>" + replyRegDate +
-                            "</b></span>" +
-                            "    </div><br>" +
-                            "    <div class='row'>" +
-                            "       <div class='col-md-6'>" + repContent + "</div>" +
-                            "       <div et-md-2 col-md-4 text-right'>";
+                        tag += `
+                                <div id='replyContent' class='card-body' data-replyId='\${repNo}'>
+                                    <div class='row user-block'>
+                                    <span class='col-md-3'>
+                                        <span>\${deptName}</span><span>/</span>
+                                        <span>\${posName}</span><span>/</span>
+                                        <span>\${roleName}</span><span>/</span>
+                                        <span>\${empName}</span>
+                                        <input type='hidden' name='empNo' value='\${empNo}'>
+                                    </span>
+                                    <span class='offset-md-6 col-md-3 text-right'><b>\${replyRegDate}</b></span>
+                                    </div><br>
+                                    <div class='row'>
+                                    <div class='col-md-6'>\${repContent}</div>
+                                    <div class='et-md-2 col-md-4 text-right'>
+                                `;
+
 
                         // if (currentAccount === rep.account || auth === 'ADMIN') {
                         tag +=
@@ -505,15 +507,14 @@
 
             function deleteEvent() {
                 $replyData.onclick = e => {
-
                     // repNo값 가져오기
                     const $getReplyId = e.target.closest('#replyContent').dataset.replyid;
-                    // console.log($getReplyId);
+                    console.log($getReplyId);
                     // empNo값 가져오기
-                    const $getEmpNo = document.querySelector('#replyContent b').textContent;
-                    // console.log($getEmpNo);
-                    // console.log(e.target);
-                    // console.log('삭제버튼 클릭');
+                    const $getEmpNo = document.querySelector('#replyContent span input').value;
+                    console.log($getEmpNo);
+                    console.log(e.target);
+                    console.log('삭제버튼 클릭');
                     e.preventDefault();
                     if (e.target.matches('#replyDelBtn')) {
                         // console.log('삭제떠줘');
@@ -585,9 +586,9 @@
                     const $getRepCont = document.querySelector('.modal-body').value;
                     console.log($getRepCont);
                     const $getRepNo = document.querySelector('.modal-body').dataset.rno;
-                    console.log($getRepNo);
+                    // console.log($getRepNo);
                     const $getEmpNo = document.querySelector('.modal-body').dataset.reno;
-                    console.log($getEmpNo);
+                    // console.log($getEmpNo);
                     const modifyInfo = {
                         method: 'PATCH',
                         headers: {
