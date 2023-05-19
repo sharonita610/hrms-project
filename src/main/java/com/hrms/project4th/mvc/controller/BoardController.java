@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/hrms")
+@RequestMapping("/hrms/board")
 @Slf4j
 public class BoardController {
 
@@ -56,7 +56,7 @@ public class BoardController {
         boardService.boardSave(dto);
         log.info("BoardSaveRequestDTO {}", dto);
 //      log.info("BoardSaveRequestDTO {}",dto);
-        return "redirect:/hrms/board-list";
+        return "redirect:/hrms/board/board-list";
     }
 
     // 제거 기능
@@ -64,7 +64,7 @@ public class BoardController {
     public String boardDelete(Long boardNo) {
 //        log.info("board-delete /  boardNo : {}", boardNo);
         boardService.boardDelete(boardNo);
-        return "redirect:/hrms/board-list";
+        return "redirect:/hrms/board/board-list";
     }
 
 
@@ -99,7 +99,7 @@ public class BoardController {
         log.info("searchinfo : {}", search);
         model.addAttribute("b", dto);
 
-        return "redirect:/hrms/board-detail?boardNo=" + dto.getBoardNo();
+        return "redirect:/hrms/board/board-detail?boardNo=" + dto.getBoardNo();
     }
 
 
