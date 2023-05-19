@@ -76,8 +76,8 @@
             width: 100%;
         }
 
-        #join-club-btn{
-            margin-left: 160px;
+        #quit-club-btn{
+            margin-left: 60px;
         }
 
         /*  컨텐츠들 인포메이션쪽 속성 FINISH */
@@ -93,16 +93,7 @@
 
 
         /*  input 속성 댓글창 */
-        .write-reply {
-            margin-left: 20px;
-            border-style: none;
-            border-bottom: 1px solid #333333;
-            width: 220px;
-            height: 30px;
-            font-size: 1rem;
-            border-radius: 1%;
 
-        }
 
         .club-modal-reply-list {
             width: 100%;
@@ -135,7 +126,8 @@
 						<li>
 							<form action="#" method="post">
 								<!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
-								<button id="quit-btn">삭제하기</button>
+								<button id="quit-club-btn">수정하기</button>
+								<button id="update-club-btn">탈퇴하기</button>
 							</form>
 						</li>
 					</ul>
@@ -151,13 +143,6 @@
 		<section class="club-modal-replies-container">
 			<div class="club-modal-replies-head">
 				<ul class="replies-wrapper">
-					<li class="club-modal-add-reply">
-						<form action="#" method>
-							<input class="write-reply" type="text" placeholder="댓글을 작성해보세요!">
-							<button id="add-reply" type="submit">등록</button>
-							<button id="cancel-reply" type="reset">취소</button>
-						</form>
-					</li>
 					<li class="club-modal-reply-list">
 						<div class="club-modal-reply-list-one">
 							<ul>
