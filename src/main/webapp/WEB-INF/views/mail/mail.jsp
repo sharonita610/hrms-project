@@ -41,7 +41,7 @@
 					<ul class="maillist">
 						<c:forEach var="m" items="${mList}">
 							<li class="mail">
-								<div>
+								<div class="maildetail">
 									<p>${m.mailNo}</p>
 									<p>${m.empEmail}</p>
 									<p>${m.empName}</p>
@@ -50,6 +50,7 @@
 									<p>${m.mailTitle}</p>
 									<p>${m.mailStatus}</p>
 									<p>${m.mailDate}</p>
+									<p></p>
 								</div>
 								<button type="button" class="btn btn-danger delete-button" id="deletebtn">삭제</button>
 							</li>
@@ -111,14 +112,30 @@ function dletemail() {
       const $mailNo = +$mail.querySelector('div > p:first-child').innerText;
       const $confirm = confirm($mail.querySelector('div > p:first-child').innerText + '번 메일을 삭제할까요?');
       if ($confirm) {
-        window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=2';
-      }
+        window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}';
+      }else{
+		return ;
+	  }
     });
   });
 }
 
+function detailmail() {
+  const $maillist = document.querySelectorAll('.mail');
+  $maillist.forEach($mail => {
+    const $targetmail = $mail.querySelector('.maildetail');
+    $targetmail.addEventListener('click', () => {
+      const $mailNo = +$mail.querySelector('div > p:first-child').innerText;
+	  console.log($mailNo);
+    	window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}';
+    });
+  });
+}
+
+
 (function () {
   dletemail();
+  detailmail();
 })();
 	</script>
 

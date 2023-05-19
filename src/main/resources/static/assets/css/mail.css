@@ -100,6 +100,16 @@
     width: 100%;
 }
 
+.section-mail #mail-wrapper #mail-list-box ul li .maildetail{
+    cursor: pointer;
+}
+
+/* 메일 리스트 호버효과 */
+.section-mail #mail-wrapper #mail-list-box li .maildetail:hover{
+    background-color: azure;
+}
+
+
 
 
 /*  스크롤 바 숨기기 */
@@ -121,43 +131,43 @@
 }
 .section-mail #mail-wrapper #mail-list-box li div p:nth-child(1){
     text-align: center;
-    background: red;
+    /* background: red; */
     width: 5%;
 }
 .section-mail #mail-wrapper #mail-list-box li div p:nth-child(2){
     text-align: center;
-    background: orange;
+    /* background: orange; */
     width: 25%;
 }
 .section-mail #mail-wrapper #mail-list-box li div p:nth-child(3){
     text-align: center;
-    background: yellow;
+    /* background: yellow; */
     width: 10%;
 }
 .section-mail #mail-wrapper #mail-list-box li div p:nth-child(4){
     text-align: center;
-    background: blue;
+    /* background: blue; */
     width: 10%;
 }
 .section-mail #mail-wrapper #mail-list-box li div p:nth-child(5){
     text-align: center;
-    background: darkblue;
+    /* background: darkblue; */
     width: 10%;
 }
 .section-mail #mail-wrapper #mail-list-box li div p:nth-child(6){
     text-align: center;
-    background: green;
+    /* background: green; */
     width: 25%;
 }
 .section-mail #mail-wrapper #mail-list-box li div p:nth-child(7){
     text-align: center;
-    background: purple;
+    /* background: purple; */
     width: 5%;
 }
 
 .section-mail #mail-wrapper #mail-list-box li div p:nth-child(8){
     text-align: center;
-    background: red;
+    /* background: red; */
     width: 10%;
 }
 .section-mail #mail-wrapper #mail-list-box li .delete-button{

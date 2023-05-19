@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
+import com.hrms.project4th.mvc.dto.page.MailPage;
 import com.hrms.project4th.mvc.dto.page.MailSearch;
 import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.CheckStatus;
@@ -24,7 +25,7 @@ class MailMapperTest {
        for (int i =1; i<=15; i++) {
 //           Mail mailTest = Mail.builder().mailTitle("테스트용메일"+i).mailContent("테스트용메일입니다"+i).mailFrom(8L).mailTo(10L).build();
 
-           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(15L).mailTo(2L).build();
+           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(7L).mailTo(2L).build();
            mailMapper.sendRequest(mailTest);
        }
    }
@@ -46,7 +47,7 @@ class MailMapperTest {
     @DisplayName("메일번호가 50번 번호의 제목은 테스트용 메일15이다")
     void getMailDetailTest(){
        MailSearch mailSearch = new MailSearch();
-        List<MailDetailResponseDTO> mailDetailList = mailMapper.getMailDetail(mailSearch,5L,15L);
+        List<MailDetailResponseDTO> mailDetailList = mailMapper.getMailDetail((MailPage) mailSearch, 284L);
         System.out.println(mailDetailList.toString());
     }
 
