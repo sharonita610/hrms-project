@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.responseDTO.ClubBoardResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.JoinedClubListResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MyClubBoardResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.entity.Gender;
@@ -19,7 +20,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/club")
+@RequestMapping("/hrms/club")
 public class ClubController {
 
     private  final ClubBoardService clubBoardService;
@@ -73,11 +74,19 @@ public class ClubController {
     @GetMapping("/myboardList/{empNo}")
     public ResponseEntity<?> myClubBoardList(@PathVariable Long empNo) {
         List<MyClubBoardResponseDTO> myClubBoardResponseDTOS = clubBoardService.myClubBoardList(empNo);
-        log.info("good: ",myClubBoardResponseDTOS);
+        log.info("good: {}",myClubBoardResponseDTOS);
 
         return ResponseEntity.ok().body(myClubBoardResponseDTOS);
     }
 
+    @ResponseBody
+    @GetMapping("/myclubList/{empNo}")
+    public ResponseEntity<?> myClubList(@PathVariable Long empNo) {
+        List<JoinedClubListResponseDTO> dtoList = clubJoinService.joinedClubList(empNo);
+        log.info("dtoList: {}", dtoList);
+
+        return ResponseEntity.ok().body(dtoList);
+    }
 
 
 }
