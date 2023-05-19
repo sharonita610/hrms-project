@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <%@ include file="../main/include/header.jsp" %>
     <link rel="stylesheet" href="/assets/css/confirm-detail.css">
 </head>
 <body>
-
+<div id="body-wrapper">
+    <%@ include file="../main/include/left-banner.jsp" %>
 <div class="rqform-container">
-    <form action="/confirm/modify" method="post">
+    <form action="/hrms/confirm/modify" method="post">
         <div class="confirm-titleline">
             <h1>결재요청문</h1>
         </div>
@@ -56,11 +56,12 @@
 
     </form>
 </div>
-
+</div>
 
 <script>
 
-    const roleCode = null;
+    const roleCode = '11111';
+    // const roleCode = null;
     const $submit = document.getElementById('submit');
     const conNo = document.getElementById('conNo').value;
     const conStatus = '${c.conStatus}';
@@ -83,7 +84,7 @@
                     return;
                 }
 
-                fetch(`/confirm/check/\${conNo}`, {method: 'PUT'})
+                fetch(`/hrms/confirm/check/\${conNo}`, {method: 'PUT'})
                     .then(res => res.json())
                     .then(result => {
                             if (result) {
@@ -101,7 +102,7 @@
                     return;
                 }
 
-                fetch(`/confirm/reject/\${conNo}`, {method: 'PUT'})
+                fetch(`/hrms/confirm/reject/\${conNo}`, {method: 'PUT'})
                     .then(res => res.json())
                     .then(result => {
                             if (result) {
@@ -157,7 +158,7 @@
                     return;
                 }
 
-                fetch(`/confirm/delete/\${conNo}`, {method: 'delete'})
+                fetch(`/hrms/confirm/delete/\${conNo}`, {method: 'delete'})
                     .then(res => res.json())
                     .then(result => {
                             if (result) {

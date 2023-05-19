@@ -2,49 +2,50 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <%@ include file="../main/include/header.jsp" %>
     <link rel="stylesheet" href="/assets/css/confirmlist.css">
 </head>
 
 <body>
-    <div id="body-wrapper">
-        <%@ include file="../main/include/left-banner.jsp" %>
-        <div class="confirm-page-wrapper">
+<div id="body-wrapper">
+    <%@ include file="../main/include/left-banner.jsp" %>
 
-            <div class="confirm-titleline">
-                <h1>결재문서함</h1>
-                <a class="rq-confirm" href="/confirm/rq-form">문서 작성하기</a>
+    <div class="confirm-page-wrapper">
+
+        <div class="confirm-titleline">
+            <h1>결재문서함</h1>
+            <a class="rq-confirm" href="/hrms/confirm/rq-form">문서 작성하기</a>
+        </div>
+
+        <div class="confirm-outer-container">
+            <h2>&lt;결재대기문서&gt;</h2>
+            <div class="confirm-box waiting-list">
+                <table id="waiting-table">
+                </table>
             </div>
-
-            <div class="confirm-outer-container">
-                <h2>&lt;결재대기문서&gt;</h2>
-                <div class="confirm-box waiting-list">
-                    <table id="waiting-table">
-                    </table>
-                </div>
-                <h2>&lt;결재완료문서&gt;</h2>
-                <div class="confirm-box confirmed-list">
-                    <table id="confirmed-table">
-                    </table>
-                </div>
-                <h2>&lt;반려문서&gt;</h2>
-                <div class="confirm-box rejected-list">
-                    <table id="rejected-table">
-                    </table>
-                </div>
+            <h2>&lt;결재완료문서&gt;</h2>
+            <div class="confirm-box confirmed-list">
+                <table id="confirmed-table">
+                </table>
+            </div>
+            <h2>&lt;반려문서&gt;</h2>
+            <div class="confirm-box rejected-list">
+                <table id="rejected-table">
+                </table>
             </div>
         </div>
     </div>
-    </div>
+</div>
+
 </body>
 
 <script>
-    const URL = "/confirm";
-    const empNo = 2;
-    // const roleCode = '11111';
-    const roleCode = null;
+
+    const URL = "/hrms/confirm";
+    const empNo = 1;
+    const roleCode = '11111';
+    // const roleCode = null;
 
     //페이지 로딩
     function startConfirmPage() {
@@ -90,7 +91,7 @@
     function renderConfirmList(list, $section) {
         let tag = '';
         if ($section.id === 'waiting-table') {
-            tag += '<tr id = "waiting-th"><th class = "col1">NO</th>' +
+            tag += '<tr class = "confirm-tr" id = "waiting-th"><th class = "col1">NO</th>' +
                 '<th class = "col2">문서제목</th>';
             if (roleCode === '11111') {
                 tag += '<th class = "col3">기안자</th>';
@@ -108,7 +109,7 @@
                     '<th class = "col7">삭제</th></tr>';
             }
         } else if ($section.id === 'confirmed-table') {
-            tag += '<tr id = " confirmed-th"><th class = "col1">NO</th>' +
+            tag += '<tr class = "confirm-tr" id = " confirmed-th"><th class = "col1">NO</th>' +
                 '<th class = "col2">문서제목</th>';
             if (roleCode === '11111') {
                 tag += '<th class = "col3">기안자</th>';
@@ -118,7 +119,7 @@
             tag += '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
                 '<th class = "col6">승인여부</th><th class = "col7">승인일자</th>';
         } else if ($section.id === 'rejected-table') {
-            tag += '<tr id = " rejected-th"><th class = "col1">NO</th>' +
+            tag += '<tr class = "confirm-tr" id = " rejected-th"><th class = "col1">NO</th>' +
                 '<th class = "col2">문서제목</th>';
             if (roleCode === '11111') {
                 tag += '<th class = "col3">기안자</th>';
@@ -130,28 +131,18 @@
         }
 
         for (let c of list) {
-            const {
-                conNo,
-                conTitle,
-                fromName,
-                fromDept,
-                conDate,
-                conStatus,
-                conCheckDate
-            } = c;
+            const {conNo, conTitle, fromName, fromDept, conDate, conStatus, conCheckDate} = c;
 
-            tag += '<tr id = "doc-info"><td class = "col1">' + conNo +
-                '</td><td class = "col2"><a href="/confirm/detail?conNo=' + conNo + '">' + conTitle +
-                '</a></td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept +
-                '</td><td class = "col5">' + conDate +
-                '</td><td class = "col6">' + conStatus + '</td>';
+            tag += '<tr class = "confirm-tr" id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2"><a href="/hrms/confirm/detail?conNo=' + conNo + '">' + conTitle
+                + '</a></td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
+                + '</td><td class = "col6">' + conStatus + '</td>';
 
             if ($section.id === 'waiting-table' && roleCode === '11111') {
-                tag += '<td class="col7"><div class = "button" id = "check"></div></td>' +
-                    '<td class = "col7"><div class = "button" id = "reject"></div></td></tr>';
+                tag += '<td class="col7"><div class = "button" id = "check"></div></td>'
+                    + '<td class = "col7"><div class = "button" id = "reject"></div></td></tr>';
             } else if ($section.id === 'waiting-table' && roleCode !== '11111') {
-                tag += '<td class="col7"><div class = "button" id = "modify"></div></td>' +
-                    '<td class = "col7"><div class = "button" id = "remove"></div></td></tr>';
+                tag += '<td class="col7"><div class = "button" id = "modify"></div></td>'
+                    + '<td class = "col7"><div class = "button" id = "remove"></div></td></tr>';
             } else {
                 tag += '<td class = "col7">' + conCheckDate + '</td>';
             }
@@ -184,15 +175,14 @@
                     return;
                 }
 
-                fetch(`\${URL}/delete/\${conNo}`, {
-                        method: 'delete'
-                    })
+                fetch(`\${URL}/delete/\${conNo}`, {method: 'delete'})
                     .then(res => res.json())
                     .then(result => {
-                        if (result) {
-                            getWaitingList();
+                            if (result) {
+                                getWaitingList();
+                            }
                         }
-                    })
+                    )
 
             }
         }
@@ -206,9 +196,7 @@
                 if (!confirm('결재요청을 승인합니다')) {
                     return;
                 }
-                fetch(`\${URL}/check/\${conNo}`, {
-                        method: 'PUT'
-                    })
+                fetch(`\${URL}/check/\${conNo}`, {method: 'PUT'})
                     .then(res => res.json())
                     .then(result => {
                         if (result) {
@@ -227,9 +215,7 @@
                 if (!confirm('결재요청을 반려합니다')) {
                     return;
                 }
-                fetch(`\${URL}/reject/\${conNo}`, {
-                        method: 'PUT'
-                    })
+                fetch(`\${URL}/reject/\${conNo}`, {method: 'PUT'})
                     .then(res => res.json())
                     .then(result => {
                         if (result) {
@@ -240,7 +226,6 @@
         }
 
     }
-
 
     // 실행부
     startConfirmPage();
