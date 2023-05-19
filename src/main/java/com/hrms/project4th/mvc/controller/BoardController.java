@@ -34,7 +34,7 @@ public class BoardController {
 //        log.info("searchInfo : {}", search);
 
         BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount(search));
-//        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);
+        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);
 
         model.addAttribute("search", search);
         model.addAttribute("boardPageMaker", boardPageMaker);
@@ -67,6 +67,7 @@ public class BoardController {
         boardService.boardDelete(boardNo);
         return "redirect:/hrms/board/board-list";
     }
+
 
 
     // 상세 보기 페이지를 보여주는 기능

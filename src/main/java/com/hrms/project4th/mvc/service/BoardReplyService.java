@@ -59,6 +59,7 @@ public class BoardReplyService {
         log.info("boardReply : {}",boardReply);
         BoardReply one = boardReplyMapper.findOne(dto.getRepNo());
         boolean flag = boardReplyMapper.delete(boardReply);
+        log.info("flag:{}",flag);
         if(!flag){
             log.warn("fail to delete Reply");
             throw new SQLDataException("fail to delete Reply");

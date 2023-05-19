@@ -197,9 +197,9 @@
                         </c:forEach>
                         <c:if test="${boardPageMaker.next}">
                             <li class="page-item"><a class="page-link"
-                                    href="/hrms/board-list/?boardPageNo=${boardPageMaker.end+1}">다음</a></li>
+                                    href="/hrms/board/board-list/?boardPageNo=${boardPageMaker.end+1}">다음</a></li>
                         </c:if>
-                        <a class="page-link" href="/hrms/board-list/?boardPageNo=${boardPageMaker.final_page}"
+                        <a class="page-link" href="/hrms/board/board-list/?boardPageNo=${boardPageMaker.final_page}"
                             aria-label="Next"><span aria-hidden="true">&raquo;</span>
                         </a>
                     </ul>

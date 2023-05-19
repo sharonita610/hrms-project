@@ -28,11 +28,17 @@
             width: 75%;
         }
 
+        .detail-topbox {
+            display: flex;
+            justify-content: end;
+        }
+
         .detail-title {
             font-weight: 700;
             font-size: 50px;
-            margin-bottom: 30px;
-            letter-spacing: 20px;
+            line-height: 60px;
+            letter-spacing: 50px;
+
         }
 
         .detail-part {
@@ -46,6 +52,18 @@
             border: 1px solid #000;
             padding: 20px
         }
+
+        /* 게시글 title부분 */
+        .btn-danger {
+            margin-left: 210px;
+            height: 60px;
+            width: 120px;
+            font-size: larger;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-align: center;
+        }
+
 
         h1 {
             text-align: center;
@@ -108,14 +126,13 @@
 
         /* 제목 css */
 
-
         .detail-button {
             display: flex;
             justify-content: end;
         }
 
         .detail-button #backToList {
-            margin-right: 10px;
+            margin-left: 10px;
         }
 
         #replyContent {
@@ -235,7 +252,10 @@
         <section class="detail-section">
             <section class="detail-part">
                 <div class="container-box">
-                    <h1 class="detail-title">게시글</h1>
+                    <div class="detail-topbox">
+                        <h1 class="detail-title">게시글</h1>
+                        <button type="button" class="btn btn-danger" data-bno="${b.boardNo}">삭제</button>
+                    </div>
                     <form action="/hrms/board/show-modify" method="post">
                         <div class="form-group">
                             <input type="hidden" name="boardNo" value="${b.boardNo}">
@@ -265,8 +285,8 @@
                                     readonly>${b.bdContent}</textarea> -->
                         </div>
                         <div class="form-group detail-button">
-                            <button id="backToList" type="button">목록</button>
                             <button type="submit">수정</button>
+                            <button id="backToList" type="submit">목록</button>
                             <!--   onclick="window.location.href='/hrms/board-list?boardPageNo=${s.boardPageNo}'" -->
                         </div>
 
@@ -322,7 +342,7 @@
 
 
 
-                <!-- MODIFY Modal -->
+                <!-- Reply MODIFY Modal -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -335,13 +355,14 @@
                             <input type="text" class="modal-body modMod"></input>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary">수정</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                <button type="button" class="btn btn-secondary mod-secondary"
+                                    data-bs-dismiss="modal">닫기</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- DELETE Modal -->
+                <!-- Reply DELETE Modal -->
                 <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -354,7 +375,8 @@
                             <input type="text" class="modal-body modDEL" value="삭제하시겠습니까?" readonly></input>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary delBtn-primary">삭제</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                <button type="button" class="btn btn-secondary del-secondary"
+                                    data-bs-dismiss="modal">닫기</button>
                             </div>
                         </div>
                     </div>
@@ -371,10 +393,28 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
     <script>
+
+        //목록버튼 클릭시 이동 함수 
         const $backToList = document.getElementById('backToList');
         $backToList.onclick = (e) => {
             window.location.href = '/hrms/board/board-list?boardPageNo=${s.boardPageNo}';
         }
+
+        //삭제버튼 클릭시 해당 게시물을 삭제하는 함수
+        const $redDelBtn=document.querySelector('.btn-danger');
+        $redDelBtn.onclick=e=>{
+            if(e.target.matches('.btn-danger')){
+                const $delbno=e.target.dataset.bno;
+                // console.log($delbno);
+                window.location.href='/hrms/board/board-delete?boardNo='+$delbno;
+            }
+
+        }
+
+
+
+
+
 
         // URI
         const URL = '/api/hrms/replies';
@@ -531,28 +571,28 @@
                 if (e.target.matches('#replyDelBtn')) {
 
                     const $rpRpNo = e.target.parentElement.parentElement.parentElement.dataset.replyid;
-                    console.log($rpRpNo);
+                    // console.log($rpRpNo);
                     document.querySelector('.modDEL').dataset.rno = $rpRpNo;
                     //empNo 값 뽑아서 모달에 넣어주기(부모에 부모에 형제에 첫번째 자식에 자식에 0번 인덱스)
                     const $rpEmpNo = e.target.parentElement.parentElement.previousElementSibling.
                     previousElementSibling.firstElementChild.lastElementChild.value;
-                    console.log($rpEmpNo);
+                    // console.log($rpEmpNo);
                     document.querySelector('.modDEL').dataset.reno = $rpEmpNo;
 
 
 
 
                 } else if (e.target.matches('#modifyBtn')) {
-                    console.log("수정");
+                    // console.log("수정");
 
                     // 모달에 뿌려줄 원래 댓글 text가져와서 모달에 repContent 넣어주기
                     const rpCon = e.target.parentElement.parentElement.children[0].innerText;
                     document.querySelector('.modMod').value = rpCon;
-                    console.log(rpCon);
+                    // console.log(rpCon);
 
                     //댓글에서 repNo값 뽑아서 모달에 넣어주기
                     const $rpRpNo = e.target.parentElement.parentElement.parentElement.dataset.replyid;
-                    console.log($rpRpNo);
+                    // console.log($rpRpNo);
                     document.querySelector('.modMod').dataset.rno = $rpRpNo;
 
 
@@ -568,52 +608,50 @@
         }
 
         // 삭제버튼시 삭제 처리
-
         function deleteBoardReply() {
-
             // 삭제시 서버로 보낼 데이터 json에 담기
             const $makedelButton = document.querySelector('.delBtn-primary');
             $makedelButton.onclick = e => {
-                const $rpEmpNo = e.target.parentElement.parentElement.previousElementSibling.
-                previousElementSibling.firstElementChild.lastElementChild.value;
-
-                const $rpRpNo = e.target.parentElement.parentElement.parentElement.dataset.replyid;
-
-
-                const deletInfo = {
-                    empNo: $rpRpNo,
-                    repNo: $rpEmpNo,
-                };
+                const $rpRpNo = document.querySelector('.modDEL').dataset.rno;
+                console.log($rpRpNo);
+                const $rpEmpNo = document.querySelector('.modDEL').dataset.reno;
+                console.log($rpEmpNo);
 
                 // 삭제 데이터 만들기
-
                 const requestDeleteInfo = {
                     method: 'DELETE',
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify(deletInfo)
+                    body: JSON.stringify({
+                        repNo: $rpRpNo,
+                        empNo: $rpEmpNo
+                    })
                 };
-
 
                 // fetch 시작
                 fetch(URL, requestDeleteInfo)
                     .then(res => {
                         if (res.status === 200) {
-                            alert('삭제됬어!!!!!');
+                            // alert('삭제됐어!!!!!');
+                            document.querySelector('.del-secondary').click();
                         } else {
-                            alert('실패ㅠㅠㅠㅠㅠ제에발!');
-                            return res.json();
+                            return res.json().then(data => {
+                                console.log(data); // 서버에서 반환된 오류 메시지 출력
+                                throw new Error('서버에서 삭제 실패');
+                            });
                         }
-                    }).then(responseResult => {
-                        findAllReplies(1)
+                    })
+                    .then(responseResult => {
+                        findAllReplies(1);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        // 실패 시 처리할 로직 추가
+                        console.log('삭제 안됌');
                     });
-
-            }
-
-
+            };
         }
-
 
         // 수정버튼 클릭시 수정 처리
 
@@ -621,8 +659,7 @@
 
 
             const $modifyButton = document.querySelector('.btn-primary');
-
-            $modifyButton.onclick = e => {
+            $modifyButton.addEventListener('click', function (e) {
                 const $getRepCont = document.querySelector('.modMod').value;
                 console.log($getRepCont);
                 const $getRepNo = document.querySelector('.modMod').dataset.rno;
@@ -645,17 +682,17 @@
                 fetch(URL, modifyInfo)
                     .then(res => {
                         if (res.status == 200) {
-                            alert('댓글이 수정되었습니다.')
+                            // alert('댓글이 수정되었습니다.')
                             //창 닫아줌
-                            document.querySelector('.btn-secondary').click();
+                            document.querySelector('.mod-secondary').click();
                         } else {
-                            alert('댓글 수정에 실패하였습니다.')
+                            // alert('댓글 수정에 실패하였습니다.')
                         }
                     })
                     .then(result => {
                         findAllReplies(1);
                     });
-            };
+            })
 
         }
 
