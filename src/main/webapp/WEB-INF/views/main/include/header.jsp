@@ -51,12 +51,3 @@
         </div>
     </div>
 </header>
-<script>
-    const $board = document.getElementById('board');
-    $board.onclick = e =>{
-      window.location.href = '/hrms/board-list';
-    };
-
-
-
-</script>
