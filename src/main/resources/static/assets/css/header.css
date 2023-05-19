@@ -10,7 +10,7 @@ header{
 
 /* 기본 설정 */
 .common_wrap {
-    background: rgba(198, 198, 199, 0.65);
+    background: rgb(213, 213, 213);
     width: 100%;
     position: sticky;
     height: 130px;
