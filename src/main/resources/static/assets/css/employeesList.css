@@ -1,0 +1,199 @@
+/*!*  admin-main.jsp css  *!*/
+* {
+    box-sizing: border-box;
+}
+/*!*  클럽 전체 틀  *!*/
+.section-admin-page {
+    /*margin-top: 8%;*/
+    width: 77%;
+    margin: 0 auto;
+    height: 780px;
+    position: relative;
+    /*border: 1px solid #b4b4b4;*/
+    overflow: scroll;
+
+}
+
+/*  스크롤 바 숨기기 */
+.section-admin-page::-webkit-scrollbar {
+    display: none;
+}
+.emp-list{
+    position: relative;
+}
+
+/*  직원 정보처리 타이틀 */
+h1 {
+    border: none;
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-align: center;
+    border-top: 1px solid gray;
+    /*border-bottom: 1px solid gray;*/
+    background: #e6e6e6;
+}
+/*  직원관리 페이지, 부서별조회 및 목록 라인 감싸는 태그*/
+#emp-list-header{
+    /* fixed 가 잘 안먹히네요..*/
+    /*display: ;*/
+}
+
+/*  직원 관리페이지 속 작은 박스*/
+.section-admin-page .emp-list-box {
+    width: 100%;
+    height: 80%;
+}
+
+/*  직원 정보 처리 메인 탭*/
+.section-admin-page .admin-options {
+    height: 30px;
+    background: #e6e6e6;
+    padding-bottom: 5px;
+    /*border-bottom: 1px solid gray;*/
+    position: relative;
+}
+
+
+/*  전체조회 부서별 조회 나란히 놓는 태그  */
+.section-admin-page .admin-options .admin-sortBy {
+    width: fit-content;
+    display: flex;
+    flex-direction: row-reverse;
+    position: absolute;
+    top: 7px;
+    right: 0;
+}
+
+
+.section-admin-page .admin-options .admin-sortBy div {
+    display: flex;
+    justify-content: center;
+    margin-left: 5px;
+    margin-right: 10px;
+    width: 110px;
+    padding: 0 5px;
+    text-align: center;
+    font-size: 16px;
+    /*border: 1px solid red;*/
+    cursor: pointer;
+}
+
+/*  부서별 조회 , 전체조회  a 태그*/
+/*.section-admin-page .admin-options .admin-sortBy a {*/
+/*    width: 110px;*/
+/*    padding: 0 5px;*/
+/*    text-align: center;*/
+/*    font-size: 16px;*/
+/*    !*border: 1px solid #000;*!*/
+/*}*/
+
+
+
+/*  목록 용 태그  */
+
+#emp-total-list {
+    background: #e6e6e6;
+}
+
+#emp-total-list .employeeInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+ }
+
+#emp-total-list .employeeInfo li {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    align-content: center;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/*  전체사원 리스트 li 태그 옆으로 나열하기*/
+.admin-emp-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.emp-list-box .admin-emp-list li {
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-bottom: 1px solid gray;
+    font-size: 15px;
+}
+
+.emp-list-box .admin-emp-list:hover {
+    background: #f7f7f7;
+    cursor: pointer;
+}
+
+/*  li 태그 width 속성을 위한 태그 시작*/
+.empNo {
+    flex: 0.7;
+
+}
+
+.empName {
+    flex: 2;
+
+
+}
+
+.empBD {
+    flex: 2;
+
+}
+
+.empHireD {
+    flex: 2;
+
+}
+
+.empMail {
+    flex: 4;
+
+}
+
+.empGen {
+    flex: 0.8;
+
+
+}
+
+.empSal {
+    flex: 3;
+
+
+}
+
+.empPhone {
+    flex: 3;
+
+}
+
+.empMyBoss {
+    flex: 2;
+
+}
+
+.empDept {
+    flex: 2;
+
+}
+
+.empPos {
+    flex: 2;
+
+}
+
+.modifyEmp {
+    flex: 0.8;
+}
+
+/*  li 태그 width 속성을 위한 태그 종료*/

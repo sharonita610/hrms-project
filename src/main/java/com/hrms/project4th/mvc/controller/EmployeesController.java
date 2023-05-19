@@ -3,6 +3,7 @@ package com.hrms.project4th.mvc.controller;
 import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.GetMyBossResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.service.EmployeesService;
@@ -29,11 +30,18 @@ public class EmployeesController {
     @Value("${file.upload.root-path}")
     private String rootPath;
 
-    //사원 전체리스트 불러오기
+   //사원 전체리스트 페이지로 이동
     @GetMapping("/list")
     public String getEmployeesList() {
 //        employeesService.getEmployeesList();
-        return "admin/employeeslist"; //관리자 사원 전체보기 jsp
+        return "admin/employeesList"; //관리자 사원 전체보기 jsp
+    }
+
+    //사원 전체 리스트 불러오기
+    @GetMapping("/list/all")
+    @ResponseBody
+    public ResponseEntity<List<EmployeeDetailResponseDTO>> getEmployeesListAll() {
+        return ResponseEntity.ok().body(employeesService.getDetailEmployeesList());
     }
 
     //사원추가 폼으로 이동
