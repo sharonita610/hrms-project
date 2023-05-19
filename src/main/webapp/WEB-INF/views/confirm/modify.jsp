@@ -63,7 +63,7 @@
 </div>
 
 <script>
-    $today = document.getElementById('today');
+    const $today = document.getElementById('today');
 
     const today = new Date();
     const year = today.getFullYear(); // 년도
