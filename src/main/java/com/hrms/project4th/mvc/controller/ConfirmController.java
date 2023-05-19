@@ -41,7 +41,7 @@ public class ConfirmController {
     @PostMapping("/rq-cnfm")
     public String requestConfirm(RequestConfirmDTO dto){
         confirmService.requestConfirm(dto);
-        return "redirect:/confirm/list";
+        return "redirect:/hrms/confirm/list";
     }
 
     //승인대기 리스트 불러오기
@@ -99,7 +99,7 @@ public class ConfirmController {
     @PostMapping("/modify")
     public String modify(ModifyConfirmDTO dto){
         boolean flag = confirmService.modifyConfirm(dto);
-        return "redirect:/confirm/list";
+        return "redirect:/hrms/confirm/list";
     }
 
     //결재 삭제

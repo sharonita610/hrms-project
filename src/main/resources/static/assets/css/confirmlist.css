@@ -98,16 +98,16 @@
 }
 
 .confirm-box table .col3 {
-    width: 75px;
+    width: 100px;
     /* border: 1px solid #000; */
 }
 
 .confirm-box table .col4 {
-    width: 85px;
+    width: 110px;
 }
 
 .confirm-box table .col5 {
-    width: 200px;
+    width: 160px;
 }
 
 .confirm-box table .col6 {
@@ -123,13 +123,13 @@
 }
 
 .confirm-box #waiting-table .col7 {
-    width: 60px;
+    width: 80px;
 }
 
 .confirm-box #confirmed-table .col7 {
-    width: 200px;
+    width: 160px;
 }
 
 .confirm-box #rejected-table .col7 {
-    width: 200px;
+    width: 160px;
 }
