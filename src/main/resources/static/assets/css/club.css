@@ -158,6 +158,28 @@
     cursor: pointer;
 }
 
+.joined-club-list {
+    padding: 16px;
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+}
+
+.club-leave-btn {
+    float: right;
+}
+
+.my-club-reply {
+    padding: 16px;
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+}
+.crep-del-btn {
+    float: right;
+}
+.crep-mod-btn {
+    float: right;
+}
+
 /* .sample {
     width: 900px;
     height: 700px;

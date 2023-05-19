@@ -143,14 +143,42 @@
                         for (let oneClub of resResult) {
                             const {ecIndex, empJoinDate, empNo, clubCode, clubName} = oneClub;
 
-                            myBoardTag +=   "<ul>" 
-                                            +  "<li class='joined-club-list' data-clubCode='" + clubCode + "'>" + clubName + "</li>"   
+                            myClubTag +=   "<ul>" 
+                                            +  "<li class='joined-club-list' data-clubCode='" + clubCode + "'>" + clubName 
+                                                + "<button class='club-leave-btn'>탈퇴하기</button>"
+                                            +  "</li>"   
                                             + "</ul>";
                         }
                     }
-                    document.querySelector('.three-option').innerHTML = myBoardTag;
+                    document.querySelector('.three-option').innerHTML = myClubTag;
             });
-        }
+        };
+
+        // 내가 쓴 댓글 클릭시 태그 생성 및 목록 비동기 요청
+        $myReply.onclick = e => {
+            let myReplyTag = '';
+            removeAllOption();
+            fetch(clubBoardURL + '/myClubReply/' + empNo)
+            .then(res => res.json())
+            .then(resResult => {
+                if (resResult.length === 0) {
+                        myReplyTag += "<div> 작성한 댓글이 없습니다.</div>";
+                    } else {
+                        for (let oneReply of resResult) {
+                            const {clubRepNo, clubRepContent, clubRepDate, cbNo, empNo, empName} = oneReply;
+
+                            myReplyTag +=   "<ul>" 
+                                            +  "<li class='my-club-reply' data-clubRepNo='"+ clubRepNo +"'data-cbNo='" + cbNo + "'>" + clubRepContent 
+                                                + "<button class='crep-mod-btn'>수정</button>"
+                                                + "<button class='crep-del-btn'>삭제</button>"
+                                            +  "</li>"   
+                                            + "</ul>";
+                        }
+                    }
+                    document.querySelector('.three-option').innerHTML = myReplyTag;
+
+            });
+        };
 
 
 
