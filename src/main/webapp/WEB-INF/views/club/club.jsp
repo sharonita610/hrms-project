@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,9 +113,9 @@
                         <div class="club-my-board">
                             <div class="three-option">
                                 
-                                    <ul>
+                                    <!-- <ul>
                                         <li class="club-board-title" data-cbNo="cbNo" data-clubCode="clubCode">cbTitle</li>   
-                                    </ul> 
+                                    </ul>  -->
                                
                             </div>
                         </div>
@@ -175,14 +176,13 @@
                         for (let oneboard of resResult) {
                             const {cbNo, cbTitle, clubCode, empNo} = oneboard;
 
-                            myBoardTag +=   "<ul>
-                                              <li class="club-board-title" data-cbNo="cbNo" data-clubCode="clubCode">cbTitle</li>   
-                                            </ul> 
-
-
+                            myBoardTag +=   "<ul>" 
+                                            +  "<li class='club-board-title' data-cbNo='" + cbNo + "' data-clubCode='" + clubCode + "'>" + cbTitle + "</li>"   
+                                            + "</ul>";
                         }
-                    }
 
+                    }
+                    document.querySelector('.three-option').innerHTML = myBoardTag;
 
                 });
 
