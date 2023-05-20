@@ -80,6 +80,7 @@ public class LoginService {
                 .empEmail(employee.getEmpEmail())
                 .posCode(employee.getPosCode())
                 .deptCode(employee.getDeptCode())
+                .roleCode(employee.getRoleCode())
                 .build();
 
         //  세션에 저장

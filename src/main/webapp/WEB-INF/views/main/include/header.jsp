@@ -42,11 +42,11 @@
     <div class="section-sub-header">
         <div class="nav-bar">
             <ul id="tabs">
-                <li><a href="/main">HOME</a></li>
-                <li id="board"><a href="board-list">게시판</a></li>
-                <li><a href="/confirm/list">결재</a></li>
-                <li><a href="/hrms/mail-list">메일</a></li>
-                <li><a href="#">동호회</a></li>
+                <li><a href="../main/main-page">HOME</a></li>
+                <li id="board"><a href=".././board/boardList">게시판</a></li>
+                <li><a href="../../confirm/confirmList">결재</a></li>
+                <li><a href="../../mail/mail">메일</a></li>
+                <li><a href="../../club/club">동호회</a></li>
             </ul>
         </div>
     </div>
