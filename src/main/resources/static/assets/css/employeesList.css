@@ -37,6 +37,10 @@ h1 {
 #emp-list-header{
     /* fixed 가 잘 안먹히네요..*/
     /*display: ;*/
+    /*border: 1px solid red;*/
+    z-index: 9999;
+    width: 77%;
+    position: fixed;
 }
 
 /*  직원 관리페이지 속 작은 박스*/
@@ -87,10 +91,18 @@ h1 {
 /*    font-size: 16px;*/
 /*    !*border: 1px solid #000;*!*/
 /*}*/
+#viewDept {
+    margin-right: 0;
+}
+
 
 
 
 /*  목록 용 태그  */
+
+emp-list {
+    position: relative;
+}
 
 #emp-total-list {
     background: #e6e6e6;
@@ -106,12 +118,22 @@ h1 {
     height: 40px;
     line-height: 40px;
     text-align: center;
-    align-content: center;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
     font-size: 15px;
     font-weight: 700;
 }
+
+.emp-list-box {
+    /*border: 1px solid red;*/
+    overflow: scroll;
+    transform: translateY(120px);
+}
+
+.emp-list-box::-webkit-scrollbar {
+    display: none;
+}
+
 
 /*  전체사원 리스트 li 태그 옆으로 나열하기*/
 .admin-emp-list {
@@ -123,6 +145,7 @@ h1 {
 .emp-list-box .admin-emp-list li {
     height: 30px;
     text-align: center;
+    /*text-indent: 10px;*/
     line-height: 30px;
     border-bottom: 1px solid gray;
     font-size: 15px;
@@ -142,16 +165,15 @@ h1 {
 .empName {
     flex: 2;
 
-
 }
 
 .empBD {
-    flex: 2;
+    flex: 3;
 
 }
 
 .empHireD {
-    flex: 2;
+    flex: 3;
 
 }
 

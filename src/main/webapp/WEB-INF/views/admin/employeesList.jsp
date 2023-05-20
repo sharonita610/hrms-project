@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,15 +20,24 @@
 
                 <div class="admin-options">
                     <div class="admin-sortBy">
-                        <div>전체조회</div>
-                        <div>부서별조회</div>
-                        <div>부서장조회</div>
+                        <div id = "viewAll">전체조회</div>
+                        <select id="searchDept" class="inputblank">
+                            <option value="none" selected disabled hidden>부서를 선택하세요</option>
+                            <option value="001">IT</option>
+                            <option value="002">HR</option>
+                            <option value="003">SALES</option>
+                            <option value="004">MARKETING</option>
+                            <option value="005">FINANCE</option>
+                            <option value="006">MANAGEMENT</option>
+                        </select>
+                        <div id = "viewDept">부서별조회</div>
+                        <div id = viewDeptHead>부서장조회</div>
                     </div>
                 </div>
 
                 <!--목록 용 태그-->
                 <div id="emp-total-list">
-                    <ul class = "employeeInfo">
+                    <ul class="employeeInfo">
                         <li class="empNo">사번</li>
                         <li class="empName">이름</li>
                         <li class="empBD">생년월일</li>
@@ -46,20 +55,20 @@
             <!--목록 용 태그-->
 
             <!----------------------model----------------------------->
-            <div class="emp-list-box">
-                <ul class="admin-emp-list">
-                    <li class="empNo">1</li>
-                    <li class="empName">테스트</li>
-                    <li class="empBD">2000-09-16</li>
-                    <li class="empHireD">2000-02-08</li>
-                    <li class="empMail">test!gmail.com</li>
-                    <li class="empGen">F</li>
-                    <li class="empSal">2000000</li>
-                    <li class="empPhone">01000000000</li>
-                    <li class="empMyBoss">부장님</li>
-                    <li class="empDept">IT</li>
-                    <li class="empPos">사원</li>
-                </ul>
+            <div id = "emp-list-box" class="emp-list-box">
+<%--                <ul class="admin-emp-list">--%>
+                    <%--                    <li class="empNo">1</li>--%>
+                    <%--                    <li class="empName">테스트</li>--%>
+                    <%--                    <li class="empBD">2000-09-16</li>--%>
+                    <%--                    <li class="empHireD">2000-02-08</li>--%>
+                    <%--                    <li class="empMail">test!gmail.com</li>--%>
+                    <%--                    <li class="empGen">F</li>--%>
+                    <%--                    <li class="empSal">2000000</li>--%>
+                    <%--                    <li class="empPhone">01000000000</li>--%>
+                    <%--                    <li class="empMyBoss">부장님</li>--%>
+                    <%--                    <li class="empDept">IT</li>--%>
+                    <%--                    <li class="empPos">사원</li>--%>
+<%--                </ul>--%>
 
 
             </div>
@@ -68,16 +77,84 @@
 </div>
 
 <script>
+    const URL = '/hrms/employees';
+    const $viewAll = document.getElementById('viewAll');
+    const $searchDept = document.getElementById('searchDept');
+    const $viewDeptHead = document.getElementById('viewDeptHead');
 
-    function allEmployeesRendering(){
+    $viewAll.onclick = () => {
+        getAllEmployeesList();
+    }
+
+    $viewDeptHead.onclick = () => {
+        getDeptHeadList();
+    }
+
+    $searchDept.addEventListener('change', searchByDept)
+
+    function searchByDept(){
+        const selected = $searchDept.value;
+        if(selected === 'none') { return; }
+        fetch(`\${URL}/list/\${selected}`)
+            .then(res => res.json())
+            .then(result => {
+                employeesRendering(result)
+            });
+
+    }
+
+    function getAllEmployeesList() {
+        fetch(`\${URL}/list/all`)
+            .then(res => res.json())
+            .then(result => {
+                employeesRendering(result)
+            });
+    }
+
+    function getDeptHeadList(){
+        fetch(`\${URL}/list/head`)
+            .then(res => res.json())
+            .then(result => {
+                employeesRendering(result)
+            });
+    }
+
+    function employeesRendering(list) {
+
+        const empList = document.getElementById('emp-list-box');
+        let tag = '';
+        for (const emp of list) {
+            const {
+                empNo, empName, empBirthDay, empHireDate,
+                empEmail, empPassword, empGender, empSalary, empPhone,
+                empMyBoss, posName, roleName, deptName, clubName
+            } = emp
+
+            const gender = empGender === 'M' ? '남자' : '여자';
+            const salary = empSalary.toLocaleString();
+            const myBoss = empMyBoss === null ? '' : empMyBoss
+
+            tag += '<a href = "' + URL + '/detail/' + empNo +'">' +
+                '<ul class="admin-emp-list">' +
+                '<li class="empNo">' + empNo + '</li>' +
+                '<li class="empName">' + empName + '</li>' +
+                '<li class="empBD">' + empBirthDay + '</li>' +
+                '<li class="empHireD">' + empHireDate + '</li>' +
+                '<li class="empMail">' + empEmail + '</li>' +
+                '<li class="empGen">' + gender + '</li>' +
+                '<li class="empSal">' + salary + '</li>' +
+                '<li class="empPhone">' + empPhone + '</li>' +
+                '<li class="empMyBoss">' + myBoss + '</li>' +
+                '<li class="empDept">' + deptName + '</li>' +
+                '<li class="empPos">' + posName + '</li></ul></a>';
+        }
+        empList.innerHTML = tag;
 
     }
 
 
-
-
     //메인 실행부
-    allEmployeesRendering();
+    getAllEmployeesList();
 
 </script>
 

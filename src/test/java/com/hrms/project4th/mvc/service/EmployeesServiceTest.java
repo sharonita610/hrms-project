@@ -42,7 +42,7 @@ class EmployeesServiceTest {
             AddEmployeesDTO dto = AddEmployeesDTO.builder()
                 .empName("테스트사원" + i + j)
                 .empBirthDay("1998-01-05")
-                .empEmail("test" + i + j+"@samjosangsa.com")
+                .empEmail("test" + i + j)
                 .empGender(Gender.F)
                 .empSalary(2000000L)
                 .empPhone("010000055" + i + j)
@@ -60,10 +60,13 @@ class EmployeesServiceTest {
     @Test
     @DisplayName("사원번호로 사원을 삭제할 수 있다")
     public void removeEmployeeTest(){
-        long empNo = 14L;
+        for (int i = 90; i < 150; i++) {
+        long empNo = i;
         boolean flag = employeesService.removeEmployee(empNo);
 
         assertTrue(flag);
+        }
+
     }
 
     @Test

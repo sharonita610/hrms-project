@@ -36,4 +36,8 @@ public interface  EmployeesMapper {
     boolean updatePhoneNumber(String empEmail, String newPhone);
 
     boolean modifyEmployeesWithNoProfile(Employees emp);
+
+    List<EmployeeDetailResponseDTO> getDetailEmployeesListByDept(String deptCode);
+
+    List<EmployeeDetailResponseDTO> getDeptHeadList();
 }

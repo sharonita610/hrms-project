@@ -82,4 +82,11 @@ public class EmployeesService {
     }
 
 
+    public List<EmployeeDetailResponseDTO> getDetailEmployeesListByDept(String deptCode) {
+        return employeesMapper.getDetailEmployeesListByDept(deptCode);
+    }
+
+    public List<EmployeeDetailResponseDTO> getDeptHeadList() {
+        return employeesMapper.getDeptHeadList();
+    }
 }

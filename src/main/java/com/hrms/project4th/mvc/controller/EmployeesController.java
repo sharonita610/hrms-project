@@ -44,6 +44,21 @@ public class EmployeesController {
         return ResponseEntity.ok().body(employeesService.getDetailEmployeesList());
     }
 
+    //부서별 사원 검색
+    @GetMapping("/list/{deptCode}")
+    @ResponseBody
+    public ResponseEntity<List<EmployeeDetailResponseDTO>> getEmployeesListByDept(@PathVariable("deptCode") String deptCode) {
+        log.info("deptCode : {}",deptCode);
+        return ResponseEntity.ok().body(employeesService.getDetailEmployeesListByDept(deptCode));
+    }
+
+    //부서장 검색
+    @GetMapping("/list/head")
+    @ResponseBody
+    public  ResponseEntity<List<EmployeeDetailResponseDTO>> getDeptHeadList() {
+        return ResponseEntity.ok().body(employeesService.getDeptHeadList());
+    }
+
     //사원추가 폼으로 이동
     @GetMapping("/add")
     public String addEmployee() {
@@ -64,6 +79,12 @@ public class EmployeesController {
         empEmail += "@samjosangsa.com";
         boolean flag = employeesService.isDuplicated(empEmail);
         return ResponseEntity.ok().body(flag);
+    }
+
+    //사원 상세정보 보기
+    @GetMapping("/detail/{empNo}")
+    public String getEmployeesDetail(@PathVariable("empNo") long empNo) {
+        return "admin/employeesDetail";
     }
 
     //사원 수정 폼으로 이동
