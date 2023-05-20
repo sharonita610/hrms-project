@@ -13,6 +13,8 @@
     <!-- ck editor -->
     <script src="https://cdn.tiny.cloud/1/2h0oiwycjeu5k9ts481odi4en2v8u1wf7k3zi3va3lw2j0uy/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
+    <!-- fontawsome -->
+    <script src="https://kit.fontawesome.com/024f42bdd1.js" crossorigin="anonymous"></script>
     <script>
         tinymce.init({
             selector: '#mytextarea'
@@ -243,12 +245,39 @@
         .modal {
             --bs-modal-margin: 20rem;
         }
+
+        .modal .modDEL,
+        .boardModDEL {
+            border: none;
+
+        }
+
+        /* .modal .boardModDEL{
+             border: none;
+        } */
+
+        .modal .modMod {
+            height: 150px;
+        }
+
+        .modal-title {
+            font-weight: 600;
+        }
+
         /*     .modal {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         } */
+        .modifyAndDelete #modifyBtn {
+            height: 38.38px;
+        }
+
+
+        #replyDelBtn {
+            height: 38.38px;
+        }
     </style>
 </head>
 
@@ -260,7 +289,8 @@
                 <div class="container-box">
                     <div class="detail-topbox">
                         <h1 class="detail-title">게시글</h1>
-                        <button type="button" class="btn btn-danger" data-bno="${b.boardNo}">삭제</button>
+                        <button type="button" class="btn btn-danger" data-bno="${b.boardNo}" id="boardRedDelete"
+                            data-bs-toggle='modal' data-bs-target='#staticBackdrop3'>삭제</button>
                     </div>
                     <form action="/hrms/board/show-modify" method="post">
                         <div class="form-group">
@@ -348,6 +378,26 @@
                     </div>
                 </div>
 
+                <!-- Board Delete Modal -->
+                <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">게시글 삭제</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <input type="text" class="modal-body boardModDEL" value="게시글을 삭제하시겠습니까?" readonly></input>
+                            <div class="modal-footer" data-boardNo="${b.boardNo}">
+                                <button type="button" class="btn btn-primary boardDelBtn-primary">삭제</button>
+                                <button type="button" class="btn btn-secondary del-secondary"
+                                    data-bs-dismiss="modal">닫기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
 
                 <!-- Reply MODIFY Modal -->
@@ -356,11 +406,11 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">댓글 수정</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <input type="text" class="modal-body modMod"></input>
+                            <textarea type="text" class="modal-body modMod"></textarea>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary">수정</button>
                                 <button type="button" class="btn btn-secondary mod-secondary"
@@ -376,11 +426,13 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                                    댓글 삭제
+                                </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <input type="text" class="modal-body modDEL" value="삭제하시겠습니까?" readonly></input>
+                            <input type="text" class="modal-body modDEL" value="댓글을 삭제하시겠습니까?" readonly></input>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary delBtn-primary">삭제</button>
                                 <button type="button" class="btn btn-secondary del-secondary"
@@ -401,24 +453,27 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
     <script>
-
-        //목록버튼 클릭시 이동 함수 
+        //목록버튼 클릭시 이동하는 기능
         const $backToList = document.getElementById('backToList');
         $backToList.onclick = (e) => {
             console.log(e.target);
             window.location.href = '/hrms/board/board-list?boardPageNo=${s.boardPageNo}';
         }
 
-        //삭제버튼 클릭시 해당 게시물을 삭제하는 함수
-        const $redDelBtn=document.querySelector('.btn-danger');
-        $redDelBtn.onclick=e=>{
-            if(e.target.matches('.btn-danger')){
-                const $delbno=e.target.dataset.bno;
+        //삭제버튼 클릭시 해당 게시물을 삭제하는 기능
+        function deleteBoard() {
+
+            const $boardDelModal = document.querySelector('.boardDelBtn-primary');
+
+            $boardDelModal.onclick = e => {
+                const $delbno = e.target.parentElement.dataset.boardno
                 // console.log($delbno);
-                window.location.href='/hrms/board/board-delete?boardNo='+$delbno;
+                window.location.href = '/hrms/board/board-delete?boardNo=' + $delbno ;
             }
 
-        }
+        
+        };
+
 
 
         // URI
@@ -563,16 +618,14 @@
             $replyData.onclick = e => {
                 // repNo값 가져오기
                 const $getReplyId = e.target.closest('#replyContent').dataset.replyid;
-                console.log($getReplyId);
+                // console.log($getReplyId);
+
                 // empNo값 가져오기
                 const $rpdelEmpNo = e.target.parentElement.parentElement.previousElementSibling.
                 previousElementSibling.firstElementChild.lastElementChild.value;
-                console.log($rpdelEmpNo)
-                // const $getEmpNo = document.querySelector('#replyContent span input').value;
-                // console.log($getEmpNo);
-                // console.log(e.target);
-                // console.log('삭제버튼 클릭');
+                // console.log($rpdelEmpNo)
                 e.preventDefault();
+
                 if (e.target.matches('#replyDelBtn')) {
 
                     const $rpRpNo = e.target.parentElement.parentElement.parentElement.dataset.replyid;
@@ -666,11 +719,11 @@
             const $modifyButton = document.querySelector('.btn-primary');
             $modifyButton.addEventListener('click', function (e) {
                 const $getRepCont = document.querySelector('.modMod').value;
-                console.log($getRepCont);
+                // console.log($getRepCont);
                 const $getRepNo = document.querySelector('.modMod').dataset.rno;
-                console.log($getRepNo);
+                // console.log($getRepNo);
                 const $getEmpNo = document.querySelector('.modMod').dataset.reno;
-                console.log($getEmpNo);
+                // console.log($getEmpNo);
                 const modifyInfo = {
                     method: 'PATCH',
                     headers: {
@@ -776,7 +829,7 @@
 
             // 댓글 리스트 호출
             findAllReplies();
-            
+
             // 페이지 이동
             makePageButtonClickEvent();
 
@@ -791,7 +844,8 @@
 
             //삭제 기능
             deleteBoardReply();
-
+            //게시글 삭제 
+            deleteBoard();
 
         })()
     </script>

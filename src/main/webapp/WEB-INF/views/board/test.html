@@ -1,75 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <style>
-    /* 스타일링 */
-    .modal {
-      display: none; /* 모달 숨김 */
-      position: fixed; /* 고정 위치 */
-      z-index: 1; /* 다른 요소 위에 표시 */
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto; /* 스크롤 가능 */
-      background-color: rgba(0, 0, 0, 0.4); /* 반투명 배경 */
-    }
-
-    .modal-content {
-      background-color: #fefefe; /* 모달 내용 배경 */
-      margin: 15% auto; /* 가운데 정렬 */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/024f42bdd1.js" crossorigin="anonymous"></script>
+    <title>Document</title>
 </head>
 <body>
-
-<button id="openModalBtn">모달 열기</button>
-
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>모달 제목</h2>
-    <p>모달 내용입니다.</p>
-  </div>
-</div>
-
-<script>
-  // JavaScript로 모달 창 열기/닫기 처리
-  var modal = document.getElementById("myModal");
-  var openModalBtn = document.getElementById("openModalBtn");
-  var closeModal = document.getElementsByClassName("close")[0];
-
-  openModalBtn.onclick = function() {
-    modal.style.display = "block";
-  };
-
-  closeModal.onclick = function() {
-    modal.style.display = "none";
-  };
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
-</script>
+    <h1><i class="fa-solid fa-trash-can"></i></h1>
+    <h1><img src="스크린샷 2023-04-20 202153.png" alt="samjo-logo"></h1>
+    <h1><img src="samjo-logo.png" alt="ddd"></h1>
 
 </body>
 </html>
