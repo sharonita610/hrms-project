@@ -69,7 +69,7 @@ public class LoginController {
         } else if (result == WRONG_PW) {
 
             ra.addFlashAttribute("wrongPwd", "비밀번호가 일치하지 않습니다.");
-
+            log.info("{}",ra.addFlashAttribute("wrongPwd", "wrongPwd"));
             return "/main/login";
 
         }
