@@ -10,10 +10,11 @@
 
     <!-- <link rel="stylesheet" href="/assets/css/board.css"> -->
     <style>
-        .text{
-            margin-left :50px;
+        .text {
+            margin-left: 50px;
             width: 70%;
         }
+
         .search {
             /* margin-left: 50px; */
             width: 100%;
@@ -71,7 +72,7 @@
         }
 
 
-
+        /* 게시글 List */
         .table {
             padding-left: 50px;
             text-align: center;
@@ -110,10 +111,11 @@
             height: 18px;
         }
 
-        .table td,th {
+        .table td,
+        th {
             border: none;
             border-bottom: 1px solid #f4f4f4;
-            
+
         }
 
         .replyConut {
@@ -131,6 +133,11 @@
             background-color: #f7f7f7;
         }
 
+        /* page 색변화처리  */
+        .pagination li.colorChange a {
+            background-color: #0d6efd !important;
+            color: #ffffff !important;
+        }
     </style>
 </head>
 
@@ -192,8 +199,8 @@
                                     href="/hrms/board/board-list/?boardPageNo=${boardPageMaker.start-1}">이전</a></li>
                         </c:if>
                         <c:forEach var="i" begin="${boardPageMaker.start}" end="${boardPageMaker.end}">
-                            <li class="page-item"><a class="page-link" href="/hrms/board/board-list/?boardPageNo=${i}"
-                                    data-pNo="${i}">${i}</a></li>
+                            <li class="page-item" data-pno="${i}"><a class="page-link"
+                                    href="/hrms/board/board-list/?boardPageNo=${i}">${i}</a></li>
                         </c:forEach>
                         <c:if test="${boardPageMaker.next}">
                             <li class="page-item"><a class="page-link"
@@ -216,7 +223,8 @@
                             <option value="titleAndContent">제목+내용</option>
                         </select>
                         <input class="form-control mr-sm-2" type="search" id="search" placeholder="검색어를 입력하세요"
-                            aria-label="Search" name="boardKeyWord"> <i id="keyboard" class="fa fa-keyboard-o"></i>
+                            aria-label="Search" name="boardKeyWord" value="${search.boardKeyWord}"><i id="keyboard"
+                            class="fa fa-keyboard-o"></i>
                         <button class="btn btn-outline-primary my-2 my-sm-0" id="search-button"
                             type="submit">검색</button>
                     </div>
@@ -232,47 +240,53 @@
             window.location.href = '/hrms/board/board-save/'
         };
 
-        // const link = document.querySelector('.page-link');
-        // link.onclick = () => {
-        //     link.style.color = "red";
+
+
+        //select 선택 후 검색을 하더라도 전에 선택된 option이 유지되게 하는 기능
+        function maintainSelect() {
+            const $select = document.getElementById('category');
+            // console.log('select' + $select);
+            for (let s of [...$select.children]) {
+                if (s.value == '${search.boardType}') {
+                    s.setAttribute('selected', 'selected')
+                }
+            }
+        }
+        maintainSelect();
+
+
+        // page클릭시 해당 page a태그 색변화
+
+        // function colorSwitch(e) {
+        //     const curPageNum = '${boardPageMaker.boardPage.boardPageNo}';
+        //     const $pageList = document.querySelector('.pagination');
+
+
+        //     for (let p of $pageList.children) {
+        //         console.log('curPageNum:', curPageNum);
+        //         console.log('p.dataset.pNo:', p.dataset.pNo);
+        //         if (curPageNum === p.dataset.pNo) {
+        //             console.log('되나?');
+        //             p.style.color = 'red';
+        //         }
+        //     }
         // }
+        function colorSwitch(e) {
+            const curPageNum = '${boardPageMaker.boardPage.boardPageNo}';
+            const $pageList = document.querySelector('.pagination');
 
+            for (let p of $pageList.children) {
+                // console.log(p);
+                if (curPageNum === p.dataset.pno) {
+                    // console.log(p.dataset.pno);
+                    // 색상 변경 로직
+                    p.classList.add('colorChange');
+                    break;
 
-        function colorSwitch() {
-
-            const curPageNum = '${boardPageMaker.boardPage.boardPageNo}'
-            console.log(curPageNum);
-
-            const $ul = document.querySelector('.pagination');
-
-
-
+                }
+            }
         }
         colorSwitch();
-
-
-
-        //삭제기능
-        const $cardWrapper = document.querySelector('.card-wrapper')
-        // const $mainBox = document.querySelector('.main-box');
-
-        // $cardWrapper.addEventListener('click', e => {
-        //     if (e.target.matches('.main-box *')) {
-        //         const $delBtn = e.target.closest('#delete-btn');
-        //         window.location.href = $delBtn.dataset.href;
-        //     }
-
-        // })
-
-        //디테일 기능
-
-        // $cardWrapper.addEventListener('click', e => {
-        //     if (e.target.matches('.main-box *')) {
-        //         const $detail = e.target.closest('#detail-btn');
-        //         window.location.href = $detail.dataset.href;
-        //     }
-
-        // })
     </script>
 
 </body>

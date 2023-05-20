@@ -126,12 +126,14 @@
             height: 600px;
 
         }
+
         /* 내용창 아래 버튼  수정 완료, 목록 버튼*/
         .detail-button {
             display: flex;
             justify-content: end;
         }
-        .detail-button #backToList{
+
+        .detail-button #backToList {
             margin-right: 10px;
         }
     </style>
@@ -149,14 +151,9 @@
                             <input type="hidden" name="boardNo" value="${m.boardNo}">
                             <label for="board">게시판</label>
                             <select id="board" name="bdType">
-
                                 <option value="NOTICE">공지게시판</option>
-
-
                                 <option value="FREE">자유게시판</option>
-
                                 <option value="NONAME">익명게시판</option>
-
                             </select>
                         </div>
                         <div class="form-group">
@@ -169,8 +166,8 @@
                             <textarea id="mytextarea" name="bdContent" readonly>${m.bdContent}</textarea>
                         </div>
                         <div class="form-group detail-button">
-                            <button id="backToList" type="button"
-                                onclick="window.location.href='/hrms/board/board-list'">수정취소</button>
+                            <button id="backToList" type="reset">수정취소</button>
+                            <!--  onclick="window.location.href='/hrms/board/board-list'" -->
                             <button type="submit">수정완료</button>
                             <!--   onclick="window.location.href='/hrms/board-list?boardPageNo=${s.boardPageNo}'" -->
                         </div>
@@ -179,6 +176,15 @@
             </section>
         </section>
     </div>
+    <script>
+        const backToDetail = document.getElementById('backToList');
+        backToDetail.onclick=()=>{
+            // http://localhost:8888/hrms/board/board-detail/?boardNo=300&boardPageNo=1&bdType=NOTICE
+            console.log('수정취소버튼클릭');
+            window.location.href='/hrms/board/board-detail/?boardNo=${m.boardNo}&boardPageNo=1&bdType=${m.bdType}'
+            }
+
+    </script>
 
 </body>
 

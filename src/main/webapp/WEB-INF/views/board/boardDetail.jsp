@@ -280,6 +280,7 @@
                         </div>
                         <div class="form-group">
                             <label for="title" class="container">제목</label>
+                            <input type="hidden" id="pageInfo" name="boardPageNo" value="${s.boardPageNo}">
                             <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" value='${b.bdTitle}'
                                 readonly>
                         </div>
@@ -292,7 +293,7 @@
                         </div>
                         <div class="form-group detail-button">
                             <button type="submit">수정</button>
-                            <button id="backToList" type="submit">목록</button>
+                            <button id="backToList" type="button">목록</button>
                             <!--   onclick="window.location.href='/hrms/board-list?boardPageNo=${s.boardPageNo}'" -->
                         </div>
 
@@ -301,7 +302,8 @@
 
 
                 </div>
-                <!-- 댓글 -->
+
+                <!-- 댓글 파트-->
 
                 <div id="replies" class="row">
                     <div class="offset-md-1 col-md-10">
@@ -403,6 +405,7 @@
         //목록버튼 클릭시 이동 함수 
         const $backToList = document.getElementById('backToList');
         $backToList.onclick = (e) => {
+            console.log(e.target);
             window.location.href = '/hrms/board/board-list?boardPageNo=${s.boardPageNo}';
         }
 
@@ -773,8 +776,10 @@
 
             // 댓글 리스트 호출
             findAllReplies();
+            
             // 페이지 이동
             makePageButtonClickEvent();
+
             //댓글 save
             makeReplyRegisterClickEvent();
 

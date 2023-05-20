@@ -171,7 +171,7 @@
                                 <!-- </textarea> -->
                             </div>
                             <div class="form-group detail-button">
-                                <button id="backToList">목록</button>
+                                <button id="backToList" type="reset">목록</button>
                                 <button type="submit">작성</button>
                             </div>
                         </form>
@@ -184,5 +184,13 @@
     </div>
 
 </body>
+<script>
+    const $back = document.getElementById('backToList');
+    $back.onclick=()=>{
+        window.location.href='/hrms/board/board-list/'
+
+    }
+
+</script>
 
 </html>
