@@ -20,8 +20,9 @@
                         <li>사번 : ${login.empNo}</li>
                         <li>이름 : ${login.empName}</li>
                         <li>휴대폰 번호 :<br>${login.empPhone}</li>
-                        <li>부서 : </li>
-                        <li>직책 : </li>
+                        <li>부서 : ${login.posCode}</li>
+                        <li>직책 : ${login.roleCode}</li>
+                        <li>메일 : ${login.empEmail}</li>
                     </c:if>
 
                 </ul>

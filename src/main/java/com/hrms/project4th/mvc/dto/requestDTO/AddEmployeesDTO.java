@@ -26,4 +26,5 @@ public class AddEmployeesDTO {
     private String roleCode;
     private String deptCode;
     private MultipartFile profile;
+    private char autoLogin;
 }

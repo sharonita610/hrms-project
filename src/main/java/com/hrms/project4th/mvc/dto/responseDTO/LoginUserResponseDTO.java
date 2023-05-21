@@ -19,6 +19,7 @@ public class LoginUserResponseDTO {
     private String posCode;
     private String deptCode;
     private String roleCode;
+    private String profile;
 
 
 }

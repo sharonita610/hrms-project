@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.entity;
 
 import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import lombok.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +35,8 @@ public class Employees {
     private Auth auth;
     private String empSession;
     private LocalDateTime cookieLimitTime;
+    private String newPhone;
+    private char autoLogin;
 
 
     public Employees(AddEmployeesDTO dto, String path){
@@ -49,6 +52,7 @@ public class Employees {
         this.roleCode = dto.getRoleCode();
         this.deptCode = dto.getDeptCode();
         this.profile = path;
+        this.autoLogin = dto.getAutoLogin();
     }
 
     public LocalDate getLocalDate(String date){
@@ -60,6 +64,7 @@ public class Employees {
     public String setEmpEmail(String emailAccount){
         return emailAccount + "@samjosangsa.com";
     }
+
 
 
 }

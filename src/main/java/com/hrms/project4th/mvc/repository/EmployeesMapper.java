@@ -33,5 +33,6 @@ public interface  EmployeesMapper {
     void saveAutoLogin(AutoLoginDTO dto);
 
     // 사원 번호 바꾸는 mapper
-    boolean updatePhoneNumber(String empEmail, String newPhone);
+    boolean updatePhoneNumber(String newPhone, String empEmail);
+
 }
