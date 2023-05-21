@@ -99,7 +99,7 @@ public class EmployeesController {
     }
 
     //사원 수정 디비 반영
-    @PostMapping("/modify")
+    @PostMapping("/modify/{empNo}")
     public String modifyEmployees(ModifyEmployeeDTO dto) {
         if (dto.getProfile().isEmpty()) {
             log.info("프로파일이 널입니다");
@@ -109,15 +109,14 @@ public class EmployeesController {
             String savePath = FileUtil.uploadFile(dto.getEmpPhone(), dto.getProfile(), rootPath);
             employeesService.modifyEmployees(dto, savePath);
         }
-        return "admin/modifyEmployee"; //리스트로 리다이렉트로 변경 예정 !
+        return "redirect:/hrms/employees/list";
     }
 
     //사원 삭제
-    @PostMapping("/delete")
-    @ResponseBody
-    public ResponseEntity<Boolean> removeEmployee(long empNo) {
+    @GetMapping("/delete")
+    public String removeEmployee(long empNo) {
         boolean flag = employeesService.removeEmployee(empNo);
-        return ResponseEntity.ok().body(flag);
+        return "redirect:/hrms/employees/list";
     }
 
     @GetMapping("/boss/{dept}/{pos}")

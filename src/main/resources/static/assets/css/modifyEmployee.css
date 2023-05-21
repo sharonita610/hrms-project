@@ -57,16 +57,24 @@
     display: none;
 }
 
-#emp-submit {
+.modi-btns {
     font-size: 15px;
     position: absolute;
     padding: 5px;
     bottom: 20px;
-    right: 20px;
     background: #e6e6e6;
     border: 1px solid gray;
-    /* display: none; */
     cursor: pointer;
+}
+#emp-submit {
+    right: 20px;
+}
+
+#terminate {
+    right: 110px;
+}
+.goBack {
+    right: 200px;
 }
 
 .alert {
@@ -115,18 +123,6 @@
 
 #showPic {
     width: 100%;
-}
-
-.goBack {
-    font-size: 15px;
-    position: absolute;
-    padding: 5px;
-    bottom: 20px;
-    right: 110px;
-    background: #e6e6e6;
-    border: 1px solid gray;
-    /* display: none; */
-    cursor: pointer;
 }
 
 .modiEmpFormWrapper #clubs {

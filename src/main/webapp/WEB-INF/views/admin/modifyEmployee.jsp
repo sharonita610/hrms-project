@@ -13,7 +13,7 @@
     <%@ include file="../main/include/left-banner.jsp" %>
     <div class="modiEmpFormWrapper">
 
-        <form action="/hrms/employees/modify" method="post" enctype="multipart/form-data">
+        <form action="/hrms/employees/modify/${emp.empNo}" method="post" enctype="multipart/form-data">
             <h1>사원 상세 정보</h1>
             <div class="empProfileInput addInputForm">
                 <h2>사진 : </h2>
@@ -25,7 +25,7 @@
 
 
             <div class="empNameInput addInputForm">
-                <input type="hidden" name="empNo" value="${emp.empNo}">
+                <input id = "empNo" type="hidden" name="empNo" value="${emp.empNo}">
                 <h2>이름 : </h2>
                 <input id="empName" class="inputblank" type="text" name="empName" value="${emp.empName}">
                 <div id="noName" class="alert">최소 두 글자 이상의 이름을 입력해주세요.</div>
@@ -104,8 +104,9 @@
             </div>
             <%--        가입한 동호회 보여주기 블럭 --%>
 
-            <div class="goBack" onclick="goBack()">뒤로 가기</div>
-            <div id="emp-submit">변경 등록</div>
+            <div class="goBack modi-btns" onclick="goBack()">뒤로 가기</div>
+            <div id = "terminate" class = "modi-btns">사원 삭제</div>
+            <div id="emp-submit" class = "modi-btns">변경 등록</div>
             <button id="modiBtn" type="submit">제출버튼</button>
         </form>
 
@@ -125,10 +126,21 @@
     const $role = document.getElementById('setRole');
     const $emailInput = document.getElementById('setEmail');
     const $showPic = document.getElementById('showPic');
+    const $deleteBtn = document.getElementById('terminate');
     const roleCode = "${emp.roleCode}";
     const posCode = "${emp.posCode}";
     const deptCode = "${emp.deptCode}";
     const empMyBoss = "${emp.empMyBoss}";
+
+    //사원 삭제하기
+    $deleteBtn.onclick = () => {
+        let empName = document.getElementById('empName').value;
+        let empNo = document.getElementById('empNo').value;
+        if(!confirm(empName + ' 사원을 사원정보에서 삭제합니다.')){
+            return;
+        }
+        window.location.href = URL + '/delete?empNo=' + empNo;
+    }
 
     //부서 자동 선택
     const $defaultDept = document.getElementById('setDept').children;
@@ -465,12 +477,12 @@
 
     }
 
-    // 사원 등록하기 버튼 클릭
+    // 사원 정보 변경하기 버튼 클릭
     const $submit = document.getElementById('emp-submit');
-    $submit.addEventListener('click', addEmployee);
+    $submit.addEventListener('click', modiEmployee);
 
 
-    function addEmployee() {
+    function modiEmployee() {
         readyToAddCheck();
 
         let flag = true;
@@ -480,6 +492,9 @@
             }
         }
         if (flag) {
+            if(!confirm('사원 정보를 수정합니다.')){
+                return;
+            }
             document.getElementById('modiBtn').click();
         }
     }

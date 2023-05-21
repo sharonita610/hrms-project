@@ -95,12 +95,12 @@
             getAllEmployeesList();
         }else {
 
-            fetch(`\${URL}/search/\${target}`)
-                .then(res => res.json())
-                .then(result => {
-                    if (result !== null)
-                        employeesRendering(result)
-                });
+        fetch(`\${URL}/search/\${target}`)
+            .then(res => res.json())
+            .then(result => {
+                if(result !== null)
+                employeesRendering(result)
+            });
         }
     }
 

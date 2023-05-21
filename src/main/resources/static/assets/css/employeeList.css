@@ -39,13 +39,13 @@ h1 {
     /*display: ;*/
     /*border: 1px solid red;*/
     z-index: 9999;
-    width: 77%;
+    width: 1480px;
     position: fixed;
 }
 
 /*  직원 관리페이지 속 작은 박스*/
 .section-admin-page .emp-list-box {
-    width: 100%;
+    width: 1480px;
     height: 80%;
 }
 
@@ -115,9 +115,9 @@ h1 {
     width: 100px;
 }
 
-/*#searchBtn {*/
-/*    cursor: pointer;*/
-/*}*/
+#searchBtn {
+    cursor: pointer;
+}
 
 searchBtn:hover {
     font-weight: 700;
