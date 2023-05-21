@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
 <body>
 <div id="body-wrapper">
     <%@ include file="../main/include/left-banner.jsp" %>
-    <div class="addEmpFormWrapper">
+    <div class="modiEmpFormWrapper">
 
         <form action="/hrms/employees/modify" method="post" enctype="multipart/form-data">
             <h1>사원 상세 정보</h1>
@@ -20,7 +21,7 @@
                 <div id="noPic" class="alert">사진이 선택되지 않았습니다.</div>
             </div>
 
-            <div id="picFrame" class="profilePic"><img id="showPic"  src="${emp.profile}"></div>
+            <div id="picFrame" class="profilePic"><img id="showPic" src="${emp.profile}"></div>
 
 
             <div class="empNameInput addInputForm">
@@ -82,7 +83,7 @@
             </div>
             <div class="empRoleInput addInputForm">
                 <h2>직책코드 : </h2>
-                <select id = "setRole" class="inputblank" name="roleCode">
+                <select id="setRole" class="inputblank" name="roleCode">
                     <option value="none" selected>직책을 선택하세요</option>
                     <option value="00000">관리자</option>
                     <option value="11111">부서장</option>
@@ -95,11 +96,19 @@
                 </select>
                 <div id="noBoss" class="alert">직속상사를 선택해주세요.</div>
             </div>
+            <%--        가입한 동호회 보여주기 블럭 --%>
+            <div id = "clubs" class="emp-clubs addInputForm">
+                <h2 id = "emp-enrolled-clubs">가입한 동호회 :</h2>
+                <div id = "club-wrapper">
+                </div>
+            </div>
+            <%--        가입한 동호회 보여주기 블럭 --%>
 
-            <div class = "goBack" onclick="goBack()">뒤로 가기</div>
+            <div class="goBack" onclick="goBack()">뒤로 가기</div>
             <div id="emp-submit">변경 등록</div>
             <button id="modiBtn" type="submit">제출버튼</button>
         </form>
+
     </div>
 </div>
 <script>
@@ -113,7 +122,6 @@
     const $empPhone = document.getElementById('empPhone');
     const $empBirthDay = document.getElementById('empBirthDay');
     const $salary = document.getElementById('empSalary');
-    // const $myBoss = document.getElementById('setBoss');
     const $role = document.getElementById('setRole');
     const $emailInput = document.getElementById('setEmail');
     const $showPic = document.getElementById('showPic');
@@ -121,7 +129,6 @@
     const posCode = "${emp.posCode}";
     const deptCode = "${emp.deptCode}";
     const empMyBoss = "${emp.empMyBoss}";
-
 
     //부서 자동 선택
     const $defaultDept = document.getElementById('setDept').children;
@@ -143,36 +150,27 @@
     // 직책 자동 선택
     const $defaultRole = document.getElementById('setRole').children;
     for (let option of $defaultRole) {
-        if(option.value === roleCode) {
+        if (option.value === roleCode) {
             option.setAttribute('selected', 'selected');
         }
     }
 
-    setMyBoss();
 
     //직속상사 자동선택
     function pickMyBoss() {
         const $defaultBoss = document.getElementById('setBoss').children;
         for (let option of $defaultBoss) {
-                console.log(option.value);
+            console.log(option.value);
             if (option.value === empMyBoss) {
                 option.setAttribute('selected', 'selected');
             }
         }
     }
 
+
+
     //입력 검증
     function readyToAddCheck() {
-
-        // //프로필사진 검사
-        // if ($profile.files.length !== 0) {
-        //     document.getElementById('noPic').style.display = 'none;';
-        //     readyToAdd[0] = true;
-        // } else {
-        //     document.getElementById('noPic').style.display = 'none;';
-        //     readyToAdd[0] = true;
-        //     console.log(readyToAdd[0]);
-        // }
 
         //이름 검사
         if ($empName.value.trim().length >= 2) {
@@ -277,19 +275,6 @@
             document.getElementById('noPos').style.display = 'none';
         }
 
-        // //직속상사 검사
-        // if ($myBoss.value !== '001' && $myBoss.value !== '002') {
-        //     if ($myBoss.value !== 'none') {
-        //         readyToAdd[8] = true;
-        //         document.getElementById('noBoss').style.display = 'block';
-        //         console.log(readyToAdd[8]);
-        //     } else {
-        //         readyToAdd[8] = false;
-        //         document.getElementById('noBoss').style.display = 'none';
-        //         console.log(readyToAdd[8]);
-        //     }
-        // }
-
     }
 
     //프로필 사진 입력
@@ -379,22 +364,6 @@
             console.log(readyToAdd[5]);
         }
     }
-
-    // //직속상사 입력 여부 확인
-    // $myBoss.onchange = () => {
-    //     if ($myBoss.value !== '001' && $myBoss.value !== '002') {
-    //         if ($myBoss.value !== 'none') {
-    //             readyToAdd[8] = true;
-    //             document.getElementById('noBoss').style.display = 'none';
-    //             console.log(readyToAdd[8]);
-    //         } else {
-    //             readyToAdd[8] = false;
-    //             document.getElementById('noBoss').style.display = 'block';
-    //             console.log(readyToAdd[8]);
-    //         }
-    //     }
-    // }
-
 
     //부서, 직급 선택시 마이보스 선택란에 같은 부서 내 윗직급 리스트 불러오기
     $setPos.addEventListener('change', setMyBoss);
@@ -515,9 +484,35 @@
         }
     }
 
-    function goBack(){
+    function goBack() {
         window.location.href = '/hrms/employees/list';
     }
+
+    //동호회 불러오기
+    function getMyClubList(){
+        fetch('/hrms/club/myclubList/${empNo}')
+            .then(res => res.json())
+            .then(result => {
+                clubRendering(result)
+            })
+    }
+
+    //동호회 렌더링
+    function clubRendering(result){
+        const clubs = document.getElementById('club-wrapper');
+        let tag = '';
+        tag += '<ul id = "joined-club-list">';
+        for (let club of result) {
+            const {ecIndex, empJoinDate, empNo, clubCode, clubName} = club;
+            tag += '<li class = "enrolled-club" name="empClub" value = "' + clubCode + '">' + clubName + '</li>';
+        }
+        tag += '</ul>';
+        clubs.innerHTML = tag;
+    }
+
+    //메인실행부
+    setMyBoss();
+    getMyClubList();
 
 </script>
 

@@ -74,13 +74,19 @@
 
     <update id="modifyEmployees">
         update hr_employees set
-        emp_email = #{empEmail}, emp_password = #{empPassword}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}, profile = #{profile}
+        emp_name = #{empName}, emp_birth_day = #{empBirthDay}, emp_email = #{empEmail}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}, profile = #{profile}
+        <if test = 'empPassword != ""'>
+            , emp_password = #{empPassword}
+        </if>
         where emp_no = #{empNo}
     </update>
 
     <update id="modifyEmployeesWithNoProfile">
         update hr_employees set
-        emp_email = #{empEmail}, emp_password = #{empPassword}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}
+        emp_name = #{empName}, emp_birth_day = #{empBirthDay}, emp_email = #{empEmail}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}
+        <if test = 'empPassword != ""'>
+            , emp_password = #{empPassword}
+        </if>
         where emp_no = #{empNo}
     </update>
 

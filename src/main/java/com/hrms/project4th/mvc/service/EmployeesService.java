@@ -43,8 +43,7 @@ public class EmployeesService {
         return employeesMapper.modifyEmployees(emp);
     }
     public boolean modifyEmployeesWithNoProfile(ModifyEmployeeDTO dto) {
-        Employees emp = new Employees(dto);
-        return employeesMapper.modifyEmployeesWithNoProfile(emp);
+        return employeesMapper.modifyEmployeesWithNoProfile(new Employees(dto));
     }
 
     public List<GetMyBossResponseDTO> getMyBossNames(MyBossRequestDTO dto) {

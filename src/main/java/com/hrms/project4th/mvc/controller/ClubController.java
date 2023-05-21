@@ -25,7 +25,6 @@ public class ClubController {
 
     private  final ClubBoardService clubBoardService;
     private final ClubJoinService clubJoinService;
-
     @GetMapping("/club-board-list")
     public String clubBoardList(Model model) {
 
