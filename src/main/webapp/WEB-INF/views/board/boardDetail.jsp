@@ -148,7 +148,7 @@
         /* 댓글 창 css */
 
         #replies {
-            height: 800px;
+            height: 1000px;
 
         }
 

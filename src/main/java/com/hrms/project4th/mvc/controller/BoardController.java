@@ -30,7 +30,7 @@ public class BoardController {
     @GetMapping("/board-list")
     public String boardFindAll(BoardSearch search, Model model) {
         List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
-        log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
+//        log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
 //        log.info("searchInfo : {}", search);
 
         BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount(search));
@@ -55,7 +55,6 @@ public class BoardController {
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
         boardService.boardSave(dto);
-        log.info("BoardSaveRequestDTO {}", dto);
 //      log.info("BoardSaveRequestDTO {}",dto);
         return "redirect:/hrms/board/board-list";
     }
@@ -100,7 +99,7 @@ public class BoardController {
 //        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}", dto);
         boolean flag = boardService.boardModify(dto);
 //        log.info("flag : {}",flag);
-        log.info("searchinfo : {}", search);
+//        log.info("searchinfo : {}", search);
         model.addAttribute("b", dto);
 
         return "redirect:/hrms/board/board-detail?boardNo=" + dto.getBoardNo();

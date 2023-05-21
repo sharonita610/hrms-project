@@ -320,22 +320,6 @@
         maintainSelect();
 
 
-        // page클릭시 해당 page a태그 색변화
-
-        // function colorSwitch(e) {
-        //     const curPageNum = '${boardPageMaker.boardPage.boardPageNo}';
-        //     const $pageList = document.querySelector('.pagination');
-
-
-        //     for (let p of $pageList.children) {
-        //         console.log('curPageNum:', curPageNum);
-        //         console.log('p.dataset.pNo:', p.dataset.pNo);
-        //         if (curPageNum === p.dataset.pNo) {
-        //             console.log('되나?');
-        //             p.style.color = 'red';
-        //         }
-        //     }
-        // }
         function colorSwitch(e) {
             const curPageNum = '${boardPageMaker.boardPage.boardPageNo}';
             const $pageList = document.querySelector('.pagination');
@@ -365,7 +349,7 @@
 
                     for (const r of responseResult) {
                             if(r.empNo==eno){
-                                console.log('일치');
+                                // console.log('일치');
                                 const modalName=document.getElementById('modalName');
                                 const modalDept=document.getElementById('modalDept');
                                 const modalPos=document.getElementById('modalPos');
@@ -387,31 +371,6 @@
 
         }
 
-        // <tr>
-        //                             <th scope="row" rowspan="4">사진</th>
-        //                             <td>이름</td>
-        //                             <td id="modalName"></td>
-        //                         </tr>
-        //                         <tr>
-        //                             <td>부서</td>
-        //                             <td id="modalDept"></td>
-        //                         </tr>
-        //                         <tr>
-        //                             <th scope="row">직급</th>
-        //                             <td colspan="2" id="modalPos"></td>
-        //                         </tr>
-        //                         <tr>
-        //                             <td>직책</td>
-        //                             <td id="modalRole"></td>
-        //                         </tr>
-        //                         <tr>
-        //                             <td>이메일</td>
-        //                             <td colspan="2" id="modalEmail"></td>
-        //                         </tr>
-        //                         <tr>
-        //                             <td>핸드폰번호</td>
-        //                             <td colspan="2" id="modalPhone"></td>
-        //                         </tr>
 
         //emp정보 가져오기
 
