@@ -83,6 +83,16 @@ h1 {
     cursor: pointer;
 }
 
+#addEmployee {
+    position: absolute;
+    left: 0;
+    width: 110px;
+    padding: 0 5px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 /*  부서별 조회 , 전체조회  a 태그*/
 /*.section-admin-page .admin-options .admin-sortBy a {*/
 /*    width: 110px;*/
@@ -93,6 +103,7 @@ h1 {
 /*}*/
 #viewDept {
     margin-right: 0;
+    cursor: auto;
 }
 
 

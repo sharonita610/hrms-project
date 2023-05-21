@@ -33,6 +33,7 @@
                         <div id = "viewDept">부서별조회</div>
                         <div id = viewDeptHead>부서장조회</div>
                     </div>
+                    <div id = "addEmployee">사원 추가</div>
                 </div>
 
                 <!--목록 용 태그-->
@@ -127,14 +128,14 @@
             const {
                 empNo, empName, empBirthDay, empHireDate,
                 empEmail, empPassword, empGender, empSalary, empPhone,
-                empMyBoss, posName, roleName, deptName, clubName
+                empBossName, posName, roleName, deptName, clubName
             } = emp
 
             const gender = empGender === 'M' ? '남자' : '여자';
             const salary = empSalary.toLocaleString();
-            const myBoss = empMyBoss === null ? '' : empMyBoss
+            const myBoss = empBossName === null ? '' : empBossName
 
-            tag += '<a href = "' + URL + '/detail/' + empNo +'">' +
+            tag += '<a href = "' + URL + '/modify/' + empNo +'">' +
                 '<ul class="admin-emp-list">' +
                 '<li class="empNo">' + empNo + '</li>' +
                 '<li class="empName">' + empName + '</li>' +
@@ -150,6 +151,10 @@
         }
         empList.innerHTML = tag;
 
+    }
+
+    document.getElementById('addEmployee').onclick = () => {
+        window.location.href = URL + '/add';
     }
 
 

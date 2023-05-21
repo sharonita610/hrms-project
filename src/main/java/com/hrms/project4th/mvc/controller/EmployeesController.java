@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -82,16 +83,16 @@ public class EmployeesController {
     }
 
     //사원 상세정보 보기
-    @GetMapping("/detail/{empNo}")
-    public String getEmployeesDetail(@PathVariable("empNo") long empNo) {
-        return "admin/employeesDetail";
-    }
+//    @GetMapping("/detail/{empNo}")
+//    public String getEmployeesDetail(@PathVariable("empNo") long empNo) {
+//        return "admin/employeesDetail";
+//    }
 
     //사원 수정 폼으로 이동
-    @GetMapping("/modify")
-//    public String modifyEmployees(long empNo){
-    public String modifyEmployees() {
-        long empNo = 2L;
+    @GetMapping("/modify/{empNo}")
+    public String modifyEmployees(@PathVariable("empNo") long empNo, Model model) {
+        EmployeeDetailResponseDTO dto = employeesService.getDetailedEmployee(empNo);
+        model.addAttribute("emp", dto);
         return "admin/modifyEmployee";
     }
 

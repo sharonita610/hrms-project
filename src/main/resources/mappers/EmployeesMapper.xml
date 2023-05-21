@@ -14,36 +14,45 @@
         from hr_employees e, hr_department d
         where e.DEPT_CODE = d.dept_code
           and e.dept_code = #{deptCode}
-          and role_code = '11111';
+          and e.role_code = '11111';
     </select>
 
-    <select id="getDetailEmployeesList" resultType="employeeDetailResponseDTO">
-        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_my_boss , POS_NAME, dept_name
+    <select id="getDetailedEmployee" resultType="employeeDetailResponseDTO">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
         from hr_employees e
         left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
         join hr_position hp on e.POS_CODE = hp.POS_CODE
         join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
-        order by emp_no
+        where e.emp_no = #{empNo}
+    </select>
+    
+    <select id="getDetailEmployeesList" resultType="employeeDetailResponseDTO">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
+        from hr_employees e
+                 left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+                 join hr_position hp on e.POS_CODE = hp.POS_CODE
+                 join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+        order by e.emp_no
     </select>
 
     <select id="getDetailEmployeesListByDept" resultType="employeeDetailResponseDTO">
-        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_my_boss , POS_NAME, dept_name
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
         from hr_employees e
-        left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
-        join hr_position hp on e.POS_CODE = hp.POS_CODE
-        join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+                 left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+                 join hr_position hp on e.POS_CODE = hp.POS_CODE
+                 join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
         where e.dept_code = #{deptCode}
-        order by emp_no;
+        order by e.emp_no;
     </select>
 
     <select id="getDeptHeadList" resultType="employeeDetailResponseDTO">
-        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_my_boss , POS_NAME, dept_name
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
         from hr_employees e
-        left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
-        join hr_position hp on e.POS_CODE = hp.POS_CODE
-        join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+                 left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+                 join hr_position hp on e.POS_CODE = hp.POS_CODE
+                 join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
         where e.role_code = '11111'
-        order by emp_no;
+        order by e.emp_no;
     </select>
 
     <select id="getMyBossNames" resultType="employees">

@@ -40,4 +40,6 @@ public interface  EmployeesMapper {
     List<EmployeeDetailResponseDTO> getDetailEmployeesListByDept(String deptCode);
 
     List<EmployeeDetailResponseDTO> getDeptHeadList();
+
+    EmployeeDetailResponseDTO getDetailedEmployee(long empNo);
 }

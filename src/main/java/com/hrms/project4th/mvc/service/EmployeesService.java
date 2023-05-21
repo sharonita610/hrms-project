@@ -89,4 +89,11 @@ public class EmployeesService {
     public List<EmployeeDetailResponseDTO> getDeptHeadList() {
         return employeesMapper.getDeptHeadList();
     }
+
+    public EmployeeDetailResponseDTO getDetailedEmployee(long empNo) {
+        EmployeeDetailResponseDTO dto = employeesMapper.getDetailedEmployee(empNo);
+        dto.profileWithRootPath(dto.getProfile());
+        dto.getEmailAccount(dto.getEmpEmail());
+        return dto;
+    }
 }

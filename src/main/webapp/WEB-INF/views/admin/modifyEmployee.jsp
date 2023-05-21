@@ -13,30 +13,30 @@
     <div class="addEmpFormWrapper">
 
         <form action="/hrms/employees/modify" method="post" enctype="multipart/form-data">
-            <h1>사원 정보 수정</h1>
+            <h1>사원 상세 정보</h1>
             <div class="empProfileInput addInputForm">
                 <h2>사진 : </h2>
                 <input class="inputblank" id="profileImage" name="profile" type="file" accept="image/*">
                 <div id="noPic" class="alert">사진이 선택되지 않았습니다.</div>
             </div>
 
-            <div id="picFrame" class="profilePic"><img id="showPic"  src="/hrms/2023/05/18/1234_hoshino.jpg"></div>
+            <div id="picFrame" class="profilePic"><img id="showPic"  src="${emp.profile}"></div>
 
 
             <div class="empNameInput addInputForm">
-                <input type="hidden" name="empNo" value="78">
+                <input type="hidden" name="empNo" value="${emp.empNo}">
                 <h2>이름 : </h2>
-                <input id="empName" class="inputblank" type="text" name="empName" value="김중앙">
+                <input id="empName" class="inputblank" type="text" name="empName" value="${emp.empName}">
                 <div id="noName" class="alert">최소 두 글자 이상의 이름을 입력해주세요.</div>
             </div>
             <div class="empPhoneInput addInputForm">
                 <h2>전화번호 : </h2>
-                <input id="empPhone" class="inputblank" name="empPhone" type="text" value="01022222222">
+                <input id="empPhone" class="inputblank" name="empPhone" type="text" value="${emp.empPhone}">
                 <div id="noPhone" class="alert">정확한 휴대폰 번호를 입력해주세요.</div>
             </div>
             <div class="empEmailInput addInputForm">
                 <h2>이메일 : </h2>
-                <input id="setEmail" class="inputblank" type="text" name="empEmail" value="center">
+                <input id="setEmail" class="inputblank" type="text" name="empEmail" value="${emp.empEmail}">
                 <h2 id="email-address">&nbsp;@samjosangsa.com</h2>
                 <div id="duplicatedEmail" class="alert">이메일이 중복되었습니다.</div>
                 <div id="noEmail" class="alert">이메일을 입력해주세요.</div>
@@ -47,12 +47,12 @@
             </div>
             <div class="empBdayInput addInputForm">
                 <h2>생일 : </h2><input id="empBirthDay" class="inputblank" name="empBirthDay" type="date"
-                                     value="2000-01-15">
+                                     value="${emp.empBirthDay}">
                 <div id="isAdult" class="alert">정확한 생년월일을 입력해주세요.</div>
             </div>
             <div class="empSalaryInput addInputForm">
                 <h2>급여 : </h2>
-                <input id="empSalary" class="inputblank" name="empSalary" type="text" value="2200000">
+                <input id="empSalary" class="inputblank" name="empSalary" type="text" value="${emp.empSalary}">
                 <div id="payCheck" class="alert">정확한 급여를 입력해주세요</div>
             </div>
             <div class="empDeptInput addInputForm">
@@ -82,7 +82,7 @@
             </div>
             <div class="empRoleInput addInputForm">
                 <h2>직책코드 : </h2>
-                <select class="inputblank" name="roleCode">
+                <select id = "setRole" class="inputblank" name="roleCode">
                     <option value="none" selected>직책을 선택하세요</option>
                     <option value="00000">관리자</option>
                     <option value="11111">부서장</option>
@@ -113,12 +113,14 @@
     const $empPhone = document.getElementById('empPhone');
     const $empBirthDay = document.getElementById('empBirthDay');
     const $salary = document.getElementById('empSalary');
-    const $myBoss = document.getElementById('setBoss');
+    // const $myBoss = document.getElementById('setBoss');
+    const $role = document.getElementById('setRole');
     const $emailInput = document.getElementById('setEmail');
     const $showPic = document.getElementById('showPic');
-    const posCode = "005";
-    const deptCode = "001";
-    const empMyBoss = "1";
+    const roleCode = "${emp.roleCode}";
+    const posCode = "${emp.posCode}";
+    const deptCode = "${emp.deptCode}";
+    const empMyBoss = "${emp.empMyBoss}";
 
 
     //부서 자동 선택
@@ -138,18 +140,26 @@
         }
     }
 
+    // 직책 자동 선택
+    const $defaultRole = document.getElementById('setRole').children;
+    for (let option of $defaultRole) {
+        if(option.value === roleCode) {
+            option.setAttribute('selected', 'selected');
+        }
+    }
+
     setMyBoss();
-    // pickMyBoss();
-    //
-    // //직속상사 자동선택
-    // function pickMyBoss() {
-    //     const $defaultBoss = document.getElementById('setBoss').children;
-    //     for (let option of $defaultBoss) {
-    //         if (option.value === empMyBoss) {
-    //             option.setAttribute('selected', 'selected');
-    //         }
-    //     }
-    // }
+
+    //직속상사 자동선택
+    function pickMyBoss() {
+        const $defaultBoss = document.getElementById('setBoss').children;
+        for (let option of $defaultBoss) {
+                console.log(option.value);
+            if (option.value === empMyBoss) {
+                option.setAttribute('selected', 'selected');
+            }
+        }
+    }
 
     //입력 검증
     function readyToAddCheck() {
@@ -430,6 +440,8 @@
             tag += '<option value="' + empNo + '">' + empName + '</option>';
         }
         $setBoss.innerHTML = tag;
+
+        pickMyBoss();
     }
 
 
