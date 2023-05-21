@@ -90,9 +90,9 @@ public class MailController {
         //메일 타입에 따라 리턴값 달라진다
         String mailType = search.getMailType();
         if(mailType.equals("mailto")) {
-            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType();
+            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+"mailto";
         }else{
-            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType();
+            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+"mailfrom";
         }
     }
 

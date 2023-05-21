@@ -22,7 +22,7 @@
 		<section class="section-mail">
 			<div id="mail-wrapper">
 				<div class="mail-sort">
-					<div><a href="/hrms/mail-list/?empNo=${2}">받은 메일</a></div>
+					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailto">받은 메일</a></div>
 					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
@@ -38,16 +38,16 @@
                         </div>
                     </div>
                     <div class="sender">
-                        <p>${md.mailDate}</p>
-                        <p>${md.mailDate}</p>
-                        <p>${md.mailDate}</p>
-                        <p>${md.mailDate}</p>
+                        <p>발신자 사번 : ${md.senderEmpNo}</p>
+                       	<p>발신자 이메일 :  ${md.senderEmail}</p>
+                        <p>발신자 직급코드 : ${md.senderRoleCode}</p>
+                        <p>발신자 부서코드 :  ${md.senderDeptCode}</p>
                     </div>
                     <div class="receiver">
-                        <p>${md.mailDate}</p>
-                        <p>${md.mailDate}</p>
-                        <p>${md.mailDate}</p>
-                        <p>${md.mailDate}</p>
+                        <p>수신자 사번 :  ${md.receiverEmpNo}</p>
+                        <p>수신자 이메일 :  ${md.receiverEmail}</p>
+                        <p>수신자 직급코드 :  ${md.receiverRoleCode}</p>
+                        <p>수신자 부서코드 :  ${md.receiverDeptCode}</p>
                     </div>
                     <div class="mail-main">
                         <div class="textarea">

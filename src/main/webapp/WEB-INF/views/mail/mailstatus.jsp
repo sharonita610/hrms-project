@@ -22,7 +22,7 @@
 		<section class="section-mail">
 			<div id="mail-wrapper">
 				<div class="mail-sort">
-					<div><a href="/hrms/mail-list/?empNo=${2}">받은 메일</a></div>
+					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailto">받은 메일</a></div>
 					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
@@ -51,7 +51,7 @@
 									<p>${m.mailTitle}</p>
 									<p>${m.mailStatus}</p>
 									<p>${m.mailDate}</p>
-									<p></p>
+									<p>${ms.mailType}</p>
 								</div>
                                 <button type="button" class="btn btn-danger delete-button">삭제</button>
                             </li>

@@ -42,7 +42,6 @@
     width: 100%;
     overflow: auto;
     border-right: 1px solid #000;
-    background-color: red;
 }
 
 .section-mail #mail-wrapper .mail-detail-box .sender{
@@ -59,14 +58,18 @@
 }
 
 .section-mail #mail-wrapper .mail-detail-box .sender p{
-    width: 25%;
+    width: 20%;
     background-color: yellow;
     text-align: center;
+    font-size: 0.9em;
+    font-weight: 700;
 }
 .section-mail #mail-wrapper .mail-detail-box .receiver p{
-    width: 25%;
+    width: 20%;
     background-color: yellow;
     text-align: center;
+    font-size: 0.9em;
+    font-weight: 700;
 }
 
 .section-mail #mail-wrapper .mail-detail-box .sender div{
