@@ -17,7 +17,8 @@
     <script src="https://kit.fontawesome.com/024f42bdd1.js" crossorigin="anonymous"></script>
     <script>
         tinymce.init({
-            selector: '#mytextarea'
+            selector: '#mytextarea',
+            readonly: true
         });
     </script>
     <%@ include file="../main/include/header.jsp" %>
@@ -25,6 +26,7 @@
         body {
             font-family: Arial, sans-serif;
         }
+
 
         .detail-section {
             width: 75%;
@@ -44,7 +46,9 @@
         }
 
         .detail-part {
-            margin: 50px auto;
+            margin-top: 50px;
+            margin-left: 300px;
+
         }
 
         .container-box {
@@ -278,6 +282,12 @@
         #replyDelBtn {
             height: 38.38px;
         }
+
+        /* page 색변화처리  */
+        .colorChange a {
+            background-color: #0d6efd !important;
+            color: #ffffff !important;
+        }
     </style>
 </head>
 
@@ -468,10 +478,10 @@
             $boardDelModal.onclick = e => {
                 const $delbno = e.target.parentElement.dataset.boardno
                 // console.log($delbno);
-                window.location.href = '/hrms/board/board-delete?boardNo=' + $delbno ;
+                window.location.href = '/hrms/board/board-delete?boardNo=' + $delbno;
             }
 
-        
+
         };
 
 
@@ -505,7 +515,8 @@
                     active = 'p-active';
                 }
 
-                tag += "<li class='page-item " + active + "'><a class='page-link page-custom' href='" + i +
+                tag += "<li class='page-item " + active + "'><a class='page-link page-custom' data-replyno='" + i +
+                    "' href='" + i +
                     "'>" + i + "</a></li>";
             }
             //다음 버튼 만들기
@@ -535,11 +546,24 @@
                 // 누른 페이지 번호 가져오기
                 const pageNum = e.target.getAttribute('href');
                 // console.log(pageNum);
+                // console.log(e.target.innerText);
+                const $replypageList = document.querySelector('.justify-content-center');
+
+                for (const r of $replypageList.children) {
+                    if (e.target.innerText == r.children[0].attributes[1].value) {
+                        // console.log(r.children);
+                        console.log(e.target.innerText);
+                        r.classList.add('colorChange')
+                        console.log(r);
+                    }
+
+                }
 
                 // 페이지 번호에 맞는 목록 비동기 요청
                 findAllReplies(pageNum);
             };
         }
+        
 
 
 
@@ -767,6 +791,8 @@
                 });
 
         }
+
+
 
         // 댓글 save기능
         function makeReplyRegisterClickEvent() {

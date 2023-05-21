@@ -29,8 +29,9 @@
 
         .detail-section {
             width: 75%;
-            margin: 10px auto;
+            margin-top: 10px;
             height: 1000px;
+            margin-left: 400px;
         }
 
         .detail-topbox {

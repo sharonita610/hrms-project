@@ -11,7 +11,7 @@
     <!-- <link rel="stylesheet" href="/assets/css/board.css"> -->
     <style>
         .text {
-            margin-left: 50px;
+            margin-left: 200px;
             width: 70%;
         }
 
@@ -133,6 +133,17 @@
             background-color: #f7f7f7;
         }
 
+        /* 사원이름  css*/
+        .nameModal {
+            cursor: pointer;
+        }
+
+        /* 사원이름 클릭시 작동하는 모달 css */
+        .modal {
+            margin-top: 250px;
+        }
+
+
         /* page 색변화처리  */
         .pagination li.colorChange a {
             background-color: #0d6efd !important;
@@ -154,8 +165,7 @@
 
                     <h1 id="board-title">공지 게시판</h1>
 
-                    <button id="save-Btn" class="btn btn-outline-primary my-2 my-sm-0" type="button">새글
-                        추가</button>
+                    <button id="save-Btn" class="btn btn-outline-primary my-2 my-sm-0" type="button">글쓰기</button>
 
                 </div>
                 <table class="table">
@@ -179,7 +189,8 @@
                                         </c:if>
                                     </a>
                                 </td>
-                                <td id="empNo">${a.empName}</td>
+                                <td id="empNo"><a class="nameModal" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" data-eno="${a.empNo}">${a.empName}</a></td>
                                 <td id="date">${a.stringDate}</td>
                                 <td id="count">${a.viewCount}</td>
 
@@ -232,7 +243,61 @@
             </header>
 
         </section>
+
+        <!-- 사원이름 모달 -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">삼조상사</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table hrInfoTable">
+
+                            <tbody>
+                                <tr>
+                                    <th scope="row" rowspan="4">사진</th>
+                                    <td>이름</td>
+                                    <td id="modalName"></td>
+                                </tr>
+                                <tr>
+                                    <td>부서</td>
+                                    <td id="modalDept"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">직급</th>
+                                    <td colspan="2" id="modalPos"></td>
+                                </tr>
+                                <tr>
+                                    <td>직책</td>
+                                    <td id="modalRole"></td>
+                                </tr>
+                                <tr>
+                                    <td>이메일</td>
+                                    <td colspan="2" id="modalEmail"></td>
+                                </tr>
+                                <tr>
+                                    <td>핸드폰번호</td>
+                                    <td colspan="2" id="modalPhone"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    </script>
     <script>
         //저장기능
         const $save = document.getElementById('save-Btn');
@@ -287,6 +352,89 @@
             }
         }
         colorSwitch();
+
+
+
+        function renderEmpInfo(responseResult) {
+
+            const empNoElements = document.querySelectorAll('#empNo');
+
+            empNoElements.forEach(element => {
+                element.addEventListener('click', (e) => {
+                    const eno = e.target.dataset.eno;
+
+                    for (const r of responseResult) {
+                            if(r.empNo==eno){
+                                console.log('일치');
+                                const modalName=document.getElementById('modalName');
+                                const modalDept=document.getElementById('modalDept');
+                                const modalPos=document.getElementById('modalPos');
+                                const modalRole=document.getElementById('modalRole');
+                                const modalEmail=document.getElementById('modalEmail');
+                                const modalPhone=document.getElementById('modalPhone');
+                                modalName.innerText=r.empName;
+                                modalDept.innerText=r.deptName;
+                                modalPos.innerText=r.posName;
+                                modalRole.innerText=r.roleName;
+                                modalEmail.innerText=r.empEmail;
+                                modalPhone.innerText=r.empPhone;
+                            }
+
+                    }
+         
+                });
+            });
+
+        }
+
+        // <tr>
+        //                             <th scope="row" rowspan="4">사진</th>
+        //                             <td>이름</td>
+        //                             <td id="modalName"></td>
+        //                         </tr>
+        //                         <tr>
+        //                             <td>부서</td>
+        //                             <td id="modalDept"></td>
+        //                         </tr>
+        //                         <tr>
+        //                             <th scope="row">직급</th>
+        //                             <td colspan="2" id="modalPos"></td>
+        //                         </tr>
+        //                         <tr>
+        //                             <td>직책</td>
+        //                             <td id="modalRole"></td>
+        //                         </tr>
+        //                         <tr>
+        //                             <td>이메일</td>
+        //                             <td colspan="2" id="modalEmail"></td>
+        //                         </tr>
+        //                         <tr>
+        //                             <td>핸드폰번호</td>
+        //                             <td colspan="2" id="modalPhone"></td>
+        //                         </tr>
+
+        //emp정보 가져오기
+
+        //사원정보 요청 URI
+        const URL = '/api/hrms/boardInfo';
+
+        //사원정보 목록 불러오는 함수
+
+        function getEmpInfo() {
+
+            fetch(URL)
+                .then(res => res.json())
+                .then(responseResult => {
+                    // console.log(responseResult);
+                    renderEmpInfo(responseResult)
+                });
+
+        }
+
+        (function () {
+            getEmpInfo();
+
+        })();
     </script>
 
 </body>
