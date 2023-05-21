@@ -19,18 +19,18 @@
             </div>
 
             <div class="confirm-outer-container">
-                <h2>&lt;결재대기문서&gt;</h2>
                 <div class="confirm-box waiting-list">
+                <h2>&lt;결재대기문서&gt;</h2>
                     <div class = "confirm-table" id="waiting-table">
                     </div>
                 </div>
-                <h2>&lt;결재완료문서&gt;</h2>
                 <div class="confirm-box confirmed-list">
+                <h2>&lt;결재완료문서&gt;</h2>
                     <div  class = "confirm-table" id="confirmed-table">
                     </div>
                 </div>
-                <h2>&lt;반려문서&gt;</h2>
                 <div class="confirm-box rejected-list">
+                <h2>&lt;반려문서&gt;</h2>
                     <div  class = "confirm-table" id="rejected-table">
                     </div>
                 </div>
@@ -99,7 +99,7 @@
 
         //목록 첫줄 그리기
         if ($section.id === 'waiting-table') {
-            tag += '<ul class = "confirm-tr" id = "waiting-th"><li class = "title-line col1">NO</li>' +
+            tag += '<ul class = "header-bar confirm-tr" id = "waiting-th"><li class = "title-line col1">NO</li>' +
                 '<li class = "title-line col2">문서제목</li>';
             if (roleCode === '11111') {
                 tag += '<li class = "title-line col3">기안자</li>';
@@ -117,7 +117,7 @@
                     '<li class = "title-line col7">삭제</li></ul>';
             }
         } else if ($section.id === 'confirmed-table') {
-            tag += '<ul class = "confirm-tr" id = " confirmed-th"><li class = "title-line col1">NO</li>' +
+            tag += '<ul class = "header-bar confirm-tr" id = " confirmed-th"><li class = "title-line col1">NO</li>' +
                 '<li class = "title-line col2">문서제목</li>';
             if (roleCode === '11111') {
                 tag += '<li class = "title-line col3">기안자</li>';
@@ -127,7 +127,7 @@
             tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">기안일</li>' +
                 '<li class = "title-line col6">승인여부</li><li class = "title-line col7">승인일자</li></ul>';
         } else if ($section.id === 'rejected-table') {
-            tag += '<ul class = "confirm-tr" id = " rejected-th"><li class = "title-line col1">NO</li>' +
+            tag += '<ul class = "header-bar confirm-tr" id = " rejected-th"><li class = "title-line col1">NO</li>' +
                 '<li class = "title-line col2">문서제목</li>';
             if (roleCode === '11111') {
                 tag += '<li class = "title-line col3">기안자</li>';
