@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <%@ include file="../main/include/header.jsp" %>
-    <link rel="stylesheet" href="/assets/css/employeesList.css">
+    <link rel="stylesheet" href="/assets/css/employeeList.css">
 
 </head>
 <body>
@@ -34,6 +34,10 @@
                         <div id = viewDeptHead>부서장조회</div>
                     </div>
                     <div id = "addEmployee">사원 추가</div>
+                    <div id = "searchEmployee"><h2>사원 이름으로 찾기</h2>
+                    <input id = "targetEmpName" name = "empName">
+<%--                        <div id = "searchBtn">검색</div>--%>
+                    </div>
                 </div>
 
                 <!--목록 용 태그-->
@@ -82,6 +86,23 @@
     const $viewAll = document.getElementById('viewAll');
     const $searchDept = document.getElementById('searchDept');
     const $viewDeptHead = document.getElementById('viewDeptHead');
+    // const $searchBtn = document.getElementById('searchBtn');
+    const $targetName = document.getElementById('targetEmpName');
+
+    $targetName.onkeyup = () => {
+        let target = $targetName.value;
+        if(target.trim().length === 0) {
+            getAllEmployeesList();
+        }else {
+
+            fetch(`\${URL}/search/\${target}`)
+                .then(res => res.json())
+                .then(result => {
+                    if (result !== null)
+                        employeesRendering(result)
+                });
+        }
+    }
 
     $viewAll.onclick = () => {
         getAllEmployeesList();

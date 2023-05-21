@@ -38,6 +38,14 @@ public class EmployeesController {
         return "admin/employeesList"; //관리자 사원 전체보기 jsp
     }
 
+    //사원 이름으로 검색하기
+    @GetMapping("/search/{empName}")
+    @ResponseBody
+    public ResponseEntity<List<EmployeeDetailResponseDTO>> searchEmployeesByName(@PathVariable("empName") String empName) {
+        log.info("empName : {}",empName);
+        return ResponseEntity.ok().body(employeesService.searchEmployeesByName(empName));
+    }
+
     //사원 전체 리스트 불러오기
     @GetMapping("/list/all")
     @ResponseBody
@@ -81,12 +89,6 @@ public class EmployeesController {
         boolean flag = employeesService.isDuplicated(empEmail);
         return ResponseEntity.ok().body(flag);
     }
-
-    //사원 상세정보 보기
-//    @GetMapping("/detail/{empNo}")
-//    public String getEmployeesDetail(@PathVariable("empNo") long empNo) {
-//        return "admin/employeesDetail";
-//    }
 
     //사원 수정 폼으로 이동
     @GetMapping("/modify/{empNo}")

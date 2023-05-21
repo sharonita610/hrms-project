@@ -25,6 +25,15 @@
         join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
         where e.emp_no = #{empNo}
     </select>
+
+    <select id="searchEmployeesByName" resultType="employeeDetailResponseDTO">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
+        from hr_employees e
+        left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+        join hr_position hp on e.POS_CODE = hp.POS_CODE
+        join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+        where e.emp_name like concat('%', #{empName}, '%');
+    </select>
     
     <select id="getDetailEmployeesList" resultType="employeeDetailResponseDTO">
         select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile

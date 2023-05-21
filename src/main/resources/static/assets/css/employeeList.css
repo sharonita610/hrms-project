@@ -93,6 +93,36 @@ h1 {
     cursor: pointer;
 }
 
+#searchEmployee {
+    position: absolute;
+    left: 115px;
+    width: 300px;
+    padding: 0 5px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+}
+
+#searchEmployee h2 {
+    margin-right: 5px;
+}
+
+#searchEmployee #targetEmpName {
+    margin: 0;
+    margin-right: 5px;
+    transform: translateY(-3px);
+    font-size: 16px;
+    width: 100px;
+}
+
+/*#searchBtn {*/
+/*    cursor: pointer;*/
+/*}*/
+
+searchBtn:hover {
+    font-weight: 700;
+}
+
 /*  부서별 조회 , 전체조회  a 태그*/
 /*.section-admin-page .admin-options .admin-sortBy a {*/
 /*    width: 110px;*/

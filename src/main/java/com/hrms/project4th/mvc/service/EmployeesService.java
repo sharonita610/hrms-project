@@ -95,4 +95,8 @@ public class EmployeesService {
         dto.getEmailAccount(dto.getEmpEmail());
         return dto;
     }
+
+    public List<EmployeeDetailResponseDTO> searchEmployeesByName(String empName) {
+        return employeesMapper.searchEmployeesByName(empName);
+    }
 }

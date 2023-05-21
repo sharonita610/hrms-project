@@ -87,7 +87,8 @@
 #noEmail {
     /* font-weight: 700; */
     position: absolute;
-    bottom: 235px;
+    /*bottom: 235px;*/
+    transform: translateY(20px);
 }
 
 #noPic {
