@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.dto.requestDTO;
 
 import com.hrms.project4th.mvc.entity.Gender;
 import lombok.*;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,7 +22,8 @@ public class AddEmployeesDTO {
     private Gender empGender;
     private long empSalary;
     private String empPhone;
-    private long empMyBoss;
+    @Nullable
+    private Long empMyBoss;
     private String posCode;
     private String roleCode;
     private String deptCode;

@@ -1,7 +1,9 @@
 package com.hrms.project4th.mvc.entity;
 
 import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import lombok.*;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,7 +28,8 @@ public class Employees {
     private Gender empGender;
     private long empSalary;
     private String empPhone;
-    private long empMyBoss;
+    @Nullable
+    private Long empMyBoss;
     private String posCode;
     private String roleCode;
     private String deptCode;
@@ -49,6 +52,35 @@ public class Employees {
         this.roleCode = dto.getRoleCode();
         this.deptCode = dto.getDeptCode();
         this.profile = path;
+    }
+
+    public Employees(ModifyEmployeeDTO dto, String path){
+        this.empNo = dto.getEmpNo();
+        this.empName = dto.getEmpName();
+        this.empPhone = dto.getEmpPhone();
+        this.empEmail = setEmpEmail(dto.getEmpEmail());
+        this.empPassword = dto.getEmpPassword();
+        this.empBirthDay = getLocalDate(dto.getEmpBirthDay());
+        this.empSalary = dto.getEmpSalary();
+        this.deptCode = dto.getDeptCode();
+        this.posCode = dto.getPosCode();
+        this.roleCode = dto.getRoleCode();
+        this.empMyBoss = dto.getEmpMyBoss();
+        this.profile = path;
+    }
+
+    public Employees(ModifyEmployeeDTO dto){
+        this.empNo = dto.getEmpNo();
+        this.empName = dto.getEmpName();
+        this.empPhone = dto.getEmpPhone();
+        this.empEmail = setEmpEmail(dto.getEmpEmail());
+        this.empPassword = dto.getEmpPassword();
+        this.empBirthDay = getLocalDate(dto.getEmpBirthDay());
+        this.empSalary = dto.getEmpSalary();
+        this.deptCode = dto.getDeptCode();
+        this.posCode = dto.getPosCode();
+        this.roleCode = dto.getRoleCode();
+        this.empMyBoss = dto.getEmpMyBoss();
     }
 
     public LocalDate getLocalDate(String date){
