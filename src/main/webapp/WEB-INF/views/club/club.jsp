@@ -6,6 +6,8 @@
 <html lang="en">
 
 <head>
+    <title>SAMJO SANGSA</title>
+    <link rel="icon" href="/assets/img/favicon_blue.png">
     <%@ include file="../main/include/header.jsp" %>
     <link rel="stylesheet" href="/assets/css/club.css">
 

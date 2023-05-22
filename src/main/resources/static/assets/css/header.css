@@ -5,16 +5,20 @@ header{
     top: 0;
     right: 0;
     left: 0;
-
+    box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
+    15px 15px 15px rgba(0,0,0,0.1);
 }
 
 /* 기본 설정 */
 .common_wrap {
-    background: rgb(213, 213, 213);
+    background: #0052cc;
     width: 100%;
     position: sticky;
-    height: 130px;
+    height: 90px;
     z-index: 99999;
+    font-weight: 900;
+    color: #ffffff;
+
 }
 
 /*  헤더 최상단 파트 시작  */
@@ -27,11 +31,16 @@ header{
 }
 
 /*  로고 이미지 속성  */
-.section-header .head .logo-img img {
-    margin-left: 40px;
-    margin-top: 5px;
-    width: 100px;
-    height: 50px;
+.section-header .head .logo-img {
+    margin-left: 5px ;
+    width: 130px;
+    height: 70px;
+    position: absolute;
+
+}
+.section-header .head .logo-img img{
+    width: 100%;
+    height: 100%;
 }
 
 /*  최상단 로고, 환영, 로그아웃 나열  */
@@ -39,6 +48,11 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 5px;
+
+}
+#welcometitle {
+    margin-left: 200px;
 }
 
 #logout-button{
@@ -86,6 +100,9 @@ header{
     transition: border-color 0.1s, color 0.1s;
 }
 
+.section-sub-header .nav-bar #tabs li#home:hover{
+    box-shadow: none;
+}
 /*  선택 탭 끝  */
 
 /*==== HEADER END ===== */
