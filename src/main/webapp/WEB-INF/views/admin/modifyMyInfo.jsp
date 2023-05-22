@@ -1,4 +1,3 @@
-<%@ page import="com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -187,16 +186,19 @@
             </div>
 
         </div>
-        <button id="back-button" onclick="history.back()">뒤로가기</button>
+        <form action="/hrms/main-page" method="get">
+            <button id="save-changes-button" type="submit">저장</button>
+        </form>
+        <button id="back-button" onclick="history.back()">이전페이지로</button>
 
 
         <div id="change-phone-modal" style="display: none;">
             <h2 class="modify-my-info-Subtitle">새로운 휴대폰 번호를 입력해주세요</h2>
-            <div class="change-info-box">'{login.empEmail}'
+            <div class="change-info-box">
                 <label for="change-phone-input"><h3>새로운 휴대폰 번호 : </h3></label>
                 <input type="text" id="change-phone-input" placeholder="${login.empPhone}"><br>
                 <div class="change-info-buttons">
-                    <button id="savePhone-button">저장</button>
+                    <button id="savePhone-button">확인</button>
                     <button id="cancelChangePhone-button" onclick="history.back()">취소</button>
                 </div>
             </div>
@@ -222,29 +224,30 @@
 </body>
 <script>
 
+
     // "휴대폰 번호 변경하기" 사진 주변 클릭 시 모달 창 열기
     const $updateInfoButton = document.getElementById('change-phone');
     const $changeInfoImage = document.getElementById('phone-img');
     const $cancelInfoChange = document.getElementById('cancelChangePhone-button');
+    const $updatePhoneModal = document.getElementById('change-phone-modal');
+    const $closeUpdatePhoneModal = document.getElementById('change-phone-modal');
 
     $updateInfoButton.onclick = e => {
         e.preventDefault();
 
         $changeInfoImage.click();
-        const $modal = document.getElementById('change-phone-modal');
-        $modal.style.display = 'block';
+        $updatePhoneModal.style.display = 'block';
     };
 
     // 취소 버튼 클릭 시 모달창 닫기
     $cancelInfoChange.onclick = e => {
         e.preventDefault();
 
-        const $closeModal = document.getElementById('change-phone-modal');
-        $closeModal.style.display = 'none';
+        $closeUpdatePhoneModal.style.display = 'none';
 
     };
 
-    // // 저장 버튼 클릭 시 개인정보 수정 비동기 처리
+    // 저장 버튼 클릭 시 개인정보 수정 비동기 처리
     function updatePhoneClickEvent() {
 
 
@@ -255,8 +258,10 @@
 
 
             // 변경된 휴대폰 번호를 가져오는 코드
-            const $phoneInput = document.getElementById('change-phone-input');
-            const newPhoneNumber = $phoneInput.value;
+            // const $phoneInput = document.getElementById('change-phone-input');
+            // const newPhoneNumber = $phoneInput.value;
+            const newPhoneNumber = document.getElementById('change-phone-input').value;
+            console.log(newPhoneNumber);
 
 
             // rest api로 처리하기
@@ -265,16 +270,19 @@
                 headers: {
                     'Content-type': 'application/json'
                 },
-                body: JSON.stringify({newPhoneNumber})
+                body: JSON.stringify(newPhoneNumber)
             })
-            .then(response => {
-                if (response.ok) {
-                    // 처리가 200번대라면
-                    alert('휴대폰 번호가 업데이트 되었습니다.');
-                } else {
-                    alert('업데이트에 실패 했습니다');
-                }
-            }).catch(error => {
+                    .then(response => {
+                        if (response.ok) {
+                            // 처리가 200번대라면
+                            alert('휴대폰 번호가 업데이트 되었습니다.');
+                            document.getElementById('left-banner-emp-phone').innerText = newPhoneNumber;
+                            $closeUpdatePhoneModal.style.display = 'none';
+                            location.reload();
+                        } else {
+                            alert('업데이트에 실패 했습니다');
+                        }
+                    }).catch(error => {
                 console.error('Error occurred:', error);
                 alert('오류가 발생했습니다. 다시 시도해주세요.');
             });

@@ -71,7 +71,7 @@ public class EmployeesService {
         log.info("newPhone : {} {}", newPhone, empEmail);
 
         log.info(empEmail);
-        return employeesMapper.updatePhoneNumber(newPhone, empEmail);
+        return employeesMapper.updatePhoneNumber(empEmail, newPhone);
     }
 
 

@@ -151,6 +151,8 @@ public class EmployeesController {
     public ResponseEntity<?> updatePhoneNumber(
             @RequestBody String newPhoneNumber,
             BindingResult result, HttpServletRequest request) {
+
+
         String newPhone = newPhoneNumber;
 
         String empEmail = getCurrentLoginMemberAccount(request.getSession());

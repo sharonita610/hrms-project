@@ -29,9 +29,13 @@ public class Employees {
     private String empPhone;
     @Nullable
     private Long empMyBoss;
+    private String empBossName;
     private String posCode;
+    private String posName;
     private String roleCode;
+    private String roleName;
     private String deptCode;
+    private String deptName;
     private String profile;
     private Auth auth;
     private String empSession;
