@@ -1,12 +1,13 @@
 package com.hrms.project4th.mvc.util;
 
 import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
+import lombok.ToString;
 import org.apache.taglibs.standard.lang.jstl.NullLiteral;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+@ToString
 public class LoginUtil {
 
     // 로그인 세션 키

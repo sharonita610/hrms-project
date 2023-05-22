@@ -36,16 +36,16 @@ class BoardReplyMapperTest {
 //            boolean flag = boardMapper.boardSave(b);
 //            assertTrue(flag);
 //        }
-//        for (int i = 1; i <= 1000; i++) {
-//
-//            BoardReply build = BoardReply.builder()
-//                    .repContent("댓글 입니다!!!!" + i)
-//                    .boardNo((long) (Math.random() * 300 + 1))
-//                    .empNo((long)(Math.random()*61+1))
-//                    .build();
-//            boardReplyMapper.save(build);
+        for (int i = 1; i <= 1000; i++) {
 
-//        }
+            BoardReply build = BoardReply.builder()
+                    .repContent("댓글 입니다!!!!" + i)
+                    .boardNo((long) (Math.random() * 300 + 1))
+                    .empNo((long)(Math.random()*61+1))
+                    .build();
+            boardReplyMapper.save(build);
+
+        }
 
     }
 

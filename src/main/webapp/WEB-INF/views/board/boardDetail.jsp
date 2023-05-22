@@ -32,16 +32,15 @@
             width: 75%;
         }
 
-        .detail-topbox {
-            display: flex;
-            justify-content: end;
-        }
 
         .detail-title {
             font-weight: 700;
             font-size: 50px;
             line-height: 60px;
             letter-spacing: 50px;
+            display: inline-block;
+            width: 300px;
+            margin-left: 340px;
 
         }
 
@@ -61,7 +60,7 @@
 
         /* 게시글 title부분 */
         .btn-danger {
-            margin-left: 210px;
+            margin-left: 185px;
             height: 60px;
             width: 120px;
             font-size: larger;
@@ -294,8 +293,10 @@
                 <div class="container-box">
                     <div class="detail-topbox">
                         <h1 class="detail-title">게시글</h1>
-                        <button type="button" class="btn btn-danger" data-bno="${b.boardNo}" id="boardRedDelete"
-                            data-bs-toggle='modal' data-bs-target='#staticBackdrop3'>삭제</button>
+                        <c:if test="${login.empNo==b.empNo}">
+                            <button type="button" class="btn btn-danger" data-bno="${b.boardNo}" id="boardRedDelete"
+                                data-bs-toggle='modal' data-bs-target='#staticBackdrop3'>삭제</button>
+                        </c:if>
                     </div>
                     <form action="/hrms/board/show-modify" method="post">
                         <div class="form-group">
@@ -327,7 +328,9 @@
                                     readonly>${b.bdContent}</textarea> -->
                         </div>
                         <div class="form-group detail-button">
-                            <button type="submit">수정</button>
+                            <c:if test="${login.empNo==b.empNo}">
+                                <button type="submit">수정</button>
+                            </c:if>
                             <button id="backToList" type="button">목록</button>
                             <!--   onclick="window.location.href='/hrms/board-list?boardPageNo=${s.boardPageNo}'" -->
                         </div>
@@ -482,7 +485,7 @@
 
 
         // URI
-        const URL = '/api/hrms/replies';
+        const URL = '   ';
 
         // 게시글 번호 
         const boardNo = `${b.boardNo}`
@@ -558,7 +561,7 @@
                 findAllReplies(pageNum);
             };
         }
-        
+
 
 
 
@@ -606,14 +609,14 @@
                                     <div class='col-md-6 showContent'>\${repContent}</div>
                                     <div class='et-md-2 col-md-4 text-right modifyAndDelete'>
                                 `;
-                             
 
-                    // if (currentAccount === rep.account || auth === 'ADMIN') {
-                    tag +=
-                        // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
-                        "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
-                        "         <button id='replyDelBtn' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop2'>삭제</button>";
-                    // }
+
+                    if (login.empNo === rep.empNo) {
+                        tag +=
+                            // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
+                            "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
+                            "         <button id='replyDelBtn' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop2'>삭제</button>";
+                    }
                     tag += "       </div>" +
                         "    </div>" +
                         " </div>";
@@ -736,7 +739,7 @@
 
 
             const $modifyButton = document.querySelector('.modibtn');
-            console.log('여기까지는 되나?'+$modifyButton);
+            // console.log('여기까지는 되나?'+$modifyButton);
             console.log($modifyButton);
             $modifyButton.addEventListener('click', function (e) {
                 const $getRepCont = document.querySelector('.modMod').value;
