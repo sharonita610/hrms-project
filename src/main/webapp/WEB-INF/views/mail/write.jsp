@@ -26,36 +26,38 @@
 					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
-					<div><a href="/hrms/mail-write/">메일쓰기</a></div>
+					<div><a href="/hrms/mail-write?empNo=${2}">메일쓰기</a></div>
 				</div>
-				<div class="mail-detail-box">
+				<form class="mail-detail-box" method="post">
 					<div class="mail-header-main">
                         <div class="headerbox">
-                            <p>${md.mailTitle}</p>
-                        </div>
-                        <div class="headerbox">
-                            <p>${md.mailDate}</p>
+                            <input type="text" id="title" name="mailTilte" value="">
                         </div>
                     </div>
                     <div class="sender">
-                        <p>발신자 사번 : ${md.senderEmpNo}</p>
-                       	<p>발신자 이메일 :  ${md.senderEmail}</p>
+                        <input type="number" name="mailfrom" id="mailfrom" value="${empNo}" readonly>
+                       	<!-- <p>발신자 이메일 :  ${md.senderEmail}</p>
                         <p>발신자 직급코드 : ${md.senderRoleCode}</p>
-                        <p>발신자 부서코드 :  ${md.senderDeptCode}</p>
+                        <p>발신자 부서코드 :  ${md.senderDeptCode}</p> -->
                     </div>
                     <div class="receiver">
-                        <p>수신자 사번 :  ${md.receiverEmpNo}</p>
-                        <p>수신자 이메일 :  ${md.receiverEmail}</p>
+                        <input type="number" name="mailfrom" id="mailfrom" value="${empNo}" readonly>
+                        <!-- <p>수신자 이메일 :  ${md.receiverEmail}</p>
                         <p>수신자 직급코드 :  ${md.receiverRoleCode}</p>
-                        <p>수신자 부서코드 :  ${md.receiverDeptCode}</p>
+                        <p>수신자 부서코드 :  ${md.receiverDeptCode}</p> -->
+                        <select name="" id="">
+                            
+                        </select>
                     </div>
+                    <div class="receiverselect"></div>
                     <div class="mail-main">
-                        <div class="textarea">
-                            ${md.mailContent}
-                        </div>
-						<button type="button" class="btn btn-primary backtobutton nav justify-content-center">메일목록돌아가기</button>
+                        <textarea name="mailContent" id="" cols="30" rows="10">
+
+                        </textarea>
+						<button type="button" class="btn btn-primary backtobutton nav justify-content-center">메일발송하기</button>
+                        <button type="button" class="btn btn-danger nav justify-content-center">작성취소</button>
                     </div>
-				</div>
+				</form>
 			</div>
 			
 		</section>

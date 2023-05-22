@@ -4,9 +4,13 @@ import com.hrms.project4th.mvc.dto.MailResponseDTO;
 import com.hrms.project4th.mvc.dto.page.MailPage;
 import com.hrms.project4th.mvc.dto.page.MailPageMaker;
 import com.hrms.project4th.mvc.dto.page.MailSearch;
+import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.EmployeeInfoResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.entity.Mail;
+import com.hrms.project4th.mvc.repository.EmployeesMapper;
+import com.hrms.project4th.mvc.service.EmployeesService;
 import com.hrms.project4th.mvc.service.MailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +31,19 @@ public class MailController {
 
     private final MailService mailService;
 
+    //사원의 개인정보 빼오기용 서비스 객체
+    private final EmployeesService employeesService;
+
+
     //메일 작성용 화면 요청 함수
-    public String writeRequest(){
-        return "";
+    @GetMapping("/mail-write")
+    public String writeRequest(Model model, Long empNo){
+//        EmployeeDetailResponseDTO detailedEmployee = employeesService.getDetailedEmployee(empNo);
+        //메일 작성용화면에 필요한객체만 로딩
+//        EmployeeInfoResponseDTO employeeInfo = EmployeeInfoResponseDTO.builder().empEmail(detailedEmployee.getEmpEmail()).empName(detailedEmployee.getEmpName()).deptName(detailedEmployee.getDeptName()).roleName(detailedEmployee.getRoleName()).empNo(detailedEmployee.getEmpNo()).build();
+//        model.addAttribute("info",employeeInfo);
+        model.addAttribute("empNo",empNo);
+        return "/mail/write";
     }
 
     //메일저장(전송)서비스
