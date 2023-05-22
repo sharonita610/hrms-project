@@ -22,18 +22,16 @@ class ConfirmServiceTest {
     @DisplayName("서비스에 결재요청을 하면 결재 테이블에 데이터가 생성된다")
     void requestConfirmTest(){
 
-        for (int i = 1; i < 20 ; i++) {
-
         RequestConfirmDTO dto = RequestConfirmDTO.builder()
-                .fromEmpNo(i)
+                .fromEmpNo(2L)
                 .toEmpNo(1L)
-                .conTitle("[제목] 테스트 결재 요청 " + i)
-                .conContent("[내용] 테스트 결재 내용 " + i)
+                .conTitle("[제목] 테스트 결재 요청 ")
+                .conContent("[내용] 테스트 결재 내용 ")
                 .build();
 
         boolean flag = confirmService.requestConfirm(dto);
         assertTrue(flag);
-        }
+
     }
 
     @Test

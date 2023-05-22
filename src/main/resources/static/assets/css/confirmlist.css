@@ -19,16 +19,6 @@
     margin: 0 auto;
 }
 
-.confirm-outer-container {
-
-}
-
-.header-bar {
-    position: absolute;
-    top: 0;
-    z-index: 9999;
-}
-
 .confirm-page-wrapper .confirm-titleline {
     display: flex;
     margin-bottom: 30px;
@@ -36,6 +26,10 @@
     justify-content: space-between;
     align-items: center;
     /* border: 1px solid #000; */
+}
+
+.confirm-page-wrapper .confirm-titleline .confirm-menu-tab{
+    cursor: pointer;
 }
 
 .confirm-page-wrapper h1 {
@@ -57,29 +51,63 @@
 .confirm-page-wrapper .confirm-outer-container h2 {
     margin: 0;
     font-size: 15px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 5px;
+    width: fit-content;
+}
+
+.confirm-page-wrapper .confirm-outer-container .confirm-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirm-page-wrapper .confirm-outer-container .search {
+    display: flex;
+    margin-top: 17px;
+    margin-right: 8px;
+}
+
+.confirm-page-wrapper .confirm-outer-container .search h3 {
+    font-size: 15px;
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
+.confirm-page-wrapper .confirm-outer-container .search input {
+    height: 20px;
+
 }
 
 .confirm-box {
     /*border-top: 2px solid gray;*/
     /*border-bottom: 2px solid gray;*/
-    /*border: 1px solid #000;*/
+    width: fit-content;
+    border: 1px solid #000;
     height: 200px;
-    overflow: scroll;
+    overflow-y: scroll;
     margin: 0;
     font-size: 17px;
-    margin-top: 20px;
+
 }
 
 .confirm-box::-webkit-scrollbar {
     display: none;
 }
 
+.confirm-outer-container span.new {
+    font-size: 13px;
+    color: red;
+    margin-left: 5px;
+}
+
 .confirm-box .confirm-table {
     position: relative;
     /* background: rgb(236, 236, 236); */
     /* border: 1px solid gray; */
+}
+
+.confirm-box #waiting-table {
+    /*border: 1px solid blue;*/
 }
 
 .confirm-box .confirm-table li {
@@ -94,13 +122,25 @@
     display: flex;
     text-align: center;
     border: none;
+
     /*border-top: 1px solid gray;*/
     /*border-bottom: 1px solid gray;*/
+}
+
+.confirm-box .confirm-table .header-bar {
+    position: fixed;
+    z-index: 9999;
+    border-bottom: 1px solid gray;
+    /*border: 1px solid red;*/
 }
 
 .confirm-box .confirm-table .title-line {
     background: #e6e6e6;
     height: 30px;
+}
+
+.inner-list-container {
+    transform: translateY(30px);
 }
 
 .confirm-box .confirm-table li {
@@ -157,4 +197,28 @@
 
 .confirm-box #rejected-table .col7 {
     width: 160px;
+}
+
+.confirm-box #waiting-table .col6 {
+    color: dodgerblue;
+}
+
+.confirm-box #waiting-table .title-line.col6 {
+    color: black;
+}
+
+.confirm-box #confirmed-table .col6 {
+    color: green;
+}
+
+.confirm-box #confirmed-table .title-line.col6 {
+    color: black;
+}
+
+.confirm-box #rejected-table .col6 {
+    color: red;
+}
+
+.confirm-box #rejected-table .title-line.col6 {
+    color: black;
 }
