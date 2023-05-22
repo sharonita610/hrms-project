@@ -37,6 +37,8 @@ public class Employees {
     private Auth auth;
     private String empSession;
     private LocalDateTime cookieLimitTime;
+    private String newPhone;
+    private char autoLogin;
 
 
     public Employees(AddEmployeesDTO dto, String path){
@@ -52,6 +54,7 @@ public class Employees {
         this.roleCode = dto.getRoleCode();
         this.deptCode = dto.getDeptCode();
         this.profile = path;
+        this.autoLogin = dto.getAutoLogin();
     }
 
     public Employees(ModifyEmployeeDTO dto, String path){
@@ -92,6 +95,7 @@ public class Employees {
     public String setEmpEmail(String emailAccount){
         return emailAccount + "@samjosangsa.com";
     }
+
 
 
 }

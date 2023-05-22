@@ -44,4 +44,5 @@ public interface  EmployeesMapper {
     EmployeeDetailResponseDTO getDetailedEmployee(long empNo);
 
     List<EmployeeDetailResponseDTO> searchEmployeesByName(String empName);
+
 }
