@@ -84,7 +84,7 @@ public class LoginService {
                 .build();
 
         //  세션에 저장
-        session.setAttribute(LOGIN_KEY, dto);
+//        session.setAttribute(LOGIN_KEY, dto);
         session.setAttribute("login", dto);
 
         // 세션의 수명을 설정

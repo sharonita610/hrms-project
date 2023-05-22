@@ -5,7 +5,6 @@ import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import lombok.*;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,7 +43,7 @@ public class Employees {
     public Employees(AddEmployeesDTO dto, String path){
         this.empName = dto.getEmpName();
         this.empBirthDay = getLocalDate(dto.getEmpBirthDay());
-        this.empEmail = setEmpEmail(dto.getEmpEmail());
+        this.empEmail = settingEmpEmail(dto.getEmpEmail());
         this.empPhone = dto.getEmpPhone();
         this.empPassword = dto.getEmpPhone().substring(7);
         this.empGender = dto.getEmpGender();
@@ -61,7 +60,7 @@ public class Employees {
         this.empNo = dto.getEmpNo();
         this.empName = dto.getEmpName();
         this.empPhone = dto.getEmpPhone();
-        this.empEmail = setEmpEmail(dto.getEmpEmail());
+        this.empEmail = settingEmpEmail(dto.getEmpEmail());
         this.empPassword = dto.getEmpPassword();
         this.empBirthDay = getLocalDate(dto.getEmpBirthDay());
         this.empSalary = dto.getEmpSalary();
@@ -76,7 +75,7 @@ public class Employees {
         this.empNo = dto.getEmpNo();
         this.empName = dto.getEmpName();
         this.empPhone = dto.getEmpPhone();
-        this.empEmail = setEmpEmail(dto.getEmpEmail());
+        this.empEmail = settingEmpEmail(dto.getEmpEmail());
         this.empPassword = dto.getEmpPassword();
         this.empBirthDay = getLocalDate(dto.getEmpBirthDay());
         this.empSalary = dto.getEmpSalary();
@@ -92,7 +91,7 @@ public class Employees {
         return LocalDate.parse(date, dtf);
     }
 
-    public String setEmpEmail(String emailAccount){
+    public String settingEmpEmail(String emailAccount){
         return emailAccount + "@samjosangsa.com";
     }
 
