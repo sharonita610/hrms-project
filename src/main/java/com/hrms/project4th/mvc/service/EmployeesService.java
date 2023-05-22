@@ -3,6 +3,7 @@ package com.hrms.project4th.mvc.service;
 import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.GetMyBossResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;

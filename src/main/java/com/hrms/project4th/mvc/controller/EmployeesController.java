@@ -1,12 +1,10 @@
 package com.hrms.project4th.mvc.controller;
 
-import com.hrms.project4th.mvc.dto.requestDTO.*;
 import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.GetMyBossResponseDTO;
-import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
 import com.hrms.project4th.mvc.service.EmployeesService;
 import com.hrms.project4th.mvc.service.LoginService;
 import com.hrms.project4th.mvc.util.FileUtil;
@@ -16,12 +14,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 import static com.hrms.project4th.mvc.util.LoginUtil.getCurrentLoginMemberAccount;
 
