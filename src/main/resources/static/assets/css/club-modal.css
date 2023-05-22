@@ -1,10 +1,25 @@
-/* 게시글 컨텐츠 클릭시 뜨는 모달 */
-.common-club-modal {
-    display: none;
-}
+
 /* 내가 작성한 게시글 클릭시 뜨는 모달 */
 .my-modal {
     display: none;
+}
+/* 모달창 배경 */
+.modal_background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0,0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 1;
+    display : none;
+}
+/* 게시글 컨텐츠 클릭시 뜨는 모달 */
+.club-modal-wrapper.show-modal {
+    display: block;
+}
+.modal-background.show-modal {
+    display: block;
 }
 
 /* 모달 전체 속성*/
@@ -15,6 +30,7 @@
     margin-left: 550px !important;
     position: absolute !important;
     z-index: 300; 
+    display: none;
 }
 
 .club-modal-wrapper::-webkit-scrollbar {
@@ -91,7 +107,7 @@
 }
 .club-modal-replies-head {
     height: 1000px;
-    background: blue;
+    background: rgb(185, 185, 185);
 }
 
 .club-modal-add-reply {
