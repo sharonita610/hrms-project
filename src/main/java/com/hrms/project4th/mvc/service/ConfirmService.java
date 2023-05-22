@@ -86,4 +86,11 @@ public class ConfirmService {
     public boolean deleteConfirm(long conNo) {
         return confirmMapper.deleteConfirm(conNo);
     }
+
+    public List<SimpleDateConfirmDTO> getConfirmList(long empNo, String roleCode) {
+       return confirmMapper.getConfirmList(empNo, roleCode)
+                .stream()
+                .map(SimpleDateConfirmDTO::new)
+                .collect(Collectors.toList());
+    }
 }

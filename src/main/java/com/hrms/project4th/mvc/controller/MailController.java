@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
+import com.hrms.project4th.mvc.dto.page.MailPage;
 import com.hrms.project4th.mvc.dto.page.MailPageMaker;
 import com.hrms.project4th.mvc.dto.page.MailSearch;
 import com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO;
@@ -15,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.hrms.project4th.mvc.entity.CheckStatus.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -49,12 +52,15 @@ public class MailController {
         return "/mail/mail";
     }
 
-    @GetMapping("")
+    @GetMapping("mail-detail")
     //메일 하나확인하기(개개인 메일의 번호가필요함)
-    public String getMailDetail(Model model,Long mailNo,MailSearch search,Long empNo){
-        List<MailDetailResponseDTO> mailDetail = mailService.getMailDetail(mailNo, search,empNo);
+    public String getMailDetail(Model model, Long mailNo, MailPage search, Long empNo){
+        log.info("mailNo {}",mailNo);
+        log.info("search {}",search);
+        log.info("empNo {}",empNo);
+        MailDetailResponseDTO mailDetail = mailService.getMailDetail(mailNo, search);
         model.addAttribute("md",mailDetail);
-        return "";
+        return "/mail/detail";
     }
 
     @GetMapping("/mail-list-status")
@@ -84,9 +90,27 @@ public class MailController {
         //메일 타입에 따라 리턴값 달라진다
         String mailType = search.getMailType();
         if(mailType.equals("mailto")) {
-            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType();
+            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+"mailto";
         }else{
-            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType();
+            return "redirect:/hrms/mail-list/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+"mailfrom";
+        }
+    }
+
+
+    @GetMapping("/mail-delete-status")
+    // 메일 삭제하기(사원번호에 맞는 메일을 삭제해야함)
+    public String mailDeleteByNum(Long mailNo, @RequestParam(value = "empNo") Long empNo, MailSearch search, @RequestParam(value = "status") CheckStatus status) {
+        log.info("mailNo {}: ", mailNo);
+        log.info("empNo {} : ", empNo);
+        log.info("status {}", status);
+        log.info("mailPageNo{}",search.getMailPageNo());
+        //메일 타입에 따라 리턴값 달라진다
+        if(status==N){
+            mailService.deleteByNum(mailNo);
+            return "redirect:/hrms/mail-list-status/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType()+"&status="+N;
+        }else{
+            mailService.deleteByNum(mailNo);
+            return "redirect:/hrms/mail-list-status/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType()+"&status="+Y;
         }
     }
 

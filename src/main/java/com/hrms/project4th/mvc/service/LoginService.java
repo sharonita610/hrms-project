@@ -1,26 +1,19 @@
 package com.hrms.project4th.mvc.service;
 
-import com.hrms.project4th.mvc.dto.AutoLoginDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.LoginRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.entity.LoginResult;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
-import com.hrms.project4th.mvc.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.time.LocalDateTime;
-
 import static com.hrms.project4th.mvc.entity.LoginResult.*;
-import static com.hrms.project4th.mvc.util.LoginUtil.AUTO_LOGIN_COOKIE;
 import static com.hrms.project4th.mvc.util.LoginUtil.LOGIN_KEY;
 
 @Slf4j
@@ -35,11 +28,11 @@ public class LoginService {
 
     // 로그인 검증 처리하기
     public LoginResult authenticate(
-            LoginRequestDTO dto,
-            HttpSession session) {
+            LoginRequestDTO dto, HttpSession session,  HttpServletResponse response) {
 
         Employees foundEmployee = employeesMapper.findEmployee(dto.getEmpEmail());
 
+        log.info(dto.getEmpEmail());
 
         // 사원이 등록되어있는지 확인
         if (null == foundEmployee) {
@@ -62,12 +55,18 @@ public class LoginService {
             session.setMaxInactiveInterval(60 * 60 * 12);
         }
 
-        log.info("{}님 로그인 성공!", employeesMapper.findEmployee(dto.getEmpEmail()));
+        log.info("{}님 로그인 성공! : {}", dto.getEmpEmail(), dto);
         return SUCCESS;
     }
 
 
+    // 로그인 유지
     public void maintainLoginState(HttpSession session, String empEmail) {
+
+        if(empEmail == null){
+            log.info("이메일이 null이기 때문에 세션에 담을 수 없습니다");
+            return;
+        }
 
         // 현재 로그인한 사람의 모든 정보
         Employees employee = getMember(empEmail);
@@ -80,10 +79,13 @@ public class LoginService {
                 .empEmail(employee.getEmpEmail())
                 .posCode(employee.getPosCode())
                 .deptCode(employee.getDeptCode())
+                .roleCode(employee.getRoleCode())
+                .profile(employee.getProfile())
                 .build();
 
         //  세션에 저장
         session.setAttribute(LOGIN_KEY, dto);
+        session.setAttribute("login", dto);
 
         // 세션의 수명을 설정
         session.setMaxInactiveInterval(60 * 60); // 1시간
@@ -96,6 +98,13 @@ public class LoginService {
 
         return employeesMapper.findEmployee(empEmail);
     }
+
+    public static void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+
+
+
+    }
+
 
 
 }

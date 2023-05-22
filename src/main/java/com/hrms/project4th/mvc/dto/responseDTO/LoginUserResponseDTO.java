@@ -18,6 +18,8 @@ public class LoginUserResponseDTO {
     private String empEmail;
     private String posCode;
     private String deptCode;
+    private String roleCode;
+    private String profile;
 
 
 }

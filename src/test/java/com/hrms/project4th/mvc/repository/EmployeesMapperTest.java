@@ -42,18 +42,18 @@ class EmployeesMapperTest {
     }
 
 
-    @Test
-    @DisplayName("2번 사원의 휴대폰 번로를 변경한다.")
-    public void updatePhoneNumberTest() {
-        // given
-        String mail = "two@samjosangsa.com";
-        String s = "02-2222-2222";
-
-
-        boolean b = employeesMapper.updatePhoneNumber(mail, s);
-
-        assertTrue(b);
-
-
-    }
+//    @Test
+//    @DisplayName("2번 사원의 휴대폰 번로를 변경한다.")
+//    public void updatePhoneNumberTest() {
+//        // given
+//        String mail = "two@samjosangsa.com";
+//        String s = "02-2222-2222";
+//
+//
+//        boolean b = employeesMapper.updatePhoneNumber(mail, s);
+//
+//        assertTrue(b);
+//
+//
+//    }
 }

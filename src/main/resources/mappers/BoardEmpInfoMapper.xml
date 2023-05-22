@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.BoardEmpInfoMapper">
+    <select id="showAllInfo" resultType="boardEmpInfo">
+        select he.emp_no,he.emp_name,he.emp_email,emp_phone,hd.DEPT_NAME,hp.POS_NAME,hr.role_name
+        from hr_employees he
+        join hr_department hd on hd.DEPT_CODE =he.DEPT_CODE
+        join hr_position hp on hp.POS_CODE =he.POS_CODE
+        join hr_role hr on hr.ROLE_CODE =he.ROLE_CODE
+    </select>
+</mapper>

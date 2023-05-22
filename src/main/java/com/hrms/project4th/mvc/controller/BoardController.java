@@ -55,7 +55,6 @@ public class BoardController {
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
         boardService.boardSave(dto);
-        log.info("BoardSaveRequestDTO {}", dto);
 //      log.info("BoardSaveRequestDTO {}",dto);
         return "redirect:/hrms/board/board-list";
     }
@@ -67,6 +66,7 @@ public class BoardController {
         boardService.boardDelete(boardNo);
         return "redirect:/hrms/board/board-list";
     }
+
 
 
     // 상세 보기 페이지를 보여주는 기능
@@ -85,8 +85,10 @@ public class BoardController {
 
     // 게시글 수정 페이지를 보여주는 기능
     @PostMapping("/show-modify")
-    public String showModify(Model model, BoardModifyRequestDTO dto) {
-        log.info("/hrms/board-modify : POST / {}", dto);
+    public String showModify(Model model, BoardModifyRequestDTO dto,BoardSearch boardSearch) {
+//        log.info("/hrms/board-modify : POST / {}", dto);
+        log.info("boardSearch : {}",boardSearch);
+        model.addAttribute("s",boardSearch);
         model.addAttribute("m", dto);
         return "/board/boardModify";
     }
@@ -97,7 +99,7 @@ public class BoardController {
 //        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}", dto);
         boolean flag = boardService.boardModify(dto);
 //        log.info("flag : {}",flag);
-        log.info("searchinfo : {}", search);
+//        log.info("searchinfo : {}", search);
         model.addAttribute("b", dto);
 
         return "redirect:/hrms/board/board-detail?boardNo=" + dto.getBoardNo();

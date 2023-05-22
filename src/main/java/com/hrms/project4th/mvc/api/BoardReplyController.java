@@ -36,7 +36,7 @@ public class BoardReplyController {
         page.setBoardAmount(5);
         BoardReplyListResponseDTO replyList
                 = boardReplyService.findAll(boardNo, page);
-        log.info("replyList : {}",replyList);
+//        log.info("replyList : {}",replyList);
 
         return ResponseEntity.ok().body(replyList);
     }
@@ -71,7 +71,7 @@ public class BoardReplyController {
     @DeleteMapping
     public ResponseEntity<?> deleteReply(
             @RequestBody BoardReplyDeleteRequestDTO dto) {
-        log.info("/api/hrms/replies : DELETE!! / replyNo : {}", dto);
+//        log.info("/api/hrms/replies : DELETE!! / replyNo : {}", dto);
         try {
             boardReplyService.delete(dto);
         } catch (SQLDataException e) {
