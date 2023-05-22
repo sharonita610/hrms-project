@@ -25,27 +25,27 @@ class BoardReplyMapperTest {
     @Test
     @DisplayName("댓글 저장 기능")
     void save() {
-//        for (int i = 1; i <= 301; i++) {
+//        for (int i = 1; i <= 300; i++) {
 //            Board b = Board.builder()
 //                    .boardNo(i)
-//                    .bdType(BdType.valueOf("FREE"))
-//                    .bdTitle("board title" + i)
-//                    .bdContent("board content / board content" + i)
-//                    .empNo(i)
+//                    .bdType(BdType.valueOf("NOTICE"))
+//                    .bdTitle("공지사항" + i)
+//                    .bdContent("공지내용 입니다!!!!!" + i)
+//                    .empNo((long)(Math.random()*61+1))
 //                    .build();
 //            boolean flag = boardMapper.boardSave(b);
 //            assertTrue(flag);
 //        }
-        for (int i = 1; i <= 1000; i++) {
+//        for (int i = 1; i <= 1000; i++) {
+//
+//            BoardReply build = BoardReply.builder()
+//                    .repContent("댓글 입니다!!!!" + i)
+//                    .boardNo((long) (Math.random() * 300 + 1))
+//                    .empNo((long)(Math.random()*61+1))
+//                    .build();
+//            boardReplyMapper.save(build);
 
-            BoardReply build = BoardReply.builder()
-                    .repContent("reply content" + i)
-                    .boardNo((long) (Math.random() * 301 + 1))
-                    .empNo((long) (Math.random() * 301 + 1))
-                    .build();
-            boardReplyMapper.save(build);
-
-        }
+//        }
 
     }
 

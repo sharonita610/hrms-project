@@ -7,6 +7,7 @@ import com.hrms.project4th.mvc.entity.Gender;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -90,31 +91,31 @@ class EmployeesServiceTest {
 
 
     // 김혜영 db insert test 용 코드입니다.
-    @Test
-    @DisplayName("사원을 추가하면 초기 비밀번호는 휴대폰번호 뒤의 4자리, 입사일자는 오늘로 생성된다.")
-    void addEmployeeTest(){
-
-
-        for (int i = 1; i < 7; i++) {
-            for (int j = 0; j < 10; j++) {
-
-                AddEmployeesDTO dto = AddEmployeesDTO.builder()
-                        .empName("테스트사원" + i + j)
-                        .empBirthDay("1998-01-05")
-                        .empEmail("test" + i + j)
-                        .empGender(Gender.F)
-                        .empSalary(2000000L)
-                        .empPhone("010000055" + i + j)
-                        .empMyBoss(1L)
-                        .posCode("005")
-                        .deptCode("00" + i)
-                        .build();
+//    @Test
+//    @DisplayName("사원을 추가하면 초기 비밀번호는 휴대폰번호 뒤의 4자리, 입사일자는 오늘로 생성된다.")
+//    void addEmployeeTest(){
+//
+//
+//        for (int i = 1; i < 7; i++) {
+//            for (int j = 0; j < 10; j++) {
+//
+//                AddEmployeesDTO dto = AddEmployeesDTO.builder()
+//                        .empName("테스트사원" + i + j)
+//                        .empBirthDay("1998-01-05")
+//                        .empEmail("test" + i + j)
+//                        .empGender(Gender.F)
+//                        .empSalary(2000000L)
+//                        .empPhone("010000055" + i + j)
+//                        .empMyBoss(1L)
+//                        .posCode("005")
+//                        .deptCode("00" + i)
+//                        .build();
 //                boolean flag = employeesService.addEmployee(dto, );
 //                assertTrue(flag);
-            }
-        }
-
-}
+//            }
+//        }
+//
+//}
 
 
 }

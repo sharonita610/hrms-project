@@ -93,6 +93,7 @@ public class Employees {
     }
 
     public String setEmpEmail(String emailAccount){
+
         return emailAccount + "@samjosangsa.com";
     }
 

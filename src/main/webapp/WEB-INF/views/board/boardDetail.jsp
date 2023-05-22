@@ -268,12 +268,7 @@
             font-weight: 600;
         }
 
-        /*     .modal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        } */
+
         .modifyAndDelete #modifyBtn {
             height: 38.38px;
         }
@@ -422,8 +417,8 @@
                             </div>
                             <textarea type="text" class="modal-body modMod"></textarea>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">수정</button>
-                                <button type="button" class="btn btn-secondary mod-secondary"
+                                <button type="button" class="btn btn-primary modibtn">수정</button>
+                                <button type="button" class="btn btn-secondary mod-secondary modifylastbtn"
                                     data-bs-dismiss="modal">닫기</button>
                             </div>
                         </div>
@@ -445,7 +440,7 @@
                             <input type="text" class="modal-body modDEL" value="댓글을 삭제하시겠습니까?" readonly></input>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary delBtn-primary">삭제</button>
-                                <button type="button" class="btn btn-secondary del-secondary"
+                                <button type="button" class="btn btn-secondary del-secondary boardDEL"
                                     data-bs-dismiss="modal">닫기</button>
                             </div>
                         </div>
@@ -602,7 +597,6 @@
                                     <span class='col-md-3 showUserInfo'>
                                         <span>\${deptName}</span><span>/</span>
                                         <span>\${posName}</span><span>/</span>
-                                        <span>\${roleName}</span><span>/</span>
                                         <span>\${empName}</span>
                                         <input type='hidden' name='empNo' value='\${empNo}'>
                                     </span>
@@ -612,7 +606,7 @@
                                     <div class='col-md-6 showContent'>\${repContent}</div>
                                     <div class='et-md-2 col-md-4 text-right modifyAndDelete'>
                                 `;
-
+                             
 
                     // if (currentAccount === rep.account || auth === 'ADMIN') {
                     tag +=
@@ -647,7 +641,7 @@
                 // empNo값 가져오기
                 const $rpdelEmpNo = e.target.parentElement.parentElement.previousElementSibling.
                 previousElementSibling.firstElementChild.lastElementChild.value;
-                // console.log($rpdelEmpNo)
+                console.log($rpdelEmpNo);
                 e.preventDefault();
 
                 if (e.target.matches('#replyDelBtn')) {
@@ -682,6 +676,7 @@
                     const $rpEmpNo = e.target.parentElement.parentElement.previousElementSibling.
                     previousElementSibling.firstElementChild.lastElementChild.value;
                     // console.log('고급추적:', e.target);
+                    // console.log($rpEmpNo);
                     document.querySelector('.modMod').dataset.reno = $rpEmpNo;
 
                 }
@@ -695,9 +690,9 @@
             const $makedelButton = document.querySelector('.delBtn-primary');
             $makedelButton.onclick = e => {
                 const $rpRpNo = document.querySelector('.modDEL').dataset.rno;
-                console.log($rpRpNo);
+                // console.log($rpRpNo);
                 const $rpEmpNo = document.querySelector('.modDEL').dataset.reno;
-                console.log($rpEmpNo);
+                // console.log($rpEmpNo);
 
                 // 삭제 데이터 만들기
                 const requestDeleteInfo = {
@@ -716,7 +711,7 @@
                     .then(res => {
                         if (res.status === 200) {
                             // alert('삭제됐어!!!!!');
-                            document.querySelector('.del-secondary').click();
+                            document.querySelector('.boardDEL').click();
                         } else {
                             return res.json().then(data => {
                                 console.log(data); // 서버에서 반환된 오류 메시지 출력
@@ -740,14 +735,16 @@
         function modifyBoardReply() {
 
 
-            const $modifyButton = document.querySelector('.btn-primary');
+            const $modifyButton = document.querySelector('.modibtn');
+            console.log('여기까지는 되나?'+$modifyButton);
+            console.log($modifyButton);
             $modifyButton.addEventListener('click', function (e) {
                 const $getRepCont = document.querySelector('.modMod').value;
-                // console.log($getRepCont);
+                console.log($getRepCont);
                 const $getRepNo = document.querySelector('.modMod').dataset.rno;
-                // console.log($getRepNo);
+                console.log($getRepNo);
                 const $getEmpNo = document.querySelector('.modMod').dataset.reno;
-                // console.log($getEmpNo);
+                console.log($getEmpNo);
                 const modifyInfo = {
                     method: 'PATCH',
                     headers: {
@@ -766,7 +763,7 @@
                         if (res.status == 200) {
                             // alert('댓글이 수정되었습니다.')
                             //창 닫아줌
-                            document.querySelector('.mod-secondary').click();
+                            document.querySelector('.modifylastbtn').click();
                         } else {
                             // alert('댓글 수정에 실패하였습니다.')
                         }
