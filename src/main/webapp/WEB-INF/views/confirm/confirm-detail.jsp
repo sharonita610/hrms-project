@@ -50,7 +50,7 @@
         </div>
 
                 <div id = "submit" class="submit">
-                    <div id = "cancel" class="cancel" onclick="history.back()">뒤로가기</div>
+                    <div id = "cancel" class="cancel" onclick="goback()">뒤로가기</div>
                 </div>
                 <button id="addBtn">결재수정</button>
 
@@ -60,8 +60,8 @@
 
 <script>
 
-    const roleCode = '11111';
-    // const roleCode = null;
+    // const roleCode = '11111';
+    const roleCode = null;
     const $submit = document.getElementById('submit');
     const conNo = document.getElementById('conNo').value;
     const conStatus = '${c.conStatus}';
@@ -88,7 +88,7 @@
                     .then(res => res.json())
                     .then(result => {
                             if (result) {
-                                window.location.href = "/confirm/list";
+                                window.location.href = "/hrms/confirm/list";
                             }
                         }
                     )
@@ -106,7 +106,7 @@
                     .then(res => res.json())
                     .then(result => {
                             if (result) {
-                                window.location.href = "/confirm/list";
+                                window.location.href = "/hrms/confirm/list";
                             }
                         }
                     )
@@ -162,12 +162,16 @@
                     .then(res => res.json())
                     .then(result => {
                             if (result) {
-                                window.location.href = "/confirm/list";
+                                window.location.href = "/hrms/confirm/list";
                             }
                         }
                     )
             }
         }
+    }
+
+    function goback(){
+        window.location.href = '/hrms/confirm/list';
     }
 
 </script>

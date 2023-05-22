@@ -83,7 +83,7 @@ public class EmployeesController {
         String savePath = FileUtil.uploadFile(dto.getEmpPhone(), dto.getProfile(), rootPath);
         log.info(rootPath);
         employeesService.addEmployee(dto, savePath);
-        return "redirect:/hrms/employees/add"; //전체사원 리스트로 리다이렉트
+        return "redirect:/hrms/employees/add";
     }
 
     @GetMapping("/add/check")
@@ -112,7 +112,7 @@ public class EmployeesController {
             String savePath = FileUtil.uploadFile(dto.getEmpPhone(), dto.getProfile(), rootPath);
             employeesService.modifyEmployees(dto, savePath);
         }
-        return "redirect:/hrms/employees/list";
+        return "redirect:/hrms/employees/modify/" + dto.getEmpNo();
     }
 
     //사원 삭제

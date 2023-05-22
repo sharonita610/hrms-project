@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -25,7 +26,8 @@ public class ConfirmController {
     private final ConfirmService confirmService;
 
     @GetMapping("list")
-    public String confirmList(){
+    public String confirmList(
+    ){
         return "confirm/confirmList";
     }
 
@@ -107,7 +109,7 @@ public class ConfirmController {
     @PostMapping("/modify")
     public String modify(ModifyConfirmDTO dto){
         boolean flag = confirmService.modifyConfirm(dto);
-        return "redirect:/hrms/confirm/list";
+        return "redirect:/hrms/confirm/detail?conNo=" + dto.getConNo();
     }
 
     //결재 삭제

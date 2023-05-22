@@ -44,8 +44,11 @@
 <script>
 
     const URL = "/hrms/confirm";
-    const empNo = 1;
-    const roleCode = '11111';
+    // const empNo = 2;
+    const empNo = ${login.empNo};
+    const roleCode = '${login.roleCode}';
+    console.log(${login.roleCode});
+    // const roleCode = '11111';
     // const roleCode = null;
 
     //페이지 로딩
@@ -175,11 +178,13 @@
         }
 
         if (e.target.matches('#remove')) {
+
             let $remoBtn = e.target.closest('#remove');
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
 
-            $remoBtn.onclick = () => {
+            $remoBtn.onclick = (e) => {
+                e.preventDefault();
                 if (!confirm('정말 삭제하시겠습니까?')) {
                     return;
                 }
@@ -220,7 +225,8 @@
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
 
-            $rejBtn.onclick = () => {
+            $rejBtn.onclick = (e) => {
+                e.preventDefault();
                 if (!confirm('결재요청을 반려합니다')) {
                     return;
                 }
