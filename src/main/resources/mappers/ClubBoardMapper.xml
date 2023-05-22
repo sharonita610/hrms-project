@@ -6,9 +6,10 @@
 
     <select id="findAllClubBoard" resultType="clubBoardDTO">
         SELECT
-        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME, E.EMP_NAME
         FROM TEST_CLUB_BOARD B
         JOIN TEST_CLUB C USING (CLUB_CODE)
+        JOIN TEST_EMPLOYEES E ON E.EMP_NO = C.EMP_NO
     </select>
 
     <select id="findByEmpNoClubBoard" resultType="clubBoardDTO">

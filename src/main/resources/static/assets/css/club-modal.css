@@ -4,14 +4,14 @@
     display: none;
 }
 /* 모달창 배경 */
-.modal_background {
+.modal-background {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color:rgba(0, 0,0, 0.5);
     top:0;
     left: 0;
-    z-index: 1;
+    z-index: 200;
     display : none;
 }
 /* 게시글 컨텐츠 클릭시 뜨는 모달 */
@@ -26,7 +26,7 @@
 .club-modal-wrapper {
     width: 900px;
     height: 700px;
-    border: 4px solid #000000;
+    border: 2px solid #000000;
     margin-left: 550px !important;
     position: absolute !important;
     z-index: 300; 
@@ -44,6 +44,21 @@
     height: 100%;
 
 }
+/* 게시글 상세보기 시 이미지란 */
+.post-img {
+    width: 500px;
+    height: 350px;
+    margin: 10px auto;
+    background: red;
+}
+
+/* 게시글 상세보기 시 댓글란 */
+.post-text {
+    width: 500px;    
+    height: 250px;
+    background: blue;
+    margin: 10px auto;
+}
 
 /*  쪼갠 모달 컨텐츠 비율 조정, 스크롤 기능*/
 .club-modal-content-container {
@@ -54,6 +69,7 @@
 
 .club-modal-replies-container {
     width: 40%;
+
     overflow-y: scroll;
 }
 
@@ -74,20 +90,42 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    border: 2px solid #000000;
+    border-bottom: 2px solid #eeeeee;
+    width: fit-content;
+    margin: 0 auto;
     height: 60px;
     align-items: center;
 }
 /*  동호회 프로필 사진용  */
 .club-modal-image{
-    margin: 0 20px ;
+    margin: 0 10px ;
 }
 .club-modal-image img {
     width: 50px;
     height: 50px;
-    border-radius: 25px;
+    border-radius: 50px;
+    border: 1px solid #000;
 }
-
+.club-name {
+    margin-right: 10px;
+}
+.board-writer {
+    font-size: 16px;
+}
+.reply-info {
+    margin-bottom: 5px;
+}
+.reply-writer {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+}
+.reply-time {
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+}
+.reply-content {
+    margin-bottom: 10px;
+}
 
 /*  사진, 글 목록 속성  */
 .club-modal-contents {
@@ -106,12 +144,13 @@
     background: lightgray;
 }
 .club-modal-replies-head {
-    height: 1000px;
+    /* height: 1000px; */
     background: rgb(185, 185, 185);
 }
 
 .club-modal-add-reply {
-    padding: 20px 0;
+    padding: 20px 0; 
+    position: fixed;
 }
 
 
@@ -129,12 +168,11 @@
 
 .club-modal-reply-list {
     width: 100%;
-    height: 100px;
-
+    transform: translateY(70px);
 }
 /* 댓글 하나하나 뿌리는 속성  */
 .club-modal-reply-list-one{
-    border: 2px solid red;
-    margin-bottom: 2px;
-
+    border-bottom: 2px solid rgb(243, 243, 243);
+    margin:0px auto 10px;
+    width: 90%;
 }

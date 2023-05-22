@@ -4,7 +4,6 @@
 .section-club-board {
     /* margin-top: 2%; */
     width: 77%;
-    height: 840px;
     position: relative;
     /*border: 2px solid red;*/
     overflow: hidden;
@@ -75,7 +74,7 @@
 /*  클럽보드 리스트 전용 속성  */
 .section-club-board  #club-board-list{
     width: 50%;
-    height: 2000px;
+    height: 800px;
     background: rgba(198, 198, 199, 0.15);
     margin-right: 30px;
     overflow: scroll;
@@ -89,7 +88,7 @@
 #club-board-list .club-card-wrapper{
     /* background: rgb(218, 238, 245); */
     width: 70%;     /* 90% */
-    height: 200%;
+    /* height: 200%; */
     margin: 20px auto;
 }
 

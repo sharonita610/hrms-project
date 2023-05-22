@@ -19,4 +19,5 @@ public class ClubBoardResponseDTO {
     private long empNo;
     private long clubCode;
     private String clubName;
+    private String empName;
 }

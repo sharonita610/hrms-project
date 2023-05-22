@@ -19,23 +19,21 @@
                     <ul class="contents-wrapper">
                         <li class="club-modal-club-info">
                             <ul class="club-modal-informations">
-                                <li class="club-modal-image"><img src="/resources/static/assets/img/samjo-logo.png"
+                                <li class="club-modal-image"><img src="/resources/static/assets/img/logo.png"
                                         alt="동호회사진">
                                 </li>
-                                <li>동호회이름</li>
-                                <li>[작성자이름]</li>
+                                <li class="club-name"></li>
+                                <li class="board-writer"></li>
                                 <li>
-                                    <form action="#" method="post">
                                         <!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
                                         <button id="join-club-btn">가입하기</button>
-                                    </form>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <div class="club-modal-contents">
-                                게시글 <br>
-                                사진란
+                                <div class="post-img"></div>
+                                <div class="post-text"></div>
                             </div>
                         </li>
                     </ul>
@@ -52,32 +50,85 @@
                             </li>
                             <li class="club-modal-reply-list">
                                 <div class="club-modal-reply-list-one">
-                                    <ul>
-                                        <li>작성자</li>
-                                        <li>시간</li>
-                                        <li>내용내용내용내용내용내용내용내용내용</li>
-                                    </ul>
+                                    <div class="reply-info">
+                                        <span class="reply-writer">홍길동</span>
+                                        <span class="reply-time">2023-05-22 15:35</span>
+                                    </div>
+                                    <div class="reply-content">
+                                        내용내용내용내용내용내용내용내용내용
+                                    </div>
                                 </div>
                                 <div class="club-modal-reply-list-one">
-                                    <ul>
-                                        <li>작성자</li>
-                                        <li>시간</li>
-                                        <li>내용내용내용내용내용내용내용내용내용</li>
-                                    </ul>
+                                    <div class="reply-info">
+                                        <span class="reply-writer">홍길동</span>
+                                        <span class="reply-time">2023-05-22 15:35</span>
+                                    </div>
+                                    <div class="reply-content">
+                                        내용내용내용내용내용내용내용내용내용
+                                    </div>
                                 </div>
                                 <div class="club-modal-reply-list-one">
-                                    <ul>
-                                        <li>작성자</li>
-                                        <li>시간</li>
-                                        <li>내용내용내용내용내용내용내용내용내용</li>
-                                    </ul>
+                                    <div class="reply-info">
+                                        <span class="reply-writer">홍길동</span>
+                                        <span class="reply-time">2023-05-22 15:35</span>
+                                    </div>
+                                    <div class="reply-content">
+                                        내용내용내용내용내용내용내용내용내용
+                                    </div>
                                 </div>
                                 <div class="club-modal-reply-list-one">
-                                    <ul>
-                                        <li>작성자</li>
-                                        <li>시간</li>
-                                        <li>내용내용내용내용내용내용내용내용내용</li>
-                                    </ul>
+                                    <div class="reply-info">
+                                        <span class="reply-writer">홍길동</span>
+                                        <span class="reply-time">2023-05-22 15:35</span>
+                                    </div>
+                                    <div class="reply-content">
+                                        내용내용내용내용내용내용내용내용내용
+                                    </div>
+                                </div>
+                                <div class="club-modal-reply-list-one">
+                                    <div class="reply-info">
+                                        <span class="reply-writer">홍길동</span>
+                                        <span class="reply-time">2023-05-22 15:35</span>
+                                    </div>
+                                    <div class="reply-content">
+                                        내용내용내용내용내용내용내용내용내용
+                                    </div>
+                                </div>
+                                <div class="club-modal-reply-list-one">
+                                    <div class="reply-info">
+                                        <span class="reply-writer">홍길동</span>
+                                        <span class="reply-time">2023-05-22 15:35</span>
+                                    </div>
+                                    <div class="reply-content">
+                                        내용내용내용내용내용내용내용내용내용
+                                    </div>
+                                </div>
+                                <div class="club-modal-reply-list-one">
+                                    <div class="reply-info">
+                                        <span class="reply-writer">홍길동</span>
+                                        <span class="reply-time">2023-05-22 15:35</span>
+                                    </div>
+                                    <div class="reply-content">
+                                        내용내용내용내용내용내용내용내용내용
+                                    </div>
+                                </div>
+                                <div class="club-modal-reply-list-one">
+                                    <div class="reply-info">
+                                        <span class="reply-writer">홍길동</span>
+                                        <span class="reply-time">2023-05-22 15:35</span>
+                                    </div>
+                                    <div class="reply-content">
+                                        내용내용내용내용내용내용내용내용내용
+                                    </div>
+                                </div>
+                                <div class="club-modal-reply-list-one">
+                                    <div class="reply-info">
+                                        <span class="reply-writer">홍길동</span>
+                                        <span class="reply-time">2023-05-22 15:35</span>
+                                    </div>
+                                    <div class="reply-content">
+                                        내용내용내용내용내용내용내용내용내용
+                                    </div>
                                 </div>
 
                             </li>
@@ -171,11 +222,11 @@
             <div id="club-board-list">
                 <div class="club-card-wrapper">
                     <c:forEach var="c" items="${clubBoardList}">
-                        <section class="club-card" id="club-board-card" data-bno="${c.cbNo}">
+                        <section class="club-card" data-cbDate="${c.cbDate}" data-bno="${c.cbNo}" data-writer="${c.empName}">
                             <div class="club-card-info">
                                 <ul>
-                                    <li><img src="#" alt=""></li>
-                                    <li>${c.clubName}</li>
+                                    <li><img src="#" alt="" class="club-profile-img"></li>
+                                    <li class="board-list-club-name">${c.clubName}</li>
                                     <!-- 가입하기 버튼 -->
                                     <li>
                                         <button class="join" type="submit"
@@ -184,10 +235,8 @@
                                 </ul>
                             </div>
                             <div class="club-card-content">
-                                <ul>
-                                    <li>${c.cbURL}</li>
-                                    <li>${c.cbContent}</li>
-                                </ul>
+                                <div class="board-list-club-URL">${c.cbURL}</div>
+                                <div class="board-list-club-content">${c.cbContent}</div>
                             </div>
                         </section>
                     </c:forEach>
@@ -344,27 +393,55 @@
 
         
 
-        // =======================================
+        // ==================================================================
         // 게시글 컨텐츠 클릭시 모달창 띄우기
         const $clubCard = document.querySelector('.club-card');
         const $clubCardContent = document.querySelector('.club-card-content');
         const $commonModal = document.querySelector('.common-club-modal');
         const $modalBackground = document.querySelector('.modal-background');
-
-        $clubCardContent.parentElement.onclick = e => {
+        // 게시글 상세보기
+        const $detailClubName = document.querySelector('.board-list-club-name');
+        const $detailClubContent = document.querySelector('.board-list-club-content');
+        const $detailClubProfile = document.querySelector('.club-profile-img');
+        const $detailClubPostImg = document.querySelector('.board-list-club-URL');
+        
+        const $modalClubName = document.querySelector('.club-name');
+        const $modalBoardWriter = document.querySelector('.board-writer');
+        const $modalProfile = document.querySelector('.club-modal-image');
+        const $modalPostImg = document.querySelector('.post-img');
+        const $modalPostText = document.querySelector('.post-text');
+        const $modalDate = document.querySelector('.reply-time');
+        
+        $clubCard.parentElement.onclick = e => {
             e.preventDefault();
+            const $detailBoardWriter = e.target.dataset.writer;
+            const $detailCbDate = e.target.dataset.cbDate;
             console.log("club-card 선택됨");
-            // $commonModal.style.display = 'block';
+            
             $commonModal.classList.add('show-modal');
             $modalBackground.classList.add('show-modal');
+            let $tt = null;
+            if(e.target.matches('.club-card-wrapper')) {
+                $tt = e.target.closest('.club-card'); // .board-list-club-name
+                
+            }
+            console.log($tt);
+            // $modalBoardWriter.textContent = $detailBoardWriter;
+            // $modalProfile.textContent = e.target.closest('.club-profile-img').textContent;
+            // $modalPostImg.textContent = e.target.closest('.board-list-club-URL').textContent;
+            // $modalPostText.textContent = e.target.closest('.board-list-club-content').textContent;
+            
         };
 
-        // window.onclick = e => {
-        //     if (e.target.classList.contains('.common-club-modal')) {
-        //         $commonModal.classList.remove('show-modal');
-        //     }
-        // }
-
+        $modalBackground.onclick = e => {
+            if(e.target.classList.contains('common-club-modal')) return;
+            $commonModal.classList.remove('show-modal');
+            $modalBackground.classList.remove('show-modal');
+        }
+        
+        // ====================================================================
+            
+       
         //Hide modal
         // window.addEventListener('click', (e) => {
         // e.target === $commonModal ? $commonModal.style.display='none' : false;
