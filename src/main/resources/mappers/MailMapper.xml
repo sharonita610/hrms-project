@@ -67,18 +67,26 @@
 
     <!--메일번호에 맞는 메일의 객체정보전체가 나온다    -->
     <select id="getMailDetail" resultType="MailDetailResponseDTO">
-                SELECT
-                P.emp_email,
-                P.emp_name,
-                P.emp_no,
-                P.role_code,
-                P.dept_code,
-                E.mail_title,
-                E.mail_content,
-                E.mail_date
-                FROM HR_EMAIL AS E
-                JOIN HR_EMPLOYEES AS P ON E.MAIL_FROM = #{empNo}
-                WHERE E.MAIL_NO = #{mailNo}
+        SELECT
+        e1.EMP_NO AS senderEmpNo,
+        e1.EMP_EMAIL AS senderEmail,
+        e1.ROLE_CODE AS senderRoleCode,
+        e1.DEPT_CODE AS senderDeptCode,
+        e2.EMP_NO AS receiverEmpNo,
+        e2.EMP_EMAIL AS receiverEmail,
+        e2.ROLE_CODE AS receiverRoleCode,
+        e2.DEPT_CODE AS receiverDeptCode,
+        h.MAIL_TITLE AS mailTitle,
+        h.MAIL_CONTENT AS mailContent,
+        h.MAIL_DATE AS mailDate
+        FROM
+        HR_EMAIL h
+        JOIN
+        HR_EMPLOYEES e1 ON h.MAIL_FROM = e1.EMP_NO
+        JOIN
+        HR_EMPLOYEES e2 ON h.MAIL_TO = e2.EMP_NO
+        WHERE
+        h.MAIL_NO = #{mailNo}
     </select>
 
 
