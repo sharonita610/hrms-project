@@ -52,9 +52,9 @@ public class MailController {
         return "/mail/mail";
     }
 
-    @GetMapping("mail-detail")
+    @GetMapping("/mail-detail")
     //메일 하나확인하기(개개인 메일의 번호가필요함)
-    public String getMailDetail(Model model, Long mailNo, MailPage search, Long empNo){
+    public String getMailDetail(Model model, Long mailNo, MailSearch search, Long empNo){
         log.info("mailNo {}",mailNo);
         log.info("search {}",search);
         log.info("empNo {}",empNo);

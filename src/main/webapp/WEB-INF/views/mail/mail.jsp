@@ -114,9 +114,9 @@ function deletemail() {
       if ($confirm) {
 		const $mailtype = $mail.querySelector('div > p:nth-child(9)').innerText;
 		if($mailtype ==='mailto'){
-			window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=${mailto}';
+			window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailto';
 		}else{
-			window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=${mailfrom}';
+			window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailfrom';
 		}
       }else{
 		return ;
@@ -131,11 +131,19 @@ function detailmail() {
     const $targetmail = $mail.querySelector('.maildetail');
     $targetmail.addEventListener('click', () => {
       const $mailNo = +$mail.querySelector('div > p:first-child').innerText;
-	  console.log($mailNo);
-    	window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}';
+	  const $mailtype = $mail.querySelector('div > p:nth-child(9)').innerText;
+	  console.log($mailtype);
+	  //console.log($mailNo);
+		if($mailtype=='mailto'){
+			window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailto';
+		}else{
+			window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailfrom';
+		}
     });
   });
 }
+
+
 
 
 (function () {

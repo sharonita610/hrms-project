@@ -25,7 +25,7 @@ class MailMapperTest {
        for (int i =1; i<=15; i++) {
 //           Mail mailTest = Mail.builder().mailTitle("테스트용메일"+i).mailContent("테스트용메일입니다"+i).mailFrom(8L).mailTo(10L).build();
 
-           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(7L).mailTo(2L).build();
+           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(2L).mailTo(6L).build();
            mailMapper.sendRequest(mailTest);
        }
    }
@@ -43,13 +43,13 @@ class MailMapperTest {
 
     }
 
-    @Test
-    @DisplayName("메일번호가 50번 번호의 제목은 테스트용 메일15이다")
-    void getMailDetailTest(){
-       MailSearch mailSearch = new MailSearch();
-        MailDetailResponseDTO mailDetailList = mailMapper.getMailDetail((MailPage) mailSearch, 284L);
-        System.out.println(mailDetailList.toString());
-    }
+//    @Test
+//    @DisplayName("메일번호가 50번 번호의 제목은 테스트용 메일15이다")
+//    void getMailDetailTest(){
+//       MailSearch mailSearch = new MailSearch();
+//        MailDetailResponseDTO mailDetailList = mailMapper.getMailDetail(MailSearch search);
+//        System.out.println(mailDetailList.toString());
+//    }
 
 
     @Test

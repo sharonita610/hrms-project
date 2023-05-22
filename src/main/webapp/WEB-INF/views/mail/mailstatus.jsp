@@ -49,7 +49,7 @@
 									<p>${m.roleCode}</p>
 									<p>${m.deptCode}</p>
 									<p>${m.mailTitle}</p>
-									<p>${m.mailStatus}</p>
+									<p>${status}</p>
 									<p>${m.mailDate}</p>
 									<p>${ms.mailType}</p>
 								</div>
@@ -64,14 +64,14 @@
 					
 					<c:if test="${mailPageMaker.prev}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.start-1}&empNo=${num}&mailType=${ms.mailType}">Previous</a></li>
+								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.start-1}&empNo=${num}&mailType=${ms.mailType}&status=${status}">Previous</a></li>
 					</c:if>
 					<c:forEach var="i" begin="${mailPageMaker.start}" end="${mailPageMaker.end}">
-						<li class="page-item"><a class="page-link" href="/hrms/mail-list/?mailPageNo=${i}&empNo=${2}&mailType=${ms.mailType}">${i}</a></li>
+						<li class="page-item"><a class="page-link" href="/hrms/mail-list-status/?mailPageNo=${i}&empNo=${2}&mailType=${ms.mailType}&status=${status}">${i}</a></li>
 					</c:forEach>
 					<c:if test="${mailPageMaker.next}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.end+1}&empNo=${num}&mailType=${ms.mailType}">Next</a></li>
+								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.end+1}&empNo=${num}&mailType=${ms.mailType}&status=${status}">Next</a></li>
 					</c:if>
 					
 				</ul>
@@ -82,7 +82,7 @@
 
 
 <script>
-	function dletemail() {
+	function deletemail() {
   const $maillist = document.querySelectorAll('.mail');
   $maillist.forEach($mail => {
     const $deleteButton = $mail.querySelector('.delete-button');
@@ -114,9 +114,18 @@ function detailmail() {
     });
   });
 }
+window.onload = function() {
+  if (!localStorage.getItem('hasReloaded')) {
+    localStorage.setItem('hasReloaded', 'true');
+    location.reload();
+  }
+};
+
+
+
 
 (function () {
-  dletemail();
+  deletemail();
   detailmail()
 })();
 	
