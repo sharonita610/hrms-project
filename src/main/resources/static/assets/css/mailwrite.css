@@ -28,87 +28,55 @@
     font-size: 1.0rem;
     margin-top: 10px;
     width: 100%;
-    height: 100%;
-}
-.section-mail #mail-wrapper .mail-detail-box .mail-main{
-    /*border: 2px solid black;*/
-    width: 90%;
-    padding: 15px;
-    height: 90%;
-    overflow: auto;
-    margin: 0 auto;
+    height: 80%;
+    background-color: red;
 }
 
-.section-mail #mail-wrapper .mail-detail-box .mail-main .textarea{
-    /*border: 2px solid black;*/
-    width: 90%;
-    height: 80%;
-    /* background-color: chocolate; */
-    margin: 0 auto;
-    padding: 15px;
-    /* border-right: 1px solid #000; */
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title{
+    width: 100%;
+    background: purple;
 }
-.section-mail #mail-wrapper .mail-detail-box .mail-main .backtobutton{
-    margin: 0 auto;
-    margin-top: 15px;
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title .headerbox{
+    width: 80%;
+    background: yellow;
     text-align: center;
-    width: 200px;
+    margin: 0 auto;
+    height: 50px;
+    display: flex;
+    font-weight: 700;
+}
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title .headerbox div{
+   width: 10%;
+   line-height: 50px;
+}
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title .headerbox #title{
+    width: 100%;
+    text-align: center;
 }
 
 .section-mail #mail-wrapper .mail-detail-box .sender{
+    width: 100%;
+    background-color: aqua;
     display: flex;
-    margin-bottom: 15px;
-    text-align: center;
+}
+/* 공간분할용 클래스 */
+.flex-container{
     flex-grow: 1;
-    margin: 0 auto;
-    width: 80%;
 }
 .section-mail #mail-wrapper .mail-detail-box .receiver{
     display: flex;
-    margin-bottom: 15px;
-    text-align: center;
-    flex-grow: 1;
-    margin: 0 auto;
-    width: 80%;
+    background: orange;
+}
+.section-mail #mail-wrapper .mail-detail-box .receiver .form-control{
+    width: 5%;
 }
 
-.section-mail #mail-wrapper .mail-detail-box .sender p{
-    width: 20%;
-    background-color: yellow;
-    text-align: center;
-    font-size: 0.9em;
-    font-weight: 700;
-}
-.section-mail #mail-wrapper .mail-detail-box .receiver p{
-    width: 20%;
-    background-color: yellow;
-    text-align: center;
-    font-size: 0.9em;
-    font-weight: 700;
-}
+.ck-editor__editable { height: 414px; }
 
-.section-mail #mail-wrapper .mail-detail-box .sender div{
-    display: flex;
-    font-size: 1.0em;
-    width: 25%;
-    text-align: center;
-    margin-bottom: 10px;
-}
-.section-mail #mail-wrapper .mail-detail-box .sender div label{
-    text-align: center;
-}
-.section-mail #mail-wrapper .mail-detail-box .mail-header-main{
-    width: 100%;
-    display: flex;
-}
 
-.section-mail #mail-wrapper .mail-detail-box .mail-header-main .headerbox{
-    width: 50%;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
+
+
+
 
 
 

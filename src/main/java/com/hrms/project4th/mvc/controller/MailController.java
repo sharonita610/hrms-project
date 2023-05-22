@@ -38,10 +38,10 @@ public class MailController {
     //메일 작성용 화면 요청 함수
     @GetMapping("/mail-write")
     public String writeRequest(Model model, Long empNo){
-//        EmployeeDetailResponseDTO detailedEmployee = employeesService.getDetailedEmployee(empNo);
+        EmployeeDetailResponseDTO detailedEmployee = employeesService.getDetailedEmployee(empNo);
         //메일 작성용화면에 필요한객체만 로딩
-//        EmployeeInfoResponseDTO employeeInfo = EmployeeInfoResponseDTO.builder().empEmail(detailedEmployee.getEmpEmail()).empName(detailedEmployee.getEmpName()).deptName(detailedEmployee.getDeptName()).roleName(detailedEmployee.getRoleName()).empNo(detailedEmployee.getEmpNo()).build();
-//        model.addAttribute("info",employeeInfo);
+        EmployeeInfoResponseDTO employeeInfo = EmployeeInfoResponseDTO.builder().empEmail(detailedEmployee.getEmpEmail()).empName(detailedEmployee.getEmpName()).deptName(detailedEmployee.getDeptName()).posName(detailedEmployee.getPosName()).empNo(detailedEmployee.getEmpNo()).build();
+        model.addAttribute("info",employeeInfo);
         model.addAttribute("empNo",empNo);
         return "/mail/write";
     }
@@ -127,6 +127,8 @@ public class MailController {
             return "redirect:/hrms/mail-list-status/?mailPageNo="+search.getMailPageNo()+"&empNo="+empNo+"&mailType="+search.getMailType()+"&status="+Y;
         }
     }
+
+
 
 
 

@@ -13,5 +13,5 @@ public class EmployeeInfoResponseDTO {
     private String empName;
     private String empEmail;
     private String deptName;
-    private String roleName;
+    private String posName;
 }
