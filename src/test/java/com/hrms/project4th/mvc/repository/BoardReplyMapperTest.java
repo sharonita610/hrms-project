@@ -36,16 +36,16 @@ class BoardReplyMapperTest {
 //            boolean flag = boardMapper.boardSave(b);
 //            assertTrue(flag);
 //        }
-        for (int i = 1; i <= 1000; i++) {
+//        for (int i = 1001; i <= 2000; i++) {
+//
+//            BoardReply build = BoardReply.builder()
+//                    .repContent("댓글 입니다!!!!" + i)
+//                    .boardNo((long) (Math.random() * 300 + 1))
+//                    .empNo((long)(Math.random()*61+1))
+//                    .build();
+//            boardReplyMapper.save(build);
 
-            BoardReply build = BoardReply.builder()
-                    .repContent("댓글 입니다!!!!" + i)
-                    .boardNo((long) (Math.random() * 300 + 1))
-                    .empNo((long)(Math.random()*61+1))
-                    .build();
-            boardReplyMapper.save(build);
-
-        }
+//        }
 
     }
 
@@ -53,7 +53,7 @@ class BoardReplyMapperTest {
     void findAll() {
         BoardPage p =new BoardPage();
 
-        List<BoardReply> all = boardReplyMapper.findAll(300, p);
+        List<BoardReply> all = boardReplyMapper.findAll(1 , p);
         System.out.println(all);
 
 

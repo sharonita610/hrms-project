@@ -30,13 +30,13 @@ public class BoardReplyController {
             @PathVariable long boardNo,
             @PathVariable int pageNo
     ) {
-        log.info("/api/hrms/replies/{}/page/{} : GET !!", boardNo, pageNo);
+//        log.info("/api/hrms/replies/{}/page/{} : GET !!", boardNo, pageNo);
         BoardPage page = new BoardPage();
         page.setBoardPageNo(pageNo);
         page.setBoardAmount(5);
         BoardReplyListResponseDTO replyList
                 = boardReplyService.findAll(boardNo, page);
-        log.info("replyList : {}",replyList);
+//        log.info("replyList : {}",replyList);
 
         return ResponseEntity.ok().body(replyList);
     }

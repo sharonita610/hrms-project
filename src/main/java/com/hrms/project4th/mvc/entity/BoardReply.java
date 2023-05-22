@@ -21,7 +21,6 @@ public class BoardReply {
     private long empNo;
     private String deptName;
     private String posName;
-    private String roleName;
     private String empName;
 
 

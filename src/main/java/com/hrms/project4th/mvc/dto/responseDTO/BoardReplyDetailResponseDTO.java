@@ -23,7 +23,6 @@ public class BoardReplyDetailResponseDTO {
     private String replyRegDate;
     private String deptName;
     private String posName;
-    private String roleName;
     private String empName;
 
 //        private long repNo;
@@ -39,7 +38,6 @@ public class BoardReplyDetailResponseDTO {
         this.replyRegDate = makeString(boardReply.getRepDate());
         this.deptName = boardReply.getDeptName();
         this.posName = boardReply.getPosName();
-        this.roleName = boardReply.getRoleName();
         this.empName= boardReply.getEmpName();
     }
 

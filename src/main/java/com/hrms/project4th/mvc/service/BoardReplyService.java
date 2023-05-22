@@ -33,6 +33,7 @@ public class BoardReplyService {
                 = boardReplyMapper.findAll(boardNo, page)
                 .stream().map(BoardReplyDetailResponseDTO::new)
                 .collect(Collectors.toList());
+        log.info("List<BoardReplyDetailResponseDTO> boardReplyList {}",boardReplyList);
 
         return BoardReplyListResponseDTO.builder()
                 .replyCount(boardReplyMapper.countReply(boardNo))

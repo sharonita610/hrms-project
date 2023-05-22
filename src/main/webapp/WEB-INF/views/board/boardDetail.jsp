@@ -485,10 +485,13 @@
 
 
         // URI
-        const URL = '   ';
+        const URL = '/api/hrms/replies';
 
         // 게시글 번호 
-        const boardNo = `${b.boardNo}`
+        const boardNo = `${b.boardNo}`;
+
+        //로그인 게정명 
+        const loginEmpNo='${login.empNo}';
 
         // 페이지 렌더링 함수
         function renderPage({
@@ -591,9 +594,10 @@
                         repContent,
                         deptName,
                         posName,
-                        roleName,
                         empName
                     } = rep;
+                    console.log(rep);
+
                     tag += `
                                 <div id='replyContent' class='card-body' data-replyId='\${repNo}'>
                                     <div class='row user-block'>
@@ -611,16 +615,15 @@
                                 `;
 
 
-                    if (login.empNo === rep.empNo) {
-                        tag +=
-                            // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
-                            "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
+                    if (loginEmpNo== empNo) {
+                    
+                        tag += "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
                             "         <button id='replyDelBtn' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop2'>삭제</button>";
                     }
                     tag += "       </div>" +
                         "    </div>" +
                         " </div>";
-
+  // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
 
                 }
             }
@@ -838,7 +841,7 @@
                             // 입력창 비우기
                             $rt.value = '';
                             $rw.value = '';
-
+                            console.log(login.empNo);
                             // 마지막페이지 번호
                             // const lastPageNo = document.querySelector('.pagination').dataset.fp;
                             findAllReplies(1);
@@ -873,7 +876,7 @@
             //게시글 삭제 
             deleteBoard();
 
-        })()
+        })();
     </script>
 
 </body>
