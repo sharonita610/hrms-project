@@ -38,6 +38,22 @@ public class Board {
     //해당 게시물에 걸린 댓글수
     private long repNo;
 
+//    // 부서 이름
+//    private String deptName;
+//
+//    // 직급 이름
+//    private String posName;
+//
+//    // 직책 이름
+//    private String roleName;
+//
+//    // 이메일 아이디
+//    private String empEmail;
+//
+//    //핸드폰 번호
+//    private String empPhone;
+
+
 
     public Board(BoardSaveRequestDTO dto) {
         this.bdType=dto.getBdType();

@@ -19,6 +19,12 @@ public class BoardListResponseDTO {
     private String empName;
     private long viewCount;
     private long repNo;
+//    private String deptName;
+//    private String posName;
+//    private String roleName;
+//    private String empEmail;
+//    private String empPhone;
+
 
     public BoardListResponseDTO(Board board) {
         this.boardNo = board.getBoardNo();
@@ -30,6 +36,11 @@ public class BoardListResponseDTO {
         this.empName= board.getEmpName();
         this.viewCount=board.getViewCount();
         this.repNo=board.getRepNo();
+//        this.deptName=board.getDeptName();
+//        this.posName=board.getPosName();
+//        this.roleName=board.getRoleName();
+//        this.empEmail=board.getEmpEmail();
+//        this.empPhone=board.getEmpPhone();
     }
 
 
