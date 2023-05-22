@@ -32,7 +32,7 @@ public class BoardController {
     @GetMapping("/board-list")
     public String boardFindAll(BoardSearch search, Model model) {
         List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
-//        log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
+        log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
 
         BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount(search));
 //        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);

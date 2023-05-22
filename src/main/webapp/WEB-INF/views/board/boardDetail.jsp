@@ -359,7 +359,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group replyController">
                                             <input id="newReplyWriter" name="replyWriter" type="text"
-                                                class="form-control" placeholder="작성자 이름" style="margin-bottom: 35px;">
+                                                class="form-control" style="margin-bottom: 35px;" value="${login.empName}" readonly>
                                             <button id="replyAddBtn" type="button"
                                                 class="btn btn-dark form-control">등록</button>
                                         </div>
@@ -464,7 +464,7 @@
         //목록버튼 클릭시 이동하는 기능
         const $backToList = document.getElementById('backToList');
         $backToList.onclick = (e) => {
-            console.log(e.target);
+            // console.log(e.target);
             window.location.href = '/hrms/board/board-list?boardPageNo=${s.boardPageNo}';
         }
 
@@ -553,9 +553,9 @@
                 for (const r of $replypageList.children) {
                     if (e.target.innerText == r.children[0].attributes[1].value) {
                         // console.log(r.children);
-                        console.log(e.target.innerText);
+                        // console.log(e.target.innerText);
                         r.classList.add('colorChange')
-                        console.log(r);
+                        // console.log(r);
                     }
 
                 }
@@ -596,7 +596,7 @@
                         posName,
                         empName
                     } = rep;
-                    console.log(rep);
+                    // console.log(rep);
 
                     tag += `
                                 <div id='replyContent' class='card-body' data-replyId='\${repNo}'>
@@ -647,7 +647,7 @@
                 // empNo값 가져오기
                 const $rpdelEmpNo = e.target.parentElement.parentElement.previousElementSibling.
                 previousElementSibling.firstElementChild.lastElementChild.value;
-                console.log($rpdelEmpNo);
+                // console.log($rpdelEmpNo);
                 e.preventDefault();
 
                 if (e.target.matches('#replyDelBtn')) {
@@ -821,7 +821,7 @@
                 // 저장시 서버로 보낼 데이터
                 const payload = {
                     repContent: $rt.value,
-                    empNo: $rw.value,
+                    empNo: loginEmpNo,
                     boardNo: boardNo
                 };
 
@@ -837,15 +837,16 @@
                 fetch(URL, requestInfo)
                     .then(res => {
                         if (res.status === 200) {
-                            alert('댓글이 정상 등록됨!');
+                            alert('댓글이 정상적으로 등록되었습니다.');
                             // 입력창 비우기
                             $rt.value = '';
                             $rw.value = '';
-                            console.log(login.empNo);
                             // 마지막페이지 번호
                             // const lastPageNo = document.querySelector('.pagination').dataset.fp;
                             findAllReplies(1);
                         } else {
+                            // console.log($rt.value);
+                            // console.log($rw.value);
                             alert('댓글 등록에 실패함!');
                         }
                     });
