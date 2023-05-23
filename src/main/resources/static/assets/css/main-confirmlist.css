@@ -1,0 +1,64 @@
+.main-page-list #confirm-box #confirm-table {
+    height: 282px;
+    overflow: hidden;
+    border: none;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.main-page-list #confirm-box #confirm-table #waiting-th {
+    display: flex;
+    text-align: center;
+    border: none;
+    height: 30px;
+    border: none;
+    margin: 0;
+    background-color: #d0e3ed;
+}
+
+.main-page-list #confirm-box #confirm-table #doc-info {
+    display: flex;
+    text-align: center;
+    border: none;
+    height: 30px;
+    border: none;
+    margin: 0;
+}
+
+.main-page-list #confirm-box #confirm-table .col1 {
+    margin: 0;
+    width: 40px;
+}
+
+.main-page-list #confirm-box #confirm-table .col2 {
+    margin: 0;
+    width: 290px;
+    text-align: left;
+}
+
+.main-page-list #confirm-box #confirm-table .col3 {
+    margin: 0;
+    width: 100px;
+}
+
+.main-page-list #confirm-box #confirm-table .col4 {
+    margin: 0;
+    width: 130px;
+}
+
+.main-page-list #confirm-box #confirm-table .col5 {
+    margin: 0;
+    width: 160px;
+}
+
+.main-page-list #confirm-box #confirm-table .green {
+    color: darkgreen;
+}
+
+.main-page-list #confirm-box #confirm-table .red {
+    color: red;
+}
+
+.main-page-list #confirm-box #confirm-table .skyblue {
+    color: skyblue;
+}

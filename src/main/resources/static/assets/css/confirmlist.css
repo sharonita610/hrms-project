@@ -64,7 +64,6 @@
 .confirm-page-wrapper .confirm-outer-container .search {
     display: flex;
     margin-top: 17px;
-    margin-right: 8px;
 }
 
 .confirm-page-wrapper .confirm-outer-container .search h3 {
@@ -75,12 +74,12 @@
 
 .confirm-page-wrapper .confirm-outer-container .search input {
     height: 20px;
-
+    border: none;
+    background: #d0e3ed;
+    outline: none;
 }
 
 .confirm-box {
-    /*border-top: 2px solid gray;*/
-    /*border-bottom: 2px solid gray;*/
     width: 990px;
     border: 1px solid #000;
     height: 200px;
@@ -102,36 +101,23 @@
 
 .confirm-box .confirm-table {
     position: relative;
-    /* background: rgb(236, 236, 236); */
-    /* border: 1px solid gray; */
-}
-
-.confirm-box #waiting-table {
-    /*border: 1px solid blue;*/
 }
 
 .confirm-box .confirm-table li {
     margin: 0;
-    /* width: fit-content; */
-    /*padding: 5px;*/
-    /*background: #e6e6e6;*/
-    /* border: 1px solid #000; */
 }
 
 .confirm-box .confirm-table .confirm-tr {
     display: flex;
     text-align: center;
     border: none;
-
-    /*border-top: 1px solid gray;*/
-    /*border-bottom: 1px solid gray;*/
 }
 
 .confirm-box .confirm-table .header-bar {
     position: fixed;
+    width: 988px;
     z-index: 9999;
     border-bottom: 1px solid gray;
-    /*border: 1px solid red;*/
 }
 
 .confirm-box .confirm-table .title-line {
@@ -145,7 +131,6 @@
 }
 
 .confirm-box .confirm-table li {
-    /* border: 1px solid #000; */
     text-align: center;
     border: none;
     padding: 5px;
@@ -158,14 +143,11 @@
 
 .confirm-box .confirm-table .col2 {
     width: 300px;
-    /* border: 1px solid #000; */
     text-align: left;
-    /*text-indent: 10px;*/
 }
 
 .confirm-box .confirm-table .col3 {
     width: 100px;
-    /* border: 1px solid #000; */
 }
 
 .confirm-box .confirm-table .col4 {

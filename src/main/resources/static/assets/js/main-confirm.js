@@ -25,10 +25,10 @@ function renderConfirmList(list){
     } else {
         tag += '<li class = "title-line col3">부서장</li>';
     }
-    tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">기안일</li></ul>';
+    tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">승인여부</li></ul>';
 
     tag += '<div class = "inner-list-container">';
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 8; i++) {
 
         const {
             conNo,
@@ -41,9 +41,14 @@ function renderConfirmList(list){
         } = list[i];
 
         tag += '<ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo + '</li><li class = "col2">' +
-            conTitle + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept +
-            '</li><li class = "col5">' + conDate +
-            '</li></ul>';
+            conTitle + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept + '</li>';
+        if(conStatus === '승인대기'){
+            tag += '<li id = "conStatus" class = "col5 skyblue">' + conStatus + '</li></ul>';
+        } else if(conStatus === '승인거절'){
+            tag += '<li id = "conStatus" class = "col5 red">' + conStatus + '</li></ul>';
+        } else if(conStatus === '승인완료') {
+            tag += '<li id = "conStatus" class = "col5 green">' + conStatus + '</li></ul>';
+        }
     }
     tag += '</div>';
     confirmBox.innerHTML = tag;
