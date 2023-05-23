@@ -255,8 +255,9 @@
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
 
-            $modiBtn.onclick = () => {
-                window.location.href = '/confirm/modify?conNo=' + conNo;
+            $modiBtn.onclick = (e) => {
+                e.preventDefault();
+                window.location.href = '/hrms/confirm/modify?conNo=' + conNo;
             }
         }
 
@@ -290,7 +291,8 @@
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
 
-            $chkBtn.onclick = () => {
+            $chkBtn.onclick = (e) => {
+                e.preventDefault();
                 if (!confirm('결재요청을 승인합니다')) {
                     return;
                 }

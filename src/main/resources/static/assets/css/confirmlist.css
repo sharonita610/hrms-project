@@ -183,6 +183,7 @@
     height: 15px;
     width: 15px;
     margin: 0 auto;
+    margin-top: 2px;
     border: 1px solid gray;
     cursor: pointer;
 }

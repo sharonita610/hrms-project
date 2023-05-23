@@ -33,7 +33,7 @@ public class EmployeeDetailResponseDTO {
         }
     }
 
-    public void getEmailAccount(String empEmail){
+    public void gettingEmailAccount(String empEmail){
         if(empEmail != null && empEmail.contains("@")) {
             this.empEmail = empEmail.split("@")[0];
         }

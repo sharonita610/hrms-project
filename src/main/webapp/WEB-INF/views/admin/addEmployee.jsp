@@ -478,6 +478,7 @@
             }
         }
         if (flag) {
+            alert('사원 등록이 처리되었습니다.');
             document.getElementById('addBtn').click();
         }
     }
