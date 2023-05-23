@@ -4,7 +4,6 @@
 .section-club-board {
     /* margin-top: 2%; */
     width: 77%;
-    height: 840px;
     position: relative;
     /*border: 2px solid red;*/
     overflow: hidden;
@@ -75,7 +74,7 @@
 /*  클럽보드 리스트 전용 속성  */
 .section-club-board  #club-board-list{
     width: 50%;
-    height: 2000px;
+    height: 800px;
     background: rgba(198, 198, 199, 0.15);
     margin-right: 30px;
     overflow: scroll;
@@ -89,7 +88,7 @@
 #club-board-list .club-card-wrapper{
     /* background: rgb(218, 238, 245); */
     width: 70%;     /* 90% */
-    height: 200%;
+    /* height: 200%; */
     margin: 20px auto;
 }
 
@@ -113,6 +112,8 @@
     border: 2px solid lightgray;
     margin-top: 20px;
     padding: 20px; 
+    position: relative;
+    z-index: -1;
 }
 
 /*  3등분  필터링 속성  */
@@ -156,6 +157,28 @@
     padding: 16px;
     border-bottom: 2px solid lightgray;
     cursor: pointer;
+}
+
+.joined-club-list {
+    padding: 16px;
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+}
+
+.club-leave-btn {
+    float: right;
+}
+
+.my-club-reply {
+    padding: 16px;
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+}
+.crep-del-btn {
+    float: right;
+}
+.crep-mod-btn {
+    float: right;
 }
 
 /* .sample {

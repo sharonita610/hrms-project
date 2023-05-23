@@ -22,22 +22,22 @@ public class ClubReplyService {
     }
 
     // 클릭한 게시글의 댓글 전체 조회
-    List<ClubReplyListResponseDTO> clubReplyListAll(Long cbNo) {
+   public List<ClubReplyListResponseDTO> clubReplyListAll(Long cbNo) {
         return clubReplyMapper.clubReplyListAll(cbNo);
     }
 
     // 내가 작성한 댓글 목록만 조회
-    List<ClubReplyListResponseDTO> clubReplyMyList(Long empNo) {
+    public List<ClubReplyListResponseDTO> clubReplyMyList(Long empNo) {
         return clubReplyMapper.clubReplyMyList(empNo);
     }
 
     // 동호회 게시글 댓글 삭제
-    boolean clubReplyDelete(Long clubRepNo) {
+   public boolean clubReplyDelete(Long clubRepNo) {
         return clubReplyMapper.clubReplyDelete(clubRepNo);
     }
 
     // 동호회 게시글 댓글 수정
-    boolean clubReplyModify(ClubReplyModifyRequestDTO dto) {
+    public boolean clubReplyModify(ClubReplyModifyRequestDTO dto) {
         return clubReplyMapper.clubReplyModify(new ClubReply(dto));
     }
 }

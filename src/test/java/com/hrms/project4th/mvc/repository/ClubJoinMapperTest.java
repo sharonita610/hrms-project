@@ -22,8 +22,8 @@ class ClubJoinMapperTest {
     @DisplayName("동호회 신규 회원가입에 성공해야한다.")
     void clubJoinTest() {
         ClubJoinRequestDTO dto = ClubJoinRequestDTO.builder()
-                .empNo(5L)
-                .clubCode(2L)
+                .empNo(6L)
+                .clubCode(3L)
                 .build();
 
         boolean b = clubJoinMapper.clubJoin(new EmpClub(dto));

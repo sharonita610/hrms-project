@@ -1,0 +1,178 @@
+
+/* 내가 작성한 게시글 클릭시 뜨는 모달 */
+.my-modal {
+    display: none;
+}
+/* 모달창 배경 */
+.modal-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0,0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 200;
+    display : none;
+}
+/* 게시글 컨텐츠 클릭시 뜨는 모달 */
+.club-modal-wrapper.show-modal {
+    display: block;
+}
+.modal-background.show-modal {
+    display: block;
+}
+
+/* 모달 전체 속성*/
+.club-modal-wrapper {
+    width: 900px;
+    height: 700px;
+    border: 2px solid #000000;
+    margin-left: 550px !important;
+    position: absolute !important;
+    z-index: 300; 
+    display: none;
+}
+
+.club-modal-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* 모달 컨텐츠, 댓글란 쪼개기*/
+.club-modal-separator {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+
+}
+/* 게시글 상세보기 시 이미지란 */
+.post-img {
+    width: 500px;
+    height: 350px;
+    margin: 10px auto;
+    background: red;
+}
+
+/* 게시글 상세보기 시 댓글란 */
+.post-text {
+    width: 500px;    
+    height: 250px;
+    background: blue;
+    margin: 10px auto;
+}
+
+/*  쪼갠 모달 컨텐츠 비율 조정, 스크롤 기능*/
+.club-modal-content-container {
+    background: #cbcdcb;
+    width: 60%;
+    overflow-y: scroll;
+}
+
+.club-modal-replies-container {
+    width: 40%;
+
+    overflow-y: scroll;
+}
+
+.club-modal-content-container::-webkit-scrollbar,
+.club-modal-replies-container::-webkit-scrollbar {
+    display: none;
+}
+
+/*  사진과 글씨/ 댓글란 높이 일단 줌  $ 스크롤 테스트용 */
+.contents-wrapper,
+.replies-wrapper {
+    margin-bottom: 5px;
+    height: fit-content;
+}
+
+/*  컨텐츠들 인포메이션쪽  속성 START */
+.club-modal-informations {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    border-bottom: 2px solid #eeeeee;
+    width: fit-content;
+    margin: 0 auto;
+    height: 60px;
+    align-items: center;
+}
+/*  동호회 프로필 사진용  */
+.club-modal-image{
+    margin: 0 10px ;
+}
+.club-modal-image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid #000;
+}
+.club-name {
+    margin-right: 10px;
+}
+.board-writer {
+    font-size: 16px;
+}
+.reply-info {
+    margin-bottom: 5px;
+}
+.reply-writer {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+}
+.reply-time {
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+}
+.reply-content {
+    margin-bottom: 10px;
+}
+
+/*  사진, 글 목록 속성  */
+.club-modal-contents {
+    height: fit-content;
+    width: 100%;
+}
+
+#join-club-btn{
+    margin-left: 100px;
+}
+
+/*  컨텐츠들 인포메이션쪽 속성 FINISH */
+
+/*  댓글 속성  */
+.club-modal-content-container {
+    background: lightgray;
+}
+.club-modal-replies-head {
+    /* height: 1000px; */
+    background: rgb(185, 185, 185);
+}
+
+.club-modal-add-reply {
+    padding: 20px 0; 
+    position: fixed;
+}
+
+
+/*  input 속성 댓글창 */
+.write-reply {
+    margin-left: 20px;
+    border-style: none;
+    border-bottom: 1px solid #333333;
+    width: 220px;
+    height: 30px;
+    font-size: 1rem;
+    border-radius: 1%;
+
+}
+
+.club-modal-reply-list {
+    width: 100%;
+    transform: translateY(70px);
+}
+/* 댓글 하나하나 뿌리는 속성  */
+.club-modal-reply-list-one{
+    border-bottom: 2px solid rgb(243, 243, 243);
+    margin:0px auto 10px;
+    width: 90%;
+}
