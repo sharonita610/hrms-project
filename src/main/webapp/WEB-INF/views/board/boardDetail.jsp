@@ -743,14 +743,14 @@
 
             const $modifyButton = document.querySelector('.modibtn');
             // console.log('여기까지는 되나?'+$modifyButton);
-            console.log($modifyButton);
+            // console.log($modifyButton);
             $modifyButton.addEventListener('click', function (e) {
                 const $getRepCont = document.querySelector('.modMod').value;
-                console.log($getRepCont);
+                // console.log($getRepCont);
                 const $getRepNo = document.querySelector('.modMod').dataset.rno;
-                console.log($getRepNo);
+                // console.log($getRepNo);
                 const $getEmpNo = document.querySelector('.modMod').dataset.reno;
-                console.log($getEmpNo);
+                // console.log($getEmpNo);
                 const modifyInfo = {
                     method: 'PATCH',
                     headers: {
