@@ -16,16 +16,37 @@
         text-align: center;
     }
 
-    .table .table-top {
-        background-color: #d0e3ed;
-    }
+
 
     .table .table-main td {
         border: none !important;
+        border-bottom: 1px solid #f4f4f4;
     }
 
     .table-top {
-        border: 1px solid #000;
+        border: 1px solid #f4f4f4;
+    }
+
+    .title-list {
+        display: flex;
+        justify-content: end;
+    }
+   .replyCount{
+        color: orangered;
+    }
+
+    .title-list #left-pointer {
+        margin-left: 110px;
+        margin-right: 20px;
+    }
+
+    .title-list #right-pointer {
+        margin-right: 5px;
+    }
+
+    .title-list #wannaseemore {
+        margin-right: 10px;
+        margin-left: 30px;
     }
 </style>
 <%@ include file="../main/include/header.jsp" %>
@@ -40,17 +61,26 @@
                     <ul>
                         <li class="title-list">
                             <h1>공지사항</h1>
+                            <span id="left-pointer">
+                                &lt;&lt;
+                            </span> 
+                            <span id="right-pointer">
+                                &gt;&gt;
+                            </span>
+                            <span id="wannaseemore">
+                                <a href="/hrms/board/board-list">더보기+</a>
+                            </span>
                         </li>
                         <section class="board-part">
                             <table class="boardTable table">
                                 <tr class="table-top">
-                                    <th scope="col" id="boardNum">번호</th>
-                                    <th scope="col" id="boardTitle">제목</th>
+                                    <th scope="col" id="boardNum">글번호</th>
+                                    <th scope="col" id="boardTitle">글제목</th>
                                     <th scope="col" id="writer">작성자</th>
                                     <th scope="col" id="writtenDate">작성일</th>
                                 </tr>
                                 <tbody class="boardTableBody" id="tableOutter">
-                                    
+
                                 </tbody>
                             </table>
                         </section>
@@ -91,29 +121,33 @@
         function renderTable(responseResult) {
             const tableBody = document.getElementById('tableOutter');
             let tag = '';
-            for (const rp of responseResult) {
-                const {
-                    bdTitle,
-                    bdDate,
-                    bdType,
-                    boardNo,
-                    empName,
-                    empNo,
-                    repNo
-                } = rp
+            const {
+                boardPageMaker,
+                mainBoardResponseDTOS
+            } = responseResult;
+            for (const one of mainBoardResponseDTOS) {
 
-
+                // console.log(one);
                 tag += ` <tr class='table-top'>
-                                    <th scope='col'>\${boardNo}</th>
-                                    <th scope='col'><a href='/hrms/board/board-detail/?boardNo=\${boardNo}&boardPageNo=1&bdType=NOTICE'>\${bdTitle}<a></th>
-                                    <th scope='col'>\${empName}</th>
-                                    <th scope='col'>\${bdDate}</th>
+                                    <th scope='col'>\${one.boardNo}</th>
+                                    <th scope='col'><a href='/hrms/board/board-detail/?boardNo=\${one.boardNo}&boardPageNo=1&bdType=NOTICE'>\${one.bdTitle}
+                                        <span class='replyCount'>[\${one.repNo}]</span><a></th>
+                                    <th scope='col'>\${one.empName}</th>
+                                    <th scope='col'>\${one.bdDate}</th>
                          </tr>`;
 
             }
 
-            console.log(tag);
+            // console.log(tag);
             tableBody.innerHTML = tag;
+            pageRendering(boardPageMaker);
+
+        }
+
+        // 페이지 렌더링  
+        function pageRendering(boardPageMaker){
+                console.log(boardPageMaker);
+                if
 
         }
 
@@ -125,7 +159,7 @@
             fetch(`\${URL}/page/\${pageNo}`)
                 .then(res => res.json())
                 .then(responseResult => {
-                    console.log(responseResult);
+                    // console.log(responseResult);
                     renderTable(responseResult);
                 })
         }

@@ -13,6 +13,9 @@ import java.util.List;
 @Builder
 public class BoardReplyListResponseDTO {
 
+    // 댓글 수
+    private int replyCount;
+
 
     //게시판 댓글 리스트
     private List<BoardReplyDetailResponseDTO> boardReplies;

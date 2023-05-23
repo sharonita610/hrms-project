@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.api;
 
+import com.hrms.project4th.mvc.dto.page.BoardPage;
 import com.hrms.project4th.mvc.dto.page.BoardSearch;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardInfoResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardResponseDTO;
@@ -24,9 +25,13 @@ public class MainBoardListController {
     @GetMapping("/page/{pageNo}")
     public ResponseEntity<?> showMainBoard(
             @PathVariable int pageNo
-    ){  boardService.showMainBoard(new BoardSearch());
+    ){
+        BoardPage boardPage=new BoardPage();
+        boardPage.setBoardAmount(7);
+        boardPage.setBoardPageNo(pageNo);
+        MainBoardInfoResponseDTO mainBoardInfoResponseDTO = boardService.showMainBoard(boardPage);
 
-        return  ResponseEntity.ok().body();
+        return  ResponseEntity.ok().body(mainBoardInfoResponseDTO);
     }
 
 }

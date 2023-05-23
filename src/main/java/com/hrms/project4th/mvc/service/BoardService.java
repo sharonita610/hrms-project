@@ -129,10 +129,12 @@ public class BoardService {
         BoardSearch boardSearch=new BoardSearch();
         boardSearch.setBoardAmount(7);
 
+
         return MainBoardInfoResponseDTO.builder()
                 .mainBoardResponseDTOS(mainBoardResponseDTO)
-                .boardPageMaker(new BoardPageMaker(page,boardPageCount()))
+                .boardPageMaker(new BoardPageMaker(page,boardSearch.getBoardPageNo()))
                 .build();
+
     }
 
 }
