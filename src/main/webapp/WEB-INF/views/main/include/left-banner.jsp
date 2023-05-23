@@ -20,7 +20,7 @@
                     <c:if test="${login != null}">
                         <li>사번 : ${login.empNo}</li>
                         <li>이름 : ${login.empName}</li>
-                        <li id="left-banner-emp-phone">휴대폰 번호 :<br>${login.empPhone}</li>
+                        <li id="left-banner-emp-phone">휴대폰 번호 :<br><span>${login.empPhone.replace("\"", "")}</span></li>
                         <li>부서: ${login.deptName}</li>
                         <li>직책 : ${login.posName}</li>
                         <%-- <li>메일 : ${login.empEmail}</li> --%>

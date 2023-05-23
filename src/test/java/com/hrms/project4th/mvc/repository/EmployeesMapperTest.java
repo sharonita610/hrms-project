@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
+import com.hrms.project4th.mvc.dto.AutoLoginDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.VerificateEmpPasswordRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
@@ -86,4 +87,18 @@ class EmployeesMapperTest {
 //        assertEquals("김영희", t.getEmpName());
 //
 //    }
+
+    @Test
+    @DisplayName("sessionID 를 주면 admin@samjosangsa.com 이 나와야한다")
+    void checkSessionTest(){
+        AutoLoginDTO dto = new AutoLoginDTO();
+        dto.setEmpSession("86AC42D89FD0218164FD6FF4D546B56E");
+
+        Employees r = employeesMapper.checkSession(dto.getEmpSession());
+
+        assertEquals("admin@samjosangsa.com", r.getEmpEmail());
+
+    }
+
+
 }
