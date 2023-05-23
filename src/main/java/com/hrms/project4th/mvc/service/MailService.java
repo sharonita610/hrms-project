@@ -36,10 +36,10 @@ public class MailService {
     public MailDetailResponseDTO getMailDetail(Long mailNo, MailSearch search) {
         //메일을 상세보기했으니 조회함(y)로 변경되어야한다
         if(search.getMailType().equals("mailfrom")){
-            return mailMapper.getMailDetail(search,mailNo);
+            return mailMapper.getMailDetail(mailNo);
         }else{
             mailMapper.mailViewUpdate(mailNo);
-            return mailMapper.getMailDetail(search,mailNo);
+            return mailMapper.getMailDetail(mailNo);
         }
     }
 

@@ -42,14 +42,13 @@
                     <div class="sender">
                         <p>발신자 사번 : ${md.senderEmpNo}</p>
                        	<p>발신자 이메일 :  ${md.senderEmail}</p>
-                        <p>발신자 직급코드 : ${md.senderRoleCode}</p>
-                        <p>발신자 부서코드 :  ${md.senderDeptCode}</p>
                     </div>
                     <div class="receiver">
                         <p>수신자 사번 :  ${md.receiverEmpNo}</p>
+						<p>수신자 이름 :  ${md.receiverName}</p>
                         <p>수신자 이메일 :  ${md.receiverEmail}</p>
-                        <p>수신자 직급코드 :  ${md.receiverRoleCode}</p>
-                        <p>수신자 부서코드 :  ${md.receiverDeptCode}</p>
+                        <p>수신자 직급 :  ${md.posName}</p>
+                        <p>수신자 부서 :  ${md.receiverDeptName}</p>
                     </div>
                     <div class="mail-main">
                         <div class="textarea">

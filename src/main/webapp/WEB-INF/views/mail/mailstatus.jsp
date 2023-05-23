@@ -46,14 +46,14 @@
 							<li class="mail">
                                 <div class="maildetail">
 									<p>${m.mailNo}</p>
-									<p>${m.empEmail}</p>
-									<p>${m.empName}</p>
-									<p>${m.roleCode}</p>
-									<p>${m.deptCode}</p>
+									<p>${m.senderEmail}</p>
+									<p>${m.senderName}</p>
+									<p>${m.senderPosition}</p>
+									<p>${m.senderDepartment}</p>
 									<p>${m.mailTitle}</p>
-									<p>${status}</p>
+									<p>${m.mailStatus}</p>
 									<p>${m.mailDate}</p>
-									<p>${ms.mailType}</p>
+									<p id="mailtype">${ms.mailType}</p>
 								</div>
                                 <button type="button" class="btn btn-danger delete-button">삭제</button>
                             </li>
