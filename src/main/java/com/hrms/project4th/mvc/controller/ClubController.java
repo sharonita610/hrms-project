@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.controller;
 
+import com.hrms.project4th.mvc.dto.requestDTO.ClubJoinRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.ClubBoardResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.JoinedClubListResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MyClubBoardResponseDTO;
@@ -85,6 +86,22 @@ public class ClubController {
         log.info("dtoList: {}", dtoList);
 
         return ResponseEntity.ok().body(dtoList);
+    }
+
+    @PostMapping("/clubJoin")
+    public ResponseEntity<?> clubJoin(@RequestBody ClubJoinRequestDTO dto) {
+        boolean b = clubJoinService.clubJoin(dto);
+        log.info("동호회 가입성공여부: {}", b);
+
+        return ResponseEntity.ok().body(b);
+    }
+
+    @DeleteMapping("/leaveClub")
+    public ResponseEntity<?> clubLeave(@RequestBody ClubJoinRequestDTO dto) {
+        boolean b = clubJoinService.clubLeave(dto);
+        log.info("동호회 탈퇴 성공여부: {}", b);
+
+        return ResponseEntity.ok().body(b);
     }
 
 

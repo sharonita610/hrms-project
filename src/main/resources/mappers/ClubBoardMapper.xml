@@ -20,6 +20,7 @@
         WHERE CLUB_CODE IN(select CLUB_CODE
         FROM test_emp_club
         WHERE EMP_NO = #{empNo})
+        ORDER BY CB_DATE
     </select>
 
     <select id="myClubBoardList" resultType="myClubBoardListDTO">

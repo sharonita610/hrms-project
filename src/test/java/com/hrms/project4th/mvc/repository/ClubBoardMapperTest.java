@@ -59,10 +59,10 @@ class ClubBoardMapperTest {
     @DisplayName("동호회 게시글이 추가되어야한다.")
     void clubBoardSaveTest() {
         ClubBoardSaveRequestDTO dto = ClubBoardSaveRequestDTO.builder()
-                .cbTitle("축구 제목2")
-                .cbContent("축구 내용2")
+                .cbTitle("독서독서2ㅋㅋ")
+                .cbContent("독서독서독서2ㅋㅋ쓰삐용쓰삐용삐이이이이ㅣ이용쓰삐요용")
                 .cbURL("")
-                .clubCode(1)
+                .clubCode(6)
                 .empNo(4)
                 .build();
 

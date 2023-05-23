@@ -23,7 +23,7 @@ class ClubJoinMapperTest {
     void clubJoinTest() {
         ClubJoinRequestDTO dto = ClubJoinRequestDTO.builder()
                 .empNo(6L)
-                .clubCode(3L)
+                .clubCode(6L)
                 .build();
 
         boolean b = clubJoinMapper.clubJoin(new EmpClub(dto));
