@@ -1,0 +1,85 @@
+/*  메일 jsp css  */
+/*  메일 전체 틀  */
+.section-mail {
+    /* margin-top: 6%; */
+    position: relative;
+    display: block;
+    width: 100%;
+
+}
+/*  전체틀 안에 큰 라인  */
+.section-mail #mail-wrapper {
+    border: 1px solid rgba(198, 198, 199, 0.65);
+    width: 100%;
+    height: 90%;
+}
+
+/*  메일 정렬 태그 스타일  */
+.section-mail #mail-wrapper .mail-sort {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+/*  메일 정렬 태그 폰트  */
+.section-mail #mail-wrapper .mail-detail-box{
+    /*border: 2px solid black;*/
+    font-size: 1.0rem;
+    margin-top: 10px;
+    width: 100%;
+    height: 80%;
+    background-color: red;
+}
+
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title{
+    width: 100%;
+    background: purple;
+}
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title .headerbox{
+    width: 80%;
+    background: yellow;
+    text-align: center;
+    margin: 0 auto;
+    height: 50px;
+    display: flex;
+    font-weight: 700;
+}
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title .headerbox div{
+   width: 10%;
+   line-height: 50px;
+}
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title .headerbox #title{
+    width: 100%;
+    text-align: center;
+}
+
+.section-mail #mail-wrapper .mail-detail-box .sender{
+    width: 100%;
+    background-color: aqua;
+    display: flex;
+}
+/* 공간분할용 클래스 */
+.flex-container{
+    flex-grow: 1;
+}
+.section-mail #mail-wrapper .mail-detail-box .receiver{
+    display: flex;
+    background: orange;
+}
+.section-mail #mail-wrapper .mail-detail-box .receiver .form-control{
+    width: 5%;
+}
+
+.ck-editor__editable { height: 414px; }
+
+
+
+
+
+
+
+
+
+
+

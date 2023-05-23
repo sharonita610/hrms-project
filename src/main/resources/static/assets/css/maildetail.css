@@ -32,16 +32,27 @@
 }
 .section-mail #mail-wrapper .mail-detail-box .mail-main{
     /*border: 2px solid black;*/
-    width: 100%;
+    width: 90%;
     padding: 15px;
+    height: 90%;
     overflow: auto;
+    margin: 0 auto;
 }
 
-.section-mail #mail-wrapper .mail-detail-box .mail-main .texarea{
+.section-mail #mail-wrapper .mail-detail-box .mail-main .textarea{
     /*border: 2px solid black;*/
-    width: 100%;
-    overflow: auto;
-    border-right: 1px solid #000;
+    width: 90%;
+    height: 80%;
+    /* background-color: chocolate; */
+    margin: 0 auto;
+    padding: 15px;
+    /* border-right: 1px solid #000; */
+}
+.section-mail #mail-wrapper .mail-detail-box .mail-main .backtobutton{
+    margin: 0 auto;
+    margin-top: 15px;
+    text-align: center;
+    width: 200px;
 }
 
 .section-mail #mail-wrapper .mail-detail-box .sender{
@@ -49,12 +60,16 @@
     margin-bottom: 15px;
     text-align: center;
     flex-grow: 1;
+    margin: 0 auto;
+    width: 80%;
 }
 .section-mail #mail-wrapper .mail-detail-box .receiver{
     display: flex;
     margin-bottom: 15px;
     text-align: center;
     flex-grow: 1;
+    margin: 0 auto;
+    width: 80%;
 }
 
 .section-mail #mail-wrapper .mail-detail-box .sender p{

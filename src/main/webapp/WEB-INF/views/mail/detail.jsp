@@ -26,7 +26,7 @@
 					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
-					<div><a href="#">메일쓰기</a></div>
+					<div><a href="/hrms/mail-write?empNo=${2}">메일쓰기</a></div>
 				</div>
 				<div class="mail-detail-box">
 					<div class="mail-header-main">
@@ -53,6 +53,7 @@
                         <div class="textarea">
                             ${md.mailContent}
                         </div>
+						<button type="button" class="btn btn-primary backtobutton nav justify-content-center">메일목록돌아가기</button>
                     </div>
 				</div>
 			</div>
@@ -85,10 +86,18 @@
 	// (function () {
 	// dletemail();
 	// })();
+	function clickbackbutton() {
+  const $backtobutton = document.querySelector('.backtobutton');
+
+  $backtobutton.addEventListener('click', function() {
+    // 메일 확인 후 이전 페이지로 돌아가면서 새로고침
+    window.location.replace(document.referrer);
+  });
+}
 
 
 (function () {
-  
+	clickbackbutton();
 })();
 	</script>
 
