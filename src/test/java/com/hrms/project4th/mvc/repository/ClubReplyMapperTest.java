@@ -23,9 +23,9 @@ class ClubReplyMapperTest {
     @DisplayName("댓글 등록에 성공해야 한다.")
     void clubReplySaveTest() {
         ClubReplySaveRequestDTO dto = ClubReplySaveRequestDTO.builder()
-                .clubRepContent("댓글테스트88")
-                .empNo(6L)
-                .cbNo(2L)
+                .clubRepContent("대박대박대박댓글ㅋㅋ")
+                .empNo(1L)
+                .cbNo(7L)
                 .build();
 
         boolean b = clubReplyMapper.clubReplySave(new ClubReply(dto));

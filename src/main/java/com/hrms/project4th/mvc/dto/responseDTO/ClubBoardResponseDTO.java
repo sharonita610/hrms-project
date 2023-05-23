@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@Component
 @Setter @Getter
 @ToString @EqualsAndHashCode
 @NoArgsConstructor @AllArgsConstructor
@@ -20,4 +19,5 @@ public class ClubBoardResponseDTO {
     private long empNo;
     private long clubCode;
     private String clubName;
+    private String empName;
 }

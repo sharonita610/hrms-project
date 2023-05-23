@@ -33,6 +33,22 @@ insert into test_employees
 (EMP_NAME, EMP_BIRTH_DAY, EMP_HIRE_DATE, EMP_EMAIL, EMP_PASSWORD, EMP_GENDER)
 values ("춘향이", "1995-03-06", "2020-05-09", "3@test.com", "5678", "F");
 
+insert into test_employees 
+(EMP_NAME, EMP_BIRTH_DAY, EMP_HIRE_DATE, EMP_EMAIL, EMP_PASSWORD, EMP_GENDER)
+values ("고길동", "1987-08-12", "2019-02-10", "4@test.com", "5678", "M");
+
+insert into test_employees 
+(EMP_NAME, EMP_BIRTH_DAY, EMP_HIRE_DATE, EMP_EMAIL, EMP_PASSWORD, EMP_GENDER)
+values ("도우너", "2001-07-01", "2022-05-09", "5@test.com", "5678", "M");
+
+insert into test_employees 
+(EMP_NAME, EMP_BIRTH_DAY, EMP_HIRE_DATE, EMP_EMAIL, EMP_PASSWORD, EMP_GENDER)
+values ("희동이", "1987-03-06", "2010-12-04", "6@test.com", "5678", "M");
+
+insert into test_employees 
+(EMP_NAME, EMP_BIRTH_DAY, EMP_HIRE_DATE, EMP_EMAIL, EMP_PASSWORD, EMP_GENDER)
+values ("삐약이", "2002-01-08", "2023-02-22", "7@test.com", "5678", "F");
+
 -- 사원 동호회 연결 테이블
 drop table HR_EMP_CLUB; 
 create table TEST_EMP_CLUB(
@@ -66,6 +82,10 @@ insert into test_club
 (club_NAME, EMP_NO)
 values ("산악회", 2);
 
+insert into test_club 
+(club_NAME, EMP_NO)
+values ("영화동호회", 3);
+
 -- 동호회 게시판
 drop table HR_CLUB_BOARD; 
 create table TEST_CLUB_BOARD(
@@ -96,6 +116,9 @@ EMP_NO INT(10),
 constraint PK_CLUB_REP_NO primary key (CLUB_REP_NO)
 );
 
+select *
+from test_club_reply;
+ALTER TABLE TEST_CLUB_REPLY CHANGE CLBU_REP_DATE CLUB_REP_DATE DATETIME default CURRENT_TIMESTAMP;
 
 -- 외래키
 
