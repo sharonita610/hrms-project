@@ -1,0 +1,23 @@
+.main-page-list #confirm-box #confirm-table {
+    height: 282px;
+    overflow: hidden;
+    border: none;
+}
+
+.main-page-list #confirm-box #confirm-table #waiting-th {
+    display: flex;
+    text-align: center;
+    border: none;
+    height: 30px;
+    border: none;
+    margin: 0;
+}
+
+.main-page-list #confirm-box #confirm-table #doc-info {
+    display: flex;
+    text-align: center;
+    border: none;
+    height: 30px;
+    border: none;
+    margin: 0;
+}

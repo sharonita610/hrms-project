@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <link rel="stylesheet" href="/assets/css/main-page.css">
+<link rel="stylesheet" href="/assets/css/main-confirm.css">
 <!-- bootstrap css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -69,17 +70,19 @@ integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJ
                         <li>메일</li>
                         <li>메일</li>
                     </ul>
-                    <ul>
+                    <ul id = "confirm-box">
                         <li class="title-list">
                             <h1>결재</h1>
                         </li>
-                        <li>결재</li>
-                        <li>결재</li>
+                        <div id = "confirm-table">
+
+                        </div>
                     </ul>
                 </div>
             </div>
         </section>
     </div>
+<script type="text/javascript" src="/assets/js/main-confirm.js"></script>
 </body>
 
 </html>

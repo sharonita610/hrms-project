@@ -39,7 +39,7 @@
         order by con_date desc
     </select>
 
-    <select id="getAllConfirmList" resultType="getConfirmListDto">
+    <select id="getConfirmList" resultType="getConfirmListDto">
         <choose>
             <when test="roleCode eq '11111'">
                 select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status

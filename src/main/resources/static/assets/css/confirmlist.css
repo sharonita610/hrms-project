@@ -15,7 +15,7 @@
 /*}*/
 
 .confirm-page-wrapper {
-    width: 1000px;
+    width: 990px;
     margin: 0 auto;
 }
 
@@ -81,7 +81,7 @@
 .confirm-box {
     /*border-top: 2px solid gray;*/
     /*border-bottom: 2px solid gray;*/
-    width: fit-content;
+    width: 990px;
     border: 1px solid #000;
     height: 200px;
     overflow-y: scroll;
@@ -141,6 +141,7 @@
 
 .inner-list-container {
     transform: translateY(30px);
+    width: 990px;
 }
 
 .confirm-box .confirm-table li {
