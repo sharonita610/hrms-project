@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.page.BoardSearch;
+import com.hrms.project4th.mvc.dto.responseDTO.MainBoardResponseDTO;
 import com.hrms.project4th.mvc.entity.BdType;
 import com.hrms.project4th.mvc.entity.Board;
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static com.hrms.project4th.mvc.entity.BdType.FREE;
+import static com.hrms.project4th.mvc.entity.BdType.NOTICE;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -91,6 +93,16 @@ class BoardMapperTest {
 
         boolean flag = boardMapper.boardModify(b);
         assertTrue(flag);
+    }
+
+    @Test
+    @DisplayName("메인화면에 띄어줄 boardList")
+    void showMainBoardList(){
+        BoardSearch bs=new BoardSearch();
+        List<Board> mainBoardResponseDTOS = boardMapper.showAllMainBoard(bs);
+        System.out.println(mainBoardResponseDTOS);
+
+
     }
 
 

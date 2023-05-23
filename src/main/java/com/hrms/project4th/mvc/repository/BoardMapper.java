@@ -37,5 +37,9 @@ public interface BoardMapper {
     // view count를 1 올리는 기능
     long countUp(long viewCount);
 
+    //main 화면에 게시글을 보여주는 기능
+    List<Board> showAllMainBoard(BoardSearch boardSearch);
+
+
 
 }
