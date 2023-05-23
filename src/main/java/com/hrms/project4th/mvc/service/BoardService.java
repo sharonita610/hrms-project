@@ -132,7 +132,8 @@ public class BoardService {
 
         return MainBoardInfoResponseDTO.builder()
                 .mainBoardResponseDTOS(mainBoardResponseDTO)
-                .boardPageMaker(new BoardPageMaker(page,boardSearch.getBoardPageNo()))
+                .replyCount(boardMapper.countMainBoard())
+                .boardPageMaker(new BoardPageMaker(page,boardMapper.countMainBoard()))
                 .build();
 
     }

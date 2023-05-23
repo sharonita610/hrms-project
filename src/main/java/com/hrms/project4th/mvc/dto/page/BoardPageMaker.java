@@ -17,6 +17,7 @@ public class BoardPageMaker {
     public BoardPageMaker(BoardPage boardPage, int pageCount) {
         this.boardPage=boardPage;
         this.boardPageCount=pageCount;
+        System.out.println("pageCount"+pageCount);
         pageInfo();
     }
 

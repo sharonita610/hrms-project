@@ -35,6 +35,9 @@ public interface BoardMapper {
     //전체 게시글 수 구하는 기능
     int countBoardPage(BoardSearch boardSearch);
 
+    //main 게시글을 위해 게시글 수 구하는 기능
+    int countMainBoard();
+
     // view count를 1 올리는 기능
     long countUp(long viewCount);
 

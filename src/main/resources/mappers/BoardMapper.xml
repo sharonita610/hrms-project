@@ -116,5 +116,8 @@ WHERE hr_employees.EMP_NAME = 'JACKSON300'-->
         ORDER BY 1 DESC
         Limit #{pageLimitNum},#{boardAmount}
     </select>
+    <select id="countMainBoard" resultType="int">
+        select count(*) from hr_board
+    </select>
 
 </mapper>

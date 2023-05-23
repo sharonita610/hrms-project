@@ -31,7 +31,8 @@
         display: flex;
         justify-content: end;
     }
-   .replyCount{
+
+    .replyCount {
         color: orangered;
     }
 
@@ -61,12 +62,10 @@
                     <ul>
                         <li class="title-list">
                             <h1>공지사항</h1>
-                            <span id="left-pointer">
-                                &lt;&lt;
-                            </span> 
-                            <span id="right-pointer">
-                                &gt;&gt;
-                            </span>
+                            <div id="left-pointer">
+                            </div>
+                            <div id="right-pointer">
+                            </div>
                             <span id="wannaseemore">
                                 <a href="/hrms/board/board-list">더보기+</a>
                             </span>
@@ -129,31 +128,67 @@
 
                 // console.log(one);
                 tag += ` <tr class='table-top'>
-                                    <th scope='col'>\${one.boardNo}</th>
-                                    <th scope='col'><a href='/hrms/board/board-detail/?boardNo=\${one.boardNo}&boardPageNo=1&bdType=NOTICE'>\${one.bdTitle}
-                                        <span class='replyCount'>[\${one.repNo}]</span><a></th>
-                                    <th scope='col'>\${one.empName}</th>
-                                    <th scope='col'>\${one.bdDate}</th>
-                         </tr>`;
+                                        <th scope='col'>\${one.boardNo}</th>
+                                        <th scope='col'><a href='/hrms/board/board-detail/?boardNo=\${one.boardNo}&boardPageNo=1&bdType=NOTICE'>\${one.bdTitle}
+                                            <span class='replyCount'>[\${one.repNo}]</span><a></th>
+                                        <th scope='col'>\${one.empName}</th>
+                                        <th scope='col'>\${one.bdDate}</th>
+                            </tr>`;
 
             }
 
             // console.log(tag);
             tableBody.innerHTML = tag;
-            pageRendering(boardPageMaker);
+            prevpageRendering(boardPageMaker);
+            nextpageRendering(boardPageMaker);
 
         }
 
-        // 페이지 렌더링  
-        function pageRendering(boardPageMaker){
-                console.log(boardPageMaker);
-                if
+        // 이전 페이지 렌더링  
+        function prevpageRendering(boardPageMaker) {
+            // console.log(boardPageMaker);
+            const $leftpointer = document.getElementById('left-pointer');
+
+            // console.log(boardPageMaker.boardPage.boardPageNo);
+            if (boardPageMaker.boardPage.boardPageNo > 1)
+                $leftpointer.innerHTML = `<a data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>&lt;&lt;</a>`;
+            // console.log('그려지냐?');
+
+        }
+        // 다음 페이지 렌더링
+        function nextpageRendering(boardPageMaker) {
+            const $rightpointer = document.getElementById('right-pointer');
+            if (boardPageMaker.boardPage.boardPageNo != boardPageMaker.final_page)
+                $rightpointer.innerHTML = `<a data-pno='\${boardPageMaker.boardPage.boardPageNo+1}'>&gt;&gt;</a>`
 
         }
 
 
+        //이전페이지이벤트부여 함수
+        function prevpageAddEvent() {
+            const $leftpointer = document.getElementById('left-pointer');
+            $leftpointer.onclick = (e) => {
+                e.preventDefault();
+                if (e.target.matches('#left-pointer a')){
+                    // console.log(e.target.dataset.pno);
+                const prewPage = e.target.dataset.pno;
+                wannaBoardList(prewPage);}
+
+            }
+        }
+
+        //이후페이지이벤트부여 함수
+        function nextpageAddEvent() {
+            const $rightpointer = document.getElementById('right-pointer');
+            $rightpointer.onclick = (e) => {
+                if (e.target.matches('#right-pointer a')){
+                const nextPage = e.target.dataset.pno;
+                wannaBoardList(nextPage);}
+            }
+        }
 
 
+        //board 패치
         function wannaBoardList(pageNo = 1) {
 
             fetch(`\${URL}/page/\${pageNo}`)
@@ -166,6 +201,8 @@
 
         (function () {
             wannaBoardList();
+            prevpageAddEvent();
+            nextpageAddEvent();
         })();
     </script>
 </body>

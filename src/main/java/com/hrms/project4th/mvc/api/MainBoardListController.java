@@ -29,6 +29,7 @@ public class MainBoardListController {
         BoardPage boardPage=new BoardPage();
         boardPage.setBoardAmount(7);
         boardPage.setBoardPageNo(pageNo);
+        log.info("boardPage {}",boardPage);
         MainBoardInfoResponseDTO mainBoardInfoResponseDTO = boardService.showMainBoard(boardPage);
 
         return  ResponseEntity.ok().body(mainBoardInfoResponseDTO);
