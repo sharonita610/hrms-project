@@ -17,7 +17,7 @@
             <h1>사원 상세 정보</h1>
             <div class="empProfileInput addInputForm">
                 <h2>사진 : </h2>
-                <input class="inputblank" id="profileImage" name="profile" type="file" accept="image/*">
+                <input class="inputblank" id="profileImage" name="profile" type="file" accept="image/*" disabled>
                 <div id="noPic" class="alert">사진이 선택되지 않았습니다.</div>
             </div>
 
@@ -27,38 +27,38 @@
             <div class="empNameInput addInputForm">
                 <input id = "empNo" type="hidden" name="empNo" value="${emp.empNo}">
                 <h2>이름 : </h2>
-                <input id="empName" class="inputblank" type="text" name="empName" value="${emp.empName}">
+                <input id="empName" class="inputblank" type="text" name="empName" value="${emp.empName}" readonly>
                 <div id="noName" class="alert">최소 두 글자 이상의 이름을 입력해주세요.</div>
             </div>
             <div class="empPhoneInput addInputForm">
                 <h2>전화번호 : </h2>
-                <input id="empPhone" class="inputblank" name="empPhone" type="text" value="${emp.empPhone}">
+                <input id="empPhone" class="inputblank" name="empPhone" type="text" value="${emp.empPhone}" readonly>
                 <div id="noPhone" class="alert">정확한 휴대폰 번호를 입력해주세요.</div>
             </div>
             <div class="empEmailInput addInputForm">
                 <h2>이메일 : </h2>
-                <input id="setEmail" class="inputblank" type="text" name="empEmail" value="${emp.empEmail}">
+                <input id="setEmail" class="inputblank" type="text" name="empEmail" value="${emp.empEmail}" readonly>
                 <h2 id="email-address">&nbsp;@samjosangsa.com</h2>
                 <div id="duplicatedEmail" class="alert">이메일이 중복되었습니다.</div>
                 <div id="noEmail" class="alert">이메일을 입력해주세요.</div>
             </div>
             <div class="empPasswordInput addInputForm">
                 <h2>비밀번호 : </h2>
-                <input id="setPassword" class="inputblank" type="text" name="empPassword">
+                <input id="setPassword" class="inputblank" type="text" name="empPassword" readonly>
             </div>
             <div class="empBdayInput addInputForm">
                 <h2>생일 : </h2><input id="empBirthDay" class="inputblank" name="empBirthDay" type="date"
-                                     value="${emp.empBirthDay}">
+                                     value="${emp.empBirthDay}" readonly>
                 <div id="isAdult" class="alert">정확한 생년월일을 입력해주세요.</div>
             </div>
             <div class="empSalaryInput addInputForm">
                 <h2>급여 : </h2>
-                <input id="empSalary" class="inputblank" name="empSalary" type="text" value="${emp.empSalary}">
+                <input id="empSalary" class="inputblank" name="empSalary" type="text" value="${emp.empSalary}" readonly>
                 <div id="payCheck" class="alert">정확한 급여를 입력해주세요</div>
             </div>
             <div class="empDeptInput addInputForm">
                 <h2>부서코드 : </h2>
-                <select id="setDept" class="inputblank" name="deptCode">
+                <select id="setDept" class="inputblank" name="deptCode" disabled>
                     <option value="none" selected disabled hidden>부서를 선택하세요</option>
                     <option value="001">IT</option>
                     <option value="002">HR</option>
@@ -71,7 +71,7 @@
             </div>
             <div class="empPosInput addInputForm">
                 <h2>직급코드 : </h2>
-                <select id="setPos" class="inputblank" name="posCode">
+                <select id="setPos" class="inputblank" name="posCode" disabled>
                     <option value="none" selected disabled hidden>직급을 선택하세요</option>
                     <option value="001">대표이사</option>
                     <option value="002">부장</option>
@@ -83,7 +83,7 @@
             </div>
             <div class="empRoleInput addInputForm">
                 <h2>직책코드 : </h2>
-                <select id="setRole" class="inputblank" name="roleCode">
+                <select id="setRole" class="inputblank" name="roleCode" disabled>
                     <option value="none" selected>직책을 선택하세요</option>
                     <option value="00000">관리자</option>
                     <option value="11111">부서장</option>
@@ -91,7 +91,7 @@
             </div>
             <div class="empBossInput addInputForm">
                 <h2>직속상사 : </h2>
-                <select id="setBoss" class="inputblank" name="empMyBoss">
+                <select id="setBoss" class="inputblank" name="empMyBoss" disabled>
 
                 </select>
                 <div id="noBoss" class="alert">직속상사를 선택해주세요.</div>
@@ -106,7 +106,7 @@
 
             <div class="goBack modi-btns" onclick="goBack()">뒤로 가기</div>
             <div id = "terminate" class = "modi-btns">사원 삭제</div>
-            <div id="emp-submit" class = "modi-btns">변경 등록</div>
+            <div id="emp-submit" class = "modi-btns">정보 변경</div>
             <button id="modiBtn" type="submit">제출버튼</button>
         </form>
 
@@ -127,6 +127,7 @@
     const $emailInput = document.getElementById('setEmail');
     const $showPic = document.getElementById('showPic');
     const $deleteBtn = document.getElementById('terminate');
+    const $submit = document.getElementById('emp-submit');
     const roleCode = "${emp.roleCode}";
     const posCode = "${emp.posCode}";
     const deptCode = "${emp.deptCode}";
@@ -477,10 +478,28 @@
 
     }
 
-    // 사원 정보 변경하기 버튼 클릭
-    const $submit = document.getElementById('emp-submit');
-    $submit.addEventListener('click', modiEmployee);
+    // 사원 정보 변경하기 버튼 클릭 -> readonly제거
+    $submit.addEventListener('click', writeNewInfo);
 
+    function writeNewInfo(){
+        $submit.classList.add('change-submit');
+        $submit.innerText = '변경 적용';
+        document.getElementById('profileImage').removeAttribute('disabled');
+        document.getElementById('empName').removeAttribute('readonly');
+        document.getElementById('empPhone').removeAttribute('readonly');
+        document.getElementById('setEmail').removeAttribute('readonly');
+        document.getElementById('setPassword').removeAttribute('readonly');
+        document.getElementById('empBirthDay').removeAttribute('readonly');
+        document.getElementById('empSalary').removeAttribute('readonly');
+        document.getElementById('setDept').removeAttribute('disabled');
+        document.getElementById('setPos').removeAttribute('disabled');
+        document.getElementById('setRole').removeAttribute('disabled');
+        document.getElementById('setBoss').removeAttribute('disabled');
+        document.querySelector('.change-submit').addEventListener('click', modiEmployee);
+    }
+
+
+    //정보 체크 후 변경 디비에 반영
 
     function modiEmployee() {
         readyToAddCheck();

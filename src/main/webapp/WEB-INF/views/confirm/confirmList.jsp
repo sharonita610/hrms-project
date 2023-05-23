@@ -2,61 +2,125 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+
 <head>
     <%@ include file="../main/include/header.jsp" %>
     <link rel="stylesheet" href="/assets/css/confirmlist.css">
 </head>
 
 <body>
-<div id="body-wrapper">
-    <%@ include file="../main/include/left-banner.jsp" %>
-    <div class="forscroll">
-        <div class="confirm-page-wrapper">
+    <div id="body-wrapper">
+        <%@ include file="../main/include/left-banner.jsp" %>
+        <div class="forscroll">
+            <div class="confirm-page-wrapper">
 
-            <div class="confirm-titleline">
-                <h1>결재문서함</h1>
-                <a class="rq-confirm" href="/hrms/confirm/rq-form">문서 작성하기</a>
-            </div>
+                <div class="confirm-titleline">
+                    <h1>결재문서함</h1>
+                    <div id = "allConfirmList" class="confirm-menu-tab">전체보기</div>
+                    <div id="waiting-confirmList" class="confirm-menu-tab">대기문서</div>
+                    <div id="checked-confirmList" class="confirm-menu-tab">승인문서</div>
+                    <div id="rejected-confirmList" class="confirm-menu-tab">반려문서</div>
+                    <a class="rq-confirm" href="/hrms/confirm/rq-form">문서 작성하기</a>
+                </div>
 
-            <div class="confirm-outer-container">
-                <div class="confirm-box waiting-list">
-                <h2>&lt;결재대기문서&gt;</h2>
-                    <div class = "confirm-table" id="waiting-table">
+                <div class="confirm-outer-container">
+                    <div class="wait-wrapper box-outer">
+                        <div class = "confirm-title">
+                        <h2>&lt;결재대기문서&gt;<span class="new">최신</span></h2>
+                        <div class = "search"><h3>검색</h3><input id = "searchConfirm" name = "word" type="text"></div></div>
+                        <div class="confirm-box waiting-list">
+                            <div class="confirm-table" id="waiting-table">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="confirm-box confirmed-list">
-                <h2>&lt;결재완료문서&gt;</h2>
-                    <div  class = "confirm-table" id="confirmed-table">
+                    <div class="checked-wrapper box-outer">
+                        <div class = "confirm-title">
+                            <h2>&lt;결재대기문서&gt;<span class="new">최신</span></h2>
+                            <div class = "search"><h3>검색</h3><input id = "searchChecked" name = "word" type="text"></div></div>
+                        <div class="confirm-box confirmed-list">
+                            <div class="confirm-table" id="confirmed-table">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="confirm-box rejected-list">
-                <h2>&lt;반려문서&gt;</h2>
-                    <div  class = "confirm-table" id="rejected-table">
+                    <div class="rejected-wrapper box-outer">
+                        <div class = "confirm-title">
+                            <h2>&lt;결재대기문서&gt;<span class="new">최신</span></h2>
+                            <div class = "search"><h3>검색</h3><input id = "searchRejected" name = "word" type="text"></div></div>
+                        <div class="confirm-box rejected-list">
+                            <div class="confirm-table" id="rejected-table">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 </body>
 
 <script>
-
     const URL = "/hrms/confirm";
-    const empNo = 1;
-    const roleCode = '11111';
-    // const roleCode = null;
+    const empNo = 2;
+
+    <%--const empNo = ${login.empNo};--%>
+    <%--const roleCode = '${login.roleCode}';--%>
+
+    // const roleCode = '11111';
+    const roleCode = null;
+
+    const $waiting = document.getElementById('waiting-confirmList');
+    const $checked = document.getElementById('checked-confirmList');
+    const $rejected = document.getElementById('rejected-confirmList');
+    const $viewAll = document.getElementById('allConfirmList');
+
+    const $waitingBox = document.querySelector('.wait-wrapper');
+    const $confirmedBox = document.querySelector('.checked-wrapper');
+    const $rejectedBox = document.querySelector('.rejected-wrapper');
+
+
+    $waiting.addEventListener('click', viewWaitingList);
+    $checked.addEventListener('click', viewCheckedList);
+    $rejected.addEventListener('click', viewRejectedList);
+    $viewAll.addEventListener('click', startConfirmPage);
+
+    function viewWaitingList() {
+        $waitingBox.style.display = 'block';
+        $confirmedBox.style.display = 'none';
+        $rejectedBox.style.display = 'none';
+        document.querySelector('.waiting-list').style.height = '645px';
+    }
+
+    function viewCheckedList() {
+        $confirmedBox.style.display = 'block';
+        $waitingBox.style.display = 'none';
+        $rejectedBox.style.display = 'none';
+        document.querySelector('.confirmed-list').style.height = '645px';
+    }
+
+    function viewRejectedList() {
+        $rejectedBox.style.display = 'block';
+        $waitingBox.style.display = 'none';
+        $confirmedBox.style.display = 'none';
+        document.querySelector('.rejected-list').style.height = '645px';
+    }
+
+
 
     //페이지 로딩
     function startConfirmPage() {
         getWaitingList();
         getCheckedList();
         getRejectedList();
+        $rejectedBox.style.display = 'block';
+        $waitingBox.style.display = 'block';
+        $confirmedBox.style.display = 'block';
+        document.querySelector('.waiting-list').style.height = '200px';
+        document.querySelector('.confirmed-list').style.height = '200px';
+        document.querySelector('.rejected-list').style.height = '200px';
     }
 
     //모든 내역 불러오기 함수
-    function getAllConfirmList(){
+    function getAllConfirmList() {
 
     }
 
@@ -98,6 +162,44 @@
         let tag = '';
 
         //목록 첫줄 그리기
+        tag = renderMiniListTitle($section);
+
+        tag += '<div class = "inner-list-container">';
+        //리스트 내용 그리기
+        for (let c of list) {
+            const {
+                conNo,
+                conTitle,
+                fromName,
+                fromDept,
+                conDate,
+                conStatus,
+                conCheckDate
+            } = c;
+
+            tag += '<a href="/hrms/confirm/detail?conNo=' + conNo +
+                '"><ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo + '</li><li class = "col2">' +
+                conTitle +
+                '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept +
+                '</li><li class = "col5">' + conDate +
+                '</li><li class = "col6">' + conStatus + '</li>';
+
+            if ($section.id === 'waiting-table' && roleCode === '11111') {
+                tag += '<li class="col7"><div class = "button" id = "check"></div></li>' +
+                    '<li class = "col7"><div class = "button" id = "reject"></div></li></ul></a>';
+            } else if ($section.id === 'waiting-table' && roleCode !== '11111') {
+                tag += '<li class="col7"><div class = "button" id = "modify"></div></li>' +
+                    '<li class = "col7"><div class = "button" id = "remove"></div></li></ul></a>';
+            } else {
+                tag += '<li class = "col7">' + conCheckDate + '</li></ul></a>';
+            }
+        }
+        tag += '</div>';
+        $section.innerHTML = tag;
+    }
+
+    function renderMiniListTitle($section) {
+        let tag = '';
         if ($section.id === 'waiting-table') {
             tag += '<ul class = "header-bar confirm-tr" id = "waiting-th"><li class = "title-line col1">NO</li>' +
                 '<li class = "title-line col2">문서제목</li>';
@@ -134,29 +236,11 @@
             } else {
                 tag += '<li class = "title-line col3">부서장</li>';
             }
+
             tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">기안일</li>' +
                 '<li class = "title-line col6">승인여부</li><li class = "title-line col7">반려일자</li></ul>';
         }
-
-        //리스트 내용 그리기
-        for (let c of list) {
-            const {conNo, conTitle, fromName, fromDept, conDate, conStatus, conCheckDate} = c;
-
-            tag += '<a href="/hrms/confirm/detail?conNo=' + conNo + '"><ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo + '</li><li class = "col2">' + conTitle
-                + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept + '</li><li class = "col5">' + conDate
-                + '</li><li class = "col6">' + conStatus + '</li>';
-
-            if ($section.id === 'waiting-table' && roleCode === '11111') {
-                tag += '<li class="col7"><div class = "button" id = "check"></div></li>'
-                    + '<li class = "col7"><div class = "button" id = "reject"></div></li></ul></a>';
-            } else if ($section.id === 'waiting-table' && roleCode !== '11111') {
-                tag += '<li class="col7"><div class = "button" id = "modify"></div></li>'
-                    + '<li class = "col7"><div class = "button" id = "remove"></div></li></ul></a>';
-            } else {
-                tag += '<li class = "col7">' + conCheckDate + '</li></ul></a>';
-            }
-        }
-        $section.innerHTML = tag;
+        return tag;
     }
 
     //마우스오버 이벤트 -> 문서 수정, 삭제, 승인, 거절
@@ -175,23 +259,26 @@
         }
 
         if (e.target.matches('#remove')) {
+
             let $remoBtn = e.target.closest('#remove');
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
 
-            $remoBtn.onclick = () => {
+            $remoBtn.onclick = (e) => {
+                e.preventDefault();
                 if (!confirm('정말 삭제하시겠습니까?')) {
                     return;
                 }
 
-                fetch(`\${URL}/delete/\${conNo}`, {method: 'delete'})
+                fetch(`\${URL}/delete/\${conNo}`, {
+                        method: 'delete'
+                    })
                     .then(res => res.json())
                     .then(result => {
-                            if (result) {
-                                getWaitingList();
-                            }
+                        if (result) {
+                            getWaitingList();
                         }
-                    )
+                    })
 
             }
         }
@@ -205,7 +292,9 @@
                 if (!confirm('결재요청을 승인합니다')) {
                     return;
                 }
-                fetch(`\${URL}/check/\${conNo}`, {method: 'PUT'})
+                fetch(`\${URL}/check/\${conNo}`, {
+                        method: 'PUT'
+                    })
                     .then(res => res.json())
                     .then(result => {
                         if (result) {
@@ -220,11 +309,14 @@
             let $docInfo = e.target.closest('#doc-info');
             let conNo = $docInfo.firstChild.innerText;
 
-            $rejBtn.onclick = () => {
+            $rejBtn.onclick = (e) => {
+                e.preventDefault();
                 if (!confirm('결재요청을 반려합니다')) {
                     return;
                 }
-                fetch(`\${URL}/reject/\${conNo}`, {method: 'PUT'})
+                fetch(`\${URL}/reject/\${conNo}`, {
+                        method: 'PUT'
+                    })
                     .then(res => res.json())
                     .then(result => {
                         if (result) {
