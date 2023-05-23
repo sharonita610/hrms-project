@@ -29,7 +29,7 @@
                     <div class="wait-wrapper box-outer">
                         <div class = "confirm-title">
                         <h2>&lt;결재대기문서&gt;<span class="new">최신</span></h2>
-                        <div class = "search"><h3>검색</h3><input id = "searchConfirm" name = "word" type="text"></div></div>
+                        <div class = "search"><h3>검색</h3><input id = "searchWaiting" name = "word" type="text"></div></div>
                         <div class="confirm-box waiting-list">
                             <div class="confirm-table" id="waiting-table">
                             </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="checked-wrapper box-outer">
                         <div class = "confirm-title">
-                            <h2>&lt;결재대기문서&gt;<span class="new">최신</span></h2>
+                            <h2>&lt;결재완료문서&gt;<span class="new">최신</span></h2>
                             <div class = "search"><h3>검색</h3><input id = "searchChecked" name = "word" type="text"></div></div>
                         <div class="confirm-box confirmed-list">
                             <div class="confirm-table" id="confirmed-table">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="rejected-wrapper box-outer">
                         <div class = "confirm-title">
-                            <h2>&lt;결재대기문서&gt;<span class="new">최신</span></h2>
+                            <h2>&lt;결재반려문서&gt;<span class="new">최신</span></h2>
                             <div class = "search"><h3>검색</h3><input id = "searchRejected" name = "word" type="text"></div></div>
                         <div class="confirm-box rejected-list">
                             <div class="confirm-table" id="rejected-table">
@@ -79,40 +79,110 @@
     const $confirmedBox = document.querySelector('.checked-wrapper');
     const $rejectedBox = document.querySelector('.rejected-wrapper');
 
+    const $searchWaiting = document.getElementById('searchWaiting');
+    const $searchChecked = document.getElementById('searchChecked');
+    const $searchRejected = document.getElementById('searchRejected');
 
     $waiting.addEventListener('click', viewWaitingList);
     $checked.addEventListener('click', viewCheckedList);
     $rejected.addEventListener('click', viewRejectedList);
     $viewAll.addEventListener('click', startConfirmPage);
 
+    $searchWaiting.addEventListener('keyup', searchWaitingList);
+    $searchChecked.addEventListener('keyup', searchCheckedList);
+    $searchRejected.addEventListener('keyup', searchRejectedList);
+
+
+    function searchWaitingList() {
+        const $section = document.getElementById("waiting-table");
+        const $conStatus = '승인대기';
+
+        let conTitle = $searchWaiting.value;
+        if(conTitle.trim().length === 0) {
+            getWaitingList();
+        }else {
+            searchConfirmList($section, $conStatus, conTitle);
+        }
+    }
+
+    function searchCheckedList() {
+        const $section = document.getElementById("confirmed-table");
+        const $conStatus = '승인완료';
+
+        let conTitle = $searchChecked.value;
+        if(conTitle.trim().length === 0) {
+            getCheckedList();
+        }else {
+            searchConfirmList($section, $conStatus, conTitle);
+        }
+    }
+
+    function searchRejectedList() {
+        const $section = document.getElementById("rejected-table");
+        const $conStatus = '승인거절';
+
+        let conTitle = $searchRejected.value;
+        if(conTitle.trim().length === 0) {
+            getRejectedList();
+        }else {
+            searchConfirmList($section, $conStatus, conTitle);
+        }
+    }
+
+    function searchConfirmList($section, $conStatus, conTitle){
+        fetch(`\${URL}/search/\${empNo}/\${roleCode}/\${conTitle}`)
+            .then(res => res.json())
+            .then(result => {
+                if(result !== null) {
+                    console.log(result);
+                    const newList = result.filter(c => c.conStatus === $conStatus);
+                    console.log("filtered: {}", newList);
+                    renderConfirmList(newList, $section);
+                }
+            });
+    }
+
     function viewWaitingList() {
+        $searchWaiting.value = '';
+        $searchChecked.value = '';
+        $searchRejected.value = '';
         $waitingBox.style.display = 'block';
         $confirmedBox.style.display = 'none';
         $rejectedBox.style.display = 'none';
         document.querySelector('.waiting-list').style.height = '645px';
+        getWaitingList();
     }
 
     function viewCheckedList() {
+        $searchWaiting.value = '';
+        $searchChecked.value = '';
+        $searchRejected.value = '';
         $confirmedBox.style.display = 'block';
         $waitingBox.style.display = 'none';
         $rejectedBox.style.display = 'none';
         document.querySelector('.confirmed-list').style.height = '645px';
+        getCheckedList();
     }
 
     function viewRejectedList() {
+        $searchWaiting.value = '';
+        $searchChecked.value = '';
+        $searchRejected.value = '';
         $rejectedBox.style.display = 'block';
         $waitingBox.style.display = 'none';
         $confirmedBox.style.display = 'none';
         document.querySelector('.rejected-list').style.height = '645px';
+        getRejectedList();
     }
-
-
 
     //페이지 로딩
     function startConfirmPage() {
         getWaitingList();
         getCheckedList();
         getRejectedList();
+        $searchWaiting.value = '';
+        $searchChecked.value = '';
+        $searchRejected.value = '';
         $rejectedBox.style.display = 'block';
         $waitingBox.style.display = 'block';
         $confirmedBox.style.display = 'block';

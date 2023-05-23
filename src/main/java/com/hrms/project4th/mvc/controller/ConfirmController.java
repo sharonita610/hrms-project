@@ -78,6 +78,18 @@ public class ConfirmController {
         return ResponseEntity.ok().body(rejectedList);
     }
 
+    //검색하기
+    @GetMapping("/search/{empNo}/{roleCode}/{conTitle}")
+    @ResponseBody
+    public ResponseEntity<List> searchConfirm(
+            @PathVariable("empNo") long empNo
+            , @PathVariable("roleCode") @Nullable String roleCode
+            , @PathVariable("conTitle") String conTitle
+    ) {
+        List<SimpleDateConfirmDTO> dto = confirmService.searchConfirm(empNo, roleCode, conTitle);
+        return ResponseEntity.ok().body(dto);
+    }
+
     //결재 승인하기
     @PutMapping("/check/{conNo}")
     @ResponseBody

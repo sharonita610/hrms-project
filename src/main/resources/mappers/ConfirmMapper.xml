@@ -17,6 +17,28 @@
           and con_no = #{conNo}
     </select>
 
+    <select id="searchConfirm" resultType="getConfirmListDto">
+        <choose>
+            <when test="roleCode eq '11111'">
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.from_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and to_emp_no = #{empNo}
+                and c.con_title like concat('%',#{conTitle},'%')
+            </when>
+            <otherwise>
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.to_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and from_emp_no = #{empNo}
+                and c.con_title like concat('%',#{conTitle},'%')
+            </otherwise>
+        </choose>
+        order by con_date desc
+    </select>
+
     <select id="getAllConfirmList" resultType="getConfirmListDto">
         <choose>
             <when test="roleCode eq '11111'">

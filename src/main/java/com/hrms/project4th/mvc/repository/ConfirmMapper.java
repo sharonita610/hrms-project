@@ -29,4 +29,6 @@ public interface ConfirmMapper {
     boolean deleteConfirm(long conNo);
 
     List<GetConfirmListDTO> getConfirmList(long empNo, String roleCode);
+
+    List<GetConfirmListDTO> searchConfirm(long empNo, @Nullable String roleCode, String conTitle);
 }
