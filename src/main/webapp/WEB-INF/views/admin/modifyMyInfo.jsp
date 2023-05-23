@@ -4,6 +4,8 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <title>SAMJO SANGSA</title>
+    <link rel="icon" href="/assets/img/favicon_blue.png">
     <%@ include file="../main/include/header.jsp" %>
 
     <style>
