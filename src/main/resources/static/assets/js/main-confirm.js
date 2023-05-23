@@ -28,7 +28,8 @@ function renderConfirmList(list){
     tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">기안일</li></ul>';
 
     tag += '<div class = "inner-list-container">';
-    for (let c of list) {
+    for (let i = 0; i < 10; i++) {
+
         const {
             conNo,
             conTitle,
@@ -37,7 +38,7 @@ function renderConfirmList(list){
             conDate,
             conStatus,
             conCheckDate
-        } = c;
+        } = list[i];
 
         tag += '<ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo + '</li><li class = "col2">' +
             conTitle + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept +
