@@ -22,7 +22,7 @@
 		<section class="section-mail">
 			<div id="mail-wrapper">
 				<div class="mail-sort">
-					<div><a href="/hrms/mail-list/?empNo=${2}">받은 메일</a></div>
+					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailto">받은 메일</a></div>
 					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
 					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
@@ -42,7 +42,7 @@
 					<ul class="maillist">
 						<c:forEach var="m" items="${mList}">
 							<li class="mail">
-                                <div>
+                                <div class="maildetail">
 									<p>${m.mailNo}</p>
 									<p>${m.empEmail}</p>
 									<p>${m.empName}</p>
@@ -51,6 +51,7 @@
 									<p>${m.mailTitle}</p>
 									<p>${m.mailStatus}</p>
 									<p>${m.mailDate}</p>
+									<p>${ms.mailType}</p>
 								</div>
                                 <button type="button" class="btn btn-danger delete-button">삭제</button>
                             </li>
@@ -81,29 +82,43 @@
 
 
 <script>
-	function dletemail(){
+	function dletemail() {
+  const $maillist = document.querySelectorAll('.mail');
+  $maillist.forEach($mail => {
+    const $deleteButton = $mail.querySelector('.delete-button');
+    $deleteButton.addEventListener('click', () => {
+      const $mailNo = +$mail.querySelector('div > p:first-child').innerText;
+      const $confirm = confirm($mail.querySelector('div > p:first-child').innerText + '번 메일을 삭제할까요?');
+      if ($confirm) {
+		const $mailstatus = $mail.querySelector('div > p:nth-child(7)').innerText;
+		if($mailstatus==='N'){
+			window.location.href = '/hrms/mail-delete-status?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}&status=N';
+		}else if($mailstatus==='Y'){
+			window.location.href = '/hrms/mail-delete-status?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}&status=Y';
+		}
+      }else{
+		return;
+	  }
+    });
+  });
+}
 
-	const $mailli = document.querySelector('.mail');
+function detailmail() {
+  const $maillist = document.querySelectorAll('.mail');
+  $maillist.forEach($mail => {
+    const $targetmail = $mail.querySelector('.maildetail');
+    $targetmail.addEventListener('click', () => {
+      const $mailNo = +$mail.querySelector('div > p:first-child').innerText;
+	  console.log($mailNo);
+    	window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}';
+    });
+  });
+}
 
-	$mailli.addEventListener('click', (e) =>{
-		if(e.target.matches('.delete-button')){
-			console.log(e.target);
-				//console.log(e.target.previousElementSibling.firstElementChild.innerText);
-				const $mailNo = +e.target.previousElementSibling.firstElementChild.innerText;
-
-				const $confirm =confirm(e.target.previousElementSibling.firstElementChild.innerText + '번 메일을 삭제할까요?');
-
-				if($confirm){
-					window.location.href = '/hrms/mail-delete?mailNo='+ $mailNo +'&empNo='+'2';
-				}
-					return ;
-			}
-		});
-	}
-
-	(function () {
-	dletemail();
-	})();
+(function () {
+  dletemail();
+  detailmail()
+})();
 	
 	
 </script>

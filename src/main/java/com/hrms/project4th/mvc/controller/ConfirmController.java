@@ -44,6 +44,14 @@ public class ConfirmController {
         return "redirect:/hrms/confirm/list";
     }
 
+    //모든결재건 리스트 불러오기
+    @GetMapping("/{empNo}/{roleCode}")
+    @ResponseBody
+    public ResponseEntity<List> getConfirmList(@PathVariable("empNo") long empNo, @PathVariable("roleCode") @Nullable String roleCode) {
+        List<SimpleDateConfirmDTO> confirmList = confirmService.getConfirmList(empNo, roleCode);
+        return ResponseEntity.ok().body(confirmList);
+    }
+
     //승인대기 리스트 불러오기
     @GetMapping("/{empNo}/{roleCode}/waiting")
     @ResponseBody

@@ -8,6 +8,7 @@ import lombok.*;
 @Builder
 public class MyBossRequestDTO {
 
+    private long empNo;
     private String deptCode;
     private String posCode;
 

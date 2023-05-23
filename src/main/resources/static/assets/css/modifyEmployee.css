@@ -4,8 +4,8 @@
     box-sizing: border-box;
 }
 
-.addEmpFormWrapper {
-    width: 600px;
+.modiEmpFormWrapper {
+    width: 800px;
     margin: 50px auto;
     border-top: 2px solid gray;
     border-bottom: 2px solid gray;
@@ -18,26 +18,26 @@
     font-size: 15px;
 }
 
-.addEmpFormWrapper h1 {
+.modiEmpFormWrapper h1 {
     font-size: 20px;
     margin: 0;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 } 
 
-.addEmpFormWrapper h2 {
+.modiEmpFormWrapper h2 {
     font-size: 15px;
     font-weight: normal;
     margin: 0;
     width: 80px;
 }
 
-.addEmpFormWrapper .addInputForm {
+.modiEmpFormWrapper .addInputForm {
     width: fit-content;
     display: flex;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
-.addEmpFormWrapper .addInputForm .inputblank {
+.modiEmpFormWrapper .addInputForm .inputblank {
     font-size: 15px;
     outline-color: rgb(113, 150, 218);
     width: 200px;
@@ -45,7 +45,7 @@
     /* border: 1px solid #000; */
 }
 
-.addEmpFormWrapper #email-address {
+.modiEmpFormWrapper #email-address {
     font-weight: lighter;
 }
 
@@ -53,20 +53,28 @@
     width: 280px;
 }
 
-#addBtn {
+#modiBtn {
     display: none;
 }
 
-#emp-submit {
+.modi-btns {
     font-size: 15px;
     position: absolute;
     padding: 5px;
     bottom: 20px;
-    right: 20px;
     background: #e6e6e6;
     border: 1px solid gray;
-    /* display: none; */
     cursor: pointer;
+}
+#emp-submit {
+    right: 20px;
+}
+
+#terminate {
+    right: 110px;
+}
+.goBack {
+    right: 200px;
 }
 
 .alert {
@@ -87,7 +95,8 @@
 #noEmail {
     /* font-weight: 700; */
     position: absolute;
-    bottom: 235px;
+    /*bottom: 235px;*/
+    transform: translateY(20px);
 }
 
 #noPic {
@@ -114,4 +123,32 @@
 
 #showPic {
     width: 100%;
+}
+
+.modiEmpFormWrapper #clubs {
+    margin-top: 30px;
+    width: 550px;
+    display: flex;
+}
+
+.modiEmpFormWrapper #clubs #emp-enrolled-clubs {
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    width: 115px;
+    /*border: 1px solid blue;*/
+}
+
+.modiEmpFormWrapper #clubs #club-wrapper {
+    /*border: 1px solid red;*/
+    width: 450px;
+}
+.modiEmpFormWrapper #clubs #club-wrapper #joined-club-list {
+    display: flex;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.modiEmpFormWrapper #clubs #club-wrapper .enrolled-club {
+    margin-right: 10px;
 }

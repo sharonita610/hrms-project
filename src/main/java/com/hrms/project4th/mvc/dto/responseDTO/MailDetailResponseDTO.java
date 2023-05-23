@@ -12,26 +12,27 @@ import java.time.LocalDate;
 @ToString
 public class MailDetailResponseDTO {
 
-    //보낸 사람이메일
-    private String empEmail;
-
-    //보낸 사람 이름
-    private String empName;
-
     //보낸 사람 사번
-    private Long empNo;
+    private Long senderEmpNo;
+    //보낸 사람이메일
+    private String senderEmail;;
+    //보낸 사람 직책 코드
+    private Long senderRoleCode;
+    //보낸 사람 부서 코드
+    private Long senderDeptCode;
 
-    // 보낸사람 직책코드
-    private Long roleCode;
-
-    //보낸 사람 부서
-    private Long deptCode;
-
+    //받는사람 사번
+    private Long receiverEmpNo;
+    // 받는사람 이메일
+    private String receiverEmail;
+    //받는사람 직책코드
+    private Long receiverRoleCode;
+    //받는사람 부서코드
+    private Long receiverDeptCode;
     //메일 제목
     private String mailTitle;
     //메일 내용
     private String mailContent;
-
     //메일 작성시간(발송시간)
     private LocalDate mailDate;
 }

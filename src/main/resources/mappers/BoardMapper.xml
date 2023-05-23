@@ -9,9 +9,13 @@
         SELECT
         b.board_no, b.bd_type, b.bd_title, b.bd_content,
         b.bd_date, b.emp_no, b.view_count, e.emp_name, count(r.rep_no) AS repNo
+<!--        hd.dept_name, hp.pos_name,hr.role_name,e.emp_email,e.emp_phone-->
         FROM hr_board b
         LEFT JOIN hr_reply r ON b.board_no = r.board_no
         LEFT JOIN hr_employees e ON e.emp_no = b.emp_no
+<!--        JOIN hr_department hd ON e.dept_code =hd.dept_code-->
+<!--        JOIN hr_position hp ON e.pos_code=hp.pos_code-->
+<!--        JOIN hr_role hr ON hr.role_code =e.role_code-->
         <if test="boardType == 'title'">
             WHERE b.bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
         </if>

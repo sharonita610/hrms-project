@@ -10,29 +10,30 @@
 <body>
 <div id="body-wrapper">
     <%@ include file="../main/include/left-banner.jsp" %>
+    <div class="forscroll">
+        <div class="confirm-page-wrapper">
 
-    <div class="confirm-page-wrapper">
-
-        <div class="confirm-titleline">
-            <h1>결재문서함</h1>
-            <a class="rq-confirm" href="/hrms/confirm/rq-form">문서 작성하기</a>
-        </div>
-
-        <div class="confirm-outer-container">
-            <h2>&lt;결재대기문서&gt;</h2>
-            <div class="confirm-box waiting-list">
-                <table id="waiting-table">
-                </table>
+            <div class="confirm-titleline">
+                <h1>결재문서함</h1>
+                <a class="rq-confirm" href="/hrms/confirm/rq-form">문서 작성하기</a>
             </div>
-            <h2>&lt;결재완료문서&gt;</h2>
-            <div class="confirm-box confirmed-list">
-                <table id="confirmed-table">
-                </table>
-            </div>
-            <h2>&lt;반려문서&gt;</h2>
-            <div class="confirm-box rejected-list">
-                <table id="rejected-table">
-                </table>
+
+            <div class="confirm-outer-container">
+                <div class="confirm-box waiting-list">
+                <h2>&lt;결재대기문서&gt;</h2>
+                    <div class = "confirm-table" id="waiting-table">
+                    </div>
+                </div>
+                <div class="confirm-box confirmed-list">
+                <h2>&lt;결재완료문서&gt;</h2>
+                    <div  class = "confirm-table" id="confirmed-table">
+                    </div>
+                </div>
+                <div class="confirm-box rejected-list">
+                <h2>&lt;반려문서&gt;</h2>
+                    <div  class = "confirm-table" id="rejected-table">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -52,6 +53,11 @@
         getWaitingList();
         getCheckedList();
         getRejectedList();
+    }
+
+    //모든 내역 불러오기 함수
+    function getAllConfirmList(){
+
     }
 
     //승인대기 목록 불러오기 함수
@@ -90,61 +96,64 @@
     //목록 그리기 함수
     function renderConfirmList(list, $section) {
         let tag = '';
+
+        //목록 첫줄 그리기
         if ($section.id === 'waiting-table') {
-            tag += '<tr class = "confirm-tr" id = "waiting-th"><th class = "col1">NO</th>' +
-                '<th class = "col2">문서제목</th>';
+            tag += '<ul class = "header-bar confirm-tr" id = "waiting-th"><li class = "title-line col1">NO</li>' +
+                '<li class = "title-line col2">문서제목</li>';
             if (roleCode === '11111') {
-                tag += '<th class = "col3">기안자</th>';
+                tag += '<li class = "title-line col3">기안자</li>';
             } else {
-                tag += '<th class = "col3">부서장</th>';
+                tag += '<li class = "title-line col3">부서장</li>';
             }
-            tag += '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
-                '<th class = "col6">승인여부</th>'
+            tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">기안일</li>' +
+                '<li class = "title-line col6">승인여부</li>'
 
             if (roleCode === '11111') {
-                tag += '<th class = "col7">승인</th>' +
-                    '<th class = "col7">거절</th></tr>';
+                tag += '<li class = "title-line col7">승인</li>' +
+                    '<li class = "title-line col7">거절</li></ul>';
             } else {
-                tag += '<th class = "col7">수정</th>' +
-                    '<th class = "col7">삭제</th></tr>';
+                tag += '<li class = "title-line col7">수정</li>' +
+                    '<li class = "title-line col7">삭제</li></ul>';
             }
         } else if ($section.id === 'confirmed-table') {
-            tag += '<tr class = "confirm-tr" id = " confirmed-th"><th class = "col1">NO</th>' +
-                '<th class = "col2">문서제목</th>';
+            tag += '<ul class = "header-bar confirm-tr" id = " confirmed-th"><li class = "title-line col1">NO</li>' +
+                '<li class = "title-line col2">문서제목</li>';
             if (roleCode === '11111') {
-                tag += '<th class = "col3">기안자</th>';
+                tag += '<li class = "title-line col3">기안자</li>';
             } else {
-                tag += '<th class = "col3">부서장</th>';
+                tag += '<li class = "title-line col3">부서장</li>';
             }
-            tag += '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
-                '<th class = "col6">승인여부</th><th class = "col7">승인일자</th>';
+            tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">기안일</li>' +
+                '<li class = "title-line col6">승인여부</li><li class = "title-line col7">승인일자</li></ul>';
         } else if ($section.id === 'rejected-table') {
-            tag += '<tr class = "confirm-tr" id = " rejected-th"><th class = "col1">NO</th>' +
-                '<th class = "col2">문서제목</th>';
+            tag += '<ul class = "header-bar confirm-tr" id = " rejected-th"><li class = "title-line col1">NO</li>' +
+                '<li class = "title-line col2">문서제목</li>';
             if (roleCode === '11111') {
-                tag += '<th class = "col3">기안자</th>';
+                tag += '<li class = "title-line col3">기안자</li>';
             } else {
-                tag += '<th class = "col3">부서장</th>';
+                tag += '<li class = "title-line col3">부서장</li>';
             }
-            tag += '<th class = "col4">기안부서</th><th class = "col5">기안일</th>' +
-                '<th class = "col6">승인여부</th><th class = "col7">반려일자</th>';
+            tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">기안일</li>' +
+                '<li class = "title-line col6">승인여부</li><li class = "title-line col7">반려일자</li></ul>';
         }
 
+        //리스트 내용 그리기
         for (let c of list) {
             const {conNo, conTitle, fromName, fromDept, conDate, conStatus, conCheckDate} = c;
 
-            tag += '<tr class = "confirm-tr" id = "doc-info"><td class = "col1">' + conNo + '</td><td class = "col2"><a href="/hrms/confirm/detail?conNo=' + conNo + '">' + conTitle
-                + '</a></td><td class = "col3">' + fromName + '</td><td class = "col4">' + fromDept + '</td><td class = "col5">' + conDate
-                + '</td><td class = "col6">' + conStatus + '</td>';
+            tag += '<a href="/hrms/confirm/detail?conNo=' + conNo + '"><ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo + '</li><li class = "col2">' + conTitle
+                + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept + '</li><li class = "col5">' + conDate
+                + '</li><li class = "col6">' + conStatus + '</li>';
 
             if ($section.id === 'waiting-table' && roleCode === '11111') {
-                tag += '<td class="col7"><div class = "button" id = "check"></div></td>'
-                    + '<td class = "col7"><div class = "button" id = "reject"></div></td></tr>';
+                tag += '<li class="col7"><div class = "button" id = "check"></div></li>'
+                    + '<li class = "col7"><div class = "button" id = "reject"></div></li></ul></a>';
             } else if ($section.id === 'waiting-table' && roleCode !== '11111') {
-                tag += '<td class="col7"><div class = "button" id = "modify"></div></td>'
-                    + '<td class = "col7"><div class = "button" id = "remove"></div></td></tr>';
+                tag += '<li class="col7"><div class = "button" id = "modify"></div></li>'
+                    + '<li class = "col7"><div class = "button" id = "remove"></div></li></ul></a>';
             } else {
-                tag += '<td class = "col7">' + conCheckDate + '</td>';
+                tag += '<li class = "col7">' + conCheckDate + '</li></ul></a>';
             }
         }
         $section.innerHTML = tag;
