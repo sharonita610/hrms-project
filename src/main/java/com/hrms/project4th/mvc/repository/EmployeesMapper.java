@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.repository;
 
 import com.hrms.project4th.mvc.dto.AutoLoginDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.VerificateEmpPasswordRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
@@ -45,4 +46,7 @@ public interface  EmployeesMapper {
 
     List<EmployeeDetailResponseDTO> searchEmployeesByName(String empName);
 
+    Employees logedInDetail(String empEmail);
+
+    Employees verificateEmp(VerificateEmpPasswordRequestDTO dto);
 }

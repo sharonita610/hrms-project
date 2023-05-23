@@ -18,7 +18,7 @@ integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJ
     .table .table-top{
         background-color: #d0e3ed;
     }
-  
+
     .table .table-main td{
         border: none !important;
     }

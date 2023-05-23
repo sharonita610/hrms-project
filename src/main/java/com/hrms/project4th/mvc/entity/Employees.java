@@ -5,7 +5,6 @@ import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import lombok.*;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,9 +29,13 @@ public class Employees {
     private String empPhone;
     @Nullable
     private Long empMyBoss;
+    private String empBossName;
     private String posCode;
+    private String posName;
     private String roleCode;
+    private String roleName;
     private String deptCode;
+    private String deptName;
     private String profile;
     private Auth auth;
     private String empSession;

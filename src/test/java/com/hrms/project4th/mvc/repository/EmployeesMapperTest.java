@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
+import com.hrms.project4th.mvc.dto.requestDTO.VerificateEmpPasswordRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
@@ -65,4 +66,24 @@ class EmployeesMapperTest {
         List<EmployeeDetailResponseDTO> employees = employeesMapper.searchEmployeesByName("김영희");
         System.out.println(employees);
     }
+
+//    @Test
+//    @DisplayName("2번 사원의 이름, 이메일, 생일, 급여를 입력하면 1명이 조회되어야한다")
+//    public void verificateEmpTest(){
+//        // given
+//        VerificateEmpPasswordRequestDTO dto = new VerificateEmpPasswordRequestDTO();
+//        dto.setEmpNo("2");
+//        dto.setEmpName("김영희");
+//        dto.setEmpBirthDay("1988-05-10");
+//        dto.setEmpSalary( "2500000");
+//        dto.setEmpEmail("kim@samjosangsa.com");
+//
+//
+//        // when
+//        Employees t = employeesMapper.verificateEmp(dto);
+//
+//        // then
+//        assertEquals("김영희", t.getEmpName());
+//
+//    }
 }

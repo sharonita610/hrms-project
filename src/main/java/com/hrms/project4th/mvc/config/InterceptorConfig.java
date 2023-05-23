@@ -22,12 +22,12 @@
 //    public void addInterceptors(InterceptorRegistry registry) {
 //        // 로그인 후처리 인터셉터 설정
 //        registry.addInterceptor(mainIntercetor)
-//                .addPathPatterns("")
+//                .addPathPatterns("/hrms/*")
 //                .excludePathPatterns("/hrms/main-page");
 //
 ////        // 자동로그인 인터셉터 설정
-////        registry.addInterceptor(autoLoginInterceptor)
-////                .addPathPatterns("/**");
+//        registry.addInterceptor(autoLoginInterceptor)
+//                .addPathPatterns("/**");
 //
 //    }
 //

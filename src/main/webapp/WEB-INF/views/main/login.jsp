@@ -139,7 +139,7 @@
 </body>
 <script>
     const serverMessage = '${msg}';
-    // console.log('msg :' + serverMessage);
+    console.log('msg :' + serverMessage);
     if(serverMessage === 'NO_EMP_EMAIL'){
         alert('잘 못 된 이메일입니다');
     }else if(serverMessage === 'WRONG_PW'){

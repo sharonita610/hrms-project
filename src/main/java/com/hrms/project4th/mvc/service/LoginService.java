@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.requestDTO.LoginRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.VerificateEmpPasswordRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.entity.LoginResult;
@@ -63,34 +64,34 @@ public class LoginService {
     // 로그인 유지
     public void maintainLoginState(HttpSession session, String empEmail) {
 
-        if(empEmail == null){
-            log.info("이메일이 null이기 때문에 세션에 담을 수 없습니다");
-            return;
-        }
-
         // 현재 로그인한 사람의 모든 정보
-        Employees employee = getMember(empEmail);
-        log.info("employee {}",employee);
+        Employees e = getMember(empEmail);
 
         // 현재 로그인한 사람의 화면에 보여줄 일부정보
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
-                .empNo(String.valueOf(employee.getEmpNo()))
-                .empName(employee.getEmpName())
-                .empPhone(employee.getEmpPhone())
-                .empEmail(employee.getEmpEmail())
-                .posCode(employee.getPosCode())
-                .deptCode(employee.getDeptCode())
-                .roleCode(employee.getRoleCode())
-                .profile(employee.getProfile())
+                .empNo(e.getEmpNo())
+                .empName(e.getEmpName())
+                .empBirthDay(String.valueOf(e.getEmpBirthDay()))
+                .empHireDate(String.valueOf(e.getEmpHireDate()))
+                .empEmail(e.getEmpEmail())
+                .empGender(e.getEmpGender())
+                .empSalary(e.getEmpSalary())
+                .empPhone(e.getEmpPhone())
+                .empBossName(e.getEmpBossName())
+                .posCode(e.getPosCode())
+                .posName(e.getPosName())
+                .deptCode(e.getDeptCode())
+                .deptName(e.getDeptName())
+                .roleCode(e.getRoleCode())
+                .roleName(e.getRoleName())
+                .profile(e.getProfile())
                 .build();
-        log.info("LoginUserResponseDTO {}",dto);
-
 
         //  세션에 저장
-        session.setAttribute(LOGIN_KEY, dto);
+//        session.setAttribute(LOGIN_KEY, dto);
         session.setAttribute("login", dto);
-
-        // 세션의 수명을 설정
+        log.info("empDetail {} ", dto);
+        // 세션의 기본 수명을 설정
         session.setMaxInactiveInterval(60 * 60); // 1시간
     }
 
@@ -98,17 +99,21 @@ public class LoginService {
 
     //  멤버 정보를 가져오는 서비스 기능
     public Employees getMember(String empEmail) {
-        Employees employee = employeesMapper.findEmployee(empEmail);
-        log.info("getgetMember {}",employee);
-        return employee;
 
+        return employeesMapper.logedInDetail(empEmail);
     }
 
     public static void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
 
-
-
     }
+
+    public boolean verificateEmp(VerificateEmpPasswordRequestDTO dto){
+
+        log.info("{}", dto);
+
+        return employeesMapper.verificateEmp(dto);
+    }
+
 
 
 

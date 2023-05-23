@@ -23,6 +23,7 @@ import java.util.List;
 
 import static com.hrms.project4th.mvc.util.LoginUtil.getCurrentLoginMemberAccount;
 
+
 @Controller
 @RequiredArgsConstructor
 @Slf4j
@@ -150,6 +151,8 @@ public class EmployeesController {
     public ResponseEntity<?> updatePhoneNumber(
             @RequestBody String newPhoneNumber,
             BindingResult result, HttpServletRequest request) {
+
+
         String newPhone = newPhoneNumber;
 
         String empEmail = getCurrentLoginMemberAccount(request.getSession());
