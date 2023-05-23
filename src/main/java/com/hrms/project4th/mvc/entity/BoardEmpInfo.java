@@ -17,7 +17,6 @@ public class BoardEmpInfo {
     private String empPhone;
     private String deptName;
     private String posName;
-    private String roleName;
 
 
 

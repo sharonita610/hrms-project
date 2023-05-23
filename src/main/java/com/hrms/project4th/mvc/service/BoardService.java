@@ -8,13 +8,16 @@ import com.hrms.project4th.mvc.dto.page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.repository.BoardMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BoardService {
 
     private final BoardMapper boardMapper;
@@ -70,7 +73,7 @@ public class BoardService {
     /**
      * 게시글 정보를 받아 저장하는 기능
      *
-     * @param dto 저장하기 위한 정보를 받는 DTO
+     * @param dto         저장하기 위한 정보를 받는 DTO
      * @return SAVE 성공 TRUE / 실패 FALSE
      */
 

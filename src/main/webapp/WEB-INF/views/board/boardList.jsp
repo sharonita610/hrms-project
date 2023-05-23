@@ -270,10 +270,6 @@
                                     <td colspan="2" id="modalPos"></td>
                                 </tr>
                                 <tr>
-                                    <td>직책</td>
-                                    <td id="modalRole"></td>
-                                </tr>
-                                <tr>
                                     <td>이메일</td>
                                     <td colspan="2" id="modalEmail"></td>
                                 </tr>
@@ -353,13 +349,11 @@
                                 const modalName=document.getElementById('modalName');
                                 const modalDept=document.getElementById('modalDept');
                                 const modalPos=document.getElementById('modalPos');
-                                const modalRole=document.getElementById('modalRole');
                                 const modalEmail=document.getElementById('modalEmail');
                                 const modalPhone=document.getElementById('modalPhone');
                                 modalName.innerText=r.empName;
                                 modalDept.innerText=r.deptName;
                                 modalPos.innerText=r.posName;
-                                modalRole.innerText=r.roleName;
                                 modalEmail.innerText=r.empEmail;
                                 modalPhone.innerText=r.empPhone;
                             }

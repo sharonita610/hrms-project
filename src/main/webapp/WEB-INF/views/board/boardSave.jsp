@@ -153,6 +153,9 @@
                         <h1>게시글 작성</h1>
                         <form action="/hrms/board/board-save" method="post">
                             <div class="form-group">
+                                <c:if test="${login!=null}">
+                                    <input type="hidden" name="empNo" value="${login.empNo}">
+                                </c:if>
                                 <label for="board">게시판:</label>
                                 <select id="board" name="bdType">
                                     <option value="NOTICE">공지게시판</option>

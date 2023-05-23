@@ -70,6 +70,7 @@ public class LoginService {
 
         // 현재 로그인한 사람의 모든 정보
         Employees employee = getMember(empEmail);
+        log.info("employee {}",employee);
 
         // 현재 로그인한 사람의 화면에 보여줄 일부정보
         LoginUserResponseDTO dto = LoginUserResponseDTO.builder()
@@ -82,6 +83,8 @@ public class LoginService {
                 .roleCode(employee.getRoleCode())
                 .profile(employee.getProfile())
                 .build();
+        log.info("LoginUserResponseDTO {}",dto);
+
 
         //  세션에 저장
         session.setAttribute(LOGIN_KEY, dto);
@@ -95,8 +98,10 @@ public class LoginService {
 
     //  멤버 정보를 가져오는 서비스 기능
     public Employees getMember(String empEmail) {
+        Employees employee = employeesMapper.findEmployee(empEmail);
+        log.info("getgetMember {}",employee);
+        return employee;
 
-        return employeesMapper.findEmployee(empEmail);
     }
 
     public static void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {

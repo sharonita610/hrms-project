@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -30,8 +32,7 @@ public class BoardController {
     @GetMapping("/board-list")
     public String boardFindAll(BoardSearch search, Model model) {
         List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
-//        log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
-//        log.info("searchInfo : {}", search);
+        log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
 
         BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount(search));
 //        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);
@@ -54,8 +55,8 @@ public class BoardController {
     // 저장 페이지의 정보를 저장하는 기능
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
-        boardService.boardSave(dto);
-//      log.info("BoardSaveRequestDTO {}",dto);
+      log.info("BoardSaveRequestDTO {}",dto);
+      boardService.boardSave(dto);
         return "redirect:/hrms/board/board-list";
     }
 
@@ -77,6 +78,7 @@ public class BoardController {
             Model model) {
 //        log.info("board-detail / boardNo : {} ", boardNo);
         Board board = boardService.boardFindOneByBoardNo(boardNo);
+        log.info("detailboard {}",board);
 //        log.info("searchInfo : {}", search);
         model.addAttribute("s", search);
         model.addAttribute("b", board);

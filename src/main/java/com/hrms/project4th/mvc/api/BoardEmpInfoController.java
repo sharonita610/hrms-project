@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.api;
 
+import com.hrms.project4th.mvc.dto.responseDTO.BoardEmpInfoResponseDTO;
 import com.hrms.project4th.mvc.entity.BoardEmpInfo;
 import com.hrms.project4th.mvc.service.BoardEmpInfoService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,8 @@ public class BoardEmpInfoController {
 
     @GetMapping
     public ResponseEntity<?> showAllInfo(){
-        List<BoardEmpInfo> boardEmpInfos = boardEmpInfoService.showAllInfo();
-//        log.info(" boardEmpInfos : {}", boardEmpInfos);
+        List<BoardEmpInfoResponseDTO> boardEmpInfos = boardEmpInfoService.showAllInfo();
+        log.info(" boardEmpInfos : {}", boardEmpInfos);
 
         return ResponseEntity.ok().body(boardEmpInfos);
     }

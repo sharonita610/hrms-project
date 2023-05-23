@@ -32,16 +32,15 @@
             width: 75%;
         }
 
-        .detail-topbox {
-            display: flex;
-            justify-content: end;
-        }
 
         .detail-title {
             font-weight: 700;
             font-size: 50px;
             line-height: 60px;
             letter-spacing: 50px;
+            display: inline-block;
+            width: 300px;
+            margin-left: 340px;
 
         }
 
@@ -61,7 +60,7 @@
 
         /* 게시글 title부분 */
         .btn-danger {
-            margin-left: 210px;
+            margin-left: 185px;
             height: 60px;
             width: 120px;
             font-size: larger;
@@ -268,12 +267,7 @@
             font-weight: 600;
         }
 
-        /*     .modal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        } */
+
         .modifyAndDelete #modifyBtn {
             height: 38.38px;
         }
@@ -299,8 +293,10 @@
                 <div class="container-box">
                     <div class="detail-topbox">
                         <h1 class="detail-title">게시글</h1>
-                        <button type="button" class="btn btn-danger" data-bno="${b.boardNo}" id="boardRedDelete"
-                            data-bs-toggle='modal' data-bs-target='#staticBackdrop3'>삭제</button>
+                        <c:if test="${login.empNo==b.empNo}">
+                            <button type="button" class="btn btn-danger" data-bno="${b.boardNo}" id="boardRedDelete"
+                                data-bs-toggle='modal' data-bs-target='#staticBackdrop3'>삭제</button>
+                        </c:if>
                     </div>
                     <form action="/hrms/board/show-modify" method="post">
                         <div class="form-group">
@@ -332,7 +328,9 @@
                                     readonly>${b.bdContent}</textarea> -->
                         </div>
                         <div class="form-group detail-button">
-                            <button type="submit">수정</button>
+                            <c:if test="${login.empNo==b.empNo}">
+                                <button type="submit">수정</button>
+                            </c:if>
                             <button id="backToList" type="button">목록</button>
                             <!--   onclick="window.location.href='/hrms/board-list?boardPageNo=${s.boardPageNo}'" -->
                         </div>
@@ -361,7 +359,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group replyController">
                                             <input id="newReplyWriter" name="replyWriter" type="text"
-                                                class="form-control" placeholder="작성자 이름" style="margin-bottom: 35px;">
+                                                class="form-control" style="margin-bottom: 35px;" value="${login.empName}" readonly>
                                             <button id="replyAddBtn" type="button"
                                                 class="btn btn-dark form-control">등록</button>
                                         </div>
@@ -422,8 +420,8 @@
                             </div>
                             <textarea type="text" class="modal-body modMod"></textarea>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">수정</button>
-                                <button type="button" class="btn btn-secondary mod-secondary"
+                                <button type="button" class="btn btn-primary modibtn">수정</button>
+                                <button type="button" class="btn btn-secondary mod-secondary modifylastbtn"
                                     data-bs-dismiss="modal">닫기</button>
                             </div>
                         </div>
@@ -445,7 +443,7 @@
                             <input type="text" class="modal-body modDEL" value="댓글을 삭제하시겠습니까?" readonly></input>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary delBtn-primary">삭제</button>
-                                <button type="button" class="btn btn-secondary del-secondary"
+                                <button type="button" class="btn btn-secondary del-secondary boardDEL"
                                     data-bs-dismiss="modal">닫기</button>
                             </div>
                         </div>
@@ -466,7 +464,7 @@
         //목록버튼 클릭시 이동하는 기능
         const $backToList = document.getElementById('backToList');
         $backToList.onclick = (e) => {
-            console.log(e.target);
+            // console.log(e.target);
             window.location.href = '/hrms/board/board-list?boardPageNo=${s.boardPageNo}';
         }
 
@@ -490,7 +488,10 @@
         const URL = '/api/hrms/replies';
 
         // 게시글 번호 
-        const boardNo = `${b.boardNo}`
+        const boardNo = `${b.boardNo}`;
+
+        //로그인 게정명 
+        const loginEmpNo='${login.empNo}';
 
         // 페이지 렌더링 함수
         function renderPage({
@@ -552,9 +553,9 @@
                 for (const r of $replypageList.children) {
                     if (e.target.innerText == r.children[0].attributes[1].value) {
                         // console.log(r.children);
-                        console.log(e.target.innerText);
+                        // console.log(e.target.innerText);
                         r.classList.add('colorChange')
-                        console.log(r);
+                        // console.log(r);
                     }
 
                 }
@@ -563,7 +564,7 @@
                 findAllReplies(pageNum);
             };
         }
-        
+
 
 
 
@@ -593,16 +594,16 @@
                         repContent,
                         deptName,
                         posName,
-                        roleName,
                         empName
                     } = rep;
+                    // console.log(rep);
+
                     tag += `
                                 <div id='replyContent' class='card-body' data-replyId='\${repNo}'>
                                     <div class='row user-block'>
                                     <span class='col-md-3 showUserInfo'>
                                         <span>\${deptName}</span><span>/</span>
                                         <span>\${posName}</span><span>/</span>
-                                        <span>\${roleName}</span><span>/</span>
                                         <span>\${empName}</span>
                                         <input type='hidden' name='empNo' value='\${empNo}'>
                                     </span>
@@ -614,16 +615,15 @@
                                 `;
 
 
-                    // if (currentAccount === rep.account || auth === 'ADMIN') {
-                    tag +=
-                        // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
-                        "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
-                        "         <button id='replyDelBtn' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop2'>삭제</button>";
-                    // }
+                    if (loginEmpNo== empNo) {
+                    
+                        tag += "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
+                            "         <button id='replyDelBtn' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop2'>삭제</button>";
+                    }
                     tag += "       </div>" +
                         "    </div>" +
                         " </div>";
-
+  // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
 
                 }
             }
@@ -647,7 +647,7 @@
                 // empNo값 가져오기
                 const $rpdelEmpNo = e.target.parentElement.parentElement.previousElementSibling.
                 previousElementSibling.firstElementChild.lastElementChild.value;
-                // console.log($rpdelEmpNo)
+                // console.log($rpdelEmpNo);
                 e.preventDefault();
 
                 if (e.target.matches('#replyDelBtn')) {
@@ -682,6 +682,7 @@
                     const $rpEmpNo = e.target.parentElement.parentElement.previousElementSibling.
                     previousElementSibling.firstElementChild.lastElementChild.value;
                     // console.log('고급추적:', e.target);
+                    // console.log($rpEmpNo);
                     document.querySelector('.modMod').dataset.reno = $rpEmpNo;
 
                 }
@@ -695,9 +696,9 @@
             const $makedelButton = document.querySelector('.delBtn-primary');
             $makedelButton.onclick = e => {
                 const $rpRpNo = document.querySelector('.modDEL').dataset.rno;
-                console.log($rpRpNo);
+                // console.log($rpRpNo);
                 const $rpEmpNo = document.querySelector('.modDEL').dataset.reno;
-                console.log($rpEmpNo);
+                // console.log($rpEmpNo);
 
                 // 삭제 데이터 만들기
                 const requestDeleteInfo = {
@@ -716,7 +717,7 @@
                     .then(res => {
                         if (res.status === 200) {
                             // alert('삭제됐어!!!!!');
-                            document.querySelector('.del-secondary').click();
+                            document.querySelector('.boardDEL').click();
                         } else {
                             return res.json().then(data => {
                                 console.log(data); // 서버에서 반환된 오류 메시지 출력
@@ -740,7 +741,9 @@
         function modifyBoardReply() {
 
 
-            const $modifyButton = document.querySelector('.btn-primary');
+            const $modifyButton = document.querySelector('.modibtn');
+            // console.log('여기까지는 되나?'+$modifyButton);
+            // console.log($modifyButton);
             $modifyButton.addEventListener('click', function (e) {
                 const $getRepCont = document.querySelector('.modMod').value;
                 // console.log($getRepCont);
@@ -766,7 +769,7 @@
                         if (res.status == 200) {
                             // alert('댓글이 수정되었습니다.')
                             //창 닫아줌
-                            document.querySelector('.mod-secondary').click();
+                            document.querySelector('.modifylastbtn').click();
                         } else {
                             // alert('댓글 수정에 실패하였습니다.')
                         }
@@ -818,7 +821,7 @@
                 // 저장시 서버로 보낼 데이터
                 const payload = {
                     repContent: $rt.value,
-                    empNo: $rw.value,
+                    empNo: loginEmpNo,
                     boardNo: boardNo
                 };
 
@@ -834,15 +837,16 @@
                 fetch(URL, requestInfo)
                     .then(res => {
                         if (res.status === 200) {
-                            alert('댓글이 정상 등록됨!');
+                            alert('댓글이 정상적으로 등록되었습니다.');
                             // 입력창 비우기
                             $rt.value = '';
                             $rw.value = '';
-
                             // 마지막페이지 번호
                             // const lastPageNo = document.querySelector('.pagination').dataset.fp;
                             findAllReplies(1);
                         } else {
+                            // console.log($rt.value);
+                            // console.log($rw.value);
                             alert('댓글 등록에 실패함!');
                         }
                     });
@@ -873,7 +877,7 @@
             //게시글 삭제 
             deleteBoard();
 
-        })()
+        })();
     </script>
 
 </body>
