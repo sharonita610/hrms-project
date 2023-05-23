@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class AutoLoginDTO {
 
-    private String sessionId;
-    private LocalDateTime limitTime;
+    private String empSession;
+    private LocalDateTime cookieLimitTime;
     private String empEmail;
 }

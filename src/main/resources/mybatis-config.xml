@@ -19,6 +19,7 @@
         <typeAlias alias="clubBoard" type="com.hrms.project4th.mvc.entity.ClubBoard" />
         <typeAlias alias="clubJoin" type="com.hrms.project4th.mvc.entity.EmpClub" />
         <typeAlias alias="clubBoardDTO" type="com.hrms.project4th.mvc.dto.responseDTO.ClubBoardResponseDTO" />
+        <typeAlias alias="autoLoginDTO" type="com.hrms.project4th.mvc.dto.AutoLoginDTO" />
         <typeAlias alias="myClubBoardListDTO" type="com.hrms.project4th.mvc.dto.responseDTO.MyClubBoardResponseDTO" />
         <typeAlias alias="joinedClubListDTO" type="com.hrms.project4th.mvc.dto.responseDTO.JoinedClubListResponseDTO" />
         <typeAlias alias="clubReplyListResponseDTO" type="com.hrms.project4th.mvc.dto.responseDTO.ClubReplyListResponseDTO" />

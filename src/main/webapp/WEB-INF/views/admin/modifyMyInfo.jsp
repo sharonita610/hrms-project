@@ -278,9 +278,9 @@
                         if (response.ok) {
                             // 처리가 200번대라면
                             alert('휴대폰 번호가 업데이트 되었습니다.');
-                            document.getElementById('left-banner-emp-phone').innerText = newPhoneNumber;
-                            $closeUpdatePhoneModal.style.display = 'none';
-                            location.reload();
+                            document.getElementById('left-banner-emp-phone').querySelector('span').textContent = newPhoneNumber;
+                            // location.reload();
+                            $closeUpdatePhoneModal.style.display ='none';
                         } else {
                             alert('업데이트에 실패 했습니다');
                         }

@@ -110,7 +110,7 @@
         where emp_email = #{empEmail}
     </select>
 
-    <select id="logedInDetail" resultType="employees">
+    <select id="logedInDetail" resultType="employeeDetailResponseDTO">
         select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
         from hr_employees e
                  left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
@@ -135,4 +135,16 @@
           AND emp_salary = #{empSalary};
     </select>
 
+    <update id="saveAutoLogin">
+        UPDATE HR_EMPLOYEES
+        SET cookie_limit_time = #{cookieLimitTime}, emp_session= #{empSession}
+        WHERE EMP_EMAIL = #{empEmail}
+    </update>
+
+    <select id="checkSession" resultType="employees">
+        select emp_email, cookie_limit_time
+        from HR_EMPLOYEES
+        where emp_session = #{empSession}
+
+    </select>
 </mapper>
