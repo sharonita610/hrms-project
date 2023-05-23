@@ -21,14 +21,12 @@ import java.util.List;
 public class MainBoardListController {
     private final BoardService boardService;
 
-//    @GetMapping("/page/{pageNo}")
-//    public ResponseEntity<?> showMainBoard(
-//            @PathVariable int pageNo
-//    ){
-//        BoardSearch search=new BoardSearch();
-//        List<MainBoardInfoResponseDTO> mainBoardResponseDTOS = boardService.showMainBoard(search);
-//
-//        return  ResponseEntity.ok().body(mainBoardResponseDTOS);
-//    }
+    @GetMapping("/page/{pageNo}")
+    public ResponseEntity<?> showMainBoard(
+            @PathVariable int pageNo
+    ){  boardService.showMainBoard(new BoardSearch());
+
+        return  ResponseEntity.ok().body();
+    }
 
 }

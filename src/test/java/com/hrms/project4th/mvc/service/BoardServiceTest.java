@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.page.BoardSearch;
+import com.hrms.project4th.mvc.dto.responseDTO.MainBoardInfoResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardResponseDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,9 +28,10 @@ class BoardServiceTest {
     @Test
     @DisplayName("MAIN 화면에 보여줄 BoardList 잘나오는지 확인!")
     void showMainBoard(){
-//        BoardSearch search=new BoardSearch();
-//        List<MainBoardResponseDTO> mainBoardResponseDTOS = boardService.showMainBoard(search);
-//        System.out.println(mainBoardResponseDTOS);
+        BoardSearch search=new BoardSearch();
+        MainBoardInfoResponseDTO mainBoardInfoResponseDTO = boardService.showMainBoard(search);
+        System.out.println(mainBoardInfoResponseDTO);
     }
+
 
 }

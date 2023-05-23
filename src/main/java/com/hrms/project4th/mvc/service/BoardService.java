@@ -121,20 +121,17 @@ public class BoardService {
 
 
     // MAIN 화면에 띄어줄 BOARD LIST를 DTO로 변환하는 기능
-    public MainBoardInfoResponseDTO showMainBoard(BoardSearch search){
+    public MainBoardInfoResponseDTO showMainBoard(BoardPage page){
 
-        List<MainBoardResponseDTO> mainBoardResponseDTO = boardMapper.showAllMainBoard(search).stream()
+        List<MainBoardResponseDTO> mainBoardResponseDTO = boardMapper.showAllMainBoard(page).stream()
                 .map(MainBoardResponseDTO::new)
                 .collect(Collectors.toList());
-
         BoardSearch boardSearch=new BoardSearch();
         boardSearch.setBoardAmount(7);
-        B
-
 
         return MainBoardInfoResponseDTO.builder()
                 .mainBoardResponseDTOS(mainBoardResponseDTO)
-                .boardPageMaker(new BoardPageMaker(new BoardPage(),mainBoardResponseDTO.))
+                .boardPageMaker(new BoardPageMaker(page,boardPageCount()))
                 .build();
     }
 

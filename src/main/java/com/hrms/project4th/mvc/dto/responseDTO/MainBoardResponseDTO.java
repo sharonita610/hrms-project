@@ -32,7 +32,7 @@ public class MainBoardResponseDTO {
     //게시글 작성 시간
     private String bdDate;
     // 댓글 수
-    private int replyNo;
+    private long replyNo;
 
 
     public MainBoardResponseDTO(Board board) {
@@ -43,6 +43,7 @@ public class MainBoardResponseDTO {
         this.repNo = board.getRepNo();
         this.bdType = board.getBdType();
         this.bdDate = makeStringDate(board.getBdDate());
+        this.replyNo=board.getRepNo();
     }
 
 }
