@@ -27,13 +27,9 @@
                                 <li class="club-name"></li>
                                 <li class="board-writer"></li>
                                 <li class="detail-join-btn"></li>
-                                    <!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
-                                    <!-- <button id="join-club-btn">가입하기</button> -->
-                                <!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
-                                <!-- <li>
-                                    <button id="update-club-btn">수정하기</button>
-                                    <button id="delete-club-btn">삭제하기</button>
-                                </li> -->
+                                <li class="my-board-mod-del-btn"></li>
+                                    <!-- <button id="update-club-btn">수정하기</button>
+                                    <button id="delete-club-btn">삭제하기</button> -->
                             </ul>
                         </li>
                         <li>
@@ -48,7 +44,7 @@
                     <div class="club-modal-replies-head">
                         <ul class="replies-wrapper">
                             <li class="club-modal-add-reply">
-                                <form action="#" method>
+                                <form action="#" method="POST">
                                     <input class="write-reply" type="text" placeholder="댓글을 작성해보세요!">
                                     <button id="add-reply" type="submit">등록</button>
                                     <button id="cancel-reply" type="reset">취소</button>
@@ -66,74 +62,58 @@
         </div>
 
         <!-- ============================================================================================ -->
-        <!-- club-my-modal ============================================================================== -->
-        <div class="club-modal-wrapper my-modal">
-            <div class="club-modal-separator">
-                <section class="club-modal-content-container">
-                    <ul class="contents-wrapper">
-                        <li class="club-modal-club-info">
-                            <ul class="club-modal-informations">
-                                <li class="club-modal-image"><img src="/resources/static/assets/img/samjo-logo.png"
-                                        alt="동호회사진">
-                                </li>
-                                <li>동호회이름</li>
-                                <li>[작성자이름]</li>
-                                <li>
-                                    <form action="#" method="post">
-                                        
-                                    </form>
-                                </li>
-                            </ul>
+
+        <!-- 새 게시글 작성하기 모달창 ================================================================== -->
+        <div class="club-modal-wrapper club-write-content-wrapper">
+            <section class="club-write-content-container">
+               <ul class="write-wrapper">
+                  <li class="write-content-club-info">
+                     <ul class="club-modal-informations">
+                        <li class="club-modal-image">
+                           <img src="/resources/static/assets/img/samjo-logo.png" alt="동호회사진">
                         </li>
+                        <li>동호회이름</li>
                         <li>
-                            <div class="club-modal-contents">
-                                게시글 <br>
-                                사진란
-                            </div>
+                           <form action="#" method="post">
+                              <!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
+                              <button id="add-cancel-btn" type="button">취소
+                              </button>
+                           </form>
                         </li>
-                    </ul>
-                </section>
-                <section class="club-modal-replies-container">
-                    <div class="club-modal-replies-head">
-                        <ul class="replies-wrapper">
-                            <li class="club-modal-reply-list">
-                                <div class="club-modal-reply-list-one">
-                                    <ul>
-                                        <li>작성자</li>
-                                        <li>시간</li>
-                                        <li>내용내용내용내용내용내용내용내용내용</li>
-                                    </ul>
-                                </div>
-                                <div class="club-modal-reply-list-one">
-                                    <ul>
-                                        <li>작성자</li>
-                                        <li>시간</li>
-                                        <li>내용내용내용내용내용내용내용내용내용</li>
-                                    </ul>
-                                </div>
-                                <div class="club-modal-reply-list-one">
-                                    <ul>
-                                        <li>작성자</li>
-                                        <li>시간</li>
-                                        <li>내용내용내용내용내용내용내용내용내용</li>
-                                    </ul>
-                                </div>
-                                <div class="club-modal-reply-list-one">
-                                    <ul>
-                                        <li>작성자</li>
-                                        <li>시간</li>
-                                        <li>내용내용내용내용내용내용내용내용내용</li>
-                                    </ul>
-                                </div>
-
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <!-- ======================================================================================= -->
+                     </ul>
+                  </li>
+                  <li>
+                     <div class="club-write-wrap">
+                        <form action="" method="post" enctype="multipart/form-data">
+                           <label for="club-write-content" id="content-label"><span>문구</span></label>
+                           <textarea id="club-write-content" name="content" maxlength="300" required
+                                     style="resize: none"></textarea>
+                           <div class="club-content-image">
+                              <div class="content-image-box">
+                                 <img src="/assets/img/upload-img.png" alt="사진업로드">
+                              </div>
+         
+                              <label>컨텐츠 이미지 추가</label>
+         
+                              <input
+                                    type="file"
+                                    id="content-img"
+                                    accept="image/*"
+                                    style="display: none;"
+                                    name="cbUrl"
+                              >
+                           </div>
+                          
+                           <div class="buttons">
+                              <button id="add-content-btn" type="submit">등록하기</button>
+                           </div>
+                        </form>
+                     </div>
+                  </li>
+               </ul>
+            </section>
+         </div>
+        <!-- ============================================================================================ -->
         <!-- <div class="sample">안녕</div> -->
         <section class="section-club-board">
             <div id="club-contents">
@@ -220,6 +200,20 @@
                 $threeOption.removeChild($threeOption.firstChild);
             }
         }
+        // detail-join-btn 안에 가입하기 버튼 지우는 함수
+        const $detailJoinBtn = document.querySelector('.detail-join-btn');
+        function removeJoinBtn() {
+            while ($detailJoinBtn.firstChild) {
+                $detailJoinBtn.removeChild($detailJoinBtn.firstChild);
+            }
+        }
+        // my-board-mod-del-btn 안에 수정 삭제 버튼 지우는 함수
+        const $modDelBtn = document.querySelector('.my-board-mod-del-btn');
+        function removeModDelBtn() {
+            while ($modDelBtn.firstChild) {
+                $modDelBtn.removeChild($modDelBtn.firstChild);
+            }
+        }
 
         // 내 게시글 클릭시 태그 생성 및 목록 비동기 요청
         $myBoard.onclick = e => {
@@ -281,6 +275,7 @@
 
                         myClubTag += "<ul>" +
                             "<li class='joined-club-list' data-clubCode='" + clubCode + "'>" + clubName +
+                            "<button class='club-board-write-btn'>글쓰기</button>" +
                             "<button class='club-leave-btn'>탈퇴하기</button>" +
                             "</li>" +
                             "</ul>";
@@ -338,31 +333,27 @@
 
         // ==================================================================
         const $clubCard = document.querySelector('.club-card');
+        // 게시글 상세보기
+        const $detailClubName = document.querySelector('.board-list-club-name');
+        const $detailClubContent = document.querySelector('.board-list-club-content');
+        const $detailClubProfile = document.querySelector('.club-profile-img');
+        const $detailClubPostImg = document.querySelector('.board-list-club-URL');
+
+        const $modalClubName = document.querySelector('.club-name');
+        const $modalBoardWriter = document.querySelector('.board-writer');
+        const $modalProfile = document.querySelector('.club-modal-image');
+        const $modalPostImg = document.querySelector('.post-img');
+        const $modalPostText = document.querySelector('.post-text');
+        const $modalDate = document.querySelector('.reply-time');
+
+        const $joinedClubList = document.querySelectorAll('.joined-club-list');
         
         $clubCard.parentElement.onclick = e => {
             
-            // 게시글 상세보기
-            const $detailClubName = document.querySelector('.board-list-club-name');
-            const $detailClubContent = document.querySelector('.board-list-club-content');
-            const $detailClubProfile = document.querySelector('.club-profile-img');
-            const $detailClubPostImg = document.querySelector('.board-list-club-URL');
-    
-            const $modalClubName = document.querySelector('.club-name');
-            const $modalBoardWriter = document.querySelector('.board-writer');
-            const $modalProfile = document.querySelector('.club-modal-image');
-            const $modalPostImg = document.querySelector('.post-img');
-            const $modalPostText = document.querySelector('.post-text');
-            const $modalDate = document.querySelector('.reply-time');
-
-            const $joinedClubList = document.querySelectorAll('.joined-club-list');
-
-            // console.log(e.target);
-
+            
             // 동호회 가입하기 버튼 클릭시
             if(e.target.classList.contains('join')) {
-            // console.log($joinedClubList);
                 
-            console.log();
                 fetch(clubBoardURL + '/myclubList/' + empNo)
                 .then(res => res.json())
                 .then(resResult => {
@@ -376,7 +367,7 @@
                             } = oneClub;
                             // 현재 가입하기를 누른 동호회코드가 이미 가입된 동호회 코드인지 확인
                             console.log(e.target.parentElement.previousElementSibling.dataset.clubcode + '///' + clubCode);
-
+    
                             if (+e.target.parentElement.previousElementSibling.dataset.clubcode === +clubCode) {
                                 alert('이미 가입된 동호회입니다.');
                                 return;    
@@ -389,7 +380,7 @@
                         empNo: empNo,
                         clubCode: e.target.parentElement.previousElementSibling.dataset.clubcode
                     };
-
+    
                     const requestJoinInfo = {
                         method: 'POST',
                         headers: {
@@ -397,7 +388,7 @@
                         },
                         body: JSON.stringify(joinDto)
                     };
-
+    
                     fetch(clubBoardURL + '/clubJoin', requestJoinInfo)
                         .then(res => {
                             if (res.status === 200) {
@@ -405,10 +396,10 @@
                             }
                         })
                         .then(resReult => myJoinedClubList())
-
+    
                 });
                 
-                    
+                
             }
 
             // 컨텐츠를 클릭했을 경우만 상세보기
@@ -434,6 +425,8 @@
                 $modalPostImg.textContent = e.target.parentElement.querySelector('.board-list-club-URL')
                 .textContent;
 
+                // 수정 삭제 버튼 지우기 함수
+                removeModDelBtn();
 
                 // 게시글 상세보기 클릭시 (가입하기 버튼)태그 생성
                 let detailJoinTag = '<button id="join-club-btn">가입하기</button>';
@@ -441,46 +434,68 @@
                         
 
                 // 게시글 상세보기 시 댓글 목록 비동기 처리
-                let replyTag = '';
-
-                fetch(clubBoardURL + '/boardReply/' + cbNo)
-                    .then(res => res.json())
-                    .then(resResult => {
-                        if (resResult.length === 0) {
-                            replyTag += "<div class='noreply'>댓글이 없습니다.</div>"
-                        } else {
-                            for (let rep of resResult) {
-                                const {clubRepNo, clubRepContent, clubRepDate, cbNo, empNo, empName} = rep;
-
-                           replyTag += "<div class='club-modal-reply-list-one' data-clubRepNo='" + clubRepNo + "' data-cbNo='" + cbNo + "'"
-                                        + "data-empNo='" + empNo + "'>"
-                                        + "<div class='reply-info'> "
-                                            + "<span class='reply-writer'>" + empName + "</span>"
-                                            + "<span class='reply-time'>" + clubRepDate + "</span>"
-                                        + "</div>"
-                                        + "<div class='reply-content'>"
-                                            + clubRepContent
-                                        + "</div>"
-                                    + "</div>";
-
-                                }
-                        }
-
-                        document.querySelector('.club-reply-generate').innerHTML = replyTag;
-                    });
+                clubReplyList(cbNo);
             }
         };
+
+
+        function clubReplyList(cbNo) {
+        let replyTag = '';
+
+        fetch(clubBoardURL + '/boardReply/' + cbNo)
+            .then(res => res.json())
+            .then(resResult => {
+                if (resResult.length === 0) {
+                    replyTag += "<div class='noreply'>댓글이 없습니다.</div>"
+                } else {
+                    for (let rep of resResult) {
+                        const {clubRepNo, clubRepContent, clubRepDate, cbNo, empNo, empName} = rep;
+
+                   replyTag += "<div class='club-modal-reply-list-one' data-clubRepNo='" + clubRepNo + "' data-cbNo='" + cbNo + "'"
+                                + "data-empNo='" + empNo + "'>"
+                                + "<div class='reply-info'> "
+                                    + "<span class='reply-writer'>" + empName + "</span>"
+                                    + "<span class='reply-time'>" + clubRepDate + "</span>"
+                                + "</div>"
+                                + "<div class='reply-content'>"
+                                    + clubRepContent
+                                + "</div>"
+                            + "</div>";
+
+                        }
+                }
+
+                document.querySelector('.club-reply-generate').innerHTML = replyTag;
+            });
+
+        }
 
         // 모달창 닫기
         $modalBackground.onclick = e => {
             if (e.target.classList.contains('common-club-modal')) return;
             $commonModal.classList.remove('show-modal');
-            $modalBackground.classList.remove('show-modal');
+            if (!$modalNewBoard.classList.contains('show-modal')) {
+                $modalBackground.classList.remove('show-modal');
+            }
         }
 
+        const $modalCancelBtn = document.querySelector('#add-cancel-btn');
+
+        $modalCancelBtn.onclick = e => {
+            $modalNewBoard.classList.remove('show-modal');
+            $modalBackground.classList.remove('show-modal');
+
+        }
+
+        // 새 글 작성 모달
+        const $modalNewBoard = document.querySelector('.club-write-content-wrapper');
 
         // 동호회 탈퇴하기
         const $clubLeaveBtn = document.querySelector('.club-leave-btn');
+        
+        // 새 게시글 작성 모달창 띄우기
+        const $newClubBoard = document.querySelector('.club-board-write-btn');
+
         $threeOption.onclick = e => {
 
             if (e.target.matches('.club-leave-btn')) {
@@ -513,18 +528,97 @@
                     })
                     .then(resResult => myJoinedClubList());
             }
+            // 내가 작성한 게시글 클릭시 해당 게시글 정보 불러오기 + 모달창 띄우기
+            else if(e.target.matches('.club-board-title')) {
+                $commonModal.classList.add('show-modal');
+                $modalBackground.classList.add('show-modal');
 
+                const selectedCbNo = +e.target.dataset.cbno;
+
+                fetch(clubBoardURL + '/detailClubBoard/' + selectedCbNo)
+                .then(res => res.json())
+                .then(resResult => {
+                    const {cbNo, cbTitle, cbContent, cbDate, cbURL, empNo, clubCode, clubName, empName} = resResult;
+                    console.log(resResult);
+                    $modalPostText.textContent = cbContent;
+                    $modalClubName.textContent = clubName;
+
+                    $modalBoardWriter.textContent = empName;
+                    // $modalDate.textContent = cbDate;
+
+                    // $modalProfile.textContent = e.target.parentElement.previousElementSibling.querySelector('.club-profile-img').textContent;
+                    $modalPostImg.textContent = cbURL;
+
+                    // 가입하기 버튼 삭제 함수
+                    removeJoinBtn();
+
+                    const $modiDelBtnTag = '<button id="update-club-btn">수정</button>'
+                                            + '<button id="delete-club-btn">삭제</button>';
+
+                    document.querySelector('.my-board-mod-del-btn').innerHTML = $modiDelBtnTag;  
+
+                    clubReplyList(selectedCbNo);
+                });
+                
+            }
+
+            // 새 게시글 작성하기 ==============================================
+            else if(e.target.matches('.club-board-write-btn')) {
+                $modalNewBoard.classList.add('show-modal');
+                $modalBackground.classList.add('show-modal');
+
+
+
+                
+            }
+            
         }
+        
+        
 
 
+        // 혜영누나 새 게시글 추가 스크립트 ================================================================================================================
+        
+         // 사진 추가 영역 클릭 시에 수행할 코드
+    const $contentImage = document.querySelector('.club-content-image');
+    const $inputFile = document.getElementById('content-img');
 
+    $contentImage.onclick = e => {
+        $inputFile.click();
+    };
+    $inputFile.onchange = e => {
+        // 첨부한 파일의 데이터를 읽어오기
+        const fileData = $inputFile.files[0];
+        console.log(fileData);
+
+        // 첨부파일의 바이트데이터를 읽어들이는 객체 생성
+        const reader = new FileReader();
+
+        // 파일의 바이트데이터를 읽어서 img태그의 src 속성이나
+        // a 태그의 href 속성에 넣기 위한 형태로 읽음
+        reader.readAsDataURL(fileData);
+
+        // 첨부파일이 등록되는 순간 img 태그의 이미지를 세팅
+        reader.onloadend = e => {
+            const $imgTag = document.querySelector('.content-image-box img');
+            $imgTag.setAttribute('src', reader.result);
+        };
+
+    };
+        
+        
+        
+        // 혜영누나 새 게시글 추가 스크립트 ================================================================================================================
 
 
 
         // ====================================================================
 
         //========= 메인 실행부 =========//
-        // (function () {
+        (function () {
+
+            // 내 게시글 목록 비동기 조회
+            myBoardList();
 
         // 내가 작성한 게시글 목록 불러오기
         // getMyBoardClubList();
@@ -538,7 +632,7 @@
         // 수정 이벤트 등록
         // replyModifyClickEvent();
 
-        // })();
+        })();
     </script>
 
 

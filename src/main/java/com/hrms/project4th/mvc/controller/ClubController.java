@@ -88,6 +88,7 @@ public class ClubController {
         return ResponseEntity.ok().body(dtoList);
     }
 
+    @ResponseBody
     @PostMapping("/clubJoin")
     public ResponseEntity<?> clubJoin(@RequestBody ClubJoinRequestDTO dto) {
         boolean b = clubJoinService.clubJoin(dto);
@@ -96,6 +97,7 @@ public class ClubController {
         return ResponseEntity.ok().body(b);
     }
 
+    @ResponseBody
     @DeleteMapping("/leaveClub")
     public ResponseEntity<?> clubLeave(@RequestBody ClubJoinRequestDTO dto) {
         boolean b = clubJoinService.clubLeave(dto);
@@ -104,5 +106,13 @@ public class ClubController {
         return ResponseEntity.ok().body(b);
     }
 
+    @ResponseBody
+    @GetMapping("/detailClubBoard/{cbNo}")
+    public ResponseEntity<?> detailClubBoard(@PathVariable Long cbNo) {
+        ClubBoardResponseDTO clubBoardResponseDTO = clubBoardService.detailClubBoard(cbNo);
+        log.info("detail DTO:{}", clubBoardResponseDTO);
+
+        return ResponseEntity.ok().body(clubBoardResponseDTO);
+    }
 
 }

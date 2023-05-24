@@ -21,6 +21,22 @@ PROFILE VARCHAR(1000),
 constraint PK_EMP_NO PRIMARY KEY (EMP_NO)
 );
 
+select *
+from hr_employees;
+
+
+where role_code = 00000; 
+
+
+
+select *
+from hr_role;
+
+ALTER TABLE hr_employees
+    ADD cookie_limit_time DATETIME;
+
+ALTER TABLE hr_employees
+ADD EMP_SESSION VARCHAR(200);
 
 
 -- 직급 테이블
@@ -121,6 +137,7 @@ ROLE_CODE VARCHAR(10),
 ROLE_NAME VARCHAR(20),
 constraint PK_ROLE_CODE primary key (ROLE_CODE)
 );
+ 
 
 -- 결재 테이블
 drop table HR_CONFIRM; 

@@ -31,8 +31,10 @@
 
     <select id="detailClubBoard" resultType="clubBoardDTO">
         SELECT
-        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, EMP_NO, CLUB_CODE
-        FROM TEST_CLUB_BOARD
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, E.EMP_NO, C.CLUB_CODE, CLUB_NAME, EMP_NAME, CLUB_PROFILE
+        FROM TEST_CLUB_BOARD B
+        JOIN TEST_CLUB C ON C.CLUB_CODE = B.CLUB_CODE
+        JOIN TEST_EMPLOYEES E ON E.EMP_NO = C.EMP_NO
         WHERE CB_NO = #{cbNo}
     </select>
 
