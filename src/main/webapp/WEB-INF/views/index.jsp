@@ -9,12 +9,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SAMJO SANGSA</title>
+    <link rel="icon" href="/assets/img/favicon_blue.png">
     <style>
         .wrapper {
             width: 600px;
             height: 500px;
             border: 2px solid #333333;
-            margin: 5% auto;
+            margin: 20% auto;
         }
 
         h1 {
@@ -25,6 +26,10 @@
         .container {
             text-align: center;
 
+        }
+        .thumbnail-box img{
+            width: 400px;
+            height: 350px;
         }
         #start-btn {
             margin-top: 10px;
@@ -45,7 +50,7 @@
     <div class="container">
         <form action="/log-in">
             <div class="thumbnail-box">
-                <img src="/assets/img/logo.png" alt="회사로고">
+                <img src="/assets/img/로고.png" alt="회사로고">
             </div>
 
             <h1>당신의 노고에 항상 감사드립니다</h1>
