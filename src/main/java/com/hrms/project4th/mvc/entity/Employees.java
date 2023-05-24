@@ -33,9 +33,7 @@ public class Employees {
     private String posCode;
     private String posName;
     private String roleCode;
-    private String roleName;
     private String deptCode;
-    private String deptName;
     private String profile;
     private Auth auth;
     private String empSession;

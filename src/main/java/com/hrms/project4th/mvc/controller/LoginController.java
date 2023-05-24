@@ -22,8 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.hrms.project4th.mvc.entity.LoginResult.SUCCESS;
-import static com.hrms.project4th.mvc.util.LoginUtil.isAutoLogin;
-import static com.hrms.project4th.mvc.util.LoginUtil.isLogin;
+import static com.hrms.project4th.mvc.util.LoginUtil.*;
 
 @Controller
 @RequiredArgsConstructor

@@ -5,6 +5,7 @@ import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.GetMyBossResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
 import com.hrms.project4th.mvc.service.EmployeesService;
 import com.hrms.project4th.mvc.service.LoginService;
 import com.hrms.project4th.mvc.util.FileUtil;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import static com.hrms.project4th.mvc.util.LoginUtil.LOGIN_KEY;
 import static com.hrms.project4th.mvc.util.LoginUtil.getCurrentLoginMemberAccount;
 
 
@@ -170,6 +172,8 @@ public class EmployeesController {
             boolean success = employeesService.updatePhoneNumber(newPhone, empEmail);
 
             if (success) {
+                EmployeeDetailResponseDTO loginSessionData = (EmployeeDetailResponseDTO) request.getSession().getAttribute(LOGIN_KEY);
+                loginSessionData.setEmpPhone(newPhone);
                 return ResponseEntity.ok("성공");
             } else {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("실패ㅠ");

@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.util;
 
+import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
 import lombok.ToString;
 import org.apache.taglibs.standard.lang.jstl.NullLiteral;
@@ -14,7 +15,7 @@ public class LoginUtil {
     public static final String LOGIN_KEY =  "login";
 
     // 자동로그인 쿠키 이름
-    public static final String AUTO_LOGIN_COOKIE =  "auto";
+    public static final String AUTO_LOGIN_CHECK =  "auto";
 
     // 로그인 여부 확인
     public static boolean isLogin(HttpSession session){
@@ -24,15 +25,15 @@ public class LoginUtil {
     // 로그인한 사람의 사원이메일를 반환하는 메서드
     public static String getCurrentLoginMemberAccount(HttpSession session){
 
-        LoginUserResponseDTO loginUserInfo =
-                (LoginUserResponseDTO) session.getAttribute(LOGIN_KEY);
+        EmployeeDetailResponseDTO loginUserInfo =
+                (EmployeeDetailResponseDTO) session.getAttribute(LOGIN_KEY);
         return loginUserInfo.getEmpEmail();
 
     }
 
     // 자동로그인 여부 확인
     public static boolean isAutoLogin(HttpServletRequest request){
-        return WebUtils.getCookie(request, AUTO_LOGIN_COOKIE) != null;
+        return WebUtils.getCookie(request, AUTO_LOGIN_CHECK) != null;
     }
 
 

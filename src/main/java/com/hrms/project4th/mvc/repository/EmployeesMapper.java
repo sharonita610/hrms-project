@@ -29,6 +29,7 @@ public interface  EmployeesMapper {
     boolean isDuplicated(String email);
 
     Employees findEmployee(String empEmail);
+    Employees checkSession(String empSession);
 
     // 자동로그인 관련 속성 추가 기능
     void saveAutoLogin(AutoLoginDTO dto);
@@ -46,7 +47,7 @@ public interface  EmployeesMapper {
 
     List<EmployeeDetailResponseDTO> searchEmployeesByName(String empName);
 
-    Employees logedInDetail(String empEmail);
+    EmployeeDetailResponseDTO logedInDetail(String empEmail);
 
     Employees verificateEmp(VerificateEmpPasswordRequestDTO dto);
 }
