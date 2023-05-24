@@ -94,4 +94,10 @@ public class EmployeesService {
     public List<EmployeeDetailResponseDTO> searchEmployeesByName(String empName) {
         return employeesMapper.searchEmployeesByName(empName);
     }
+
+
+    public boolean updatePassword(String empEmail, String newPassword){
+
+       return employeesMapper.updatePassword(empEmail, newPassword);
+    }
 }
