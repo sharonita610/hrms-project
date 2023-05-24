@@ -51,7 +51,7 @@ public class MailController {
     public String sendRequest(final Mail mail){
         log.info("Mail {}",mail);
         mailService.sendRequest(mail);
-        return "redirect:/hrms/mail-list/?empNo="+mail.getMailFrom();
+        return "redirect:/hrms/mail-list/?empNo="+mail.getMailFrom()+"&mailType=mailfrom";
     }
 
     @GetMapping("/mail-list")
