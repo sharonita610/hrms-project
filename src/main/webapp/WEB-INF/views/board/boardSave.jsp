@@ -187,7 +187,7 @@
                                 <label for="title">제목:</label>
                                 <div class="title-input">
                                     <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" required>
-                                    <c:if test="${login.roleCode==='11111'|| login.roleCode==='00000'}">
+                                    <c:if test="${login.roleCode=='11111'|| login.roleCode=='00000'}">
                                         <input name="important" id="importantCheck" type="checkbox" value="0"><span
                                             id="serious">중요</span>
                                     </c:if>
@@ -218,23 +218,28 @@
 <script>
     function checkeBox() {
         $checkbox = document.getElementById('importantCheck');
-        $checkbox.onclick = () => {
-            if ($checkbox.checked) {
-                console.log("체크박스가 선택되었습니다.");
-                // 선택되었을 때 수행할 동작
-                $checkbox.value = 1;
+        if ($checkbox){
 
-            } else {
-                console.log("체크박스가 선택되지 않았습니다.");
-                $checkbox.value = 0;
-                // 선택되지 않았을 때 수행할 동작
+            $checkbox.onclick = () => {
+                if ($checkbox.checked) {
+                    console.log("체크박스가 선택되었습니다.");
+                    // 선택되었을 때 수행할 동작
+                    $checkbox.value = 1;
+
+                } else {
+                    console.log("체크박스가 선택되지 않았습니다.");
+                    $checkbox.value = 0;
+                    // 선택되지 않았을 때 수행할 동작
+                
+                    // console.log('나오냐?');
+                    // console.log($checkbox.value);
+
+                }
+
             }
-            // console.log('나오냐?');
-            // console.log($checkbox.value);
-
-        }
-
+        }   
     }
+
     checkeBox();
 
 

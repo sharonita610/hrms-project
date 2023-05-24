@@ -61,8 +61,7 @@
         }
 
         .board_area .top-box #save-Btn {
-            /* margin: 10px; */
-            /* margin-right: 10px; */
+
             margin-bottom: 10px;
 
         }
@@ -117,7 +116,7 @@
         }
 
         .table td,
-        th {
+        .table th {
             border: none;
             border-bottom: 1px solid #f4f4f4;
 
@@ -128,10 +127,9 @@
         }
 
         .card-wrapper th,
-        td {
+        .card-wrapper td {
             height: 2em;
             line-height: 2em;
-
         }
 
         .card-wrapper:hover {
@@ -154,6 +152,8 @@
             background-color: #0d6efd !important;
             color: #ffffff !important;
         }
+
+        /* 중요(important) list */
         .importantBoard {
             background-color: #f2f2f2;
             color: #ff4e59;
@@ -267,7 +267,7 @@
 
                             <tbody>
                                 <tr>
-                                    <th scope="row" rowspan="3">사진</th>
+                                    <th scope="row" rowspan="3" id="modalPro">사진</th>
                                     <td>이름</td>
                                     <td id="modalName"></td>
                                 </tr>
@@ -291,6 +291,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
+                        <!-- <img src="/assets/img/anonymous_m.png" alt=""/> -->
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
                     </div>
@@ -305,7 +306,7 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
     <script>
-        //importan 부여!!
+        //important 부여!!
         function makeImportant(){
             const $importantTag=document.querySelectorAll('.card-wrapper');
 
@@ -314,9 +315,6 @@
                         // console.log('important1입니다.');
                         element.classList.add('importantBoard')
                         element.firstElementChild.innerHTML='<i class="fa-solid fa-circle-exclamation fa-lg" style="color: #ff4e59;"></i>';
-
-                        // console.log(element.firstElementChild);
-                        // element.firstChild.innerText='중요';
 
                 }
        
@@ -348,6 +346,7 @@
         maintainSelect();
 
 
+        // page 클릭시 색 변경
         function colorSwitch(e) {
             const curPageNum = '${boardPageMaker.boardPage.boardPageNo}';
             const $pageList = document.querySelector('.pagination');
@@ -383,11 +382,25 @@
                                 const modalPos=document.getElementById('modalPos');
                                 const modalEmail=document.getElementById('modalEmail');
                                 const modalPhone=document.getElementById('modalPhone');
+                                const modalPro=document.getElementById('modalPro')
+
                                 modalName.innerText=r.empName;
                                 modalDept.innerText=r.deptName;
                                 modalPos.innerText=r.posName;
                                 modalEmail.innerText=r.empEmail;
                                 modalPhone.innerText=r.empPhone;
+                                modalPro.dataset.gender=r.empGender;
+                                // console.log(r.profile);
+
+                                if(r.profile==null && r.empGender=='M'){
+                                    console.log('남자이고 프로필없음');
+                                    modalPro.innerHTML=`<img src='/assets/img/anonymous_m.png' alt='man&noprofile'/>`
+                                }else if(r.profile==null && r.empGender=='F'){
+                                    console.log('여자이고 프로필없음');
+                                }else{
+                                    console.log('프로필있음');
+                                }
+
                             }
 
                     }

@@ -626,7 +626,6 @@
                     tag += "       </div>" +
                         "    </div>" +
                         " </div>";
-  // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
 
                 }
             }
