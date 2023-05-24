@@ -1,22 +1,26 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html lang="ko">
+<link rel="icon" href="/assets/img/favicon_blue.png">
 <link rel="stylesheet" href="/assets/css/main-page.css">
 <link rel="stylesheet" href="/assets/css/main-confirmlist.css">
 <!-- bootstrap css -->
+<link rel="stylesheet" href="/assets/css/main-page.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+
 </script>
-<!-- fontawsome -->
-<script src="https://kit.fontawesome.com/024f42bdd1.js" crossorigin="anonymous"></script>
 <style>
     .board-part .boardTable {
         text-align: center;
+    }
+
+    .table .table-top {
+        background-color: #d0e3ed;
     }
 
 
@@ -125,7 +129,7 @@
 <script>
 
     const URL = "/hrms/confirm";
-    const empNo = ${login.empNo};
+    const empNo = '${login.empNo}';
     const roleCode = '${login.roleCode}';
 
     const confirmBox = document.getElementById('confirm-table');
@@ -182,7 +186,7 @@
 
 
     <script>
-        const URL-board = '/api/hrms/main-board';
+        const URLboard = '/api/hrms/main-board';
 
 
         function renderTable(responseResult) {
@@ -265,7 +269,7 @@
         //board 패치
         function wannaBoardList(pageNo = 1) {
 
-            fetch(`\${URL-board}/page/\${pageNo}`)
+            fetch(`\${URLboard}/page/\${pageNo}`)
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);

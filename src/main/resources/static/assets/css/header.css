@@ -13,7 +13,7 @@ header{
     width: 100%;
     position: sticky;
     height: 90px;
-    z-index: 99999;
+    z-index: 300;
 
 
 }
@@ -54,12 +54,12 @@ header{
     padding-top: 5px;
 
 }
-#welcometitle {
-    margin-left: 200px;
+.welcome-title{
+    margin-left: 280px !important;
 }
 
 #logout-button{
-    margin-right: 40px;
+    margin-right: 100px;
 }
 
 /*  헤더 최상단 파트 끝  */
