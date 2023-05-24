@@ -142,6 +142,24 @@
         .detail-button #backToList {
             margin-right: 10px;
         }
+
+        .class-input {
+            display: flex;
+        }
+
+        .title-input #title {
+            width: 500px;
+        }
+
+        .title-input #serious {
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        #importantCheck {
+            transform: scale(1.5);
+            margin: 0px 10px;
+        }
     </style>
 </head>
 
@@ -153,8 +171,7 @@
                 <section class="modify-part">
                     <div class="container">
                         <h1>게시글 작성</h1>
-                        <form action="/hrms/board/board-save" method="post" enctype="multipart/form-data">
-                            <input name="saveFile" type="file" style="color: red;">
+                        <form action="/hrms/board/board-save" method="post">
                             <div class="form-group">
                                 <c:if test="${login!=null}">
                                     <input type="hidden" name="empNo" value="${login.empNo}">
@@ -168,8 +185,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">제목:</label>
-                                <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" required>
+                                <div class="title-input">
+                                    <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" required>
+                                    <c:if test="${login.roleCode==='11111'|| login.roleCode==='00000'}">
+                                        <input name="important" id="importantCheck" type="checkbox" value="0"><span
+                                            id="serious">중요</span>
+                                    </c:if>
+                                </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="content">내용:</label>
                                 <!-- <textarea id="content" name="bdContent" placeholder="내용을 입력하세요" required> -->
@@ -192,12 +216,35 @@
 
 </body>
 <script>
-    const $back = document.getElementById('backToList');
-    $back.onclick=()=>{
-        window.location.href='/hrms/board/board-list/'
+    function checkeBox() {
+        $checkbox = document.getElementById('importantCheck');
+        $checkbox.onclick = () => {
+            if ($checkbox.checked) {
+                console.log("체크박스가 선택되었습니다.");
+                // 선택되었을 때 수행할 동작
+                $checkbox.value = 1;
+
+            } else {
+                console.log("체크박스가 선택되지 않았습니다.");
+                $checkbox.value = 0;
+                // 선택되지 않았을 때 수행할 동작
+            }
+            // console.log('나오냐?');
+            // console.log($checkbox.value);
+
+        }
 
     }
+    checkeBox();
 
+
+
+
+    const $back = document.getElementById('backToList');
+    $back.onclick = () => {
+        window.location.href = '/hrms/board/board-list/'
+
+    }
 </script>
 
 </html>

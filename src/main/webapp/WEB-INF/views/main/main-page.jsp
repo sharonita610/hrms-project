@@ -8,21 +8,27 @@
 <!-- bootstrap css -->
 <link rel="stylesheet" href="/assets/css/main-page.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 <!-- bootstrap js -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+</script>
+<script src="https://kit.fontawesome.com/024f42bdd1.js" crossorigin="anonymous"></script>
 
 </script>
+
+<%@ include file="../main/include/header.jsp" %>
+<!-- 메인 페이지 list 포함 css -->
 <style>
+    
     .board-part .boardTable {
         text-align: center;
     }
 
     .table .table-top {
-        background-color: #d0e3ed;
+        background-color: white !important;
     }
-
+  
 
 
     .table .table-main td {
@@ -48,10 +54,12 @@
         margin-right: 20px;
 
     }
-    .title-list #left-pointer a{
+
+    .title-list #left-pointer a {
         cursor: pointer;
     }
-    .title-list #right-pointer a{
+
+    .title-list #right-pointer a {
         cursor: pointer;
     }
 
@@ -63,10 +71,16 @@
         margin-right: 10px;
         margin-left: 30px;
     }
-</style>
-<%@ include file="../main/include/header.jsp" %>
-<!-- 메인 페이지 list 포함 css -->
 
+    .boardTableBody .importantBoard {
+        background-color: #f2f2f2 !important;
+        color: #ff4e59;
+        font-weight: 700;
+    }
+    /* .table-top th{
+        font-weight: 700;
+    } */
+</style>
 <body>
     <div id="body-wrapper">
         <%@ include file="include/left-banner.jsp" %>
@@ -86,7 +100,7 @@
                         </li>
                         <section class="board-part">
                             <table class="boardTable table">
-                                <tr class="table-top">
+                                <tr class="table-top" style="font-weight: 700;">
                                     <th scope="col" id="boardNum">글번호</th>
                                     <th scope="col" id="boardTitle">글제목</th>
                                     <th scope="col" id="writer">작성자</th>
@@ -114,11 +128,11 @@
                         <li>메일</li>
                         <li>메일</li>
                     </ul>
-                    <ul id = "confirm-box">
+                    <ul id="confirm-box">
                         <li class="title-list">
                             <h1>결재</h1>
                         </li>
-                        <div id = "confirm-table">
+                        <div id="confirm-table">
 
                         </div>
                     </ul>
@@ -126,70 +140,91 @@
             </div>
         </section>
     </div>
-<script>
+    <script>
+        const URL = '/hrms/confirm';
+        const empNo = '${login.empNo}';
+        const roleCode = '${login.roleCode}';
 
-    const URL = '/hrms/confirm';
-    const empNo = '${login.empNo}';
-    const roleCode = '${login.roleCode}';
+        const confirmBox = document.getElementById('confirm-table');
 
-    const confirmBox = document.getElementById('confirm-table');
-
-    function getConfirmList(){
-        fetch(`\${URL}/\${empNo}/\${roleCode}`)
-            .then(res => res.json())
-            .then(result => {
-            if(result !== null){
-                renderConfirmList(result);
-                }
-            })
-    }
-
-    function renderConfirmList(list){
-        let tag = '';
-        tag += '<ul class = "header-bar confirm-tr" id = "waiting-th"><li class = "title-line col1">NO</li>' +
-            '<li class = "title-line col2">문서제목</li>';
-        if (roleCode === '11111') {
-            tag += '<li class = "title-line col3">기안자</li>';
-        } else {
-            tag += '<li class = "title-line col3">부서장</li>';
+        function getConfirmList() {
+            fetch(`\${URL}/\${empNo}/\${roleCode}`)
+                .then(res => res.json())
+                .then(result => {
+                    if (result !== null) {
+                        renderConfirmList(result);
+                    }
+                })
         }
-        tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">승인여부</li></ul>';
 
-        tag += '<div class = "inner-list-container">';
-        for (let i = 0; i < 8; i++) {
-
-            const {
-                conNo,
-                conTitle,
-                fromName,
-                fromDept,
-                conDate,
-                conStatus,
-                conCheckDate
-            } = list[i];
-
-            tag += '<ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo + '</li><li class = "col2">' +
-                conTitle + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept + '</li>';
-            if(conStatus === '승인대기'){
-                tag += '<li id = "conStatus" class = "col5 skyblue">' + conStatus + '</li></ul>';
-            } else if(conStatus === '승인거절'){
-                tag += '<li id = "conStatus" class = "col5 red">' + conStatus + '</li></ul>';
-            } else if(conStatus === '승인완료') {
-                tag += '<li id = "conStatus" class = "col5 green">' + conStatus + '</li></ul>';
+        function renderConfirmList(list) {
+            let tag = '';
+            tag += '<ul class = "header-bar confirm-tr" id = "waiting-th"><li class = "title-line col1">NO</li>' +
+                '<li class = "title-line col2">문서제목</li>';
+            if (roleCode === '11111') {
+                tag += '<li class = "title-line col3">기안자</li>';
+            } else {
+                tag += '<li class = "title-line col3">부서장</li>';
             }
+            tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">승인여부</li></ul>';
+
+            tag += '<div class = "inner-list-container">';
+            for (let i = 0; i < 8; i++) {
+
+                const {
+                    conNo,
+                    conTitle,
+                    fromName,
+                    fromDept,
+                    conDate,
+                    conStatus,
+                    conCheckDate
+                } = list[i];
+
+                tag += '<ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo +
+                    '</li><li class = "col2">' +
+                    conTitle + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept + '</li>';
+                if (conStatus === '승인대기') {
+                    tag += '<li id = "conStatus" class = "col5 skyblue">' + conStatus + '</li></ul>';
+                } else if (conStatus === '승인거절') {
+                    tag += '<li id = "conStatus" class = "col5 red">' + conStatus + '</li></ul>';
+                } else if (conStatus === '승인완료') {
+                    tag += '<li id = "conStatus" class = "col5 green">' + conStatus + '</li></ul>';
+                }
+            }
+            tag += '</div>';
+            confirmBox.innerHTML = tag;
         }
-        tag += '</div>';
-        confirmBox.innerHTML = tag;
-    }
 
-    getConfirmList();
-
-</script>
+        getConfirmList();
+    </script>
 
 
     <script>
         const URLboard = '/api/hrms/main-board';
 
+
+        //importan 부여!!
+        function makeImportant() {
+            const $importantTag = document.querySelectorAll('.table-top');
+            // console.log($importantTag);
+            $importantTag.forEach(element => {
+                // console.log($importantTag.element);
+                if (element.dataset.important == 1) {
+                    // console.log('important1입니다.');
+                    element.classList.add('importantBoard')
+                    element.firstElementChild.innerHTML =
+                        '<i class="fa-solid fa-circle-exclamation fa-lg" style="color: #ff4e59;"></i>';
+
+                    // console.log(element.firstElementChild);
+                    // element.firstChild.innerText='중요';
+
+                }
+
+            });
+
+
+        }
 
         function renderTable(responseResult) {
             const tableBody = document.getElementById('tableOutter');
@@ -201,7 +236,7 @@
             for (const one of mainBoardResponseDTOS) {
                 // console.log(boardPageMaker.boardPage.boardPageNo);
                 // console.log(one);
-                tag += ` <tr class='table-top'>
+                tag += ` <tr class='table-top' data-important='\${one.important}'>
                                         <th scope='col'>\${one.boardNo}</th>
                                         <th scope='col'><a href='/hrms/board/board-detail/?boardNo=\${one.boardNo}&boardPageNo=\${boardPageMaker.boardPage.boardPageNo}&bdType=NOTICE'>\${one.bdTitle}
                                             <span class='replyCount'>[\${one.repNo}]</span><a></th>
@@ -216,6 +251,9 @@
             prevpageRendering(boardPageMaker);
             nextpageRendering(boardPageMaker);
 
+            //임팩트부여
+            makeImportant();
+
         }
 
         // 이전 페이지 렌더링
@@ -224,13 +262,13 @@
             const $leftpointer = document.getElementById('left-pointer');
 
             // console.log(boardPageMaker.boardPage.boardPageNo);
-            if (boardPageMaker.boardPage.boardPageNo > 1){
-                $leftpointer.innerHTML =  `<i class='fa-solid fa-angles-left' data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>`;
-                }
-                    else{
-                        $leftpointer.innerHTML =  `<i class='fa-solid fa-angles-left' data-pno='1'>`;
-                    }
-                // `<a data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>&lt;&lt;</a>`;
+            if (boardPageMaker.boardPage.boardPageNo > 1) {
+                $leftpointer.innerHTML =
+                    `<i class='fa-solid fa-angles-left' data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>`;
+            } else {
+                $leftpointer.innerHTML = `<i class='fa-solid fa-angles-left' data-pno='1'>`;
+            }
+            // `<a data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>&lt;&lt;</a>`;
 
             // console.log('그려지냐?');
 
@@ -239,9 +277,10 @@
         function nextpageRendering(boardPageMaker) {
             const $rightpointer = document.getElementById('right-pointer');
             if (boardPageMaker.boardPage.boardPageNo != boardPageMaker.final_page)
-                $rightpointer.innerHTML = `<i class='fa-solid fa-angles-right' data-pno='\${boardPageMaker.boardPage.boardPageNo+1}'>`
-                // `<a data-pno='\${boardPageMaker.boardPage.boardPageNo+1}'><i class="fa-solid fa-right-long"></a>`
-                    // <i class="fa-solid fa-angles-right"></i>
+                $rightpointer.innerHTML =
+                `<i class='fa-solid fa-angles-right' data-pno='\${boardPageMaker.boardPage.boardPageNo+1}'>`
+            // `<a data-pno='\${boardPageMaker.boardPage.boardPageNo+1}'><i class="fa-solid fa-right-long"></a>`
+            // <i class="fa-solid fa-angles-right"></i>
         }
 
 
@@ -250,10 +289,11 @@
             const $leftpointer = document.getElementById('left-pointer');
             $leftpointer.onclick = (e) => {
                 e.preventDefault();
-                if (e.target.matches('#left-pointer i')){
+                if (e.target.matches('#left-pointer i')) {
                     console.log(e.target.dataset.pno);
-                const prewPage = e.target.dataset.pno;
-                wannaBoardList(prewPage);}
+                    const prewPage = e.target.dataset.pno;
+                    wannaBoardList(prewPage);
+                }
 
             }
         }
@@ -262,9 +302,10 @@
         function nextpageAddEvent() {
             const $rightpointer = document.getElementById('right-pointer');
             $rightpointer.onclick = (e) => {
-                if (e.target.matches('#right-pointer i')){
-                const nextPage = e.target.dataset.pno;
-                wannaBoardList(nextPage);}
+                if (e.target.matches('#right-pointer i')) {
+                    const nextPage = e.target.dataset.pno;
+                    wannaBoardList(nextPage);
+                }
             }
         }
 
@@ -281,9 +322,13 @@
         }
 
         (function () {
+            //boardlist 랜더링
             wannaBoardList();
+
+            //페이징 이팩트
             prevpageAddEvent();
             nextpageAddEvent();
+
         })();
     </script>
 </body>

@@ -10,13 +10,14 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Builder
 public class BoardSaveRequestDTO {
 
     private BdType bdType;
     private String bdTitle;
     private String bdContent;
     private long empNo;
-    private MultipartFile saveFile;
+    private long important;
 
 
 }

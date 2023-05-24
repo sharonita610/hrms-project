@@ -37,7 +37,7 @@ public class BoardController {
     @GetMapping("/board-list")
     public String boardFindAll(BoardSearch search, Model model) {
         List<BoardListResponseDTO> boardListResponseDTOS = boardService.boardFindAll(search);
-        log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
+//        log.info("/hrms/board-list : GET {}", boardListResponseDTOS);
 
         BoardPageMaker boardPageMaker = new BoardPageMaker(search, boardService.boardPageCount(search));
 //        log.info("hrms/board-list : GET / boardPageMaker : {}", boardPageMaker);
@@ -61,17 +61,7 @@ public class BoardController {
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
       log.info("BoardSaveRequestDTO {}",dto);
-        MultipartFile saveFile = dto.getSaveFile();
-
-        String savePath = null;
-        if (!saveFile.isEmpty()) {
-            // 실제 로컬 스토리지에 파일을 업로드하는 로직
-            savePath = FileUtil.saveBoardFile(saveFile, rootPath);
-        }
-
-//        boolean flag = memberService.join(dto, savePath);
-
-        boardService.boardSave(dto, savePath);
+        boardService.boardSave(dto);
         return "redirect:/hrms/board/board-list";
     }
 

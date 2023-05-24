@@ -38,21 +38,16 @@ public class Board {
 
     //해당 게시물에 걸린 댓글수
     private long repNo;
-
-    //해당 게시물에 저장된 saveFile
-    private String saveFile;
+    private long important;
 
 
 
-
-
-
-    public Board(BoardSaveRequestDTO dto,String savePath) {
+    public Board(BoardSaveRequestDTO dto) {
         this.bdType=dto.getBdType();
         this.bdTitle=dto.getBdTitle();
         this.bdContent=dto.getBdContent();
         this.empNo= dto.getEmpNo();
-        this.saveFile=savePath;
+        this.important=dto.getImportant();
     }
 
     public Board(BoardModifyRequestDTO dto){

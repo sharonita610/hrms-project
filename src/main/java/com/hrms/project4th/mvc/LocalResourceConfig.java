@@ -9,13 +9,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class LocalResourceConfig implements WebMvcConfigurer {
 
-    @Value("C:/hrms/employeesProfile/")
+    @Value("${file.upload.root-path}")
     private String rootPath;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/hrms/**")
+        registry.addResourceHandler("/local/**")
                 .addResourceLocations("file:" + rootPath);
 
     }

@@ -8,6 +8,8 @@
     <link rel="icon" href="/assets/img/favicon_blue.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <!-- font-awsome -->
+        <script src="https://kit.fontawesome.com/024f42bdd1.js" crossorigin="anonymous"></script>
     <%@ include file="../main/include/header.jsp" %>
 
     <!-- <link rel="stylesheet" href="/assets/css/board.css"> -->
@@ -85,6 +87,7 @@
 
         .table .table-top {
             background-color: #f5f5f5;
+            border-bottom: 1px solid #000 !important;
             font-weight: 600;
         }
 
@@ -151,6 +154,11 @@
             background-color: #0d6efd !important;
             color: #ffffff !important;
         }
+        .importantBoard {
+            background-color: #f2f2f2;
+            color: #ff4e59;
+            font-weight: 700;
+        }
     </style>
 </head>
 
@@ -180,7 +188,7 @@
                             <th scope="col">조회수</th>
                         </tr>
                         <c:forEach var="a" items="${allList}">
-                            <tr class="card-wrapper">
+                            <tr class="card-wrapper" data-important="${a.important}">
 
                                 <th scope="row" id="boardNo">${a.boardNo}</th>
                                 <td id="title">
@@ -236,8 +244,8 @@
                             <option value="titleAndContent">제목+내용</option>
                         </select>
                         <input class="form-control mr-sm-2" type="search" id="search" placeholder="검색어를 입력하세요"
-                            aria-label="Search" name="boardKeyWord" value="${search.boardKeyWord}"><i id="keyboard"
-                            class="fa fa-keyboard-o"></i>
+                            aria-label="Search" name="boardKeyWord" value="${search.boardKeyWord}">
+                            <!-- <i id="keyboard" class="fa fa-keyboard-o"></i> -->
                         <button class="btn btn-outline-primary my-2 my-sm-0" id="search-button"
                             type="submit">검색</button>
                     </div>
@@ -297,6 +305,28 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
     <script>
+        //importan 부여!!
+        function makeImportant(){
+            const $importantTag=document.querySelectorAll('.card-wrapper');
+
+            $importantTag.forEach(element => {
+                if(element.dataset.important==1){
+                        // console.log('important1입니다.');
+                        element.classList.add('importantBoard')
+                        element.firstElementChild.innerHTML='<i class="fa-solid fa-circle-exclamation fa-lg" style="color: #ff4e59;"></i>';
+
+                        // console.log(element.firstElementChild);
+                        // element.firstChild.innerText='중요';
+
+                }
+       
+            });
+
+
+        }
+
+
+
         //저장기능
         const $save = document.getElementById('save-Btn');
         $save.onclick = function () {
@@ -388,6 +418,7 @@
 
         (function () {
             getEmpInfo();
+            makeImportant();
 
         })();
     </script>

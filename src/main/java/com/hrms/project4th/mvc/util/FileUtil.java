@@ -49,7 +49,9 @@ public class FileUtil {
         }
 
         //저장된 파일의 전체경로
-        return newPath + newFileName;
+        String fullPath = newPath + newFileName;
+        String responsePath = "/local"+fullPath.substring(path.length());
+        return responsePath;
 
     }
 

@@ -8,9 +8,11 @@ import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.entity.LoginResult;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
+import com.hrms.project4th.mvc.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -97,6 +99,23 @@ public class LoginService {
 
 
     public static void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+        Cookie c = WebUtils.getCookie(request, AUTO_LOGIN_CHECK);
+
+        if (c != null) {
+            c.setMaxAge(0);
+        }
+        response.addCookie(c);
+
+        employeesMapper.saveAutoLogin(
+                AutoLoginDTO.builder()
+                        .empSession("none")
+                        .cookieLimitTime(LocalDateTime.now())
+                        .empEmail(LoginUtil.getCurrentLoginMemberAccount(request.getSession()))
+                        .build()
+
+
+        );
+
 
     }
 
