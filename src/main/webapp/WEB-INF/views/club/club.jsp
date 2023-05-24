@@ -26,10 +26,14 @@
                                 </li>
                                 <li class="club-name"></li>
                                 <li class="board-writer"></li>
-                                <li>
+                                <li class="detail-join-btn"></li>
                                     <!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
-                                    <button id="join-club-btn">가입하기</button>
-                                </li>
+                                    <!-- <button id="join-club-btn">가입하기</button> -->
+                                <!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
+                                <!-- <li>
+                                    <button id="update-club-btn">수정하기</button>
+                                    <button id="delete-club-btn">삭제하기</button>
+                                </li> -->
                             </ul>
                         </li>
                         <li>
@@ -76,9 +80,7 @@
                                 <li>[작성자이름]</li>
                                 <li>
                                     <form action="#" method="post">
-                                        <!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
-                                        <button id="update-club-btn">수정하기</button>
-                                        <button id="delete-club-btn">삭제하기</button>
+                                        
                                     </form>
                                 </li>
                             </ul>
@@ -221,65 +223,82 @@
 
         // 내 게시글 클릭시 태그 생성 및 목록 비동기 요청
         $myBoard.onclick = e => {
-            let myBoardTag = '';
-            removeAllOption();
-            fetch(clubBoardURL + '/myboardList/' + empNo)
-                .then(res => res.json())
-                .then(resResult => {
-                    // console.log(resResult);
-                    if (resResult.length === 0) {
-                        myBoardTag += "<div> 작성한 게시글이 없습니다.</div>";
-                    } else {
-                        for (let oneboard of resResult) {
-                            const {
-                                cbNo,
-                                cbTitle,
-                                clubCode,
-                                empNo
-                            } = oneboard;
-
-                            myBoardTag += "<ul>" +
-                                "<li class='club-board-title' data-cbNo='" + cbNo + "' data-clubCode='" +
-                                clubCode + "'>" + cbTitle + "</li>" +
-                                "</ul>";
-                        }
-                    }
-                    document.querySelector('.three-option').innerHTML = myBoardTag;
-                });
+            myBoardList();
         };
+        
+        // 내 게시글 목록 조회 함수
+        function myBoardList() {
+        let myBoardTag = '';
+        removeAllOption();
+        fetch(clubBoardURL + '/myboardList/' + empNo)
+            .then(res => res.json())
+            .then(resResult => {
+                // console.log(resResult);
+                if (resResult.length === 0) {
+                    myBoardTag += "<div> 작성한 게시글이 없습니다.</div>";
+                } else {
+                    for (let oneboard of resResult) {
+                        const {
+                            cbNo,
+                            cbTitle,
+                            clubCode,
+                            empNo
+                        } = oneboard;
+
+                        myBoardTag += "<ul>" +
+                            "<li class='club-board-title' data-cbNo='" + cbNo + "' data-clubCode='" +
+                            clubCode + "'>" + cbTitle + "</li>" +
+                            "</ul>";
+                    }
+                }
+                document.querySelector('.three-option').innerHTML = myBoardTag;
+            });
+        }
 
         // 내 동호회 클릭시 태그 생성 및 목록 비동기 요청
         $myClub.onclick = e => {
-            let myClubTag = '';
-            removeAllOption();
-            fetch(clubBoardURL + '/myclubList/' + empNo)
-                .then(res => res.json())
-                .then(resResult => {
-                    if (resResult.length === 0) {
-                        myBoardTag += "<div> 가입한 동호회가 없습니다.</div>";
-                    } else {
-                        for (let oneClub of resResult) {
-                            const {
-                                ecIndex,
-                                empJoinDate,
-                                empNo,
-                                clubCode,
-                                clubName
-                            } = oneClub;
-
-                            myClubTag += "<ul>" +
-                                "<li class='joined-club-list' data-clubCode='" + clubCode + "'>" + clubName +
-                                "<button class='club-leave-btn'>탈퇴하기</button>" +
-                                "</li>" +
-                                "</ul>";
-                        }
-                    }
-                    document.querySelector('.three-option').innerHTML = myClubTag;
-                });
+            myJoinedClubList();
         };
+        
+        // 내 동호회 목록 조회 함수
+        function myJoinedClubList() {
+        let myClubTag = '';
+        removeAllOption();
+        fetch(clubBoardURL + '/myclubList/' + empNo)
+            .then(res => res.json())
+            .then(resResult => {
+                if (resResult.length === 0) {
+                    myBoardTag += "<div> 가입한 동호회가 없습니다.</div>";
+                } else {
+                    for (let oneClub of resResult) {
+                        const {
+                            ecIndex,
+                            empJoinDate,
+                            empNo,
+                            clubCode,
+                            clubName
+                        } = oneClub;
+
+                        myClubTag += "<ul>" +
+                            "<li class='joined-club-list' data-clubCode='" + clubCode + "'>" + clubName +
+                            "<button class='club-leave-btn'>탈퇴하기</button>" +
+                            "</li>" +
+                            "</ul>";
+                    }
+                }
+                document.querySelector('.three-option').innerHTML = myClubTag;
+            });
+        }
+
 
         // 내가 쓴 댓글 클릭시 태그 생성 및 목록 비동기 요청
         $myReply.onclick = e => {
+            myReplyList();
+        };
+        
+
+        // 내가 쓴 댓글 목록 비동기 조회 함수
+        function myReplyList() {
             let myReplyTag = '';
             removeAllOption();
             fetch(clubBoardURL + '/myClubReply/' + empNo)
@@ -310,8 +329,7 @@
                     document.querySelector('.three-option').innerHTML = myReplyTag;
 
                 });
-        };
-
+        }
 
         // 게시글 컨텐츠 클릭시 모달창 띄우기
         const $clubCardContent = document.querySelector('.club-card-content');
@@ -385,7 +403,8 @@
                             if (res.status === 200) {
                                 alert('가입에 성공했습니다!');
                             }
-                        });
+                        })
+                        .then(resReult => myJoinedClubList())
 
                 });
                 
@@ -415,6 +434,11 @@
                 $modalPostImg.textContent = e.target.parentElement.querySelector('.board-list-club-URL')
                 .textContent;
 
+
+                // 게시글 상세보기 클릭시 (가입하기 버튼)태그 생성
+                let detailJoinTag = '<button id="join-club-btn">가입하기</button>';
+                document.querySelector('.detail-join-btn').innerHTML = detailJoinTag;
+                        
 
                 // 게시글 상세보기 시 댓글 목록 비동기 처리
                 let replyTag = '';
@@ -486,7 +510,8 @@
                         } else {
                             alert('동호회 탈퇴 실패');
                         }
-                    });
+                    })
+                    .then(resResult => myJoinedClubList());
             }
 
         }
