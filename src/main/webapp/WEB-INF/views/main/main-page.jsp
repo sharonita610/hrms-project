@@ -11,6 +11,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
 </script>
+<!-- fontawsome -->
+<script src="https://kit.fontawesome.com/024f42bdd1.js" crossorigin="anonymous"></script>
 <style>
     .board-part .boardTable {
         text-align: center;
@@ -39,6 +41,13 @@
     .title-list #left-pointer {
         margin-left: 110px;
         margin-right: 20px;
+        
+    }
+    .title-list #left-pointer a{
+        cursor: pointer;
+    }
+    .title-list #right-pointer a{
+        cursor: pointer;
     }
 
     .title-list #right-pointer {
@@ -125,11 +134,11 @@
                 mainBoardResponseDTOS
             } = responseResult;
             for (const one of mainBoardResponseDTOS) {
-
+                // console.log(boardPageMaker.boardPage.boardPageNo);
                 // console.log(one);
                 tag += ` <tr class='table-top'>
                                         <th scope='col'>\${one.boardNo}</th>
-                                        <th scope='col'><a href='/hrms/board/board-detail/?boardNo=\${one.boardNo}&boardPageNo=1&bdType=NOTICE'>\${one.bdTitle}
+                                        <th scope='col'><a href='/hrms/board/board-detail/?boardNo=\${one.boardNo}&boardPageNo=\${boardPageMaker.boardPage.boardPageNo}&bdType=NOTICE'>\${one.bdTitle}
                                             <span class='replyCount'>[\${one.repNo}]</span><a></th>
                                         <th scope='col'>\${one.empName}</th>
                                         <th scope='col'>\${one.bdDate}</th>
@@ -150,8 +159,13 @@
             const $leftpointer = document.getElementById('left-pointer');
 
             // console.log(boardPageMaker.boardPage.boardPageNo);
-            if (boardPageMaker.boardPage.boardPageNo > 1)
-                $leftpointer.innerHTML = `<a data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>&lt;&lt;</a>`;
+            if (boardPageMaker.boardPage.boardPageNo > 1){
+                $leftpointer.innerHTML =  `<i class='fa-solid fa-angles-left' data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>`;}
+                    else{
+                        $leftpointer.innerHTML =  `<i class='fa-solid fa-angles-left' data-pno='1'>`;
+                    }
+                // `<a data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>&lt;&lt;</a>`;
+           
             // console.log('그려지냐?');
 
         }
@@ -159,8 +173,9 @@
         function nextpageRendering(boardPageMaker) {
             const $rightpointer = document.getElementById('right-pointer');
             if (boardPageMaker.boardPage.boardPageNo != boardPageMaker.final_page)
-                $rightpointer.innerHTML = `<a data-pno='\${boardPageMaker.boardPage.boardPageNo+1}'>&gt;&gt;</a>`
-
+                $rightpointer.innerHTML = `<i class='fa-solid fa-angles-right' data-pno='\${boardPageMaker.boardPage.boardPageNo+1}'>`
+                // `<a data-pno='\${boardPageMaker.boardPage.boardPageNo+1}'><i class="fa-solid fa-right-long"></a>`
+                    // <i class="fa-solid fa-angles-right"></i>
         }
 
 
@@ -169,8 +184,8 @@
             const $leftpointer = document.getElementById('left-pointer');
             $leftpointer.onclick = (e) => {
                 e.preventDefault();
-                if (e.target.matches('#left-pointer a')){
-                    // console.log(e.target.dataset.pno);
+                if (e.target.matches('#left-pointer i')){
+                    console.log(e.target.dataset.pno);
                 const prewPage = e.target.dataset.pno;
                 wannaBoardList(prewPage);}
 
@@ -181,7 +196,7 @@
         function nextpageAddEvent() {
             const $rightpointer = document.getElementById('right-pointer');
             $rightpointer.onclick = (e) => {
-                if (e.target.matches('#right-pointer a')){
+                if (e.target.matches('#right-pointer i')){
                 const nextPage = e.target.dataset.pno;
                 wannaBoardList(nextPage);}
             }
