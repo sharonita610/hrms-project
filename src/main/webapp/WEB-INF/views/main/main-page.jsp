@@ -128,7 +128,7 @@
     </div>
 <script>
 
-    const URL = "/hrms/confirm";
+    const URL = '/hrms/confirm';
     const empNo = '${login.empNo}';
     const roleCode = '${login.roleCode}';
 
@@ -225,7 +225,8 @@
 
             // console.log(boardPageMaker.boardPage.boardPageNo);
             if (boardPageMaker.boardPage.boardPageNo > 1){
-                $leftpointer.innerHTML =  `<i class='fa-solid fa-angles-left' data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>`;}
+                $leftpointer.innerHTML =  `<i class='fa-solid fa-angles-left' data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>`;
+                }
                     else{
                         $leftpointer.innerHTML =  `<i class='fa-solid fa-angles-left' data-pno='1'>`;
                     }
