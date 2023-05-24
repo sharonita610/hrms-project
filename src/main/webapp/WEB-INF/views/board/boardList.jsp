@@ -8,8 +8,8 @@
     <link rel="icon" href="/assets/img/favicon_blue.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-        <!-- font-awsome -->
-        <script src="https://kit.fontawesome.com/024f42bdd1.js" crossorigin="anonymous"></script>
+    <!-- font-awsome -->
+    <script src="https://kit.fontawesome.com/024f42bdd1.js" crossorigin="anonymous"></script>
     <%@ include file="../main/include/header.jsp" %>
 
     <!-- <link rel="stylesheet" href="/assets/css/board.css"> -->
@@ -159,6 +159,15 @@
             color: #ff4e59;
             font-weight: 700;
         }
+        .table th{
+            vertical-align: bottom;
+
+        }
+
+        .profile-image {
+            width: 148px;
+            height: 168px;
+        }
     </style>
 </head>
 
@@ -245,7 +254,7 @@
                         </select>
                         <input class="form-control mr-sm-2" type="search" id="search" placeholder="검색어를 입력하세요"
                             aria-label="Search" name="boardKeyWord" value="${search.boardKeyWord}">
-                            <!-- <i id="keyboard" class="fa fa-keyboard-o"></i> -->
+                        <!-- <i id="keyboard" class="fa fa-keyboard-o"></i> -->
                         <button class="btn btn-outline-primary my-2 my-sm-0" id="search-button"
                             type="submit">검색</button>
                     </div>
@@ -266,7 +275,7 @@
                         <table class="table hrInfoTable">
 
                             <tbody>
-                                <tr>
+                                <tr id="profileFrame">
                                     <th scope="row" rowspan="3" id="modalPro">사진</th>
                                     <td>이름</td>
                                     <td id="modalName"></td>
@@ -276,7 +285,7 @@
                                     <td id="modalDept"></td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">직급</th>
+                                    <td scope="row">직급</td>
                                     <td colspan="2" id="modalPos"></td>
                                 </tr>
                                 <tr>
@@ -307,17 +316,18 @@
     </script>
     <script>
         //important 부여!!
-        function makeImportant(){
-            const $importantTag=document.querySelectorAll('.card-wrapper');
+        function makeImportant() {
+            const $importantTag = document.querySelectorAll('.card-wrapper');
 
             $importantTag.forEach(element => {
-                if(element.dataset.important==1){
-                        // console.log('important1입니다.');
-                        element.classList.add('importantBoard')
-                        element.firstElementChild.innerHTML='<i class="fa-solid fa-circle-exclamation fa-lg" style="color: #ff4e59;"></i>';
+                if (element.dataset.important == 1) {
+                    // console.log('important1입니다.');
+                    element.classList.add('importantBoard')
+                    element.firstElementChild.innerHTML =
+                        '<i class="fa-solid fa-circle-exclamation fa-lg" style="color: #ff4e59;"></i>';
 
                 }
-       
+
             });
 
 
@@ -375,36 +385,39 @@
                     const eno = e.target.dataset.eno;
 
                     for (const r of responseResult) {
-                            if(r.empNo==eno){
-                                // console.log('일치');
-                                const modalName=document.getElementById('modalName');
-                                const modalDept=document.getElementById('modalDept');
-                                const modalPos=document.getElementById('modalPos');
-                                const modalEmail=document.getElementById('modalEmail');
-                                const modalPhone=document.getElementById('modalPhone');
-                                const modalPro=document.getElementById('modalPro')
+                        if (r.empNo == eno) {
+                            // console.log('일치');
+                            const modalName = document.getElementById('modalName');
+                            const modalDept = document.getElementById('modalDept');
+                            const modalPos = document.getElementById('modalPos');
+                            const modalEmail = document.getElementById('modalEmail');
+                            const modalPhone = document.getElementById('modalPhone');
+                            const modalPro = document.getElementById('modalPro')
 
-                                modalName.innerText=r.empName;
-                                modalDept.innerText=r.deptName;
-                                modalPos.innerText=r.posName;
-                                modalEmail.innerText=r.empEmail;
-                                modalPhone.innerText=r.empPhone;
-                                modalPro.dataset.gender=r.empGender;
-                                // console.log(r.profile);
+                            modalName.innerText = r.empName;
+                            modalDept.innerText = r.deptName;
+                            modalPos.innerText = r.posName;
+                            modalEmail.innerText = r.empEmail;
+                            modalPhone.innerText = r.empPhone;
+                            modalPro.dataset.gender = r.empGender;
+                            // console.log(r.profile);
 
-                                if(r.profile==null && r.empGender=='M'){
-                                    console.log('남자이고 프로필없음');
-                                    modalPro.innerHTML=`<img src='/assets/img/anonymous_m.png' alt='man&noprofile'/>`
-                                }else if(r.profile==null && r.empGender=='F'){
-                                    console.log('여자이고 프로필없음');
-                                }else{
-                                    console.log('프로필있음');
-                                }
-
+                            if (r.profile == null && r.empGender == 'M') {
+                                console.log('남자이고 프로필없음');
+                                modalPro.innerHTML =
+                                    `<img src='/assets/img/anonymous_m.png' alt='man&noprofile' class='profile-image'/>`;
+                            } else if (r.profile == null && r.empGender == 'F') {
+                                console.log('여자이고 프로필없음');
+                                modalPro.innerHTML =
+                                `<img src='/assets/img/anonymous_w.png' alt='woman&noprofile' class='profile-image'/>`;
+                            } else {
+                                console.log('프로필있음');
                             }
 
+                        }
+
                     }
-         
+
                 });
             });
 
