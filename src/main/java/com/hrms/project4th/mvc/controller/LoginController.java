@@ -110,7 +110,7 @@ public class LoginController {
                 LoginService.autoLoginClear(request, response);
             }
             // 세션에서 login 정보를 제거
-            session.removeAttribute("login");
+            session.removeAttribute(LOGIN_KEY);
 
 
             session.invalidate();
