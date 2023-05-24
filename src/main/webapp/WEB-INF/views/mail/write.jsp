@@ -73,7 +73,6 @@
                                 <input class="form-control flex-container" list="datalistOptions" id="exampleDataList" placeholder="찾기">
                                 <a class="btn btn-primary searchbutton" href="#" role="button">검색</a>
                                 <select name="" id="select" class="optionselect">
-                                    <option value=""></option>
                                 </select>
                             </div>
                         </div>
@@ -162,21 +161,40 @@
             
             for (let employee of responseResult) {
                 //console.log(employee);
-                $tag+=`<option value='\${employee.empNo}' data-empname='\${employee.empName}' class='selectoption'>\${employee.empName}\${employee.empEmail}\${employee.deptName}\${employee.posName}</option>`
+                $tag+=`<option value='\${employee.empNo}' data-empname='\${employee.empName}' class='selectoption'>\${employee.empName}/\${employee.empEmail}/\${employee.deptName}/\${employee.posName}</option>`
                 //console.log($tag);
                 
             }
             $select.innerHTML = $tag;
         }
 
-        //input태그에 값 집어넣는 함수
-        const selectElement = document.getElementById('select');
+        //select 태그 잡아오기
+        const select = document.getElementById('select');
 
-        selectElement.addEventListener('change', function(event) {
-        const selectedValue = event.target.value;
-        const selectempname = event.target.dataset.empname;
+        select.addEventListener('change', e=> {
+        
+        //타겟  option태그 안의 사번 잡아오기
+        const selectedValue = e.target.value;
+
+        //확인용
         console.log(selectedValue);
-        console.log(selectempname);
+  
+  // Get the plain text content of the selected option
+            // 타겟 option의 텍스트값 잡아오기
+            // option태그 안의 텍스트값 / 문자로 잘라오기
+            const parts = selectedText.split('/');
+            
+            //잘라온 텍스트 값들 토막내기
+            
+            
+           
+
+            //발신자 사번 input태그 잡아오기
+            let inputreceiverno = document.querySelector('.inputreceiverno');
+            //확인용
+            console.log(inputreceiverno);
+
+
         });
         // $select.onclick = e =>{
         //     if(e.target.matches('option')){
