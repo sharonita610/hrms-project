@@ -14,21 +14,21 @@
             <div class="information-box">
                 <div id="profile">
                     <ul class="image-box">
-                        <li>
+                        <li class="image-box">
+                            <c:if test="${login != null && login.profile != null}">
+                                <img src="${login.profile}" alt="프사">
+                            </c:if>
                             <c:if test="${login != null && login.empGender == 'M' && login.profile == null}">
                                 <img src="/assets/img/anonymous_m.png" alt="프사">
                             </c:if>
                             <c:if test="${login != null && login.empGender == 'F'  && login.profile == null}">
                                 <img src="/assets/img/anonymous_w.png" alt="프사">
                             </c:if>
-                            <c:if test="${login != null && login.profile != null}">
-                                <img src="${login.profile}" alt="프사">
-                            </c:if>
                         </li>
                     </ul>
                 </div>
 
-                <ul id="information">
+                <ul id="informations">
                     <c:if test="${login != null}">
                         <li>사번 : ${login.empNo}</li><br>
                         <li>이름 : ${login.empName}</li><br>
