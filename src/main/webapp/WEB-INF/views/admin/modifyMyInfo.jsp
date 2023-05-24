@@ -14,9 +14,8 @@
         }
 
         .modify-my-info-wrapper {
-            width: 800px;
-            margin-top: 100px;
-            margin-left: 480px;
+            width: 40%;
+            margin: 100px auto;
             height: 550px;
             padding: 20px 10px 30px 10px;
             position: relative;
@@ -25,7 +24,7 @@
         }
 
         .modify-my-info-wrapper h1 {
-            font-size: 2em;
+            font-size: 1.2em;
             font-weight: 800;
         }
 
@@ -189,18 +188,20 @@
 
         </div>
         <form action="/hrms/main-page" method="get">
-            <button id="save-changes-button" type="submit">저장</button>
+            <button id="save-changes-button" type="submit">확인</button>
         </form>
-        <button id="back-button" onclick="history.back()">이전페이지로</button>
 
 
         <div id="change-phone-modal" style="display: none;">
             <h2 class="modify-my-info-Subtitle">새로운 휴대폰 번호를 입력해주세요</h2>
             <div class="change-info-box">
-                <label for="change-phone-input"><h3>새로운 휴대폰 번호 : </h3></label>
-                <input type="text" id="change-phone-input" placeholder="${login.empPhone}"><br>
+                <c:if test="${login != null}">
+
+                    <label for="change-phone-input"><h3>새로운 휴대폰 번호 : </h3></label>
+                    <input type="text" id="change-phone-input" placeholder="${login.empPhone}"><br>
+                </c:if>
                 <div class="change-info-buttons">
-                    <button id="savePhone-button">확인</button>
+                    <button id="savePhone-button">저장</button>
                     <button id="cancelChangePhone-button" onclick="history.back()">취소</button>
                 </div>
             </div>
@@ -208,11 +209,12 @@
         <div id="change-pwd-modal" style="display: none;">
             <h2 class="modify-my-info-Subtitle">새로운 비밀번호를 입력해주세요</h2>
             <div class="change-pwd-box">
-                <label for="change-pwd-input"><h3>새 비밀번호 : </h3></label>
-                <input type="text" id="change-pwd-input" name="empPwd" placeholder="새 비밀번호입력"><br>
-
-                <label for="check-pwd-input"><h3>비밀번호 재확인 : </h3></label>
-                <input type="text" id="check-pwd-input" name="empPwd_check" placeholder="새 비밀번호 재확인"><br>
+                <label for="change-pwd-input"><h3>새 비밀번호 : </h3>
+                    <input type="text" id="change-pwd-input" name="empPwd" placeholder="새 비밀번호입력"><br>
+                </label>
+                <label for="check-pwd-input"><h3>비밀번호 재확인 : </h3>
+                    <input type="text" id="check-pwd-input" name="empPwd_check" placeholder="새 비밀번호 재확인"><br>
+                </label>
                 <div class="change-pwd-buttons">
                     <button id="savePwd-button">저장</button>
                     <button id="cancelChangePwd-button">취소</button>
@@ -252,19 +254,12 @@
     // 저장 버튼 클릭 시 개인정보 수정 비동기 처리
     function updatePhoneClickEvent() {
 
-
         const $saveButton = document.getElementById('savePhone-button');
-
 
         $saveButton.onclick = e => {
 
-
             // 변경된 휴대폰 번호를 가져오는 코드
-            // const $phoneInput = document.getElementById('change-phone-input');
-            // const newPhoneNumber = $phoneInput.value;
             const newPhoneNumber = document.getElementById('change-phone-input').value;
-            console.log(newPhoneNumber);
-
 
             // rest api로 처리하기
             fetch('/hrms/employees/updatePhoneNumber', {
@@ -280,7 +275,7 @@
                             alert('휴대폰 번호가 업데이트 되었습니다.');
                             document.getElementById('left-banner-emp-phone').querySelector('span').textContent = newPhoneNumber;
                             // location.reload();
-                            $closeUpdatePhoneModal.style.display ='none';
+                            $closeUpdatePhoneModal.style.display = 'none';
                         } else {
                             alert('업데이트에 실패 했습니다');
                         }
@@ -306,6 +301,33 @@
         $pwdModal.style.display = 'block';
         // console.log('check');
     };
+
+    const newPassword = document.getElementById('change-pwd-input').value;
+    console.log(newPassword);
+
+    // rest api로 처리하기
+    // fetch('/hrms/employees/updatePassword', {
+    //     method: 'PUT',
+    //     headers: {
+    //         'Content-type': 'application/json'
+    //     },
+    //     body: JSON.stringify(newPassword)
+    // }).then(response => {
+    //     if (response.ok) {
+    //         // 처리가 200번대라면
+    //         alert('비밀번호가 업데이트 되었습니다.');
+    //
+    //         $closeUpdatePhoneModal.style.display = 'none';
+    //     } else {
+    //         alert('업데이트에 실패 했습니다');
+    //     }
+    // }).catch(error => {
+    //     console.error('Error occurred:', error);
+    //     alert('오류가 발생했습니다. 다시 시도해주세요.');
+    // })
+    //
+    // };
+    // }
 
 
     $cancelPwdChange.onclick = e => {

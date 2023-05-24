@@ -77,6 +77,8 @@ public class LoginService {
 
 
         }
+        session.setAttribute("login", dto);
+
         log.info("{}님 로그인 성공! : {}", dto.getEmpEmail(), dto);
         return SUCCESS;
 
@@ -87,18 +89,19 @@ public class LoginService {
     public void maintainLoginState(HttpSession session, String empEmail) {
 
         EmployeeDetailResponseDTO dto = employeesMapper.logedInDetail(empEmail);
+        dto.profileWithRootPath(dto.getProfile());
 
-
-       //  세션에 저장
+        //  세션에 저장
         session.setAttribute(LOGIN_KEY, dto);
-//        session.setAttribute("login", dto);
+        session.setAttribute("login", dto);
         log.info("empDetail {} ", dto);
         // 세션의 기본 수명을 설정
         session.setMaxInactiveInterval(60 * 60); // 1시간
     }
 
 
-    public static void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+    public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+
         Cookie c = WebUtils.getCookie(request, AUTO_LOGIN_CHECK);
 
         if (c != null) {
@@ -116,8 +119,9 @@ public class LoginService {
 
         );
 
-
     }
+
+
 
     public boolean verificateEmp(VerificateEmpPasswordRequestDTO dto) {
 

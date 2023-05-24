@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,6 +99,18 @@ class EmployeesMapperTest {
 
         assertEquals("admin@samjosangsa.com", r.getEmpEmail());
 
+    }
+
+    @Test
+    @DisplayName("김영희 사원의 비밀번호를 3333 으로 바꾸면 true 가 나와야된다.")
+    void changePasswordTest(){
+
+        String empMail = "park@samjosangsa.com";
+        String newPassword = "3333";
+
+        boolean b = employeesMapper.updatePassword(empMail, newPassword);
+
+        assertTrue(b);
     }
 
 
