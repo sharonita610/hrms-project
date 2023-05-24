@@ -95,4 +95,14 @@ class ConfirmServiceTest {
                 .build();
         confirmService.modifyConfirm(confirm);
     }
+
+    @Test
+    @DisplayName("사번, 제목으로 결재문서를 검색할 수 있다.")
+    void searchConfirmTest(){
+        long empNo = 2L;
+        String roleCode = null;
+        String conTitle = "test";
+        List<SimpleDateConfirmDTO> list = confirmService.searchConfirm(empNo, roleCode, conTitle);
+        System.out.println(list);
+    }
 }

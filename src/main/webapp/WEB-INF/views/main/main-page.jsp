@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <link rel="stylesheet" href="/assets/css/main-page.css">
+<link rel="stylesheet" href="/assets/css/main-confirmlist.css">
 <!-- bootstrap css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -41,7 +42,7 @@
     .title-list #left-pointer {
         margin-left: 110px;
         margin-right: 20px;
-        
+
     }
     .title-list #left-pointer a{
         cursor: pointer;
@@ -109,21 +110,79 @@
                         <li>메일</li>
                         <li>메일</li>
                     </ul>
-                    <ul>
+                    <ul id = "confirm-box">
                         <li class="title-list">
                             <h1>결재</h1>
                         </li>
-                        <li>결재</li>
-                        <li>결재</li>
+                        <div id = "confirm-table">
+
+                        </div>
                     </ul>
                 </div>
             </div>
         </section>
     </div>
+<script>
+
+    const URL = "/hrms/confirm";
+    const empNo = ${login.empNo};
+    const roleCode = '${login.roleCode}';
+
+    const confirmBox = document.getElementById('confirm-table');
+
+    function getConfirmList(){
+        fetch(`\${URL}/\${empNo}/\${roleCode}`)
+            .then(res => res.json())
+            .then(result => {
+                renderConfirmList(result);
+            })
+    }
+
+    function renderConfirmList(list){
+        let tag = '';
+        tag += '<ul class = "header-bar confirm-tr" id = "waiting-th"><li class = "title-line col1">NO</li>' +
+            '<li class = "title-line col2">문서제목</li>';
+        if (roleCode === '11111') {
+            tag += '<li class = "title-line col3">기안자</li>';
+        } else {
+            tag += '<li class = "title-line col3">부서장</li>';
+        }
+        tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">승인여부</li></ul>';
+
+        tag += '<div class = "inner-list-container">';
+        for (let i = 0; i < 8; i++) {
+
+            const {
+                conNo,
+                conTitle,
+                fromName,
+                fromDept,
+                conDate,
+                conStatus,
+                conCheckDate
+            } = list[i];
+
+            tag += '<ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo + '</li><li class = "col2">' +
+                conTitle + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept + '</li>';
+            if(conStatus === '승인대기'){
+                tag += '<li id = "conStatus" class = "col5 skyblue">' + conStatus + '</li></ul>';
+            } else if(conStatus === '승인거절'){
+                tag += '<li id = "conStatus" class = "col5 red">' + conStatus + '</li></ul>';
+            } else if(conStatus === '승인완료') {
+                tag += '<li id = "conStatus" class = "col5 green">' + conStatus + '</li></ul>';
+            }
+        }
+        tag += '</div>';
+        confirmBox.innerHTML = tag;
+    }
+
+    getConfirmList();
+
+</script>
 
 
     <script>
-        const URL = '/api/hrms/main-board';
+        const URL-board = '/api/hrms/main-board';
 
 
         function renderTable(responseResult) {
@@ -153,7 +212,7 @@
 
         }
 
-        // 이전 페이지 렌더링  
+        // 이전 페이지 렌더링
         function prevpageRendering(boardPageMaker) {
             // console.log(boardPageMaker);
             const $leftpointer = document.getElementById('left-pointer');
@@ -165,7 +224,7 @@
                         $leftpointer.innerHTML =  `<i class='fa-solid fa-angles-left' data-pno='1'>`;
                     }
                 // `<a data-pno='\${boardPageMaker.boardPage.boardPageNo-1}'>&lt;&lt;</a>`;
-           
+
             // console.log('그려지냐?');
 
         }
@@ -206,7 +265,7 @@
         //board 패치
         function wannaBoardList(pageNo = 1) {
 
-            fetch(`\${URL}/page/\${pageNo}`)
+            fetch(`\${URL-board}/page/\${pageNo}`)
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);

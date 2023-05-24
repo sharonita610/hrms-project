@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -89,6 +90,15 @@ public class ConfirmService {
 
     public List<SimpleDateConfirmDTO> getConfirmList(long empNo, String roleCode) {
        return confirmMapper.getConfirmList(empNo, roleCode)
+                .stream()
+                .map(SimpleDateConfirmDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<SimpleDateConfirmDTO> searchConfirm(
+            long empNo, @Nullable String roleCode, String conTitle
+    ) {
+       return confirmMapper.searchConfirm(empNo, roleCode, conTitle)
                 .stream()
                 .map(SimpleDateConfirmDTO::new)
                 .collect(Collectors.toList());
