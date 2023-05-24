@@ -12,17 +12,29 @@
     <div id="left-body">
         <div class="left-fix">
             <div class="information-box">
-                <ul id="profile">
-                    <li id="photo"><a href="#">사원사진</a></li>
-                </ul>
+                <div id="profile">
+                    <ul class="image-box">
+                        <li class="image-box">
+                            <c:if test="${login != null && login.profile != null}">
+                                <img src="${login.profile}" alt="프사">
+                            </c:if>
+                            <c:if test="${login != null && login.empGender == 'M' && login.profile == null}">
+                                <img src="/assets/img/anonymous_m.png" alt="프사">
+                            </c:if>
+                            <c:if test="${login != null && login.empGender == 'F'  && login.profile == null}">
+                                <img src="/assets/img/anonymous_w.png" alt="프사">
+                            </c:if>
+                        </li>
+                    </ul>
+                </div>
 
-                <ul id="information">
+                <ul id="informations">
                     <c:if test="${login != null}">
-                        <li>사번 : ${login.empNo}</li>
-                        <li>이름 : ${login.empName}</li>
-                        <li id="left-banner-emp-phone">휴대폰 번호 :<br><span>${login.empPhone.replace("\"", "")}</span></li>
-                        <li>부서: ${login.deptName}</li>
-                        <li>직책 : ${login.posName}</li>
+                        <li>사번 : ${login.empNo}</li><br>
+                        <li>이름 : ${login.empName}</li><br>
+                        <li id="left-banner-emp-phone">휴대폰 번호 :<br><span>${login.empPhone.replace("\"", "")}</span></li><br>
+                        <li>부서 : ${login.deptName}</li><br>
+                        <li>직책 : ${login.posName}</li><br>
                         <%-- <li>메일 : ${login.empEmail}</li> --%>
                     </c:if>
                 </ul>
