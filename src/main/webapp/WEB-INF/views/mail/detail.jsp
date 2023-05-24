@@ -41,6 +41,9 @@
                     </div>
                     <div class="sender">
                         <p>발신자 사번 : ${md.senderEmpNo}</p>
+						<p>a</p>
+						<p>a</p>
+						<p>a</p>
                        	<p>발신자 이메일 :  ${md.senderEmail}</p>
                     </div>
                     <div class="receiver">
@@ -54,7 +57,7 @@
                         <div class="textarea">
                             ${md.mailContent}
                         </div>
-						<button type="button" class="btn btn-primary backtobutton nav justify-content-center">메일목록돌아가기</button>
+						<button type="button" class="btn btn-primary  text-center backtobutton nav justify-content-center">메일목록돌아가기</button>
                     </div>
 				</div>
 			</div>

@@ -35,28 +35,47 @@
                             </div>
                         </div>
                         <div class="sender">
-                                <p class="flex-container">발신자 사번 : </p>
-                                <input class="flex-container" type="number" name="mailfrom" id="mailfrom" value="${empNo}" readonly>
+                            <div class="senderno">
+                                <p>발신자 사번 : </p>
+                                <input class="flex-container" type="number" name="mailfrom" id="mailfrom" placeholder="사번" value="${empNo}" readonly>
+                            </div>
+                            <div>
                                 <p class="flex-container">발신자 이메일 : </p>
+                            </div>
+                            <div>
                                 <p class="flex-container">발신자 이름 : </p>
+                            </div>
+                            <div>
                                 <p class="flex-container">발신자 직급 : </p>
+                            </div>
+                            <div>
                                 <p class="flex-container">발신자 부서 : </p>
+                            </div>
                         </div>
                         <div class="receiver">
-                            <p class="flex-container receiverno">수신자 사번 : </p>
-                            <input class="flex-container" type="number" name="mailto" id="mailto" value="" readonly>
-                            <p class="flex-container receiveremail">수신자 이메일 : </p>
-                            <p class="flex-container receivername">수신자 이름 : </p>
-                            <p class="flex-container receiverpos">수신자 직급 : </p>
-                            <p class="flex-container receiverdept">수신자 부서 : </p>
-                            <input class="form-control flex-container" list="datalistOptions" id="exampleDataList" placeholder="이름으로 검색">
-                            <a class="btn btn-primary searchbutton" href="#" role="button">Link</a>
-                            <select name="" id="" class="flex-container">
-                                <option value="">응애</option>
-                                <option value="">응애</option>
-                                <option value="">응애</option>
-                                <option value="">응애</option>
-                            </select>
+                            <div class="receiverno">
+                                <p>수신자 사번 : </p>
+                                <input class="flex-container inputreceiverno" type="number" name="mailto" id="mailto" value="" readonly>
+                            </div>
+                            <div class="receiveremail">
+                                <p class="flex-container">수신자 이메일 : </p>
+                            </div>
+                            <div class="receivername">
+                                <p class="flex-container">수신자 이름 : </p>
+                            </div>
+                            <div class=" receiverpos">
+                                <p class="flex-container">수신자 직급 : </p>
+                            </div>
+                            <div class="receiverdept">
+                                <p class="flex-container">수신자 부서 : </p>
+                            </div>
+                            <div class="search-form">
+                                <input class="form-control flex-container" list="datalistOptions" id="exampleDataList" placeholder="찾기">
+                                <a class="btn btn-primary searchbutton" href="#" role="button">검색</a>
+                                <select name="" id="select" class="optionselect">
+                                    <option value=""></option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-floating">
                             <textarea name="text" id="editor"></textarea>
@@ -96,7 +115,7 @@
         // (function () {
         // dletemail();
         // })();
-
+        const URL = '/api/hrms/search';
         //뒤로가기 버튼
         function clickbackbutton() {
             const $backtobutton = document.querySelector('.backtobutton');
@@ -121,33 +140,54 @@
             //alert('버튼이 클릭되었습니다!');
             // 원하는 동작을 추가로 작성 가능
             const $empName = document.querySelector('#exampleDataList').value;
+            //console.log($empName);
             getempnoList($empName);
 
         }
         
-        const URL = '/api/hrms/search';
         //rest fetch 함수
         function getempnoList(name){
             fetch(`\${URL}/empName/\${name}`)
                 .then(res => res.json())
                 .then(responseResult => {
-                     console.log(responseResult);
+                    // console.log(responseResult);
                      renderempList(responseResult);
                 });
         }
 
         //랜더링 함수
         function renderempList(responseResult){
-            const{empNo,empName,empEmail,posName,deptName} = responseResult[0];
-            // document.getElementById('mailto').value = empNo;
-            // document.get
+            const $select = document.getElementById('select');
+            let $tag = "";
+            
+            for (let employee of responseResult) {
+                //console.log(employee);
+                $tag+=`<option value='\${employee.empNo}' data-empname='\${employee.empName}' class='selectoption'>\${employee.empName}\${employee.empEmail}\${employee.deptName}\${employee.posName}</option>`
+                //console.log($tag);
+                
+            }
+            $select.innerHTML = $tag;
         }
 
+        //input태그에 값 집어넣는 함수
+        const selectElement = document.getElementById('select');
 
-        (function () {
-            getempnoList();
-            renderempList();
-        })();
+        selectElement.addEventListener('change', function(event) {
+        const selectedValue = event.target.value;
+        const selectempname = event.target.dataset.empname;
+        console.log(selectedValue);
+        console.log(selectempname);
+        });
+        // $select.onclick = e =>{
+        //     if(e.target.matches('option')){
+        //         console.log(e.target.value);
+        //     }else{
+        //         return
+        //     }
+            
+        // }
+
+           
     </script>
 
 </body>
