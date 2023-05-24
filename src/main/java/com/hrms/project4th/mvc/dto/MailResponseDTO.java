@@ -17,28 +17,26 @@ public class MailResponseDTO {
     //메일 번호
     private Long mailNo;
 
-    //보낸 사람이메일
-    private String empEmail;
-
-    //보낸 사람 이름
-    private String empName;
-
-    // 보낸사람 직책코드
-    private Long roleCode;
-
-    //보낸 사람 부서
-    private Long deptCode;
-//
     //메일 제목
     private String mailTitle;
+
+    //보낸 사람 이름
+    private String senderName;
+
+    // 보낸사람 이메일
+    private String senderEmail;
+
+    //보낸사람 직책
+    private String senderPosition;
 //
-//    메일 읽음 여부
+    //보낸사람 부서
+    private String senderDepartment;
+
+    //메일 상태
     private CheckStatus mailStatus;
 
-    //메일 작성시간(발송시간)
+    //메일 발송날짜
     private LocalDate mailDate;
-
-
 
 
 }

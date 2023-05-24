@@ -14,70 +14,70 @@
 <!--    접속한 사용자의 사원번호에맞는 메일만 나온다-->
     <select id="getMailList" resultType="MailResponseDTO">
         SELECT
-        E.mail_no,
-        P.emp_email,
-        P.emp_name,
-        P.role_code,
-        P.dept_code,
-        E.mail_title,
-        E.mail_status,
-        E.mail_date
-        FROM HR_EMAIL AS E
-        JOIN HR_EMPLOYEES AS P
-<!--나에게 온 메일 가져오기 -->
+        E.MAIL_NO,
+        E.MAIL_TITLE,
+        P.EMP_NAME AS SENDER_NAME,
+        P.EMP_EMAIL AS SENDER_EMAIL,
+        HP.POS_NAME AS SENDER_POSITION,
+        HD.DEPT_NAME AS SENDER_DEPARTMENT,
+        E.MAIL_STATUS,
+        E.MAIL_DATE
+        FROM HR_EMAIL E
+        JOIN HR_EMPLOYEES P ON E.MAIL_FROM = P.EMP_NO
+        JOIN HR_POSITION HP ON P.POS_CODE = HP.POS_CODE
+        JOIN HR_DEPARTMENT HD ON P.DEPT_CODE = HD.DEPT_CODE
+        WHERE
         <if test="s.mailType == 'mailto'">
-            ON E.MAIL_TO = P.EMP_NO
-            WHERE E.mail_to = #{empNo}
+            E.MAIL_TO = #{empNo}
         </if>
-<!--내가 보낸메일 가져오기-->
         <if test="s.mailType == 'mailfrom'">
-            ON E.MAIL_FROM = P.EMP_NO
-            WHERE E.mail_from = #{empNo}
+            E.MAIL_FROM = #{empNo}
         </if>
         ORDER BY
         E.mail_no DESC
-        LIMIT #{s.pageLimitNum},#{s.mailAmount}
+        LIMIT #{s.pageLimitNum}, #{s.mailAmount}
     </select>
 <!--접속한 사용자의 번호에맞는 상태값에 따라 메일리스트가 나온다-->
     <select id="getMailListByStatus" resultType="MailResponseDTO">
         SELECT
-        E.mail_no,
-        P.emp_email,
-        P.emp_name,
-        P.role_code,
-        P.dept_code,
-        E.mail_title,
-        E.mail_status,
-        E.mail_date
-        FROM HR_EMAIL AS E
-        JOIN HR_EMPLOYEES AS P
-        ON E.MAIL_TO = P.EMP_NO
+        E.MAIL_NO,
+        E.MAIL_TITLE,
+        P.EMP_NAME AS SENDER_NAME,
+        P.EMP_EMAIL AS SENDER_EMAIL,
+        HP.POS_NAME AS SENDER_POSITION,
+        HD.DEPT_NAME AS SENDER_DEPARTMENT,
+        E.MAIL_STATUS,
+        E.MAIL_DATE
+        FROM HR_EMAIL E
+        JOIN HR_EMPLOYEES P ON E.MAIL_FROM = P.EMP_NO
+        JOIN HR_POSITION HP ON P.POS_CODE = HP.POS_CODE
+        JOIN HR_DEPARTMENT HD ON P.DEPT_CODE = HD.DEPT_CODE
         <choose>
             <when test="status.desc == 'YES'">
-                WHERE E.mail_to = #{empNo} AND E.MAIL_STATUS = 'Y'
+                WHERE E.mail_to = #{empNo} AND E.mail_status = 'Y'
             </when>
-            <when test="status.desc  == 'NO'">
-                WHERE E.mail_to = #{empNo} AND E.MAIL_STATUS = 'N'
+            <when test="status.desc == 'NO'">
+                WHERE E.mail_to = #{empNo} AND E.mail_status = 'N'
             </when>
         </choose>
-        ORDER BY
-        E.mail_no desc
-        LIMIT #{s.pageLimitNum},#{s.mailAmount}
+        ORDER BY E.mail_no DESC
+        LIMIT #{s.pageLimitNum}, #{s.mailAmount}
     </select>
 
     <!--메일번호에 맞는 메일의 객체정보전체가 나온다    -->
     <select id="getMailDetail" resultType="MailDetailResponseDTO">
-
         SELECT
         he1.EMP_NO AS senderEmpNo,
         he1.EMP_EMAIL AS senderEmail,
         he2.EMP_NO AS receiverEmpNo,
         he2.EMP_EMAIL AS receiverEmail,
+        he2.EMP_NAME AS receiverName,
         hp.pos_name,
         hd.DEPT_Name AS receiverDeptName,
         he.MAIL_TITLE AS mailTitle,
         he.MAIL_CONTENT AS mailContent,
         he.MAIL_DATE AS mailDate
+<!--        he.mail_status-->
         FROM
         HR_EMAIL he
         JOIN
@@ -87,7 +87,8 @@
         JOIN
         hr_department hd ON hd.DEPT_CODE = he2.DEPT_CODE
         JOIN
-        hr_position hp ON hp.POS_CODE = he2.POS_CODE;
+        hr_position hp ON hp.POS_CODE = he2.POS_CODE
+        WHERE he.mail_no = #{mailNo}
     </select>
 
 
