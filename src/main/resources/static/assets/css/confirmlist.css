@@ -93,12 +93,6 @@
     display: none;
 }
 
-.confirm-outer-container span.new {
-    font-size: 13px;
-    color: red;
-    margin-left: 5px;
-}
-
 .confirm-box .confirm-table {
     position: relative;
 }

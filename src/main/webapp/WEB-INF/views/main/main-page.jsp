@@ -117,6 +117,7 @@
                     <ul id = "confirm-box">
                         <li class="title-list">
                             <h1>결재</h1>
+                            <a href="/hrms/confirm/list">더보기+</a>
                         </li>
                         <div id = "confirm-table">
 
@@ -129,7 +130,7 @@
 <script>
 
     const URL = "/hrms/confirm";
-    const empNo = '${login.empNo}';
+    const empNo = ${login.empNo};
     const roleCode = '${login.roleCode}';
 
     const confirmBox = document.getElementById('confirm-table');
@@ -140,8 +141,6 @@
             .then(result => {
                 if(result !== null){
                     renderConfirmList(result);
-                } else {
-                    emptyBox();
                 }
             });
     }
@@ -164,7 +163,7 @@
             return;
         }
 
-        for (let i = 0; i < 8; i++) {
+        for (const confirm of list) {
 
             const {
                 conNo,
@@ -174,7 +173,7 @@
                 conDate,
                 conStatus,
                 conCheckDate
-            } = list[i];
+            } = confirm;
 
             tag += '<ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo + '</li><li class = "col2">' +
                 conTitle + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept + '</li>';

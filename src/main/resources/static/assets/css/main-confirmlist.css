@@ -1,3 +1,7 @@
+.main-page-list #confirm-box {
+    overflow: hidden;
+}
+
 .main-page-list #confirm-box #confirm-table {
     height: 282px;
     overflow: hidden;
@@ -64,8 +68,15 @@
 }
 
 .main-page-list #confirm-box .title-list {
+    position: relative;
     justify-content: center;
 }
+
+.main-page-list #confirm-box .title-list a {
+    position: absolute;
+    right: 5px;
+}
+
 
 #empty-box {
     text-indent: 20px;

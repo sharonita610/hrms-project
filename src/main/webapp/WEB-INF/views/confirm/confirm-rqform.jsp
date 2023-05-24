@@ -22,9 +22,8 @@
             <div class="rqform-header">
                 <div class="fromEmp section">
                     <div>기안자</div>
-                    <div>사원명</div>
-                    <%--                <input type="hidden" name = "fromEmpNo" value = "${login.empNo}">--%>
-                    <input type="hidden" name="fromEmpNo" value="2">
+                    <div>${login.empName}</div>
+                    <input type="hidden" name="fromEmpNo" value="${login.empNo}">
                 </div>
                 <div class="rq-date section">
                     <div>기안일자</div>
@@ -37,8 +36,7 @@
                 <div class="dept-head section">
                     <div>부서장</div>
                     <div>${boss.empName}</div>
-                    <%--                <input type="hidden" name="toEmpNo" value="${boss.empNo}">--%>
-                    <input type="hidden" name="toEmpNo" value="1">
+                    <input type="hidden" name="toEmpNo" value="${boss.empNo}">
                 </div>
             </div>
             <%--        본문 --%>

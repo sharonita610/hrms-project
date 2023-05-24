@@ -62,8 +62,7 @@
 
 <script>
 
-    // const roleCode = '11111';
-    const roleCode = null;
+    const roleCode = '${login.roleCode}';
     const $submit = document.getElementById('submit');
     const conNo = document.getElementById('conNo').value;
     const conStatus = '${c.conStatus}';
