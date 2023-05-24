@@ -185,4 +185,13 @@ public class EmployeesController {
 
     }
 
+    // 비밀번호 변경
+    @GetMapping("/updatePassword")
+    public String modifyMyPassword() {
+        log.info("/updatePassword : GET 요청!");
+
+
+        return "admin/modifyMyInfo";
+    }
+
 }

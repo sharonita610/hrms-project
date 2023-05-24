@@ -8,9 +8,11 @@ import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.entity.LoginResult;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
+import com.hrms.project4th.mvc.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -75,6 +77,8 @@ public class LoginService {
 
 
         }
+        session.setAttribute("login", dto);
+
         log.info("{}님 로그인 성공! : {}", dto.getEmpEmail(), dto);
         return SUCCESS;
 
@@ -85,20 +89,39 @@ public class LoginService {
     public void maintainLoginState(HttpSession session, String empEmail) {
 
         EmployeeDetailResponseDTO dto = employeesMapper.logedInDetail(empEmail);
+        dto.profileWithRootPath(dto.getProfile());
 
-
-       //  세션에 저장
+        //  세션에 저장
         session.setAttribute(LOGIN_KEY, dto);
-//        session.setAttribute("login", dto);
+        session.setAttribute("login", dto);
         log.info("empDetail {} ", dto);
         // 세션의 기본 수명을 설정
         session.setMaxInactiveInterval(60 * 60); // 1시간
     }
 
 
-    public static void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+    public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+
+        Cookie c = WebUtils.getCookie(request, AUTO_LOGIN_CHECK);
+
+        if (c != null) {
+            c.setMaxAge(0);
+        }
+        response.addCookie(c);
+
+        employeesMapper.saveAutoLogin(
+                AutoLoginDTO.builder()
+                        .empSession("none")
+                        .cookieLimitTime(LocalDateTime.now())
+                        .empEmail(LoginUtil.getCurrentLoginMemberAccount(request.getSession()))
+                        .build()
+
+
+        );
 
     }
+
+
 
     public boolean verificateEmp(VerificateEmpPasswordRequestDTO dto) {
 

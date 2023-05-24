@@ -29,16 +29,13 @@ public class Employees {
     private String empPhone;
     @Nullable
     private Long empMyBoss;
-    private String empBossName;
     private String posCode;
-    private String posName;
     private String roleCode;
     private String deptCode;
     private String profile;
-    private Auth auth;
-    private String empSession;
     private LocalDateTime cookieLimitTime;
-    private String newPhone;
+    private String empSession;
+    // db에 컬럼 추가해야됨
     private char autoLogin;
 
 
