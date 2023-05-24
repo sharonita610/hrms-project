@@ -27,4 +27,11 @@ public class ClubReplyController {
         return ResponseEntity.ok().body(clubReplyMyList);
     }
 
+    @GetMapping("/boardReply/{cbNo}")
+    public  ResponseEntity<?> clubBoardReplyList(@PathVariable Long cbNo) {
+        List<ClubReplyListResponseDTO> clubReplyListResponseDTOS = clubReplyService.clubReplyListAll(cbNo);
+
+        return ResponseEntity.ok().body(clubReplyListResponseDTOS);
+    }
+
 }

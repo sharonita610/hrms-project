@@ -11,7 +11,7 @@
     background-color:rgba(0, 0,0, 0.5);
     top:0;
     left: 0;
-    z-index: 200;
+    z-index: 400;
     display : none;
 }
 /* 게시글 컨텐츠 클릭시 뜨는 모달 */
@@ -26,10 +26,9 @@
 .club-modal-wrapper {
     width: 900px;
     height: 700px;
-    border: 2px solid #000000;
     margin-left: 550px !important;
     position: absolute !important;
-    z-index: 300; 
+    z-index: 600; 
     display: none;
 }
 
@@ -49,27 +48,28 @@
     width: 500px;
     height: 350px;
     margin: 10px auto;
-    background: red;
+    background: rgb(204, 204, 204);
 }
 
 /* 게시글 상세보기 시 댓글란 */
 .post-text {
     width: 500px;    
     height: 250px;
-    background: blue;
+    background: rgb(172, 172, 172);
     margin: 10px auto;
+    padding: 15px;
 }
 
 /*  쪼갠 모달 컨텐츠 비율 조정, 스크롤 기능*/
 .club-modal-content-container {
-    background: #cbcdcb;
+    background: #fff;
     width: 60%;
     overflow-y: scroll;
 }
 
 .club-modal-replies-container {
     width: 40%;
-
+    background: rgb(238, 238, 238);
     overflow-y: scroll;
 }
 
@@ -113,18 +113,18 @@
     font-size: 16px;
 }
 .reply-info {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    color: gray;
 }
 .reply-writer {
-    font-size: 16px;
-    color: rgb(255, 255, 255);
+    font-size: 15px;
 }
 .reply-time {
     font-size: 14px;
-    color: rgb(255, 255, 255);
 }
 .reply-content {
     margin-bottom: 10px;
+    font-size: 16px;
 }
 
 /*  사진, 글 목록 속성  */
@@ -140,12 +140,9 @@
 /*  컨텐츠들 인포메이션쪽 속성 FINISH */
 
 /*  댓글 속성  */
-.club-modal-content-container {
-    background: lightgray;
-}
 .club-modal-replies-head {
     /* height: 1000px; */
-    background: rgb(185, 185, 185);
+    background: rgb(238, 238, 238);
 }
 
 .club-modal-add-reply {
@@ -172,7 +169,14 @@
 }
 /* 댓글 하나하나 뿌리는 속성  */
 .club-modal-reply-list-one{
-    border-bottom: 2px solid rgb(243, 243, 243);
+    border-bottom: 2px solid rgb(255, 255, 255);
     margin:0px auto 10px;
+    padding: 5px;
     width: 90%;
+}
+
+.noreply {
+    width: fit-content;
+    margin: 0 auto;
+    color: rgb(112 109 109);
 }
