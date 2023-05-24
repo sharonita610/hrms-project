@@ -10,19 +10,23 @@
         width: 250px;
         height: fit-content;
     }
+    th{
+        margin: 0 auto;
+    }
 
     td {
         border: 1px solid #a3a3a3;
         padding: 5px;
-        text-align: center;
+        text-align: center!important;
     }
     .today {
         background-color: lightblue;
     }
     .calendar-btn{
-        /*border: 1px solid darkslategrey;*/
-        /*border-radius: 25px;*/
+        border: 1px solid darkslategrey;
+        border-radius: 25px;
     }
+
 </style>
 
 
@@ -34,6 +38,7 @@
             <button class="calendar-btn" onclick="nextMonth()">&#8250;</button>
         </th>
     </tr>
+    <div>
     <tr>
         <th>일</th>
         <th>월</th>
@@ -43,6 +48,7 @@
         <th>금</th>
         <th>토</th>
     </tr>
+    </div>
     <tbody id="calendarBody"></tbody>
 </table>
 
