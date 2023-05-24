@@ -7,14 +7,17 @@ import com.hrms.project4th.mvc.dto.page.BoardPageMaker;
 import com.hrms.project4th.mvc.dto.page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.service.BoardService;
+import com.hrms.project4th.mvc.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,6 +30,8 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    @Value("${file.upload.root-path}")
+    private String rootPath;
 
     // 게시글을 보여주는 기능
     @GetMapping("/board-list")
@@ -56,7 +61,17 @@ public class BoardController {
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
       log.info("BoardSaveRequestDTO {}",dto);
-      boardService.boardSave(dto);
+        MultipartFile saveFile = dto.getSaveFile();
+
+        String savePath = null;
+        if (!saveFile.isEmpty()) {
+            // 실제 로컬 스토리지에 파일을 업로드하는 로직
+            savePath = FileUtil.saveBoardFile(saveFile, rootPath);
+        }
+
+//        boolean flag = memberService.join(dto, savePath);
+
+        boardService.boardSave(dto, savePath);
         return "redirect:/hrms/board/board-list";
     }
 

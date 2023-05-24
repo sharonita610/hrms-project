@@ -300,6 +300,7 @@
                         </c:if>
                     </div>
                     <form action="/hrms/board/show-modify" method="post">
+                
                         <div class="form-group">
                             <input type="hidden" name="boardNo" value="${b.boardNo}">
                             <label for="board">게시판</label>
@@ -327,7 +328,7 @@
 
                             <!-- <textarea id="content" name="bdContent" placeholder="내용을 입력하세요"
                                     readonly>${b.bdContent}</textarea> -->
-                        </div>
+                        </div>  
                         <div class="form-group detail-button">
                             <c:if test="${login.empNo==b.empNo}">
                                 <button type="submit">수정</button>
@@ -337,6 +338,7 @@
                         </div>
 
                     </form>
+
 
 
 

@@ -3,6 +3,7 @@ package com.hrms.project4th.mvc.entity;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 @Getter
@@ -38,15 +39,20 @@ public class Board {
     //해당 게시물에 걸린 댓글수
     private long repNo;
 
+    //해당 게시물에 저장된 saveFile
+    private String saveFile;
 
 
 
 
-    public Board(BoardSaveRequestDTO dto) {
+
+
+    public Board(BoardSaveRequestDTO dto,String savePath) {
         this.bdType=dto.getBdType();
         this.bdTitle=dto.getBdTitle();
         this.bdContent=dto.getBdContent();
         this.empNo= dto.getEmpNo();
+        this.saveFile=savePath;
     }
 
     public Board(BoardModifyRequestDTO dto){

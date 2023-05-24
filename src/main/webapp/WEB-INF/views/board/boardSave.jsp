@@ -153,7 +153,8 @@
                 <section class="modify-part">
                     <div class="container">
                         <h1>게시글 작성</h1>
-                        <form action="/hrms/board/board-save" method="post">
+                        <form action="/hrms/board/board-save" method="post" enctype="multipart/form-data">
+                            <input name="saveFile" type="file" style="color: red;">
                             <div class="form-group">
                                 <c:if test="${login!=null}">
                                     <input type="hidden" name="empNo" value="${login.empNo}">

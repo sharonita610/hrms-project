@@ -60,9 +60,9 @@
 
     <insert id="boardSave">
         INSERT INTO hr_board
-        (bd_type, bd_title, bd_content, emp_no)
+        (bd_type, bd_title, bd_content, emp_no,save_file)
         VALUES
-        (#{bdType},#{bdTitle},#{bdContent},#{empNo})
+        (#{bdType},#{bdTitle},#{bdContent},#{empNo},#{saveFile})
     </insert>
 
     <delete id="boardDelete">
@@ -119,5 +119,6 @@ WHERE hr_employees.EMP_NAME = 'JACKSON300'-->
     <select id="countMainBoard" resultType="int">
         select count(*) from hr_board
     </select>
+
 
 </mapper>

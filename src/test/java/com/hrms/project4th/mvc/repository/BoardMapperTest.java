@@ -25,19 +25,22 @@ class BoardMapperTest {
 
     @Test
     @DisplayName("게시글 301개 저장하는 기능")
+    @Transactional
+    @Rollback
     void saveTest() {
 
-        for (int i = 1; i <= 301; i++) {
+
             Board b = Board.builder()
-                    .boardNo(i)
+                    .boardNo(302)
                     .bdType(BdType.valueOf("FREE"))
-                    .bdTitle("board title" + i)
-                    .bdContent("board content / board content" + i)
-                    .empNo(i)
+                    .bdTitle("board title" + 302)
+                    .bdContent("board content / board content" + 302)
+                    .empNo(302)
                     .build();
             boolean flag = boardMapper.boardSave(b);
+        System.out.println(b);
             assertTrue(flag);
-        }
+
 
 
     }

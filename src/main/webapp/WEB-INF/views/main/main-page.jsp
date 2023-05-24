@@ -134,7 +134,9 @@
         fetch(`\${URL}/\${empNo}/\${roleCode}`)
             .then(res => res.json())
             .then(result => {
+            if(result !== null){
                 renderConfirmList(result);
+                }
             })
     }
 
@@ -182,7 +184,7 @@
 
 
     <script>
-        const URL-board = '/api/hrms/main-board';
+        const URLboard = '/api/hrms/main-board';
 
 
         function renderTable(responseResult) {
@@ -265,7 +267,7 @@
         //board 패치
         function wannaBoardList(pageNo = 1) {
 
-            fetch(`\${URL-board}/page/\${pageNo}`)
+            fetch(`\${URLboard}/page/\${pageNo}`)
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);
