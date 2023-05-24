@@ -96,7 +96,7 @@
 		if($mailstatus==='N'){
 			window.location.href = '/hrms/mail-delete-status?mailNo=' + $mailNo + '&empNo=${login.empNo}' + '&mailPageNo=${ms.mailPageNo}&status=N';
 		}else if($mailstatus==='Y'){
-			window.location.href = '/hrms/mail-delete-status?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}&status=Y';
+			window.location.href = '/hrms/mail-delete-status?mailNo=' + $mailNo + '&empNo=${login.empNo}' + '&mailPageNo=${ms.mailPageNo}&status=Y';
 		}
       }else{
 		return;

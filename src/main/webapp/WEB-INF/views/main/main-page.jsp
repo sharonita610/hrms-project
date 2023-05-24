@@ -182,10 +182,10 @@
 
     getConfirmList();
 
-</script>
+ </script>
 
 
-    <script>
+     <script>
         const URLboard = '/api/hrms/main-board';
 
 
@@ -282,6 +282,34 @@
             prevpageAddEvent();
             nextpageAddEvent();
         })();
+     </script>
+
+    <script>
+        //메일 rest용 url
+        const mailURL = '/api/hrms/mail';
+        //접속자 사번 가져오기
+        const mailempNo = '${login.empNo}';
+        
+        //접속한 사원에게 온 메일의 리스트 json받아오기
+        function getMailList(){
+        fetch('/api/hrms/mail/mailempNo/2')
+            .then(res=>res.json())
+            .then(mailresult =>{
+               console.log(mailresult);
+                //renderMailList(mailresult);
+            })
+        };
+
+        function renderMailList(responseResult){
+            
+        }
+
+
+
+        (function(){
+            getMailList()
+        })();
+
     </script>
 </body>
 <%@ include file="../main/include/footer.jsp" %>
