@@ -149,7 +149,7 @@
         $waitingBox.style.display = 'block';
         $confirmedBox.style.display = 'none';
         $rejectedBox.style.display = 'none';
-        document.querySelector('.waiting-list').style.height = '645px';
+        document.querySelector('.waiting-list').style.height = '680px';
         getWaitingList();
     }
 
@@ -160,7 +160,7 @@
         $confirmedBox.style.display = 'block';
         $waitingBox.style.display = 'none';
         $rejectedBox.style.display = 'none';
-        document.querySelector('.confirmed-list').style.height = '645px';
+        document.querySelector('.confirmed-list').style.height = '680px';
         getCheckedList();
     }
 
@@ -171,7 +171,7 @@
         $rejectedBox.style.display = 'block';
         $waitingBox.style.display = 'none';
         $confirmedBox.style.display = 'none';
-        document.querySelector('.rejected-list').style.height = '645px';
+        document.querySelector('.rejected-list').style.height = '680px';
         getRejectedList();
     }
 
