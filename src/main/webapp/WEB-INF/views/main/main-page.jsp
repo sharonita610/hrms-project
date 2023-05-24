@@ -134,8 +134,12 @@
         fetch(`\${URL}/\${empNo}/\${roleCode}`)
             .then(res => res.json())
             .then(result => {
-                renderConfirmList(result);
-            })
+                if(result !== null){
+                    renderConfirmList(result);
+                } else {
+                    emptyBox();
+                }
+            });
     }
 
     function renderConfirmList(list){
@@ -150,6 +154,12 @@
         tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">승인여부</li></ul>';
 
         tag += '<div class = "inner-list-container">';
+
+        if(list.length === 0){
+            emptyBox();
+            return;
+        }
+
         for (let i = 0; i < 8; i++) {
 
             const {
@@ -176,13 +186,17 @@
         confirmBox.innerHTML = tag;
     }
 
+    function emptyBox(){
+        confirmBox.innerHTML = '<p id = "empty-box">표시할 결재문건이 없습니다.</p>';
+    }
+
     getConfirmList();
 
 </script>
 
 
     <script>
-        const URL-board = '/api/hrms/main-board';
+        const URLboard = '/api/hrms/main-board';
 
 
         function renderTable(responseResult) {
@@ -265,7 +279,7 @@
         //board 패치
         function wannaBoardList(pageNo = 1) {
 
-            fetch(`\${URL-board}/page/\${pageNo}`)
+            fetch(`\${URLboard}/page/\${pageNo}`)
                 .then(res => res.json())
                 .then(responseResult => {
                     // console.log(responseResult);
