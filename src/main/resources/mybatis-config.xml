@@ -30,7 +30,6 @@
         <typeAlias alias="testEntity" type="com.hrms.project4th.mvc.entity.TestEntity"/>
         <typeAlias alias="boardEmpInfo" type="com.hrms.project4th.mvc.entity.BoardEmpInfo"/>
 
-
     </typeAliases>
 
     <mappers>

@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.repository;
 
+import com.hrms.project4th.mvc.dto.page.BoardPage;
 import com.hrms.project4th.mvc.dto.page.BoardSearch;
 import com.hrms.project4th.mvc.entity.Board;
 import org.apache.ibatis.annotations.Mapper;
@@ -34,8 +35,15 @@ public interface BoardMapper {
     //전체 게시글 수 구하는 기능
     int countBoardPage(BoardSearch boardSearch);
 
+    //main 게시글을 위해 게시글 수 구하는 기능
+    int countMainBoard();
+
     // view count를 1 올리는 기능
     long countUp(long viewCount);
+
+    //main 화면에 게시글을 보여주는 기능
+    List<Board> showAllMainBoard(BoardPage boardPage);
+
 
 
 }

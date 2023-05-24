@@ -22,10 +22,10 @@ class MailMapperTest {
    @DisplayName("사원번호가 n번인 사람의 메일을 n+1번사원에게 전송한다")
     void saveMailTest(){
 
-       for (int i =1; i<=15; i++) {
+       for (int i =16; i<=100; i++) {
 //           Mail mailTest = Mail.builder().mailTitle("테스트용메일"+i).mailContent("테스트용메일입니다"+i).mailFrom(8L).mailTo(10L).build();
 
-           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom(2L).mailTo(6L).build();
+           Mail mailTest = Mail.builder().mailTitle("테스트용 메일" + i).mailContent(i + "테스트용메일입니다").mailFrom((long)(Math.random()*61+1)).mailTo((long)(Math.random()*61+1)).build();
            mailMapper.sendRequest(mailTest);
        }
    }

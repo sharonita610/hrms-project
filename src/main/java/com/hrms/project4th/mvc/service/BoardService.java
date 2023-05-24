@@ -1,17 +1,21 @@
 package com.hrms.project4th.mvc.service;
 
+import com.hrms.project4th.mvc.dto.page.BoardPage;
+import com.hrms.project4th.mvc.dto.page.BoardPageMaker;
+import com.hrms.project4th.mvc.dto.page.BoardSearch;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardDetailRequestDTO;
-import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
-import com.hrms.project4th.mvc.dto.page.BoardSearch;
+import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.MainBoardInfoResponseDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.MainBoardResponseDTO;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.repository.BoardMapper;
+import com.hrms.project4th.mvc.repository.BoardReplyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +25,7 @@ import java.util.stream.Collectors;
 public class BoardService {
 
     private final BoardMapper boardMapper;
+    private final BoardReplyMapper boardReplyMapper;
 
     /**
      * 모든 게시글을 보여주는 기능
@@ -112,6 +117,25 @@ public class BoardService {
      */
     public int boardPageCount(BoardSearch boardSearch){
         return  boardMapper.countBoardPage(boardSearch);
+    }
+
+
+    // MAIN 화면에 띄어줄 BOARD LIST를 DTO로 변환하는 기능
+    public MainBoardInfoResponseDTO showMainBoard(BoardPage page){
+
+        List<MainBoardResponseDTO> mainBoardResponseDTO = boardMapper.showAllMainBoard(page).stream()
+                .map(MainBoardResponseDTO::new)
+                .collect(Collectors.toList());
+        BoardSearch boardSearch=new BoardSearch();
+        boardSearch.setBoardAmount(7);
+
+
+        return MainBoardInfoResponseDTO.builder()
+                .mainBoardResponseDTOS(mainBoardResponseDTO)
+                .replyCount(boardMapper.countMainBoard())
+                .boardPageMaker(new BoardPageMaker(page,boardMapper.countMainBoard()))
+                .build();
+
     }
 
 }

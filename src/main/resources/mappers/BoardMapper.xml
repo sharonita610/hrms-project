@@ -105,4 +105,19 @@ WHERE hr_employees.EMP_NAME = 'JACKSON300'-->
         WHERE board_no=#{boardNo}
     </update>
 
+    <select id="showAllMainBoard" resultType="board">
+        SELECT
+        b.board_no, b.bd_type, b.bd_title,
+        b.bd_date, b.emp_no, e.emp_name, count(r.rep_no) AS repNo
+        FROM hr_board b
+        LEFT JOIN hr_reply r ON b.board_no = r.board_no
+        LEFT JOIN hr_employees e ON e.emp_no = b.emp_no
+        GROUP BY b.board_no
+        ORDER BY 1 DESC
+        Limit #{pageLimitNum},#{boardAmount}
+    </select>
+    <select id="countMainBoard" resultType="int">
+        select count(*) from hr_board
+    </select>
+
 </mapper>

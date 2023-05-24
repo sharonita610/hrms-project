@@ -17,12 +17,14 @@ public class BoardPageMaker {
     public BoardPageMaker(BoardPage boardPage, int pageCount) {
         this.boardPage=boardPage;
         this.boardPageCount=pageCount;
+        System.out.println("pageCount"+pageCount);
         pageInfo();
     }
 
     private void pageInfo() {
         // EX) (1 2 3 4 5) 현재 내가 있는 페이지가 3이다
         // start는 3/5 0.xx ->CEIL-> 1 -> 1*5=>end end 에서 PAGE_LEN 을 빼고+1하면 start
+
 
         this.end = (int) Math.ceil((double) boardPage.getBoardPageNo() / PAGE_LEN) * PAGE_LEN;
         this.start = end - PAGE_LEN + 1;

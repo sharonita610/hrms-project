@@ -259,7 +259,7 @@
 
                             <tbody>
                                 <tr>
-                                    <th scope="row" rowspan="4">사진</th>
+                                    <th scope="row" rowspan="3">사진</th>
                                     <td>이름</td>
                                     <td id="modalName"></td>
                                 </tr>
