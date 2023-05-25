@@ -26,7 +26,7 @@
                 </div>
                 <div class="rq-date section">
                     <div>기안일자</div>
-                    <div id="today"></div>
+                    <div id="today">${c.conDate}</div>
                 </div>
                 <div class="department section">
                     <div>부서</div>

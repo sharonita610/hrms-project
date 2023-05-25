@@ -2,9 +2,11 @@ package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ModifyConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.LongTitleResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.SimpleDateConfirmDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.RequestConfirmDTO;
+import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.service.ConfirmService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,24 +28,26 @@ public class ConfirmController {
     private final ConfirmService confirmService;
 
     @GetMapping("list")
-    public String confirmList(
-    ){
+    public String confirmList(@Nullable String conStatus, Model model){
+        model.addAttribute("status", conStatus);
         return "confirm/confirmList";
     }
 
     //결재 신청폼
     @GetMapping("/rq-form")
-    public String writeRequest(String deptCode, Model model){ //추후 코드 변경 : 세션에서 로그인 객체 넘겨받아 부서 확인하기
-        DeptBossDTO deptBoss = confirmService.getDeptBoss("001");
+    public String writeRequest(HttpSession session, Model model){ //추후 코드 변경 : 세션에서 로그인 객체 넘겨받아 부서 확인하기
+        EmployeeDetailResponseDTO dto = (EmployeeDetailResponseDTO) session.getAttribute("login");
+        DeptBossDTO deptBoss = confirmService.getDeptBoss(dto.getDeptCode());
         model.addAttribute("boss", deptBoss);
         return "confirm/confirm-rqform"; //jsp
     }
 
     //결재신청폼에서 받아온 값 DB에 전달
     @PostMapping("/rq-cnfm")
-    public String requestConfirm(RequestConfirmDTO dto){
+    public String requestConfirm(RequestConfirmDTO dto, @Nullable String conStatus, Model model){
         confirmService.requestConfirm(dto);
-        return "redirect:/hrms/confirm/list";
+        model.addAttribute("status", conStatus);
+        return "confirm/confirmList";
     }
 
     //모든결재건 리스트 불러오기

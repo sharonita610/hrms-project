@@ -119,6 +119,8 @@
                     <ul id = "confirm-box">
                         <li class="title-list">
                             <h1>결재</h1>
+                            <input type = 'hidden' name = 'conStatus' value = null>
+                            <a href="/hrms/confirm/list?conStatus=">더보기+</a>
                         </li>
                         <div id = "confirm-table">
 
@@ -131,7 +133,7 @@
 <script>
 
     const URL = "/hrms/confirm";
-    const empNo = '${login.empNo}';
+    const empNo = ${login.empNo};
     const roleCode = '${login.roleCode}';
 
     const confirmBox = document.getElementById('confirm-table');
@@ -140,8 +142,10 @@
         fetch(`\${URL}/\${empNo}/\${roleCode}`)
             .then(res => res.json())
             .then(result => {
-                renderConfirmList(result);
-            })
+                if(result !== null){
+                    renderConfirmList(result);
+                }
+            });
     }
 
     function renderConfirmList(list){
@@ -156,7 +160,13 @@
         tag += '<li class = "title-line col4">기안부서</li><li class = "title-line col5">승인여부</li></ul>';
 
         tag += '<div class = "inner-list-container">';
-        for (let i = 0; i < 8; i++) {
+
+        if(list.length === 0){
+            emptyBox();
+            return;
+        }
+
+        for (const confirm of list) {
 
             const {
                 conNo,
@@ -166,7 +176,7 @@
                 conDate,
                 conStatus,
                 conCheckDate
-            } = list[i];
+            } = confirm;
 
             tag += '<ul class = "confirm-tr" id = "doc-info"><li class = "col1">' + conNo + '</li><li class = "col2">' +
                 conTitle + '</li><li class = "col3">' + fromName + '</li><li class = "col4">' + fromDept + '</li>';
@@ -180,6 +190,10 @@
         }
         tag += '</div>';
         confirmBox.innerHTML = tag;
+    }
+
+    function emptyBox(){
+        confirmBox.innerHTML = '<p id = "empty-box">표시할 결재문건이 없습니다.</p>';
     }
 
     getConfirmList();
