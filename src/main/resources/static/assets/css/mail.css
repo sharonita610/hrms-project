@@ -112,47 +112,47 @@
 }
 
 .section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(1){
-    background: red;
+    /* background: red; */
     text-align: center;
     width: 5%;
 }
 .section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(2){
-    background: orange;
+    /* background: orange; */
     text-align: center;
     width: 25%;
 }
 .section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(3){
-    background: yellow;
+    /* background: yellow; */
     text-align: center;
     width: 10%;
 }
 .section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(4){
-    background: green;
+    /* background: green; */
     text-align: center;
     width: 10%;
 }
 .section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(5){
-    background: blue;
+    /* background: blue; */
     text-align: center;
     width: 10%;
 }
 .section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(6){
-    background: darkblue;
+    /* background: darkblue; */
     text-align: center;
     width: 25%;
 }
 .section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(7){
-    background: purple;
+    /* background: purple; */
     text-align: center;
     width: 5%;
 }
 .section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(8){
-    background: aqua;
+    /* background: aqua; */
     text-align: center;
     width: 10%;
 }
 .section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(9){
-    background: deeppink;
+    /* background: deeppink; */
     display: none;
 }
 

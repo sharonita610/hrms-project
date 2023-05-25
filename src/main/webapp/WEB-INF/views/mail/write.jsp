@@ -22,67 +22,49 @@
             <section class="section-mail">
                 <div id="mail-wrapper">
                     <div class="mail-sort">
-                        <div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailto">받은 메일</a></div>
-                        <div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
-                        <div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
-                        <div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
-                        <div><a href="/hrms/mail-write?empNo=${2}">메일쓰기</a></div>
+                        <div><a href="/hrms/mail-list/?empNo=${login.empNo}&mailType=mailto">받은 메일</a></div>
+                        <div><a href="/hrms/mail-list/?empNo=${login.empNo}&mailType=mailfrom">보낸 메일</a></div>
+                        <div><a href="/hrms/mail-list-status/?empNo=${login.empNo}&status=Y&mailType=mailto">읽은 메일</a></div>
+                        <div><a href="/hrms/mail-list-status/?empNo=${login.empNo}&status=N&mailType=mailto">안읽은 메일</a></div>
+                        <div><a href="/hrms/mail-write?empNo=${login.empNo}">메일쓰기</a></div>
                     </div>
-                    <form class="mail-detail-box" method="POST">
+                    <form class="mail-detail-box" method="POST" action="/hrms/mail-send">
                         <div class="mail-header-title">
                             <div class="headerbox">
-                                <div>메일 제목 : </div><input type="text" id="title" name="mailTilte" value="">
+                                <div>메일 제목 : </div><input type="text" id="title" name="mailTitle" value="">
                             </div>
                         </div>
-                        <div class="sender">
-                            <div class="senderno">
-                                <p>발신자 사번 : </p>
-                                <input class="flex-container" type="number" name="mailfrom" id="mailfrom" placeholder="사번" value="${empNo}" readonly>
+                        <div class="employeesinfo">
+                            <div class="senderinfo">
+                                <span>발신자 정보</span>
+                                <div class="senderempNo">발신자 사번 : <input type="number" name="mailFrom" value="${empNo}" readonly></div>
+                                <div class="sendername">발신자이름 : </div>
+                                <div class="senderemail">발신자이메일 : </div>
+                                <div class="senderdeptname">발신자 부서 : </div>
+                                <div class="senderposname">발신자 직급 : </div>
                             </div>
-                            <div>
-                                <p class="flex-container">발신자 이메일 : </p>
-                            </div>
-                            <div>
-                                <p class="flex-container">발신자 이름 : </p>
-                            </div>
-                            <div>
-                                <p class="flex-container">발신자 직급 : </p>
-                            </div>
-                            <div>
-                                <p class="flex-container">발신자 부서 : </p>
-                            </div>
-                        </div>
-                        <div class="receiver">
-                            <div class="receiverno">
-                                <p>수신자 사번 : </p>
-                                <input class="flex-container inputreceiverno" type="number" name="mailto" id="mailto" value="" readonly>
-                            </div>
-                            <div class="receiveremail">
-                                <p class="flex-container">수신자 이메일 : </p>
-                            </div>
-                            <div class="receivername">
-                                <p class="flex-container">수신자 이름 : </p>
-                            </div>
-                            <div class=" receiverpos">
-                                <p class="flex-container">수신자 직급 : </p>
-                            </div>
-                            <div class="receiverdept">
-                                <p class="flex-container">수신자 부서 : </p>
-                            </div>
-                            <div class="search-form">
-                                <input class="form-control flex-container" list="datalistOptions" id="exampleDataList" placeholder="찾기">
-                                <a class="btn btn-primary searchbutton" href="#" role="button">검색</a>
-                                <select name="" id="select" class="optionselect">
-                                    <option value=""></option>
-                                </select>
+                            <div class="reciverinfo">
+                                <span>수신자 정보</span>
+                                <div class="reciverempNo">수신자 사번 : <input class="inputreceiverno" type="number" name="mailTo" value="" readonly></div>
+                                <div class="recivername">수신자 이름 : </div>
+                                <div class="reciveremail">수신자 이메일 :</div>
+                                <div class="reciverdeptname">수신자 부서 :</div>
+                                <div class="reciverposname">수신자 직급 : </div>
+                                <div class="search">
+                                        <input  id="exampleDataList" class="form-control form-control-sm" type="text" placeholder="이름을입력하세요" aria-label=".form-control-sm example" style="width: 30%;">
+                                        <button type="button" class="btn btn-primary searchbutton" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Custom button</button>
+                                        <select name="" id="select" style="width: 55%;"></select>
+                                </div>
                             </div>
                         </div>
                         <div class="form-floating">
-                            <textarea name="text" id="editor"></textarea>
+                            <textarea name="mailContent" id="editor"></textarea>
                         </div>
-                        <button type="button"
-                        class="btn btn-primary backtobutton nav justify-content-center">메일발송하기</button>
-                    <button type="button" class="btn btn-danger nav justify-content-center">작성취소</button>
+                        <div class="buttonarea">
+                            <button type="submit" class="btn btn-primary backtobutton nav justify-content-center">메일발송하기</button>
+                            <div></div>
+                            <button type="button" class="btn btn-danger nav justify-content-center">작성취소</button>
+                        </div>
                     </form>
                 </div>
             </section>
@@ -115,8 +97,9 @@
         // (function () {
         // dletemail();
         // })();
-        const URL = '/api/hrms/search';
-        //뒤로가기 버튼
+
+
+        //뒤로가기 버튼 클릭함수
         function clickbackbutton() {
             const $backtobutton = document.querySelector('.backtobutton');
 
@@ -125,12 +108,18 @@
                 window.location.replace(document.referrer);
             });
         }
+
+
+
         //deditor용 함수
         ClassicEditor.create( document.querySelector( '#editor' ) ,{
             language: "ko"
         });
 
 
+
+        //api접근용 url
+        const URL = '/api/hrms/search';
         //버튼 dom접근용
         const $searchbutton = document.querySelector('.searchbutton');
         $searchbutton.addEventListener('click',handleClick);
@@ -158,26 +147,83 @@
         //랜더링 함수
         function renderempList(responseResult){
             const $select = document.getElementById('select');
-            let $tag = "";
+            let $tag = ``;
             
             for (let employee of responseResult) {
                 //console.log(employee);
-                $tag+=`<option value='\${employee.empNo}' data-empname='\${employee.empName}' class='selectoption'>\${employee.empName}\${employee.empEmail}\${employee.deptName}\${employee.posName}</option>`
+                $tag+=`<option value='\${employee.empNo}' class='selectoption'> \${employee.empName}/\${employee.empEmail}/\${employee.deptName}/\${employee.posName}/</option>`
                 //console.log($tag);
                 
             }
             $select.innerHTML = $tag;
+
+            if (select.options.length === 1) {
+                //console.log('option이 한개임');
+
+                select.dispatchEvent(new Event('change'));
+            }
         }
 
-        //input태그에 값 집어넣는 함수
-        const selectElement = document.getElementById('select');
 
-        selectElement.addEventListener('change', function(event) {
-        const selectedValue = event.target.value;
-        const selectempname = event.target.dataset.empname;
-        console.log(selectedValue);
-        console.log(selectempname);
+       
+
+
+        //select 태그 잡아오기
+        const select = document.getElementById('select');
+
+        select.addEventListener('change', ()=> {
+        
+            // //타겟  option태그 안의 사번 잡아오기
+             const selectedValue = select.options[select.selectedIndex].value;
+            
+            // console.log(selectedValue);
+
+            //타겟 option태그의 일반 텍스트 잡아오기
+            const $employeeInfo = select.options[select.selectedIndex].text;
+            
+            const parts = $employeeInfo.split('/');
+
+             part1 = parts[0]?.trim() || '';
+             part2 = parts[1]?.trim() || '';
+             part3 = parts[2]?.trim() || '';
+             part4 = parts[3]?.trim() || '';
+            
+             console.log(selectedValue);
+            // // 각 부분을 콘솔에 출력합니다.
+             console.log('수신자 이름 : ', part1);
+             console.log('수신자 이메일 :', part2);
+             console.log('수신자 부서 :', part3);
+             console.log('수신자 직급 :', part4);
+        
+
+            
+            //수신자 사번 input태그 잡아오기
+            const inputreceiverno = document.querySelector('.inputreceiverno');
+            inputreceiverno.value = +selectedValue;
+
+
+            //수신자 이메일 집어넣을 태그 잡아오기
+            const inputreceiveremail = document.querySelector('.reciveremail');
+            inputreceiveremail.textContent = part2;
+
+            //수신자 이름 집어넣을 태그 잡아오기
+            const inputreceivername = document.querySelector('.recivername');
+            inputreceivername.textContent = part1;
+
+            //수신자 직급 집어넣을 태그 잡아오기
+            const inputreceivepos = document.querySelector('.reciverposname');
+            inputreceivepos.textContent = part4;
+
+
+            const inputreceivedept = document.querySelector('.reciverdeptname');
+            inputreceivedept.textContent = part3;
+
+            //확인용
+            //console.log(inputreceiverno);
+
         });
+
+
         // $select.onclick = e =>{
         //     if(e.target.matches('option')){
         //         console.log(e.target.value);

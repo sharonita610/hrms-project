@@ -15,14 +15,14 @@
 //        return new BCryptPasswordEncoder();
 //    }
 //
-////    @Bean
-////    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-////        http.csrf().disable() // csrf 토큰 공격 방어 기능 해제
-////                .authorizeRequests()
-//////                .antMatchers("/**")
-//////                .permitAll();
-////
-////        return http.build();
-////    }
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http.csrf().disable() // csrf 토큰 공격 방어 기능 해제
+//                .authorizeRequests()
+//                .antMatchers("/**")
+//                .permitAll();
+//
+//        return http.build();
+//    }
 //
 //}

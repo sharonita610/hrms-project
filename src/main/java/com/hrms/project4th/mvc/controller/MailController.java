@@ -47,10 +47,11 @@ public class MailController {
     }
 
     //메일저장(전송)서비스
+    @PostMapping("/mail-send")
     public String sendRequest(final Mail mail){
-
+        log.info("Mail {}",mail);
         mailService.sendRequest(mail);
-        return "";
+        return "redirect:/hrms/mail-list/?empNo="+mail.getMailFrom()+"&mailType=mailfrom";
     }
 
     @GetMapping("/mail-list")

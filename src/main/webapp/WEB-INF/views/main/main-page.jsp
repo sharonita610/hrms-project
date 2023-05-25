@@ -107,12 +107,14 @@
                     </ul>
                 </div>
                 <div id="bottom-list">
-                    <ul>
+                    <ul id = "mail-box">
                         <li class="title-list">
                             <h1>메일</h1>
+                            <span id="wannaseemore">
+                                <a href="/hrms/mail-list?empNo=${login.empNo}">더보기+</a>
+                            </span>
                         </li>
-                        <li>메일</li>
-                        <li>메일</li>
+                        <li style="display: flex; width: 100%; height: 36px; justify-content: center; align-items: center; background-color: #d0e3ed;"><div style="width: 33%; text-align: center;">번호</div><div style="width: 33%; text-align: center;">발신자</div><div style="width: 33%; text-align: center;">확인</div></li>
                     </ul>
                     <ul id = "confirm-box">
                         <li class="title-list">
@@ -182,10 +184,10 @@
 
     getConfirmList();
 
-</script>
+ </script>
 
 
-    <script>
+     <script>
         const URLboard = '/api/hrms/main-board';
 
 
@@ -282,6 +284,35 @@
             prevpageAddEvent();
             nextpageAddEvent();
         })();
+     </script>
+
+    <script>
+        //메일 rest용 url
+        const mailURL = '/api/hrms/mail';
+        //접속자 사번 가져오기
+        const mailempNo = '${login.empNo}';
+        
+        //접속한 사원에게 온 메일의 리스트 json받아오기
+        function getMailList(){
+        fetch(`\${mailURL}/mailempNo/\${mailempNo}`)
+            .then(res=>res.json())
+            .then(mailresult =>{
+               console.log(mailresult);
+                //renderMailList(mailresult);
+            })
+        };
+
+        function renderMailList(responseResult){
+            let tag = '';
+            {}
+        }
+
+
+
+        (function(){
+            getMailList()
+        })();
+
     </script>
 </body>
 <%@ include file="../main/include/footer.jsp" %>
