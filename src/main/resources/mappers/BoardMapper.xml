@@ -53,7 +53,7 @@
     <select id="boardDetail" resultType="board">
         SELECT
         board_no, bd_type, bd_title, bd_content,
-        bd_date, emp_no
+        bd_date, emp_no,important
         FROM hr_board
         WHERE board_no=#{boardNo}
     </select>

@@ -1,13 +1,13 @@
 package com.hrms.project4th.mvc.controller;
 
-import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
-import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
-import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import com.hrms.project4th.mvc.dto.page.BoardPageMaker;
 import com.hrms.project4th.mvc.dto.page.BoardSearch;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardDetailRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.service.BoardService;
-import com.hrms.project4th.mvc.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -60,7 +57,7 @@ public class BoardController {
     // 저장 페이지의 정보를 저장하는 기능
     @PostMapping("/board-save")
     public String boardSave(BoardSaveRequestDTO dto) {
-      log.info("BoardSaveRequestDTO {}",dto);
+//      log.info("BoardSaveRequestDTO {}",dto);
         boardService.boardSave(dto);
         return "redirect:/hrms/board/board-list";
     }
@@ -81,8 +78,8 @@ public class BoardController {
             BoardSearch search,
             Long boardNo,
             Model model) {
+        BoardDetailRequestDTO board = boardService.boardDetail(boardNo);
 //        log.info("board-detail / boardNo : {} ", boardNo);
-        Board board = boardService.boardFindOneByBoardNo(boardNo);
         log.info("detailboard {}",board);
 //        log.info("searchInfo : {}", search);
         model.addAttribute("s", search);
@@ -94,7 +91,7 @@ public class BoardController {
     @PostMapping("/show-modify")
     public String showModify(Model model, BoardModifyRequestDTO dto,BoardSearch boardSearch) {
 //        log.info("/hrms/board-modify : POST / {}", dto);
-        log.info("boardSearch : {}",boardSearch);
+//        log.info("boardSearch : {}",boardSearch);
         model.addAttribute("s",boardSearch);
         model.addAttribute("m", dto);
         return "/board/boardModify";
