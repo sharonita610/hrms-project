@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Employees {
+public class Employees extends CheckPassword {
 
     private long empNo;
     private String empName;

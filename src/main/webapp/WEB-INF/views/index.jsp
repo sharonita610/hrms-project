@@ -15,7 +15,7 @@
             width: 600px;
             height: 500px;
             border: 2px solid #333333;
-            margin: 20% auto;
+            margin: 10% auto;
         }
 
         h1 {

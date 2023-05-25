@@ -1,11 +1,15 @@
 package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.requestDTO.AddEmployeesDTO;
+import com.hrms.project4th.mvc.dto.requestDTO.LoginRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.GetMyBossResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
+import com.hrms.project4th.mvc.entity.CheckPassword;
+import com.hrms.project4th.mvc.entity.Employees;
+import com.hrms.project4th.mvc.entity.LoginResult;
 import com.hrms.project4th.mvc.service.EmployeesService;
 import com.hrms.project4th.mvc.service.LoginService;
 import com.hrms.project4th.mvc.util.FileUtil;
@@ -18,10 +22,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
+import static com.hrms.project4th.mvc.entity.LoginResult.SUCCESS;
+import static com.hrms.project4th.mvc.entity.LoginResult.WRONG_PW;
 import static com.hrms.project4th.mvc.util.LoginUtil.LOGIN_KEY;
 import static com.hrms.project4th.mvc.util.LoginUtil.getCurrentLoginMemberAccount;
 
@@ -31,13 +40,14 @@ import static com.hrms.project4th.mvc.util.LoginUtil.getCurrentLoginMemberAccoun
 @Slf4j
 @RequestMapping("/hrms/employees")
 public class EmployeesController {
-    private final LoginService loginService;
+
     private final EmployeesService employeesService;
+    private final LoginService loginService;
 
     @Value("${file.upload.root-path}")
     private String rootPath;
 
-   //사원 전체리스트 페이지로 이동
+    //사원 전체리스트 페이지로 이동
     @GetMapping("/list")
     public String getEmployeesList() {
 //        employeesService.getEmployeesList();
@@ -48,7 +58,7 @@ public class EmployeesController {
     @GetMapping("/search/{empName}")
     @ResponseBody
     public ResponseEntity<List<EmployeeDetailResponseDTO>> searchEmployeesByName(@PathVariable("empName") String empName) {
-        log.info("empName : {}",empName);
+        log.info("empName : {}", empName);
         return ResponseEntity.ok().body(employeesService.searchEmployeesByName(empName));
     }
 
@@ -63,14 +73,14 @@ public class EmployeesController {
     @GetMapping("/list/{deptCode}")
     @ResponseBody
     public ResponseEntity<List<EmployeeDetailResponseDTO>> getEmployeesListByDept(@PathVariable("deptCode") String deptCode) {
-        log.info("deptCode : {}",deptCode);
+        log.info("deptCode : {}", deptCode);
         return ResponseEntity.ok().body(employeesService.getDetailEmployeesListByDept(deptCode));
     }
 
     //부서장 검색
     @GetMapping("/list/head")
     @ResponseBody
-    public  ResponseEntity<List<EmployeeDetailResponseDTO>> getDeptHeadList() {
+    public ResponseEntity<List<EmployeeDetailResponseDTO>> getDeptHeadList() {
         return ResponseEntity.ok().body(employeesService.getDeptHeadList());
     }
 
@@ -146,6 +156,34 @@ public class EmployeesController {
         return "admin/modifyMyInfo";
     }
 
+    @GetMapping("/checkCurrentPassword")
+    public String checkCurrentPassword() {
+        log.info("/checkCurrentPassword : GET 요청!");
+
+
+        return "redirect:/hrms/admin/modifyMyInfo";
+    }
+//    @PostMapping("/checkCurrentPassword")
+//    public ResponseEntity<?> checkCurrentPassword(
+//            @RequestBody String currentPwd,
+//            HttpServletRequest request
+//
+//    ) {
+//        log.info("/checkCurrentPassword POST 요청!");
+//
+//        String checkPwd = currentPwd;
+//        String empEmail = getCurrentLoginMemberAccount(request.getSession());
+//        Employees checkPassword = (Employees) employeesService.checkCurrentPwd(checkPwd, empEmail);
+//
+//        if (checkPassword != null) {
+//            return ResponseEntity.ok("완료");
+//        } else {
+//            return ResponseEntity.badRequest().body("비밀번호가 일치하지 않습니다.");
+//        }
+//
+//    }
+
+
 
     // 사원 번호 수정하기
     // fetch 로 처리 시도 중
@@ -192,6 +230,21 @@ public class EmployeesController {
 
 
         return "admin/modifyMyInfo";
+    }
+
+    @PutMapping("/updatePassword")
+    public ResponseEntity<String> updatePassword(@RequestBody String newPassword, HttpServletRequest request) {
+        log.info("/updatePassword PUT 요청!");
+
+        String empEmail = getCurrentLoginMemberAccount(request.getSession());
+
+        boolean success = employeesService.updatePassword(empEmail, newPassword);
+
+        if (success) {
+            return ResponseEntity.ok("비밀번호가 업데이트되었습니다.");
+        } else {
+            return ResponseEntity.badRequest().body("비밀번호 업데이트에 실패하였습니다.");
+        }
     }
 
 }

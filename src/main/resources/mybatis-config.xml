@@ -29,6 +29,7 @@
         <typeAlias alias="mailDetailResponseDTO" type="com.hrms.project4th.mvc.dto.responseDTO.MailDetailResponseDTO"/>
         <typeAlias alias="testEntity" type="com.hrms.project4th.mvc.entity.TestEntity"/>
         <typeAlias alias="boardEmpInfo" type="com.hrms.project4th.mvc.entity.BoardEmpInfo"/>
+        <typeAlias alias="checkPassword" type="com.hrms.project4th.mvc.entity.CheckPassword"/>
 
     </typeAliases>
 
