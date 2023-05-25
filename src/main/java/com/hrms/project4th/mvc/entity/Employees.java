@@ -36,7 +36,7 @@ public class Employees extends CheckPassword {
     private LocalDateTime cookieLimitTime;
     private String empSession;
     // db에 컬럼 추가해야됨
-    private char autoLogin;
+    private CheckStatus autoLogin;
 
 
     public Employees(AddEmployeesDTO dto, String path){

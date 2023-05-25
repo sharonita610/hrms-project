@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.dto.requestDTO;
 
+import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.entity.Gender;
 import lombok.*;
 import org.springframework.lang.Nullable;
@@ -28,5 +29,5 @@ public class AddEmployeesDTO {
     private String roleCode;
     private String deptCode;
     private MultipartFile profile;
-    private char autoLogin;
+    private CheckStatus autoLogin;
 }
