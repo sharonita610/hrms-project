@@ -89,7 +89,7 @@ public class LoginService {
     public void maintainLoginState(HttpSession session, String empEmail) {
 
         EmployeeDetailResponseDTO dto = employeesMapper.logedInDetail(empEmail);
-        dto.profileWithRootPath(dto.getProfile());
+//        dto.profileWithRootPath(dto.getProfile());
 
         //  세션에 저장
         session.setAttribute(LOGIN_KEY, dto);

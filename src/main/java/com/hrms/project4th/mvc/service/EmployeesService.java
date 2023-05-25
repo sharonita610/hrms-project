@@ -84,7 +84,7 @@ public class EmployeesService {
 
     public EmployeeDetailResponseDTO getDetailedEmployee(long empNo) {
         EmployeeDetailResponseDTO dto = employeesMapper.getDetailedEmployee(empNo);
-        dto.profileWithRootPath(dto.getProfile());
+//        dto.profileWithRootPath(dto.getProfile());
         dto.gettingEmailAccount(dto.getEmpEmail());
         return dto;
     }

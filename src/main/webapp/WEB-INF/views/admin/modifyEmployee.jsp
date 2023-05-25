@@ -23,7 +23,7 @@
                 <div id="noPic" class="alert">사진이 선택되지 않았습니다.</div>
             </div>
 
-            <div id="picFrame" class="profilePic"><img id="showPic" src="${emp.profile}"></div>
+            <div id="picFrame" class="profilePic"><img id="showPic" src="/hrms${emp.profile}"></div>
 
 
             <div class="empNameInput addInputForm">
