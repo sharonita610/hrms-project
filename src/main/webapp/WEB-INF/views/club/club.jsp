@@ -44,11 +44,10 @@
                     <div class="club-modal-replies-head">
                         <ul class="replies-wrapper">
                             <li class="club-modal-add-reply">
-                                <form action="#" method="POST">
+                                    <input type="hidden" class="club-reply-writer" value="${exEmp.empNo}">
                                     <input class="write-reply" type="text" placeholder="댓글을 작성해보세요!">
                                     <button id="add-reply" type="submit">등록</button>
                                     <button id="cancel-reply" type="reset">취소</button>
-                                </form>
                             </li>
 
                             <li class="club-modal-reply-list">
@@ -413,6 +412,9 @@
                 e.preventDefault();
                 const cbNo = e.target.closest('.club-card').dataset.bno;
 
+                // 모달창 띄우면서 모달창 댓글부분에 cbNo 붙여주기
+                document.querySelector('.club-modal-replies-container').dataset.cbno = cbNo;
+
                 $commonModal.classList.add('show-modal');
                 $modalBackground.classList.add('show-modal');
 
@@ -577,6 +579,46 @@
                 
             }
             
+        }
+
+        // 댓글 등록하기 
+        const $addReply = document.querySelector('#add-reply');
+
+        $addReply.onclick = e => {
+            const $clubReplyCbNo = document.querySelector('.club-modal-replies-container').dataset.cbno;
+            const $clubReplyWriter = document.querySelector('.club-reply-writer').value;
+            const $clubReplyContent = document.querySelector('.write-reply').value;
+
+            // 클라이언트 입력값 검증
+            if ($clubReplyContent.value === '') {
+                    alert('댓글 내용을 입력해주세요!');
+                    return;
+                }
+
+            const replyBox = {
+                cbNo: $clubReplyCbNo,
+                empNo: $clubReplyWriter,
+                clubRepContent: $clubReplyContent
+            }
+
+            const requestReplyInfo = {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(replyBox)
+                };
+            
+            fetch(clubBoardURL + "/clubReplySave", requestReplyInfo)
+                .then(res => {
+                        if (res.status === 200) {
+                            alert('댓글을 등록했습니다!');
+                            $clubReplyContent.value = '';
+                            clubReplyList($clubReplyCbNo);
+                        } else {
+                            alert('댓글 등록에 실패함!');
+                        }
+                    });
         }
         
         
