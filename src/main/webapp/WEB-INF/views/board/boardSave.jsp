@@ -5,9 +5,10 @@
 <html lang="en">
 
 <head>
-    <!-- boot-strap -->
+    
     <title>SAMJO SANGSA</title>
     <link rel="icon" href="/assets/img/favicon_blue.png">
+    <!-- boot-strap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <!-- ck editor -->
@@ -24,16 +25,17 @@
         body {
             font-family: Arial, sans-serif;
         }
-
+        .save-part{
+            width: 100%;
+        }
         .container {
             width: 800px;
         }
 
         .detail-section {
-            width: 75%;
-            margin-top: 10px;
+            width: 100%;
+            margin: 40px auto;
             height: 1000px;
-            margin-left: 400px;
         }
 
         .detail-topbox {
@@ -142,6 +144,24 @@
         .detail-button #backToList {
             margin-right: 10px;
         }
+
+        .class-input {
+            display: flex;
+        }
+
+        .title-input #title {
+            width: 500px;
+        }
+
+        .title-input #serious {
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        #importantCheck {
+            transform: scale(1.5);
+            margin: 0px 10px;
+        }
     </style>
 </head>
 
@@ -167,8 +187,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="title">제목:</label>
-                                <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" required>
+                                <div class="title-input">
+                                    <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" required>
+                                    <c:if test="${login.roleCode=='11111'|| login.roleCode=='00000'}">
+                                        <input name="important" id="importantCheck" type="checkbox" value="0"><span
+                                            id="serious">중요</span>
+                                    </c:if>
+                                </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="content">내용:</label>
                                 <!-- <textarea id="content" name="bdContent" placeholder="내용을 입력하세요" required> -->
@@ -191,12 +218,40 @@
 
 </body>
 <script>
-    const $back = document.getElementById('backToList');
-    $back.onclick=()=>{
-        window.location.href='/hrms/board/board-list/'
+    function checkeBox() {
+        $checkbox = document.getElementById('importantCheck');
+        if ($checkbox){
 
+            $checkbox.onclick = () => {
+                if ($checkbox.checked) {
+                    console.log("체크박스가 선택되었습니다.");
+                    // 선택되었을 때 수행할 동작
+                    $checkbox.value = 1;
+
+                } else {
+                    console.log("체크박스가 선택되지 않았습니다.");
+                    $checkbox.value = 0;
+                    // 선택되지 않았을 때 수행할 동작
+                
+                    // console.log('나오냐?');
+                    // console.log($checkbox.value);
+
+                }
+
+            }
+        }   
     }
 
+    checkeBox();
+
+
+
+
+    const $back = document.getElementById('backToList');
+    $back.onclick = () => {
+        window.location.href = '/hrms/board/board-list/'
+
+    }
 </script>
 
 </html>

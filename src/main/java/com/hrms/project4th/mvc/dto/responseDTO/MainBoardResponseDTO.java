@@ -4,8 +4,7 @@ import com.hrms.project4th.mvc.entity.BdType;
 import com.hrms.project4th.mvc.entity.Board;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
+import static com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO.makeShort;
 import static com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO.makeStringDate;
 
 @Getter
@@ -33,17 +32,21 @@ public class MainBoardResponseDTO {
     private String bdDate;
     // 댓글 수
     private long replyNo;
+    //important 값
+    private long important;
 
 
     public MainBoardResponseDTO(Board board) {
         this.empNo = board.getEmpNo();
         this.empName = board.getEmpName();
         this.boardNo = board.getBoardNo();
-        this.bdTitle = board.getBdTitle();
+        this.bdTitle =makeShort(board.getBdTitle(),15);
         this.repNo = board.getRepNo();
         this.bdType = board.getBdType();
         this.bdDate = makeStringDate(board.getBdDate());
         this.replyNo=board.getRepNo();
+        this.important=board.getImportant();
     }
+
 
 }

@@ -16,6 +16,8 @@ public class BoardEmpInfoResponseDTO {
     private String empPhone;
     private String deptName;
     private String posName;
+    private String empGender;
+    private String profile;
 
 
     public BoardEmpInfoResponseDTO(BoardEmpInfo boardEmpInfo) {
@@ -25,6 +27,8 @@ public class BoardEmpInfoResponseDTO {
         this.empPhone = phonePattern(boardEmpInfo.getEmpPhone());
         this.deptName = boardEmpInfo.getDeptName();
         this.posName = boardEmpInfo.getPosName();
+        this.empGender= String.valueOf(boardEmpInfo.getEmpGender());
+        this.profile=boardEmpInfo.getProfile();
 
     }
 

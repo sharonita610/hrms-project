@@ -41,14 +41,12 @@
             letter-spacing: 50px;
             display: inline-block;
             width: 300px;
-            margin-left: 340px;
+            margin-left: 100px;
 
         }
 
         .detail-part {
-            margin-top: 50px;
-            margin-left: 300px;
-
+            margin: 50px auto;
         }
 
         .container-box {
@@ -169,7 +167,10 @@
             width: 50%;
             text-align: end;
         }
-
+        #newReplyWriter{
+            text-align: center;
+            letter-spacing: 5px;
+        }
 
         .offset-md-6 {
             text-align: end;
@@ -182,6 +183,12 @@
             height: 150px;
             width: 100%;
             height: fit-content;
+        }
+
+        .detail-topbox {
+            display: flex;
+            justify-content: start;
+            margin-left: 250px;
         }
 
         #reply-count {
@@ -256,9 +263,6 @@
 
         }
 
-        /* .modal .boardModDEL{
-             border: none;
-        } */
 
         .modal .modMod {
             height: 150px;
@@ -278,10 +282,12 @@
             height: 38.38px;
         }
 
+
         /* page 색변화처리  */
-        .colorChange a {
+        #replyCollapse .justify-content-center .p-active a{
             background-color: #0d6efd !important;
             color: #ffffff !important;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -300,6 +306,7 @@
                         </c:if>
                     </div>
                     <form action="/hrms/board/show-modify" method="post">
+
                         <div class="form-group">
                             <input type="hidden" name="boardNo" value="${b.boardNo}">
                             <label for="board">게시판</label>
@@ -340,6 +347,7 @@
 
 
 
+
                 </div>
 
                 <!-- 댓글 파트-->
@@ -360,7 +368,8 @@
                                     <div class="col-md-3">
                                         <div class="form-group replyController">
                                             <input id="newReplyWriter" name="replyWriter" type="text"
-                                                class="form-control" style="margin-bottom: 35px;" value="${login.empName}" readonly>
+                                                class="form-control" style="margin-bottom: 35px;"
+                                                value="${login.empName}" readonly>
                                             <button id="replyAddBtn" type="button"
                                                 class="btn btn-dark form-control">등록</button>
                                         </div>
@@ -492,7 +501,7 @@
         const boardNo = `${b.boardNo}`;
 
         //로그인 게정명 
-        const loginEmpNo='${login.empNo}';
+        const loginEmpNo = '${login.empNo}';
 
         // 페이지 렌더링 함수
         function renderPage({
@@ -616,15 +625,15 @@
                                 `;
 
 
-                    if (loginEmpNo== empNo) {
-                    
-                        tag += "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
+                    if (loginEmpNo == empNo) {
+
+                        tag +=
+                            "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
                             "         <button id='replyDelBtn' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop2'>삭제</button>";
                     }
                     tag += "       </div>" +
                         "    </div>" +
                         " </div>";
-  // "         <a id='replyModBtn' class='btn btn-sm btn-outline-dark' data-bs-toggle='modal' data-bs-target='#replyModifyModal'>수정</a>&nbsp;" +
 
                 }
             }
@@ -844,7 +853,9 @@
                             $rw.value = '';
                             // 마지막페이지 번호
                             // const lastPageNo = document.querySelector('.pagination').dataset.fp;
+                            document.getElementById('newReplyWriter').value = ' ${login.empName}';
                             findAllReplies(1);
+
                         } else {
                             // console.log($rt.value);
                             // console.log($rw.value);

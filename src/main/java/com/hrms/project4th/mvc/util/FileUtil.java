@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class FileUtil {
 
@@ -28,6 +29,30 @@ public class FileUtil {
 
         //저장된 파일의 전체경로
         return newPath + newFileName;
+    }
+
+    public static String saveBoardFile(MultipartFile file, String path){
+
+        //원본파일명을 이메일 아이디로 변경
+
+        String newFileName
+                = UUID.randomUUID() + "_" + file.getOriginalFilename();
+
+        //파일 저장할 폴더 날짜별로 생성
+        String newPath = makeDirectory(path);
+
+        //파일 업로드
+        try {
+            file.transferTo(new File(newPath, newFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //저장된 파일의 전체경로
+        String fullPath = newPath + newFileName;
+        String responsePath = "/local"+fullPath.substring(path.length());
+        return responsePath;
+
     }
 
     private static String makeDirectory(String path) {

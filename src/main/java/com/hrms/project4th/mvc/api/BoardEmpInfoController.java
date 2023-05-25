@@ -21,8 +21,9 @@ public class BoardEmpInfoController {
 
     @GetMapping
     public ResponseEntity<?> showAllInfo(){
+
         List<BoardEmpInfoResponseDTO> boardEmpInfos = boardEmpInfoService.showAllInfo();
-        log.info(" boardEmpInfos : {}", boardEmpInfos);
+//        log.info(" boardEmpInfos : {}", boardEmpInfos);
 
         return ResponseEntity.ok().body(boardEmpInfos);
     }
