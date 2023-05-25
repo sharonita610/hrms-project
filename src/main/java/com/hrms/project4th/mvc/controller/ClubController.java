@@ -1,5 +1,6 @@
 package com.hrms.project4th.mvc.controller;
 
+import com.hrms.project4th.mvc.dto.requestDTO.ClubBoardSaveRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ClubJoinRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.ClubBoardResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.JoinedClubListResponseDTO;
@@ -8,8 +9,10 @@ import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.entity.Gender;
 import com.hrms.project4th.mvc.service.ClubBoardService;
 import com.hrms.project4th.mvc.service.ClubJoinService;
+import com.hrms.project4th.mvc.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +29,10 @@ public class ClubController {
 
     private  final ClubBoardService clubBoardService;
     private final ClubJoinService clubJoinService;
+
+    @Value("${clubFile.upload.root-path}")
+    private  String rootPath;
+
     @GetMapping("/club-board-list")
     public String clubBoardList(Model model) {
 
@@ -113,6 +120,19 @@ public class ClubController {
         log.info("detail DTO:{}", clubBoardResponseDTO);
 
         return ResponseEntity.ok().body(clubBoardResponseDTO);
+    }
+
+    @PostMapping("/clubBoardSave")
+    public String clubBoardSave(ClubBoardSaveRequestDTO dto) {
+        log.info("newClubBoard !!!!! dto: {}", dto);
+        String savePath = FileUtil.uploadClubFile(dto.getEmpNo(), dto.getCbURL(), rootPath);
+        log.info(rootPath);
+
+
+        boolean b = clubBoardService.clubBoardSave(dto, savePath);
+        log.info("동호회 새 게시글 작성 성공여부: {}", b);
+
+        return "redirect:/hrms/club/club-board-list";
     }
 
 }

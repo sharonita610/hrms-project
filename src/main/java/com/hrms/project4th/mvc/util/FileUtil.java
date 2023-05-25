@@ -30,6 +30,22 @@ public class FileUtil {
         return newPath + newFileName;
     }
 
+    public static String uploadClubFile(Long empNo, MultipartFile file, String path) {
+        // 원본 파일명 변경
+        String newClubFileName = empNo + "_" + file.getOriginalFilename();
+
+        // 날짜별 폴더 생성
+        String newClubPath = makeDirectory(path);
+
+        try {
+            file.transferTo(new File(newClubPath, newClubFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return newClubPath + newClubFileName;
+    }
+
     private static String makeDirectory(String path) {
 
 

@@ -34,7 +34,7 @@
                         </li>
                         <li>
                             <div class="club-modal-contents">
-                                <div class="post-img"></div>
+                                <div class="post-img"><img src="" alt="게시글미디어"></div>
                                 <div class="post-text"></div>
                             </div>
                         </li>
@@ -70,9 +70,9 @@
                   <li class="write-content-club-info">
                      <ul class="club-modal-informations">
                         <li class="club-modal-image">
-                           <img src="/resources/static/assets/img/samjo-logo.png" alt="동호회사진">
+                           <img src="/assets/img/samjo-logo.png" alt="동호회사진" class="newClubBoard-clubName-img">
                         </li>
-                        <li>동호회이름</li>
+                        <li class="newClubBoard-clubName"></li>
                         <li>
                            <form action="#" method="post">
                               <!-- 가입하기 버튼 id 는 버튼 위치 잡으려고 만듬 -->
@@ -84,9 +84,11 @@
                   </li>
                   <li>
                      <div class="club-write-wrap">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="/hrms/club/clubBoardSave" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="empNo" value="${exEmp.empNo}">
+                            <input type="hidden" id="input-clubCode" name="clubCode" value="">
                            <label for="club-write-content" id="content-label"><span>문구</span></label>
-                           <textarea id="club-write-content" name="content" maxlength="300" required
+                           <textarea id="club-write-content" name="cbContent" maxlength="300" required
                                      style="resize: none"></textarea>
                            <div class="club-content-image">
                               <div class="content-image-box">
@@ -100,7 +102,7 @@
                                     id="content-img"
                                     accept="image/*"
                                     style="display: none;"
-                                    name="cbUrl"
+                                    name="cbURL" required
                               >
                            </div>
                           
@@ -131,17 +133,17 @@
                                 data-writer="${c.empName}">
                                 <div class="club-card-info">
                                     <ul>
-                                        <li><img src="#" alt="" class="club-profile-img"></li>
+                                        <li><img src="#" alt="동호회프로필" class="club-profile-img"></li>
                                         <li class="board-list-club-name" data-clubCode="${c.clubCode}">${c.clubName}</li>
                                         <!-- 가입하기 버튼 -->
                                         <li>
                                             <button class="join" type="submit"
-                                                style="cursor: pointer !important;">가입하기</button>
+                                                style="cursor: pointer !important;">Join</button>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="club-card-content">
-                                    <div class="board-list-club-URL">${c.cbURL}</div>
+                                    <div class="board-list-club-URL"><img src="${c.cbURL}" alt="게시글사진"></div>
                                     <div class="board-list-club-content">${c.cbContent}</div>
                                 </div>
                             </section>
@@ -236,12 +238,13 @@
                             cbNo,
                             cbTitle,
                             clubCode,
-                            empNo
+                            empNo,
+                            cbContent
                         } = oneboard;
 
                         myBoardTag += "<ul>" +
                             "<li class='club-board-title' data-cbNo='" + cbNo + "' data-clubCode='" +
-                            clubCode + "'>" + cbTitle + "</li>" +
+                            clubCode + "'>" + cbContent + "</li>" +
                             "</ul>";
                     }
                 }
@@ -274,7 +277,8 @@
                         } = oneClub;
 
                         myClubTag += "<ul>" +
-                            "<li class='joined-club-list' data-clubCode='" + clubCode + "'>" + clubName +
+                            "<li class='joined-club-list' data-clubCode='" + clubCode + "'>" 
+                                + "<b class='joined-club-name'>" + clubName +"</b>"+
                             "<button class='club-board-write-btn'>글쓰기</button>" +
                             "<button class='club-leave-btn'>탈퇴하기</button>" +
                             "</li>" +
@@ -422,7 +426,9 @@
 
                 $modalProfile.textContent = e.target.parentElement.previousElementSibling.querySelector(
                     '.club-profile-img').textContent;
-                $modalPostImg.textContent = e.target.parentElement.querySelector('.board-list-club-URL')
+                // $modalPostImg.textContent = 
+
+                $modalPostImg.children.src = e.target.parentElement.querySelector('.board-list-club-URL')
                 .textContent;
 
                 // 수정 삭제 버튼 지우기 함수
@@ -547,8 +553,7 @@
                     // $modalDate.textContent = cbDate;
 
                     // $modalProfile.textContent = e.target.parentElement.previousElementSibling.querySelector('.club-profile-img').textContent;
-                    $modalPostImg.textContent = cbURL;
-
+                    $modalPostImg.children.src = cbURL;
                     // 가입하기 버튼 삭제 함수
                     removeJoinBtn();
 
@@ -567,8 +572,8 @@
                 $modalNewBoard.classList.add('show-modal');
                 $modalBackground.classList.add('show-modal');
 
-
-
+                document.querySelector('.newClubBoard-clubName').textContent = e.target.previousElementSibling.textContent;
+                document.querySelector('#input-clubCode').value = e.target.parentElement.dataset.clubcode;
                 
             }
             
@@ -605,9 +610,7 @@
         };
 
     };
-        
-        
-        
+      
         // 혜영누나 새 게시글 추가 스크립트 ================================================================================================================
 
 
@@ -619,18 +622,6 @@
 
             // 내 게시글 목록 비동기 조회
             myBoardList();
-
-        // 내가 작성한 게시글 목록 불러오기
-        // getMyBoardClubList();
-
-        // 댓글 등록 이벤트 등록
-        //makeReplyRegisterClickEvent();
-
-        // 삭제 이벤트 등록
-        // replyRemoveClickEvent();
-
-        // 수정 이벤트 등록
-        // replyModifyClickEvent();
 
         })();
     </script>

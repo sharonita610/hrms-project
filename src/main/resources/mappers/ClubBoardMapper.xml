@@ -6,7 +6,7 @@
 
     <select id="findAllClubBoard" resultType="clubBoardDTO">
         SELECT
-        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME, E.EMP_NAME
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME, E.EMP_NAME, CLUB_PROFILE
         FROM TEST_CLUB_BOARD B
         JOIN TEST_CLUB C USING (CLUB_CODE)
         JOIN TEST_EMPLOYEES E ON E.EMP_NO = C.EMP_NO
@@ -14,7 +14,7 @@
 
     <select id="findByEmpNoClubBoard" resultType="clubBoardDTO">
         SELECT
-        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME, CLUB_PROFILE
         FROM TEST_CLUB_BOARD B
         JOIN TEST_CLUB C USING (CLUB_CODE)
         WHERE CLUB_CODE IN(select CLUB_CODE
@@ -24,7 +24,7 @@
     </select>
 
     <select id="myClubBoardList" resultType="myClubBoardListDTO">
-        select CB_NO, CB_TITLE, EMP_NO, CLUB_CODE
+        select CB_NO, CB_TITLE, EMP_NO, CLUB_CODE, CB_CONTENT
         from test_club_board
         where EMP_NO = #{empNo};
     </select>

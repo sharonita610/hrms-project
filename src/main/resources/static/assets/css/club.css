@@ -104,6 +104,18 @@
     padding: 10px 0;
     text-align: center;
 }
+
+/* 가입하기 버튼 */
+button.join {
+    background: rgb(21 47 255 / 56%);
+    border-radius: 20px;
+    height: 40px;
+    width: 60px;
+    font-size: 18px;
+    color: #fff;
+    border: 0px;
+}
+
 /*  동호회 사진  */
 .club-card-info ul li img{
     width: 50px;
@@ -115,6 +127,7 @@
 .club-card {
     border: 2px solid rgb(166 192 255);
     margin-top: 20px;
+    margin-bottom: 80px;
     padding: 20px; 
     position: relative;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
