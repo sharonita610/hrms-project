@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.controller;
 
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.ModifyConfirmDTO;
+import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.LongTitleResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.SimpleDateConfirmDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.RequestConfirmDTO;
@@ -34,8 +35,9 @@ public class ConfirmController {
 
     //결재 신청폼
     @GetMapping("/rq-form")
-    public String writeRequest(String deptCode, Model model){ //추후 코드 변경 : 세션에서 로그인 객체 넘겨받아 부서 확인하기
-        DeptBossDTO deptBoss = confirmService.getDeptBoss("001");
+    public String writeRequest(HttpSession session, Model model){ //추후 코드 변경 : 세션에서 로그인 객체 넘겨받아 부서 확인하기
+        EmployeeDetailResponseDTO dto = (EmployeeDetailResponseDTO) session.getAttribute("login");
+        DeptBossDTO deptBoss = confirmService.getDeptBoss(dto.getDeptCode());
         model.addAttribute("boss", deptBoss);
         return "confirm/confirm-rqform"; //jsp
     }
