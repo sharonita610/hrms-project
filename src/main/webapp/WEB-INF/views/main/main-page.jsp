@@ -80,6 +80,65 @@
     /* .table-top th{
         font-weight: 700;
     } */
+
+    #bottom-list #mail-box{
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        font-weight: 700;
+    }
+
+    #bottom-list #mail-box .mailheader{
+        display: flex;
+        flex-direction: row;
+        width: 100%; 
+        height: 36px; 
+        justify-content: center; 
+        align-items: center; 
+    }
+    
+    #bottom-list #mail-box .mailheader .mailno{
+        width: 33%; 
+        text-align: center;
+    }
+
+    #bottom-list #mail-box .mailheader .mailsender{
+        width: 33%; 
+        text-align: center;
+    }
+
+    #bottom-list #mail-box .mailheader .mailstatus{
+        width: 33%; 
+        text-align: center;
+    }
+    #bottom-list #mail-box .inlinemail{
+        display: flex;
+        flex-direction: row;
+        width: 100%; 
+        height: 10%; 
+        justify-content: center; 
+        align-items: center; 
+        cursor: pointer;
+    }
+    #bottom-list #mail-box .inlinemail:hover{
+        background: #d0e3ed;
+    }
+    #bottom-list #mail-box .inlinemail .inlinemailno{
+        width: 33%; 
+        text-align: center;
+    }
+    #bottom-list #mail-box .inlinemail .inlinemailsender{
+        width: 33%; 
+        text-align: center;
+    }
+    #bottom-list #mail-box .inlinemail .inlinemailstatus{
+        width: 33%; 
+        text-align: center;
+        color: red;
+    }
+
+
+
 </style>
 
 <body>
@@ -123,13 +182,13 @@
                 </div>
                 <div id="bottom-list">
                     <ul id = "mail-box">
-                        <li class="title-list">
+                        <div class="title-list">
                             <h1>메일</h1>
                             <span id="wannaseemore">
                                 <a href="/hrms/mail-list?empNo=${login.empNo}">더보기+</a>
                             </span>
-                        </li>
-                        <li style="display: flex; width: 100%; height: 36px; justify-content: center; align-items: center; background-color: #d0e3ed;"><div style="width: 33%; text-align: center;">번호</div><div style="width: 33%; text-align: center;">발신자</div><div style="width: 33%; text-align: center;">확인</div></li>
+                        </div>
+                        
                     </ul>
                     <ul id="confirm-box">
                         <li class="title-list">
@@ -148,7 +207,7 @@
 <script>
 
     const URL = "/hrms/confirm";
-    const empNo = ${login.empNo};
+    const empNo = '${login.empNo}';
     const roleCode = '${login.roleCode}';
 
         const confirmBox = document.getElementById('confirm-table');
@@ -349,25 +408,77 @@
      </script>
 
     <script>
+
         //메일 rest용 url
         const mailURL = '/api/hrms/mail';
         //접속자 사번 가져오기
         const mailempNo = '${login.empNo}';
 
+        const $maillist = document.getElementById('mail-box');
+        const $bottomlist = document.getElementById('bottom-list');
+
+        //클릭 이벤트 발생함수
+
+        const $mailList = document.getElementById('mail-box');
+
+            $mailList.addEventListener('click', function(event) {
+                const clickedLi = event.target.closest('li.inlinemail');
+
+            if (clickedLi.matches('li.inlinemail')) {
+                // 클릭된 li 태그 처리
+                const mailNoElement = event.target.querySelector('.inlinemailno');
+                const senderNameElement = event.target.querySelector('.inlinemailsender');
+                const mailStatusElement = event.target.querySelector('.inlinemailstatus');
+
+                const mailNo = mailNoElement.textContent;
+               
+
+                window.location.href = '/hrms/mail-detail?mailNo=' + mailNo + '&empNo=${login.empNo}' + '&mailPageNo=1 +   `&mailType=mailto';
+
+                
+            }else{
+                event.preventDefault();
+            }
+            });
         //접속한 사원에게 온 메일의 리스트 json받아오기
         function getMailList(){
         fetch(`\${mailURL}/mailempNo/\${mailempNo}`)
             .then(res=>res.json())
             .then(mailresult =>{
-               console.log(mailresult);
-                //renderMailList(mailresult);
+                console.log(mailresult);
+                renderMailList(mailresult);
             })
         };
 
-        function renderMailList(responseResult){
+        function renderMailList(maillist) {
             let tag = '';
-            {}
-        }
+
+            if (maillist.length === 0) {
+                tag += `<div class="mailheader"><div class="mailno">번호</div><div class="mailsender">발신자</div><div class="mailstatus">확인</div></div>`;
+                $maillist.innerHTML = `<div class="title-list">
+                                        <h1>메일</h1>
+                                        <span id="wannaseemore">
+                                            <a href="/hrms/mail-list?empNo=${login.empNo}">더보기+</a>
+                                        </span>
+                                    </div>${tag}`;
+                return;
+            }
+
+            tag = `<div class="mailheader"><div class="mailno">번호</div><div class="mailsender">발신자</div><div class="mailstatus">확인</div></div>`;
+            for (const mail of maillist) {
+                const { mailNo, senderName, mailStatus } = mail;
+
+                tag += `<li class="inlinemail"><div class="inlinemailno">`+mailNo+`</div><div class="inlinemailsender">`+senderName+`</div><div class="inlinemailstatus">`+mailStatus +`</div></li>`;
+            }
+
+            $maillist.innerHTML = `<div class="title-list">
+                                        <h1>메일</h1>
+                                        <span id="wannaseemore">
+                                            <a href="/hrms/mail-list?empNo=${login.empNo}">더보기+</a>
+                                        </span>
+                                    </div>`+tag;
+            }
+
 
 
 
