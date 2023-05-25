@@ -140,6 +140,10 @@
     }
 
     function viewWaitingList() {
+        $viewAll.style.fontWeight = 'normal';
+        $waiting.style.fontWeight = '700';
+        $checked.style.fontWeight = 'normal';
+        $rejected.style.fontWeight = 'normal';
         $searchWaiting.value = '';
         $searchChecked.value = '';
         $searchRejected.value = '';
@@ -151,6 +155,10 @@
     }
 
     function viewCheckedList() {
+        $viewAll.style.fontWeight = 'normal';
+        $waiting.style.fontWeight = 'normal';
+        $checked.style.fontWeight = '700';
+        $rejected.style.fontWeight = 'normal';
         $searchWaiting.value = '';
         $searchChecked.value = '';
         $searchRejected.value = '';
@@ -162,6 +170,10 @@
     }
 
     function viewRejectedList() {
+        $viewAll.style.fontWeight = 'normal';
+        $waiting.style.fontWeight = 'normal';
+        $checked.style.fontWeight = 'normal';
+        $rejected.style.fontWeight = '700';
         $searchWaiting.value = '';
         $searchChecked.value = '';
         $searchRejected.value = '';
@@ -177,6 +189,10 @@
         getWaitingList();
         getCheckedList();
         getRejectedList();
+        $viewAll.style.fontWeight = '700';
+        $waiting.style.fontWeight = 'normal';
+        $checked.style.fontWeight = 'normal';
+        $rejected.style.fontWeight = 'normal';
         $searchWaiting.value = '';
         $searchChecked.value = '';
         $searchRejected.value = '';
