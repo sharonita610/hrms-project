@@ -72,7 +72,7 @@
 
     <update id="boardModify">
         UPDATE hr_board
-        SET bd_type=#{bdType}, bd_title=#{bdTitle}, bd_content=#{bdContent}
+        SET bd_type=#{bdType}, bd_title=#{bdTitle}, bd_content=#{bdContent},important=#{important}
         WHERE board_no=#{boardNo}
     </update>
 
