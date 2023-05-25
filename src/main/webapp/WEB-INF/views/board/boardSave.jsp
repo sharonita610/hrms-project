@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    
+
     <title>SAMJO SANGSA</title>
     <link rel="icon" href="/assets/img/favicon_blue.png">
     <!-- boot-strap -->
@@ -25,9 +25,11 @@
         body {
             font-family: Arial, sans-serif;
         }
-        .save-part{
+
+        .save-part {
             width: 100%;
         }
+
         .container {
             width: 800px;
         }
@@ -181,14 +183,15 @@
                                 <label for="board">게시판:</label>
                                 <select id="board" name="bdType">
                                     <option value="NOTICE">공지게시판</option>
-                                    <option value="FREE">자유게시판</option>
-                                    <option value="NONAME">익명게시판</option>
+                                    <!-- <option value="FREE">자유게시판</option> -->
+                                    <!-- <option value="NONAME">익명게시판</option> -->
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="title">제목:</label>
                                 <div class="title-input">
                                     <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" required>
+                                    <!-- 관리자 또는 부장일때만 -->
                                     <c:if test="${login.roleCode=='11111'|| login.roleCode=='00000'}">
                                         <input name="important" id="importantCheck" type="checkbox" value="0"><span
                                             id="serious">중요</span>
@@ -220,26 +223,26 @@
 <script>
     function checkeBox() {
         $checkbox = document.getElementById('importantCheck');
-        if ($checkbox){
+        if ($checkbox) {
 
             $checkbox.onclick = () => {
                 if ($checkbox.checked) {
-                    console.log("체크박스가 선택되었습니다.");
+                    // console.log("체크박스가 선택되었습니다.");
                     // 선택되었을 때 수행할 동작
                     $checkbox.value = 1;
 
                 } else {
-                    console.log("체크박스가 선택되지 않았습니다.");
-                    $checkbox.value = 0;
-                    // 선택되지 않았을 때 수행할 동작
-                
-                    // console.log('나오냐?');
+                    // console.log("체크박스가 선택되지 않았습니다.");
                     // console.log($checkbox.value);
+                    // 선택되지 않았을 때 수행할 동작 
+                    $checkbox.value = 0;
+
+
 
                 }
 
             }
-        }   
+        }
     }
 
     checkeBox();

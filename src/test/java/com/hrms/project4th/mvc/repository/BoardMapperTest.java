@@ -83,16 +83,16 @@ class BoardMapperTest {
 
     @Test
     @DisplayName("게시글 중 게시글번호를 입력하여 일치하는 게시물을 수정하는 기능")
-    @Rollback
-    @Transactional
+
     void boardModifyTest() {
         Board b = Board.builder()
                 .boardNo(1L)
                 .bdTitle("modifyTitle")
                 .bdContent("modifyContent")
                 .bdType(FREE)
+                .important(0)
+                .empNo(16)
                 .build();
-
         boolean flag = boardMapper.boardModify(b);
         assertTrue(flag);
     }

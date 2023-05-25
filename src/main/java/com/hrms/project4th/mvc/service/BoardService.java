@@ -9,9 +9,9 @@ import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardInfoResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardResponseDTO;
+import com.hrms.project4th.mvc.entity.BdType;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.repository.BoardMapper;
-import com.hrms.project4th.mvc.repository.BoardReplyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 public class BoardService {
 
     private final BoardMapper boardMapper;
-    private final BoardReplyMapper boardReplyMapper;
 
     /**
      * 모든 게시글을 보여주는 기능
@@ -106,7 +105,9 @@ public class BoardService {
      * @return 수정 성공 TRUE / 수정 실패 FALSE
      */
     public boolean boardModify(BoardModifyRequestDTO dto) {
+        log.info("DTOMODIDI {}",dto);
 
+//        log.info("dto를 entity로 {}",build);
         return boardMapper.boardModify(new Board(dto));
     }
 

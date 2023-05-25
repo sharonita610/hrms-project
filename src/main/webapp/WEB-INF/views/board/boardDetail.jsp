@@ -306,13 +306,12 @@
                 <div class="container-box">
                     <div class="detail-topbox">
                         <h1 class="detail-title">게시글</h1>
-                        <c:if test="${login.empNo==b.empNo}">
+                        <c:if test="${login.empNo==b.empNo||login.roleCode=='00000'}">
                             <button type="button" class="btn btn-danger" data-bno="${b.boardNo}" id="boardRedDelete"
                                 data-bs-toggle='modal' data-bs-target='#staticBackdrop3'>삭제</button>
                         </c:if>
                     </div>
                     <form action="/hrms/board/show-modify" method="post">
-
                         <div class="form-group">
                             <input type="hidden" name="boardNo" value="${b.boardNo}">
                             <input type="hidden" name="empNo" value="${b.empNo}">
@@ -344,7 +343,7 @@
                                     readonly>${b.bdContent}</textarea> -->
                         </div>
                         <div class="form-group detail-button">
-                            <c:if test="${login.empNo==b.empNo}">
+                            <c:if test="${login.empNo==b.empNo||login.roleCode=='00000'}">
                                 <button type="submit">수정</button>
                             </c:if>
                             <button id="backToList" type="button">목록</button>
@@ -508,8 +507,11 @@
         // 게시글 번호 
         const boardNo = `${b.boardNo}`;
 
-        //로그인 게정명 
+        //로그인 계정명 
         const loginEmpNo = '${login.empNo}';
+
+        //로그인 계정의 roleCode
+        const logRoleCode='${login.roleCode}';
 
         // 페이지 렌더링 함수
         function renderPage({
@@ -633,7 +635,7 @@
                                 `;
 
 
-                    if (loginEmpNo == empNo) {
+                    if (loginEmpNo == empNo ||logRoleCode==='00000') {
 
                         tag +=
                             "<button id='modifyBtn' type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#staticBackdrop'> 수정 </button>" +
@@ -659,6 +661,7 @@
         function deleteAndModifyEvent() {
             $replyData.onclick = e => {
                 // repNo값 가져오기
+                
                 const $getReplyId = e.target.closest('#replyContent').dataset.replyid;
                 // console.log($getReplyId);
 

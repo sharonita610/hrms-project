@@ -17,7 +17,9 @@ public class BoardEmpInfoService {
     public List<BoardEmpInfoResponseDTO> showAllInfo(){
 
 
-        return boardEmpInfoMapper.showAllInfo().stream().map(BoardEmpInfoResponseDTO::new).collect(Collectors.toList());
+        return boardEmpInfoMapper.showAllInfo().stream()
+                .map(BoardEmpInfoResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
 

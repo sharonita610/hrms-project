@@ -44,7 +44,7 @@
 
     <select id="boardFindOneByBoardNo" resultType="board">
         SELECT
-        board_no, bd_type, bd_title, bd_content,
+        board_no, bd_type, bd_title, bd_content, important,
         bd_date, emp_no
         FROM hr_board
         WHERE board_no=#{boardNo}
@@ -72,8 +72,9 @@
 
     <update id="boardModify">
         UPDATE hr_board
-        SET bd_type=#{bdType}, bd_title=#{bdTitle}, bd_content=#{bdContent},important=#{important}
-        WHERE board_no=#{boardNo}
+        SET bd_type=#{bdType}, bd_title=#{bdTitle}, bd_content=#{bdContent}, important=#{important}
+        WHERE board_no=#{boardNo} and EMP_NO=#{empNo}
+
     </update>
 
     <select id="countBoardPage" resultType="int">

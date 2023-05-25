@@ -33,11 +33,14 @@ public class Board {
 
     //사원 번호
     private long empNo;
+
     //사원 이름
     private String empName;
 
     //해당 게시물에 걸린 댓글수
     private long repNo;
+
+    //중요 하이라이트
     private long important;
 
 
@@ -52,10 +55,21 @@ public class Board {
 
     public Board(BoardModifyRequestDTO dto){
         this.boardNo=dto.getBoardNo();
-        this.bdType= BdType.valueOf(dto.getBdType());
+        this.bdType= dto.getBdType();
         this.bdTitle=dto.getBdTitle();
         this.bdContent=dto.getBdContent();
-//        this.empNo= dto.getEmpNo();
+        this.important=inputRigthInfo(dto.getImportant());
+        this.empNo= dto.getEmpNo();
+    }
+
+    private long inputRigthInfo(Long important) {
+        if(important==null){
+            return 0L;
+        }else if(important==0){
+            return 0L;
+        }else{
+            return 1L;
+        }
     }
 
 
