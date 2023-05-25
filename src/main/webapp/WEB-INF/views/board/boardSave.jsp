@@ -25,16 +25,17 @@
         body {
             font-family: Arial, sans-serif;
         }
-
+        .save-part{
+            width: 100%;
+        }
         .container {
             width: 800px;
         }
 
         .detail-section {
-            width: 75%;
-            margin-top: 10px;
+            width: 100%;
+            margin: 40px auto;
             height: 1000px;
-            margin-left: 400px;
         }
 
         .detail-topbox {

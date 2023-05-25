@@ -15,7 +15,7 @@
     <!-- <link rel="stylesheet" href="/assets/css/board.css"> -->
     <style>
         .text {
-            margin-left: 200px;
+            margin-left: 100px;
             width: 70%;
         }
 
@@ -276,7 +276,7 @@
 
                             <tbody>
                                 <tr id="profileFrame">
-                                    <th scope="row" rowspan="3" id="modalPro">사진</th>
+                                    <th scope="row" rowspan="3" id="modalPro"></th>
                                     <td>이름</td>
                                     <td id="modalName"></td>
                                 </tr>
@@ -325,12 +325,8 @@
                     element.classList.add('importantBoard')
                     element.firstElementChild.innerHTML =
                         '<i class="fa-solid fa-circle-exclamation fa-lg" style="color: #ff4e59;"></i>';
-
                 }
-
             });
-
-
         }
 
 
