@@ -10,7 +10,6 @@ import lombok.*;
 public class BoardEmpInfo {
 
 
-
     private long empNo;
     private String empName;
     private String empEmail;
