@@ -27,11 +27,11 @@ public class EmployeeDetailResponseDTO {
     private String deptName;
     private String profile;
 
-    public void profileWithRootPath(String profile){
-        if(profile != null && profile.contains("C:/hrms/employeesProfile/")) {
-            this.profile = profile.replace("C:/hrms/employeesProfile/", "/hrms/");
-        }
-    }
+//    public void profileWithRootPath(String profile){
+//        if(profile != null && profile.contains("/local")) {
+//            this.profile = profile.replace("C:/hrms/employeesProfile/", "/hrms/");
+//        }
+//    }
 
     public void gettingEmailAccount(String empEmail){
         if(empEmail != null && empEmail.contains("@")) {

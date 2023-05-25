@@ -347,22 +347,6 @@
         }
     }
 
-    // //직속상사 입력 여부 확인
-    // $myBoss.onchange = () => {
-    //     if ($myBoss.value !== '001' && $myBoss.value !== '002') {
-    //         if ($myBoss.value !== 'none') {
-    //             readyToAdd[8] = true;
-    //             document.getElementById('noBoss').style.display = 'none';
-    //             console.log(readyToAdd[8]);
-    //         } else {
-    //             readyToAdd[8] = false;
-    //             document.getElementById('noBoss').style.display = 'block';
-    //             console.log(readyToAdd[8]);
-    //         }
-    //     }
-    // }
-
-
     //부서, 직급 선택시 마이보스 선택란에 같은 부서 내 윗직급 리스트 불러오기
     $setPos.addEventListener('change', setMyBoss);
     $setDept.addEventListener('change', setMyBoss);

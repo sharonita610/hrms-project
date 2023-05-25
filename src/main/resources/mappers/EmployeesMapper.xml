@@ -130,7 +130,7 @@
 
     <update id="updatePhoneNumber">
         update hr_employees
-        set emp_phone = #{newPhone}
+        set emp_phone = ${newPhone}
         where emp_email = #{empEmail}
     </update>
 
@@ -159,7 +159,7 @@
 
     <update id="updatePassword">
         UPDATE HR_EMPLOYEES
-        SET EMP_PASSWORD = #{newPassword}
+        SET EMP_PASSWORD = ${newPassword}
         WHERE EMP_EMAIL =  #{empEmail}
     </update>
 </mapper>
