@@ -65,6 +65,7 @@
 
     const empNo = ${login.empNo};
     const roleCode = '${login.roleCode}';
+    const status = '${status}';
 
     const $waiting = document.getElementById('waiting-confirmList');
     const $checked = document.getElementById('checked-confirmList');
@@ -401,7 +402,16 @@
     }
 
     // 실행부
-    startConfirmPage();
+   if (status === '승인대기'){
+       viewWaitingList();
+    }else if(status === '승인완료'){
+       viewCheckedList();
+    }else if(status === '승인거절'){
+       viewRejectedList();
+    } else {
+       startConfirmPage();
+    }
+
 </script>
 
 </html>

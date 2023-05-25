@@ -52,7 +52,8 @@
             <ul id="tabs">
                 <li id="home"><a href="/hrms/main-page">HOME</a></li>
                 <li id="board"><a href="/hrms/board/board-list">게시판</a></li>
-                <li><a href="/hrms/confirm/list">결재</a></li>
+                <input type = 'hidden' name = 'conStatus' value = null>
+                <li><a href="/hrms/confirm/list?conStatus=">결재</a></li>
                 <li><a href="/hrms/mail-list">메일</a></li>
                 <li><a href="/hrms/club/club-board-list">동호회</a></li>
             </ul>

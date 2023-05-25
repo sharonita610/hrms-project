@@ -41,6 +41,7 @@
             <div class="rqform-title">
                 <div>문서제목</div>
                 <input type="hidden" id="conNo" name="conNo" value="${c.conNo}">
+<%--                <input type="hidden" id="conStatus" name="conStatus" value="${c.conStatus}">--%>
                 <div><label for="conTitle"></label><input id="conTitle" class="conTitle" type="text" name="conTitle"
                                                           value="${c.conTitle}" readonly></div>
             </div>
@@ -89,7 +90,7 @@
                     .then(res => res.json())
                     .then(result => {
                             if (result) {
-                                window.location.href = "/hrms/confirm/list";
+                                window.location.href = "/hrms/confirm/list?conStatus=" + conStatus;
                             }
                         }
                     )
@@ -107,7 +108,7 @@
                     .then(res => res.json())
                     .then(result => {
                             if (result) {
-                                window.location.href = "/hrms/confirm/list";
+                                window.location.href = "/hrms/confirm/list?conStatus=" + conStatus;
                             }
                         }
                     )
@@ -163,7 +164,7 @@
                     .then(res => res.json())
                     .then(result => {
                             if (result) {
-                                window.location.href = "/hrms/confirm/list";
+                                window.location.href = "/hrms/confirm/list?conStatus=" + conStatus;
                             }
                         }
                     )
@@ -172,7 +173,7 @@
     }
 
     function goback(){
-        window.location.href = '/hrms/confirm/list';
+        window.location.href = '/hrms/confirm/list?conStatus=' + conStatus;
     }
 
 </script>

@@ -5,6 +5,7 @@ import com.hrms.project4th.mvc.dto.requestDTO.ModifyConfirmDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.LongTitleResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.SimpleDateConfirmDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.RequestConfirmDTO;
+import com.hrms.project4th.mvc.entity.CheckStatus;
 import com.hrms.project4th.mvc.service.ConfirmService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,8 @@ public class ConfirmController {
     private final ConfirmService confirmService;
 
     @GetMapping("list")
-    public String confirmList(
-    ){
+    public String confirmList(@Nullable String conStatus, Model model){
+        model.addAttribute("status", conStatus);
         return "confirm/confirmList";
     }
 

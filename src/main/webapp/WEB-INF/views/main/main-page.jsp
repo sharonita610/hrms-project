@@ -117,7 +117,8 @@
                     <ul id = "confirm-box">
                         <li class="title-list">
                             <h1>결재</h1>
-                            <a href="/hrms/confirm/list">더보기+</a>
+                            <input type = 'hidden' name = 'conStatus' value = null>
+                            <a href="/hrms/confirm/list?conStatus=">더보기+</a>
                         </li>
                         <div id = "confirm-table">
 
