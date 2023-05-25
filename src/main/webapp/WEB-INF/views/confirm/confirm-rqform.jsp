@@ -24,6 +24,7 @@
                     <div>기안자</div>
                     <div>${login.empName}</div>
                     <input type="hidden" name="fromEmpNo" value="${login.empNo}">
+                    <input type="hidden" id="conStatus" name="conStatus" value="승인대기">
                 </div>
                 <div class="rq-date section">
                     <div>기안일자</div>

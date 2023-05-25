@@ -42,9 +42,10 @@ public class ConfirmController {
 
     //결재신청폼에서 받아온 값 DB에 전달
     @PostMapping("/rq-cnfm")
-    public String requestConfirm(RequestConfirmDTO dto){
+    public String requestConfirm(RequestConfirmDTO dto, @Nullable String conStatus, Model model){
         confirmService.requestConfirm(dto);
-        return "redirect:/hrms/confirm/list";
+        model.addAttribute("status", conStatus);
+        return "confirm/confirmList";
     }
 
     //모든결재건 리스트 불러오기

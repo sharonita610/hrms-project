@@ -11,54 +11,54 @@
 <body>
 <div id="body-wrapper">
     <%@ include file="../main/include/left-banner.jsp" %>
-<div class="rqform-container">
-    <form action="/hrms/confirm/modify" method="post">
-        <div class="confirm-titleline">
-            <h1>결재요청문</h1>
-        </div>
+    <div class="rqform-container">
+        <form action="/hrms/confirm/modify" method="post">
+            <div class="confirm-titleline">
+                <h1>결재요청문</h1>
+            </div>
 
-        <div class="rqform-header">
-            <div class="fromEmp section">
-                <div>기안자</div>
-                <div>${c.fromName}</div>
-            </div>
-            <div class="rq-date section">
-                <div>기안일자</div>
-                <div id="today">${c.conDate}</div>
-            </div>
-            <div class="department section">
-                <div>부서</div>
-                <div>${boss.deptName}</div>
-            </div>
-            <div class="dept-head section">
-                <div>부서장</div>
-                <div>${boss.empName}</div>
-            </div>
-        </div>
-
-
-        <div class="rqform-content-wrap">
-            <div class="rqform-title">
-                <div>문서제목</div>
-                <input type="hidden" id="conNo" name="conNo" value="${c.conNo}">
-<%--                <input type="hidden" id="conStatus" name="conStatus" value="${c.conStatus}">--%>
-                <div><label for="conTitle"></label><input id="conTitle" class="conTitle" type="text" name="conTitle"
-                                                          value="${c.conTitle}" readonly></div>
-            </div>
-            <div class="rqform-content">
-                <div>내용</div>
-                <div><label for="conContent"></label><textarea id="conContent" class="conContent" name="conContent"
-                                                               readonly>${c.conContent}</textarea></div>
-            </div>
-        </div>
-
-                <div id = "submit" class="submit">
-                    <div id = "cancel" class="cancel" onclick="goback()">뒤로가기</div>
+            <div class="rqform-header">
+                <div class="fromEmp section">
+                    <div>기안자</div>
+                    <div>${c.fromName}</div>
                 </div>
-                <button id="addBtn">결재수정</button>
+                <div class="rq-date section">
+                    <div>기안일자</div>
+                    <div id="today">${c.conDate}</div>
+                </div>
+                <div class="department section">
+                    <div>부서</div>
+                    <div>${boss.deptName}</div>
+                </div>
+                <div class="dept-head section">
+                    <div>부서장</div>
+                    <div>${boss.empName}</div>
+                </div>
+            </div>
 
-    </form>
-</div>
+
+            <div class="rqform-content-wrap">
+                <div class="rqform-title">
+                    <div>문서제목</div>
+                    <input type="hidden" id="conNo" name="conNo" value="${c.conNo}">
+                    <%--                <input type="hidden" id="conStatus" name="conStatus" value="${c.conStatus}">--%>
+                    <div><label for="conTitle"></label><input id="conTitle" class="conTitle" type="text" name="conTitle"
+                                                              value="${c.conTitle}" readonly></div>
+                </div>
+                <div class="rqform-content">
+                    <div>내용</div>
+                    <div><label for="conContent"></label><textarea id="conContent" class="conContent" name="conContent"
+                                                                   readonly>${c.conContent}</textarea></div>
+                </div>
+            </div>
+
+            <div id = "submit" class="submit">
+                <div id = "cancel" class="cancel" onclick="goback()">뒤로가기</div>
+            </div>
+            <button id="addBtn">결재수정</button>
+
+        </form>
+    </div>
 </div>
 
 <script>
