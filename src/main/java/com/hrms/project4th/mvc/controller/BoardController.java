@@ -87,6 +87,7 @@ public class BoardController {
         return "/board/boardDetail";
     }
 
+
     // 게시글 수정 페이지를 보여주는 기능
     @PostMapping("/show-modify")
     public String showModify(Model model, BoardModifyRequestDTO dto,BoardSearch boardSearch) {
