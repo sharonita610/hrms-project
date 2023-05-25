@@ -110,6 +110,15 @@
         where emp_email = #{empEmail}
     </select>
 
+    <select id="checkEmployee" resultType="checkPassword">
+
+        select empPassword
+        from hr_employees
+        where emp_email = #{empEmail}
+    </select>
+
+
+
     <select id="logedInDetail" resultType="employeeDetailResponseDTO">
         select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
         from hr_employees e

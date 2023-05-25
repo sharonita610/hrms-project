@@ -5,17 +5,14 @@ import com.hrms.project4th.mvc.dto.requestDTO.ModifyEmployeeDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.GetMyBossResponseDTO;
-import com.hrms.project4th.mvc.dto.responseDTO.LoginUserResponseDTO;
+import com.hrms.project4th.mvc.entity.CheckPassword;
 import com.hrms.project4th.mvc.entity.Employees;
 import com.hrms.project4th.mvc.repository.EmployeesMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +22,7 @@ import java.util.stream.Collectors;
 public class EmployeesService {
 
     private final EmployeesMapper employeesMapper;
+    private final PasswordEncoder encoder;
 
     public List<Employees> getEmployeesList() {
        return employeesMapper.getEmployeesList();
@@ -100,4 +98,20 @@ public class EmployeesService {
 
        return employeesMapper.updatePassword(empEmail, newPassword);
     }
+
+//    public CheckPassword checkCurrentPwd(String checkPwd, String empEmail) {
+//        log.info("checkCurrentPwd service! ");
+//        Employees foundEmployee = employeesMapper.findEmployee(empEmail);
+//
+//        log.info("foundEmployee , ", foundEmployee.getEmpName());
+////        encoder.matches(checkPwd, storedPassword)
+//        if (encoder.matches(checkPwd, foundEmployee.getEmpPassword()) || checkPwd.matches(foundEmployee.getEmpPassword())) {
+//
+//            return foundEmployee;
+//
+//        } else {
+//            return null;
+//        }
+//
+//    }
 }
