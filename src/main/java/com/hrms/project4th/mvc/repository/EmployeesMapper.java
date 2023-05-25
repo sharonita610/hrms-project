@@ -5,6 +5,7 @@ import com.hrms.project4th.mvc.dto.requestDTO.MyBossRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.VerificateEmpPasswordRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.DeptBossDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.EmployeeDetailResponseDTO;
+import com.hrms.project4th.mvc.entity.CheckPassword;
 import com.hrms.project4th.mvc.entity.Employees;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -31,10 +32,11 @@ public interface  EmployeesMapper {
     Employees findEmployee(String empEmail);
     Employees checkSession(String empSession);
 
+    CheckPassword checkEmployee(String empEmail);
+
     // 자동로그인 관련 속성 추가 기능
     void saveAutoLogin(AutoLoginDTO dto);
 
-    // 사원 번호 바꾸는 mapper
     boolean updatePhoneNumber(String empEmail, String newPhone);
 
     boolean modifyEmployeesWithNoProfile(Employees emp);
@@ -50,4 +52,7 @@ public interface  EmployeesMapper {
     EmployeeDetailResponseDTO logedInDetail(String empEmail);
 
     Employees verificateEmp(VerificateEmpPasswordRequestDTO dto);
+
+
+    boolean updatePassword(String empEmail, String newPassword);
 }

@@ -25,19 +25,21 @@ class BoardMapperTest {
 
     @Test
     @DisplayName("게시글 301개 저장하는 기능")
+
     void saveTest() {
 
-        for (int i = 1; i <= 301; i++) {
+
             Board b = Board.builder()
-                    .boardNo(i)
-                    .bdType(BdType.valueOf("FREE"))
-                    .bdTitle("board title" + i)
-                    .bdContent("board content / board content" + i)
-                    .empNo(i)
+                    .boardNo(302)
+                    .bdType(BdType.valueOf("NOTICE"))
+                    .bdTitle("board title" + 302)
+                    .bdContent("board content / board content" + 302)
+                    .empNo(302)
+                    .important(1)
                     .build();
             boolean flag = boardMapper.boardSave(b);
             assertTrue(flag);
-        }
+
 
 
     }
@@ -45,7 +47,7 @@ class BoardMapperTest {
     @Test
     @DisplayName("게시글 List를 보여주는 기능")
     void findAllTest() {
-        long empNo=5L;
+
         BoardSearch bs=new BoardSearch();
         List<Board> boards = boardMapper.boardFindAll(bs);
         System.out.println(boards);

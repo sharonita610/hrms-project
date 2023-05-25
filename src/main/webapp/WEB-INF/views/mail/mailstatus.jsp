@@ -24,11 +24,11 @@
 		<section class="section-mail">
 			<div id="mail-wrapper">
 				<div class="mail-sort">
-					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailto">받은 메일</a></div>
-					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
-					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
-					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
-					<div><a href="/hrms/mail-write?empNo=${2}">메일쓰기</a></div>
+					<div><a href="/hrms/mail-list/?empNo=${login.empNo}&mailType=mailto">받은 메일</a></div>
+					<div><a href="/hrms/mail-list/?empNo=${login.empNo}&mailType=mailfrom">보낸 메일</a></div>
+					<div><a href="/hrms/mail-list-status/?empNo=${login.empNo}&status=Y&mailType=mailto">읽은 메일</a></div>
+					<div><a href="/hrms/mail-list-status/?empNo=${login.empNo}&status=N&mailType=mailto">안읽은 메일</a></div>
+					<div><a href="/hrms/mail-write?empNo=${login.empNo}">메일쓰기</a></div>
 				</div>
 				<div class="mail-sort-info">
 					<div class="number">no</div>
@@ -66,14 +66,14 @@
 					
 					<c:if test="${mailPageMaker.prev}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.start-1}&empNo=${num}&mailType=${ms.mailType}&status=${status}">Previous</a></li>
+								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.start-1}&empNo=${login.empNo}&mailType=${ms.mailType}&status=${status}">Previous</a></li>
 					</c:if>
 					<c:forEach var="i" begin="${mailPageMaker.start}" end="${mailPageMaker.end}">
-						<li class="page-item"><a class="page-link" href="/hrms/mail-list-status/?mailPageNo=${i}&empNo=${2}&mailType=${ms.mailType}&status=${status}">${i}</a></li>
+						<li class="page-item"><a class="page-link" href="/hrms/mail-list-status/?mailPageNo=${i}&empNo=${login.empNo}&mailType=${ms.mailType}&status=${status}">${i}</a></li>
 					</c:forEach>
 					<c:if test="${mailPageMaker.next}">
 						<li class="page-item"><a class="page-link"
-								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.end+1}&empNo=${num}&mailType=${ms.mailType}&status=${status}">Next</a></li>
+								href="/hrms/mail-list-status/?mailPageNo=${mailPageMaker.end+1}&empNo=${login.empNo}&mailType=${ms.mailType}&status=${status}">Next</a></li>
 					</c:if>
 					
 				</ul>
@@ -94,9 +94,9 @@
       if ($confirm) {
 		const $mailstatus = $mail.querySelector('div > p:nth-child(7)').innerText;
 		if($mailstatus==='N'){
-			window.location.href = '/hrms/mail-delete-status?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}&status=N';
+			window.location.href = '/hrms/mail-delete-status?mailNo=' + $mailNo + '&empNo=${login.empNo}' + '&mailPageNo=${ms.mailPageNo}&status=N';
 		}else if($mailstatus==='Y'){
-			window.location.href = '/hrms/mail-delete-status?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}&status=Y';
+			window.location.href = '/hrms/mail-delete-status?mailNo=' + $mailNo + '&empNo=${login.empNo}' + '&mailPageNo=${ms.mailPageNo}&status=Y';
 		}
       }else{
 		return;
@@ -112,7 +112,7 @@ function detailmail() {
     $targetmail.addEventListener('click', () => {
       const $mailNo = +$mail.querySelector('div > p:first-child').innerText;
 	  console.log($mailNo);
-    	window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo}';
+    	window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=${login.empNo}' + '&mailPageNo=${ms.mailPageNo}';
     });
   });
 }

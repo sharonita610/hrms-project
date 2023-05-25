@@ -19,6 +19,7 @@ public class BoardListResponseDTO {
     private String empName;
     private long viewCount;
     private long repNo;
+    private long important;
 //    private String deptName;
 //    private String posName;
 //    private String roleName;
@@ -36,11 +37,7 @@ public class BoardListResponseDTO {
         this.empName= board.getEmpName();
         this.viewCount=board.getViewCount();
         this.repNo=board.getRepNo();
-//        this.deptName=board.getDeptName();
-//        this.posName=board.getPosName();
-//        this.roleName=board.getRoleName();
-//        this.empEmail=board.getEmpEmail();
-//        this.empPhone=board.getEmpPhone();
+        this.important=board.getImportant();
     }
 
 
@@ -72,7 +69,7 @@ public class BoardListResponseDTO {
      * @return 짧아진 게시글 제목
      */
     public String makeShortTitle(String bdTitle) {
-        return makeShort(bdTitle, 20);
+        return makeShort(bdTitle, 30);
     }
 
 

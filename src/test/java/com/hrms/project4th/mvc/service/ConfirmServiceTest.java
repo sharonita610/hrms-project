@@ -105,4 +105,13 @@ class ConfirmServiceTest {
         List<SimpleDateConfirmDTO> list = confirmService.searchConfirm(empNo, roleCode, conTitle);
         System.out.println(list);
     }
+
+    @Test
+    @DisplayName("메인페이지 결재리스트를 불러온다")
+    void getMainConfirmList(){
+        long empNo = 10L;
+        String roleCode = null;
+        List<SimpleDateConfirmDTO> confirmList = confirmService.getConfirmList(empNo, roleCode);
+        System.out.println("confirmList = " + confirmList);
+    }
 }

@@ -107,10 +107,10 @@ public class LoginController {
             // 자동 로그인 상태라면 해제한다.
             if (isAutoLogin(request)) {
 
-                LoginService.autoLoginClear(request, response);
+                loginService.autoLoginClear(request, response);
             }
             // 세션에서 login 정보를 제거
-            session.removeAttribute("login");
+            session.removeAttribute(LOGIN_KEY);
 
 
             session.invalidate();

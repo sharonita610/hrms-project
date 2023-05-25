@@ -3,6 +3,7 @@ package com.hrms.project4th.mvc.entity;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 @Getter
@@ -37,8 +38,7 @@ public class Board {
 
     //해당 게시물에 걸린 댓글수
     private long repNo;
-
-
+    private long important;
 
 
 
@@ -47,6 +47,7 @@ public class Board {
         this.bdTitle=dto.getBdTitle();
         this.bdContent=dto.getBdContent();
         this.empNo= dto.getEmpNo();
+        this.important=dto.getImportant();
     }
 
     public Board(BoardModifyRequestDTO dto){

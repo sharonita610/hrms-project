@@ -23,11 +23,13 @@
 		<section class="section-mail">
 			<div id="mail-wrapper">
 				<div class="mail-sort">
-					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailto">받은 메일</a></div>
-					<div><a href="/hrms/mail-list/?empNo=${2}&mailType=mailfrom">보낸 메일</a></div>
-					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=Y&mailType=mailto">읽은 메일</a></div>
-					<div><a href="/hrms/mail-list-status/?empNo=${2}&status=N&mailType=mailto">안읽은 메일</a></div>
-					<div><a href="/hrms/mail-write?empNo=${2}">메일쓰기</a></div>
+				<c:if test="${login!=null}">
+					<div><a href="/hrms/mail-list/?empNo=${login.empNo}&mailType=mailto">받은 메일</a></div>
+					<div><a href="/hrms/mail-list/?empNo=${login.empNo}&mailType=mailfrom">보낸 메일</a></div>
+					<div><a href="/hrms/mail-list-status/?empNo=${login.empNo}&status=Y&mailType=mailto">읽은 메일</a></div>
+					<div><a href="/hrms/mail-list-status/?empNo=${login.empNo}&status=N&mailType=mailto">안읽은 메일</a></div>
+					<div><a href="/hrms/mail-write?empNo=${login.empNo}">메일쓰기</a></div>
+				</c:if>
 				</div>
 				<div class="mail-sort-info">
 					<div class="number">no</div>
@@ -68,7 +70,7 @@
 								href="/hrms/mail-list/?mailPageNo=${mailPageMaker.start-1}&empNo=${num}&mailType=${ms.mailType}">Previous</a></li>
 					</c:if>
 					<c:forEach var="i" begin="${mailPageMaker.start}" end="${mailPageMaker.end}">
-						<li class="page-item"><a class="page-link" href="/hrms/mail-list/?mailPageNo=${i}&empNo=${2}&mailType=${ms.mailType}">${i}</a></li>
+						<li class="page-item"><a class="page-link" href="/hrms/mail-list/?mailPageNo=${i}&empNo=${num}&mailType=${ms.mailType}">${i}</a></li>
 					</c:forEach>
 					<c:if test="${mailPageMaker.next}">
 						<li class="page-item"><a class="page-link"
@@ -116,9 +118,9 @@ function deletemail() {
       if ($confirm) {
 		const $mailtype = $mail.querySelector('div > p:nth-child(9)').innerText;
 		if($mailtype ==='mailto'){
-			window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailto';
+			window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=${login.empNo}' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailto';
 		}else{
-			window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailfrom';
+			window.location.href = '/hrms/mail-delete?mailNo=' + $mailNo + '&empNo=${login.empNo}' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailfrom';
 		}
       }else{
 		return ;
@@ -137,9 +139,9 @@ function detailmail() {
 	  console.log($mailtype);
 	  //console.log($mailNo);
 		if($mailtype=='mailto'){
-			window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailto';
+			window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=${login.empNo}' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailto';
 		}else{
-			window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=2' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailfrom';
+			window.location.href = '/hrms/mail-detail?mailNo=' + $mailNo + '&empNo=${login.empNo}' + '&mailPageNo=${ms.mailPageNo} + &mailType=mailfrom';
 		}
     });
   });

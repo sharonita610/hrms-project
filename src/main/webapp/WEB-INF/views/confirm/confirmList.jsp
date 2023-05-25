@@ -28,7 +28,7 @@
                 <div class="confirm-outer-container">
                     <div class="wait-wrapper box-outer">
                         <div class = "confirm-title">
-                        <h2>&lt;결재대기문서&gt;<span class="new">최신</span></h2>
+                        <h2>&lt;결재대기문서&gt;</h2>
                         <div class = "search"><h3>검색</h3><input id = "searchWaiting" name = "word" type="text"></div></div>
                         <div class="confirm-box waiting-list">
                             <div class="confirm-table" id="waiting-table">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="checked-wrapper box-outer">
                         <div class = "confirm-title">
-                            <h2>&lt;결재완료문서&gt;<span class="new">최신</span></h2>
+                            <h2>&lt;결재완료문서&gt;</h2>
                             <div class = "search"><h3>검색</h3><input id = "searchChecked" name = "word" type="text"></div></div>
                         <div class="confirm-box confirmed-list">
                             <div class="confirm-table" id="confirmed-table">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="rejected-wrapper box-outer">
                         <div class = "confirm-title">
-                            <h2>&lt;결재반려문서&gt;<span class="new">최신</span></h2>
+                            <h2>&lt;결재반려문서&gt;</h2>
                             <div class = "search"><h3>검색</h3><input id = "searchRejected" name = "word" type="text"></div></div>
                         <div class="confirm-box rejected-list">
                             <div class="confirm-table" id="rejected-table">
@@ -62,13 +62,10 @@
 
 <script>
     const URL = "/hrms/confirm";
-    const empNo = 2;
 
-    <%--const empNo = ${login.empNo};--%>
-    <%--const roleCode = '${login.roleCode}';--%>
-
-    // const roleCode = '11111';
-    const roleCode = null;
+    const empNo = ${login.empNo};
+    const roleCode = '${login.roleCode}';
+    const status = '${status}';
 
     const $waiting = document.getElementById('waiting-confirmList');
     const $checked = document.getElementById('checked-confirmList');
@@ -143,35 +140,47 @@
     }
 
     function viewWaitingList() {
+        $viewAll.style.fontWeight = 'normal';
+        $waiting.style.fontWeight = '700';
+        $checked.style.fontWeight = 'normal';
+        $rejected.style.fontWeight = 'normal';
         $searchWaiting.value = '';
         $searchChecked.value = '';
         $searchRejected.value = '';
         $waitingBox.style.display = 'block';
         $confirmedBox.style.display = 'none';
         $rejectedBox.style.display = 'none';
-        document.querySelector('.waiting-list').style.height = '645px';
+        document.querySelector('.waiting-list').style.height = '680px';
         getWaitingList();
     }
 
     function viewCheckedList() {
+        $viewAll.style.fontWeight = 'normal';
+        $waiting.style.fontWeight = 'normal';
+        $checked.style.fontWeight = '700';
+        $rejected.style.fontWeight = 'normal';
         $searchWaiting.value = '';
         $searchChecked.value = '';
         $searchRejected.value = '';
         $confirmedBox.style.display = 'block';
         $waitingBox.style.display = 'none';
         $rejectedBox.style.display = 'none';
-        document.querySelector('.confirmed-list').style.height = '645px';
+        document.querySelector('.confirmed-list').style.height = '680px';
         getCheckedList();
     }
 
     function viewRejectedList() {
+        $viewAll.style.fontWeight = 'normal';
+        $waiting.style.fontWeight = 'normal';
+        $checked.style.fontWeight = 'normal';
+        $rejected.style.fontWeight = '700';
         $searchWaiting.value = '';
         $searchChecked.value = '';
         $searchRejected.value = '';
         $rejectedBox.style.display = 'block';
         $waitingBox.style.display = 'none';
         $confirmedBox.style.display = 'none';
-        document.querySelector('.rejected-list').style.height = '645px';
+        document.querySelector('.rejected-list').style.height = '680px';
         getRejectedList();
     }
 
@@ -180,6 +189,10 @@
         getWaitingList();
         getCheckedList();
         getRejectedList();
+        $viewAll.style.fontWeight = '700';
+        $waiting.style.fontWeight = 'normal';
+        $checked.style.fontWeight = 'normal';
+        $rejected.style.fontWeight = 'normal';
         $searchWaiting.value = '';
         $searchChecked.value = '';
         $searchRejected.value = '';
@@ -372,7 +385,8 @@
                     .then(res => res.json())
                     .then(result => {
                         if (result) {
-                            startConfirmPage();
+                            getWaitingList();
+                            getCheckedList();
                         }
                     });
             }
@@ -394,7 +408,8 @@
                     .then(res => res.json())
                     .then(result => {
                         if (result) {
-                            startConfirmPage();
+                            getWaitingList();
+                            getRejectedList();
                         }
                     });
             }
@@ -403,7 +418,16 @@
     }
 
     // 실행부
-    startConfirmPage();
+   if (status === '승인대기'){
+       viewWaitingList();
+    }else if(status === '승인완료'){
+       viewCheckedList();
+    }else if(status === '승인거절'){
+       viewRejectedList();
+    } else {
+       startConfirmPage();
+    }
+
 </script>
 
 </html>

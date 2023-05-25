@@ -99,7 +99,7 @@
         }
 
         #title {
-            width: 100%;
+            width: 500px;
             height: 40px;
             padding: 10px;
             font-size: 16px;
@@ -138,6 +138,19 @@
         .detail-button #backToList {
             margin-right: 10px;
         }
+        /* select tag css */
+    
+
+        .title-input #serious {
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        #importantCheck {
+            transform: scale(1.5);
+            margin: 0px 10px;
+        }
+
     </style>
 </head>
 
@@ -159,8 +172,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="title" class="container">제목</label>
+                            <label for="title" class="container title-input">제목</label>
                             <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" value='${m.bdTitle}'>
+                            <!-- <c:if test="${login.roleCode=='11111'|| login.roleCode=='00000'}"> -->
+                                        <input name="important" id="importantCheck" type="checkbox" value="0"><span
+                                            id="serious">중요</span>
+                            <!-- </c:if> -->
                         </div>
                         <div class="form-group">
                             <label for="content">내용</label>
