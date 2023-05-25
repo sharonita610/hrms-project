@@ -147,4 +147,10 @@
         where emp_session = #{empSession}
 
     </select>
+
+    <update id="updatePassword">
+        UPDATE HR_EMPLOYEES
+        SET EMP_PASSWORD = #{newPassword}
+        WHERE EMP_EMAIL =  #{empEmail}
+    </update>
 </mapper>
