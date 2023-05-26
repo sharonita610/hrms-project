@@ -1,14 +1,12 @@
 package com.hrms.project4th.mvc.controller;
 
+import com.hrms.project4th.mvc.dto.requestDTO.ClubReplySaveRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.ClubReplyListResponseDTO;
 import com.hrms.project4th.mvc.service.ClubReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +31,19 @@ public class ClubReplyController {
 
         return ResponseEntity.ok().body(clubReplyListResponseDTOS);
     }
+
+    @PostMapping("/clubReplySave")
+    public ResponseEntity<?> clubReplySave(@RequestBody ClubReplySaveRequestDTO dto) {
+        boolean b = clubReplyService.clubReplySave(dto);
+
+        log.info("clubReplySave: {}", b);
+
+        return ResponseEntity.ok().body(b);
+    }
+
+//    @DeleteMapping("/{clubRepNo}")
+//    public ResponseEntity<?> clubReplyDelete(@PathVariable Long clubRepNo) {
+//        clubReplyService.clubReplyDelete(clubRepNo);
+//    }
 
 }

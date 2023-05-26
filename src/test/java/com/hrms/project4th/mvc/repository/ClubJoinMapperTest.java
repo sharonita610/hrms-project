@@ -22,7 +22,7 @@ class ClubJoinMapperTest {
     @DisplayName("동호회 신규 회원가입에 성공해야한다.")
     void clubJoinTest() {
         ClubJoinRequestDTO dto = ClubJoinRequestDTO.builder()
-                .empNo(6L)
+                .empNo(3L)
                 .clubCode(6L)
                 .build();
 

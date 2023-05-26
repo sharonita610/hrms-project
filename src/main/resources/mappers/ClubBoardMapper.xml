@@ -6,50 +6,54 @@
 
     <select id="findAllClubBoard" resultType="clubBoardDTO">
         SELECT
-        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME, E.EMP_NAME
-        FROM TEST_CLUB_BOARD B
-        JOIN TEST_CLUB C USING (CLUB_CODE)
-        JOIN TEST_EMPLOYEES E ON E.EMP_NO = C.EMP_NO
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME, E.EMP_NAME, CLUB_PROFILE
+        FROM HR_CLUB_BOARD B
+        JOIN HR_CLUB C USING (CLUB_CODE)
+        JOIN HR_EMPLOYEES E ON E.EMP_NO = C.EMP_NO
+        ORDER BY CB_DATE DESC
     </select>
 
     <select id="findByEmpNoClubBoard" resultType="clubBoardDTO">
         SELECT
-        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME
-        FROM TEST_CLUB_BOARD B
-        JOIN TEST_CLUB C USING (CLUB_CODE)
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, C.EMP_NO, CLUB_CODE, CLUB_NAME, CLUB_PROFILE
+        FROM HR_CLUB_BOARD B
+        JOIN HR_CLUB C USING (CLUB_CODE)
         WHERE CLUB_CODE IN(select CLUB_CODE
-        FROM test_emp_club
+        FROM HR_emp_club
         WHERE EMP_NO = #{empNo})
-        ORDER BY CB_DATE
+        ORDER BY CB_DATE DESC
     </select>
 
     <select id="myClubBoardList" resultType="myClubBoardListDTO">
-        select CB_NO, CB_TITLE, EMP_NO, CLUB_CODE
-        from test_club_board
-        where EMP_NO = #{empNo};
+        select CB_NO, CB_TITLE, EMP_NO, CLUB_CODE, CB_CONTENT
+        from HR_club_board
+        where EMP_NO = #{empNo}
+        ORDER BY CB_DATE DESC
     </select>
 
     <select id="detailClubBoard" resultType="clubBoardDTO">
         SELECT
-        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, EMP_NO, CLUB_CODE
-        FROM TEST_CLUB_BOARD
+        CB_NO, CB_TITLE, CB_CONTENT, CB_DATE, CB_URL, E.EMP_NO, C.CLUB_CODE, CLUB_NAME, EMP_NAME, CLUB_PROFILE
+        FROM HR_CLUB_BOARD B
+        JOIN HR_CLUB C ON C.CLUB_CODE = B.CLUB_CODE
+        JOIN HR_EMPLOYEES E ON E.EMP_NO = C.EMP_NO
         WHERE CB_NO = #{cbNo}
     </select>
 
     <insert id="clubBoardSave">
-        INSERT INTO TEST_CLUB_BOARD
+        INSERT INTO HR_CLUB_BOARD
         (CB_TITLE, CB_CONTENT, CB_URL, EMP_NO, CLUB_CODE)
         VALUES
         (#{cbTitle}, #{cbContent}, #{cbURL}, #{empNo}, #{clubCode})
     </insert>
 
     <delete id="clubBoardDelete">
-        DELETE FROM TEST_CLUB_BOARD
+        DELETE FROM HR_CLUB_BOARD
         WHERE CB_NO = #{cbNo}
     </delete>
 
     <update id="clubBoardModify">
-        UPDATE TEST_CLUB_BOARD
+        UPDATE HR_CLUB_BOARD
         SET CB_TITLE = #{cbTitle}, CB_CONTENT = #{cbContent}, CB_URL = #{cbURL}
         WHERE CB_NO = #{cbNo}
     </update>
