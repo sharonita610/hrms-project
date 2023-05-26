@@ -188,7 +188,7 @@
                 <div id="bottom-list">
                     <ul id="mail-box">
                         <div class="title-list">
-                            <h1 id="main-mail" style="width: 70%;">메일</h1>
+                            <h1 id="main-mail">메일</h1>
 
                             <span id="wannaseemore">
                                 <a href="/hrms/mail-list?empNo=${login.empNo}">더보기+</a>
