@@ -198,3 +198,46 @@ foreign key (EMP_NO) references HR_EMPLOYEES(EMP_NO) on delete cascade;
 
 alter table HR_EMAIL add constraint FK_HR_EMAIL_EMP_NO
 foreign key (EMP_NO) references HR_EMPLOYEES(EMP_NO) on delete cascade;
+
+-- 부서테이블 데이터
+insert into hr_department
+values ('001', 'IT');
+insert into hr_department
+values ('002', 'HR');
+insert into hr_department
+values ('003', 'SALES');
+insert into hr_department
+values ('004', 'MARKETING');
+insert into hr_department
+values ('005', 'FINANCE');
+insert into hr_department
+values ('006', 'MANAGEMENT');
+
+-- 직책테이블 데이터
+insert into hr_role
+values ('00000', '관리자');
+insert into hr_role
+values ('11111', '부서장');
+select *
+from hr_role;
+
+--직급테이블 데이터
+
+insert into hr_position
+values ('005', '사원');
+insert into hr_position
+values ('004', '대리');
+insert into hr_position
+values ('003', '과장');
+insert into hr_position
+values ('002', '부장');
+insert into hr_position
+values ('001', '대표이사');
+
+-- HRMS 관리자계정 생성
+insert into hr_employees (emp_name, emp_birth_day, emp_hire_date, emp_email, emp_password, emp_gender, emp_salary,
+                          emp_phone, pos_code, role_code, dept_code)
+values ('김중앙', '1978-04-06', '2000-01-01', 'admin@samjosangsa.com', 'test', 'M', 4500000, '01000000000', '002', '00000',
+        '002');
+
+
