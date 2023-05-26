@@ -2,6 +2,7 @@ package com.hrms.project4th.mvc.api;
 
 
 import com.hrms.project4th.mvc.dto.MailResponseDTO;
+import com.hrms.project4th.mvc.dto.page.MailPage;
 import com.hrms.project4th.mvc.dto.page.MailSearch;
 import com.hrms.project4th.mvc.dto.responseDTO.MailThumbnailResponseDTO;
 import com.hrms.project4th.mvc.entity.CheckStatus;
@@ -30,7 +31,8 @@ public class MailThumbnailController {
     public ResponseEntity<?>getMailThumbnailList(@PathVariable Long mailempNo){
         log.info("mailempNo {}",mailempNo);
         MailSearch mailSearch = new MailSearch();
-        List<MailResponseDTO> mailListByStatus = mailService.getMailListByStatus(mailempNo, mailSearch, CheckStatus.N);
+        mailSearch.setMailAmount(8);
+        List<MailResponseDTO> mailListByStatus = mailService.getMailListByStatus(mailempNo,mailSearch, CheckStatus.N);
 
         List<MailThumbnailResponseDTO> mailThumbnailResponseDTOList = mailListByStatus.stream().map(MailResponseDTO -> {
             MailThumbnailResponseDTO mailThumbnail= new MailThumbnailResponseDTO();

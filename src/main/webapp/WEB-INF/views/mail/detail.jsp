@@ -57,7 +57,7 @@
                         <div class="textarea">
                             ${md.mailContent}
                         </div>
-						<button type="button" class="btn btn-primary  text-center backtobutton nav justify-content-center">메일목록돌아가기</button>
+						<button type="button" class="btn btn-primary  text-center backtobutton nav justify-content-center">이전화면으로</button>
                     </div>
 				</div>
 			</div>

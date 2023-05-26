@@ -64,7 +64,9 @@
     display: flex;
     line-height: 26px;
     border-top: 1px solid #000;
+    width: 100%;
 }
+
 
 .section-mail #mail-wrapper .mail-detail-box .employeesinfo .senderinfo span{
     text-align: center;
@@ -121,12 +123,6 @@
     margin-top: 15px;
     height: 10%;
 }
-
-
-
-
-
-
 
 
 
