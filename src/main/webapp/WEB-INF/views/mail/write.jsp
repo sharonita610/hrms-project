@@ -31,28 +31,28 @@
                     <form class="mail-detail-box" method="POST" action="/hrms/mail-send">
                         <div class="mail-header-title">
                             <div class="headerbox">
-                                <div>메일 제목 : </div><input type="text" id="title" name="mailTitle" value="">
+                                <div style="width: 10%; line-height: 28px;">메일 제목 : </div><input style="width: 90%;" type="text" id="title" name="mailTitle" value="">
                             </div>
                         </div>
                         <div class="employeesinfo">
                             <div class="senderinfo">
                                 <span>발신자 정보</span>
-                                <div class="senderempNo">발신자 사번 : <input type="number" name="mailFrom" value="${empNo}" readonly></div>
-                                <div class="sendername">발신자이름 : </div>
-                                <div class="senderemail">발신자이메일 : </div>
-                                <div class="senderdeptname">발신자 부서 : </div>
-                                <div class="senderposname">발신자 직급 : </div>
+                                <div class="senderempNo">발신자 사번 : <input  type="number" name="mailFrom" value="${empNo}" readonly></div>
+                                <div class="sendername">${info.empName}</div>
+                                <div class="senderemail">${info.empEmail}</div>
+                                <div class="senderdeptname">${info.deptName}</div>
+                                <div class="senderposname">${info.posName}</div>
                             </div>
                             <div class="reciverinfo">
                                 <span>수신자 정보</span>
                                 <div class="reciverempNo">수신자 사번 : <input class="inputreceiverno" type="number" name="mailTo" value="" readonly></div>
-                                <div class="recivername">수신자 이름 : </div>
-                                <div class="reciveremail">수신자 이메일 :</div>
-                                <div class="reciverdeptname">수신자 부서 :</div>
-                                <div class="reciverposname">수신자 직급 : </div>
+                                <div class="recivername"></div>
+                                <div class="reciveremail"></div>
+                                <div class="reciverdeptname"></div>
+                                <div class="reciverposname"></div>
                                 <div class="search">
                                         <input  id="exampleDataList" class="form-control form-control-sm" type="text" placeholder="이름을입력하세요" aria-label=".form-control-sm example" style="width: 30%;">
-                                        <button type="button" class="btn btn-primary searchbutton" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Custom button</button>
+                                        <button type="button" class="btn btn-primary searchbutton" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; width: 15%;">검 색</button>
                                         <select name="" id="select" style="width: 55%;"></select>
                                 </div>
                             </div>
@@ -61,9 +61,8 @@
                             <textarea name="mailContent" id="editor"></textarea>
                         </div>
                         <div class="buttonarea">
-                            <button type="submit" class="btn btn-primary backtobutton nav justify-content-center">메일발송하기</button>
-                            <div></div>
-                            <button type="button" class="btn btn-danger nav justify-content-center">작성취소</button>
+                            <button type="submit" class="btn btn-primary nav justify-content-center">메일발송하기</button>
+                            <button type="button" class="btn btn-danger nav justify-content-center" id="backtobutton">작성취소</button>
                         </div>
                     </form>
                 </div>
@@ -100,14 +99,19 @@
 
 
         //뒤로가기 버튼 클릭함수
-        function clickbackbutton() {
-            const $backtobutton = document.querySelector('.backtobutton');
+        const sendMailButton = document.querySelector('.btn-danger');
 
-            $backtobutton.addEventListener('click', function () {
-                // 메일 확인 후 이전 페이지로 돌아가면서 새로고침
-                window.location.replace(document.referrer);
-            });
+        // Add a click event listener to the button
+        sendMailButton.addEventListener('click', function() {
+        // Output a message to the console
+        //console.log('Send mail button clicked!');
+        const $confirm = confirm('메일 작성을 취소하시겠습니까?');
+        if($confirm){
+            window.location.replace(document.referrer);
+        }else{
+            return;
         }
+        });
 
 
 
@@ -151,7 +155,7 @@
             
             for (let employee of responseResult) {
                 //console.log(employee);
-                $tag+=`<option value='\${employee.empNo}' class='selectoption'> \${employee.empName}/\${employee.empEmail}/\${employee.deptName}/\${employee.posName}/</option>`
+                $tag+=`<option value='\${employee.empNo}' class='selectoption'> \${employee.empName}/\${employee.empEmail}/\${employee.deptName}/\${employee.posName}</option>`
                 //console.log($tag);
                 
             }
