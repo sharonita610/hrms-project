@@ -3,7 +3,7 @@ package com.hrms.project4th.mvc.entity;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 @Getter
@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Slf4j
 public class Board {
     //게시글 번호
     private long boardNo;
@@ -33,11 +34,14 @@ public class Board {
 
     //사원 번호
     private long empNo;
+
     //사원 이름
     private String empName;
 
     //해당 게시물에 걸린 댓글수
     private long repNo;
+
+    //중요 하이라이트
     private long important;
 
 
@@ -52,10 +56,22 @@ public class Board {
 
     public Board(BoardModifyRequestDTO dto){
         this.boardNo=dto.getBoardNo();
-        this.bdType= BdType.valueOf(dto.getBdType());
+        this.bdType= dto.getBdType();
         this.bdTitle=dto.getBdTitle();
         this.bdContent=dto.getBdContent();
-//        this.empNo= dto.getEmpNo();
+        this.important=inputRigthInfo(dto.getImportant());
+        log.info("important {}",important);
+        this.empNo= dto.getEmpNo();
+    }
+
+    private long inputRigthInfo(Long important) {
+        if(important==null){
+            return 0L;
+        }else if(important==0){
+            return 0L;
+        }else{
+            return 1L;
+        }
     }
 
 

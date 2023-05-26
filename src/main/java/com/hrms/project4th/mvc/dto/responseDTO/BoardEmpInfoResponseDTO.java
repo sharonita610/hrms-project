@@ -36,7 +36,7 @@ public class BoardEmpInfoResponseDTO {
         if (empPhone.length() == 11) {
             return empPhone.substring(0, 3) + "-" + empPhone.substring(3, 7) + "-" + empPhone.substring(7, 11);
         } else {
-            return "잘못된 핸드폰 번호입니다.";
+            return "-";
         }
     }
 

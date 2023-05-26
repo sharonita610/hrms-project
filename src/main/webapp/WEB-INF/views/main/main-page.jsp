@@ -255,7 +255,8 @@
                 tag += ` <tr class='table-top' data-important='\${one.important}'>
                                         <th scope='col'>\${one.boardNo}</th>
                                         <th scope='col'><a href='/hrms/board/board-detail/?boardNo=\${one.boardNo}&boardPageNo=\${boardPageMaker.boardPage.boardPageNo}&bdType=NOTICE'>\${one.bdTitle}
-                                            <span class='replyCount'>[\${one.repNo}]</span><a></th>
+                                            <span class='replyCount'>[\${one.repNo}]</span><a>
+                                         </th>
                                         <th scope='col'>\${one.empName}</th>
                                         <th scope='col'>\${one.bdDate}</th>
                             </tr>`;

@@ -11,7 +11,6 @@ import com.hrms.project4th.mvc.dto.responseDTO.MainBoardInfoResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardResponseDTO;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.repository.BoardMapper;
-import com.hrms.project4th.mvc.repository.BoardReplyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,6 @@ import java.util.stream.Collectors;
 public class BoardService {
 
     private final BoardMapper boardMapper;
-    private final BoardReplyMapper boardReplyMapper;
 
     /**
      * 모든 게시글을 보여주는 기능
@@ -59,8 +57,9 @@ public class BoardService {
      * @return Board 객체
      */
     public Board boardFindOneByBoardNo(long boardNo) {
-
-        return boardMapper.boardFindOneByBoardNo(boardNo);
+        Board board = boardMapper.boardFindOneByBoardNo(boardNo);
+        log.info("boardFindOneByBoardNo 입니다 {}.",board);
+        return board;
     }
 
     /**
@@ -71,6 +70,7 @@ public class BoardService {
      */
     public BoardDetailRequestDTO boardDetail(long boardNo) {
         Board board = boardFindOneByBoardNo(boardNo);
+        log.info("BoardDetailRequestDTO boardDetail {}",board);
         boardMapper.countUp(boardNo);
         return new BoardDetailRequestDTO(board);
     }
@@ -83,8 +83,6 @@ public class BoardService {
      */
 
     public boolean boardSave(BoardSaveRequestDTO dto) {
-
-
         return boardMapper.boardSave(new Board(dto));
     }
 
@@ -106,7 +104,7 @@ public class BoardService {
      * @return 수정 성공 TRUE / 수정 실패 FALSE
      */
     public boolean boardModify(BoardModifyRequestDTO dto) {
-
+        log.info("BoardModifyRequestDTO DTO {}",dto);
         return boardMapper.boardModify(new Board(dto));
     }
 

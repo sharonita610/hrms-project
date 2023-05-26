@@ -4,9 +4,11 @@ import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
 import com.hrms.project4th.mvc.entity.Board;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 @ToString
 @Getter
+@Slf4j
 public class BoardDetailRequestDTO {
 
 
@@ -22,6 +24,7 @@ public class BoardDetailRequestDTO {
         this.boardNo = board.getBoardNo();
         this.bdType = String.valueOf(board.getBdType());
         this.bdTitle = board.getBdTitle();
+//        log.info("BoardDetailRequestDTO inner {}",bdTitle);
         this.bdContent = board.getBdContent();
         this.stringDate= BoardListResponseDTO.makeStringDate(board.getBdDate());
         this.empNo = board.getEmpNo();

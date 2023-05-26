@@ -1,6 +1,7 @@
 package com.hrms.project4th.mvc.service;
 
 import com.hrms.project4th.mvc.dto.page.BoardSearch;
+import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardInfoResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardResponseDTO;
@@ -43,6 +44,15 @@ class BoardServiceTest {
         BoardSearch search=new BoardSearch();
         MainBoardInfoResponseDTO mainBoardInfoResponseDTO = boardService.showMainBoard(search);
         System.out.println(mainBoardInfoResponseDTO);
+    }
+
+    @Test
+    @DisplayName("수정기능")
+    void modify(){
+
+
+//            boardService.boardModify();
+
     }
 
 
