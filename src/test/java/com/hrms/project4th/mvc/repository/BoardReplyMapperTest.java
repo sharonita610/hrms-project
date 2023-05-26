@@ -31,7 +31,7 @@ class BoardReplyMapperTest {
                     .bdType(BdType.valueOf("NOTICE"))
                     .bdTitle("삼 조 상 사 공지사항" + i)
                     .bdContent("삼 조 상 사 공지내용 입니다" + i)
-                    .empNo((long)(Math.random()*32+1))
+                    .empNo((long)(Math.random()*33+1))
                     .build();
             boolean flag = boardMapper.boardSave(b);
             assertTrue(flag);
@@ -41,7 +41,7 @@ class BoardReplyMapperTest {
             BoardReply build = BoardReply.builder()
                     .repContent("댓글 입니다!!!!" + i)
                     .boardNo((long) (Math.random() * 100 + 1))
-                    .empNo((long)(Math.random()*32+1))
+                    .empNo((long)(Math.random()*33+1))
                     .build();
             boardReplyMapper.save(build);
 

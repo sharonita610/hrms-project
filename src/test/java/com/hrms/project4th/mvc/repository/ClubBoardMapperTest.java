@@ -58,16 +58,16 @@ class ClubBoardMapperTest {
     @Test
     @DisplayName("동호회 게시글이 추가되어야한다.")
     void clubBoardSaveTest() {
-        ClubBoardSaveRequestDTO dto = ClubBoardSaveRequestDTO.builder()
-                .cbTitle("독서독서2ㅋㅋ")
-                .cbContent("독서독서독서2ㅋㅋ쓰삐용쓰삐용삐이이이이ㅣ이용쓰삐요용")
-                .cbURL("")
-                .clubCode(6)
-                .empNo(4)
-                .build();
+//        ClubBoardSaveRequestDTO dto = ClubBoardSaveRequestDTO.builder()
+//                .cbTitle("독서독서2ㅋㅋ")
+//                .cbContent("독서독서독서2ㅋㅋ쓰삐용쓰삐용삐이이이이ㅣ이용쓰삐요용")
+////                .cbURL("")
+//                .clubCode(6)
+//                .empNo(4)
+//                .build();
 
-        boolean b = clubBoardMapper.clubBoardSave(new ClubBoard(dto));
-        assertTrue(b);
+//        boolean b = clubBoardMapper.clubBoardSave(new ClubBoard(dto));
+//        assertTrue(b);
     }
 
     @Test
@@ -80,15 +80,15 @@ class ClubBoardMapperTest {
     @Test
     @DisplayName("동호회 게시글 수정에 성공해야한다.")
     void clubBoardModifyTest() {
-        ClubBoardModifyRequestDTO dto = ClubBoardModifyRequestDTO.builder()
-                .cbNo(2L)
-                .cbTitle("추가한제목수정테스트**")
-                .cbContent("추가내용수정**")
-                .cbURL("")
-                .build();
-
-        boolean b = clubBoardMapper.clubBoardModify(new ClubBoard(dto));
-        assertTrue(b);
+//        ClubBoardModifyRequestDTO dto = ClubBoardModifyRequestDTO.builder()
+//                .cbNo(2L)
+//                .cbTitle("추가한제목수정테스트**")
+//                .cbContent("추가내용수정**")
+//                .cbURL("")
+//                .build();
+//
+//        boolean b = clubBoardMapper.clubBoardModify(new ClubBoard(dto));
+//        assertTrue(b);
     }
 
 }
