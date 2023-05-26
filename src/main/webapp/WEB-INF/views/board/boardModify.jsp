@@ -31,7 +31,11 @@
         .detail-section {
             width: 75%;
             margin: 10px auto;
-            height: 1000px;
+
+            overflow-y: scroll;
+        }
+        .detail-section::-webkit-scrollbar{
+            display: none;
         }
 
         .detail-topbox {

@@ -21,7 +21,8 @@ public class LocalResourceConfig implements WebMvcConfigurer {
 
         registry.addResourceHandler("/hrms/**")
                 .addResourceLocations("file:/" + rootPath)
-                .addResourceLocations("file:/" + clubRootPath)
+                .addResourceLocations("file:/" + clubRootPath);
+
         ;
 
 

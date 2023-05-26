@@ -389,6 +389,8 @@
                             const modalEmail = document.getElementById('modalEmail');
                             const modalPhone = document.getElementById('modalPhone');
                             const modalPro = document.getElementById('modalPro')
+                            // const modalPhoto=document.getElementById('')
+                         
 
                             modalName.innerText = r.empName;
                             modalDept.innerText = r.deptName;
@@ -396,6 +398,7 @@
                             modalEmail.innerText = r.empEmail;
                             modalPhone.innerText = r.empPhone;
                             modalPro.dataset.gender = r.empGender;
+                            
                             // console.log(r.profile);
 
                             if (r.profile == null && r.empGender == 'M') {
@@ -408,6 +411,10 @@
                                 `<img src='/assets/img/anonymous_w.png' alt='woman&noprofile' class='profile-image'/>`;
                             } else {
                                 console.log('프로필있음');
+                                modalPro.innerHTML =
+                                `<img src='/hrms\${r.profile}' alt='woman&noprofile' class='profile-image'/>`;
+                     
+            
                             }
 
                         }
@@ -432,7 +439,7 @@
             fetch(URL)
                 .then(res => res.json())
                 .then(responseResult => {
-                    // console.log(responseResult);
+                    console.log(responseResult);
                     renderEmpInfo(responseResult)
                 });
 

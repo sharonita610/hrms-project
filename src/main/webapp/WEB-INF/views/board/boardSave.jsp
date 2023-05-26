@@ -28,8 +28,12 @@
 
         .save-part {
             width: 100%;
+            overflow-y: scroll;
         }
-
+     
+        .save-part::-webkit-scrollbar {
+            display: none;
+        }
         .container {
             width: 800px;
         }

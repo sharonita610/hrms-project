@@ -4,6 +4,7 @@ import com.hrms.project4th.mvc.entity.BoardEmpInfo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Value;
 
 @Getter
 @Setter

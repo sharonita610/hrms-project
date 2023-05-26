@@ -45,7 +45,6 @@
             margin-left: 100px;
 
         }
- 
         .detail-section::-webkit-scrollbar {
             display: none;
         }
