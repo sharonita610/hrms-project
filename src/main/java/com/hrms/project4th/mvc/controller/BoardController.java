@@ -101,7 +101,7 @@ public class BoardController {
     // 수정한 값을 입력받아 Detail page 에 다시 띄어준다.
     @PostMapping("/board-modify")
     public String boardModify(BoardModifyRequestDTO dto, Model model,  BoardSearch search) {
-//        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}", dto);
+        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}", dto);
         boolean flag = boardService.boardModify(dto);
 //        log.info("flag : {}",flag);
 //        log.info("searchinfo : {}", search);

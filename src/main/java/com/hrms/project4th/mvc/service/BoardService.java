@@ -104,7 +104,7 @@ public class BoardService {
      * @return 수정 성공 TRUE / 수정 실패 FALSE
      */
     public boolean boardModify(BoardModifyRequestDTO dto) {
-//        log.info("BoardModifyRequestDTO DTO {}",dto);
+        log.info("BoardModifyRequestDTO DTO {}",dto);
         return boardMapper.boardModify(new Board(dto));
     }
 

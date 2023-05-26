@@ -24,7 +24,7 @@ public class BoardDetailRequestDTO {
         this.boardNo = board.getBoardNo();
         this.bdType = String.valueOf(board.getBdType());
         this.bdTitle = board.getBdTitle();
-        log.info("BoardDetailRequestDTO inner {}",bdTitle);
+//        log.info("BoardDetailRequestDTO inner {}",bdTitle);
         this.bdContent = board.getBdContent();
         this.stringDate= BoardListResponseDTO.makeStringDate(board.getBdDate());
         this.empNo = board.getEmpNo();

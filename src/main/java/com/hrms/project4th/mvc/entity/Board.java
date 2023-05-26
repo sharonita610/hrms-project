@@ -3,6 +3,7 @@ package com.hrms.project4th.mvc.entity;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 @Getter
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
+@Slf4j
 public class Board {
     //게시글 번호
     private long boardNo;
@@ -58,6 +60,7 @@ public class Board {
         this.bdTitle=dto.getBdTitle();
         this.bdContent=dto.getBdContent();
         this.important=inputRigthInfo(dto.getImportant());
+        log.info("important {}",important);
         this.empNo= dto.getEmpNo();
     }
 
