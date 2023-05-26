@@ -31,6 +31,7 @@
 
         .detail-section {
             width: 75%;
+            overflow-y: scroll;
         }
 
 
@@ -43,6 +44,10 @@
             width: 300px;
             margin-left: 100px;
 
+        }
+ 
+        .detail-section::-webkit-scrollbar {
+            display: none;
         }
 
         .detail-part {
@@ -167,7 +172,8 @@
             width: 50%;
             text-align: end;
         }
-        #newReplyWriter{
+
+        #newReplyWriter {
             text-align: center;
             letter-spacing: 5px;
         }
@@ -284,7 +290,7 @@
 
 
         /* page 색변화처리  */
-        #replyCollapse .justify-content-center .p-active a{
+        #replyCollapse .justify-content-center .p-active a {
             background-color: #0d6efd !important;
             color: #ffffff !important;
             pointer-events: none;
@@ -309,6 +315,8 @@
 
                         <div class="form-group">
                             <input type="hidden" name="boardNo" value="${b.boardNo}">
+                            <input type="hidden" name="empNo" value="${b.empNo}">
+                            <input type="hidden" name="important" value="${b.important}">
                             <label for="board">게시판</label>
                             <select id="board" name="bdType">
                                 <c:if test="${b.bdType=='NOTICE'}">

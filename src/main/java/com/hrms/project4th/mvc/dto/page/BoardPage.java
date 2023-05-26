@@ -38,5 +38,6 @@ public class    BoardPage{
                 "boardAmount=" + boardAmount +
                 ", boardPageNo=" + boardPageNo +
                 '}';
+
     }
 }

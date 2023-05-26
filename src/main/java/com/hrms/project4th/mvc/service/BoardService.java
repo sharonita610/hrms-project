@@ -53,13 +53,13 @@ public class BoardService {
     }
 
     /**
-     * 게시글 번호를 입력받아 게시물을 보여주는 기능
+     * 메퍼와 연동하여 게시글 번호를 입력받아 게시물을 보여주는 기능
      *
      * @param boardNo 게시글 번호
      * @return Board 객체
      */
     public Board boardFindOneByBoardNo(long boardNo) {
-        boardMapper.countUp(boardNo);
+
         return boardMapper.boardFindOneByBoardNo(boardNo);
     }
 
@@ -71,7 +71,7 @@ public class BoardService {
      */
     public BoardDetailRequestDTO boardDetail(long boardNo) {
         Board board = boardFindOneByBoardNo(boardNo);
-
+        boardMapper.countUp(boardNo);
         return new BoardDetailRequestDTO(board);
     }
 

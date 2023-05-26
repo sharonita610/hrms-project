@@ -16,6 +16,7 @@ public class BoardDetailRequestDTO {
     private String bdContent;
     private String stringDate;
     private long empNo;
+    private long important;
 
     public BoardDetailRequestDTO(Board board){
         this.boardNo = board.getBoardNo();
@@ -23,8 +24,8 @@ public class BoardDetailRequestDTO {
         this.bdTitle = board.getBdTitle();
         this.bdContent = board.getBdContent();
         this.stringDate= BoardListResponseDTO.makeStringDate(board.getBdDate());
-        this.empNo = (int)Math.ceil(Math.random()*100);
-
+        this.empNo = board.getEmpNo();
+        this.important=board.getImportant();
     }
 
 

@@ -15,7 +15,8 @@ public class BoardModifyRequestDTO {
     private String bdType;
     private String bdTitle;
     private String bdContent;
-//    private long empNo;
+    private long important;
+    private long empNo;
 
 
 
