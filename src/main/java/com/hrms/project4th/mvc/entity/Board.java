@@ -3,7 +3,6 @@ package com.hrms.project4th.mvc.entity;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardModifyRequestDTO;
 import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 @Getter

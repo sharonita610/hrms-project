@@ -174,11 +174,11 @@
                         </div>
                         <div class="form-group">
                             <label for="title" class="container title-input">제목</label>
-                            <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" value=${m.bdTitle}>
-                            <c:if test="${login.roleCode=='11111'|| login.roleCode=='00000'}">
+                            <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" value='${m.bdTitle}'>
+                            <!-- <c:if test="${login.roleCode=='11111'|| login.roleCode=='00000'}"> -->
                                 <input name='important' id='importantCheck' type='checkbox' value='${m.important}'>
                                 <span id="serious">중요</span>
-                            </c:if>
+                            <!-- </c:if> -->
                         </div>
                         <div class="form-group">
                             <label for="content">내용</label>

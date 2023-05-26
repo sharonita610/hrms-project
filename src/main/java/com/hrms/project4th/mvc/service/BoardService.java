@@ -57,8 +57,9 @@ public class BoardService {
      * @return Board 객체
      */
     public Board boardFindOneByBoardNo(long boardNo) {
-
-        return boardMapper.boardFindOneByBoardNo(boardNo);
+        Board board = boardMapper.boardFindOneByBoardNo(boardNo);
+        log.info("boardFindOneByBoardNo 입니다 {}.",board);
+        return board;
     }
 
     /**
@@ -69,6 +70,7 @@ public class BoardService {
      */
     public BoardDetailRequestDTO boardDetail(long boardNo) {
         Board board = boardFindOneByBoardNo(boardNo);
+        log.info("BoardDetailRequestDTO boardDetail {}",board);
         boardMapper.countUp(boardNo);
         return new BoardDetailRequestDTO(board);
     }
@@ -81,8 +83,6 @@ public class BoardService {
      */
 
     public boolean boardSave(BoardSaveRequestDTO dto) {
-
-
         return boardMapper.boardSave(new Board(dto));
     }
 

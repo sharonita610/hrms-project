@@ -80,7 +80,7 @@ public class BoardController {
             Model model) {
         BoardDetailRequestDTO board = boardService.boardDetail(boardNo);
 //        log.info("board-detail / boardNo : {} ", boardNo);
-//        log.info("detailboard {}",board);
+        log.info("detailboard {}",board);
 //        log.info("searchInfo : {}", search);
         model.addAttribute("s", search);
         model.addAttribute("b", board);
@@ -91,7 +91,7 @@ public class BoardController {
     // 게시글 수정 페이지를 보여주는 기능
     @PostMapping("/show-modify")
     public String showModify(Model model, BoardModifyRequestDTO dto,BoardSearch boardSearch) {
-//        log.info("/hrms/board-modify : show POST / {}", dto);
+        log.info("/hrms/board-modify : show POST / {}", dto);
 //        log.info("boardSearch : {}",boardSearch);
         model.addAttribute("s",boardSearch);
         model.addAttribute("m", dto);
