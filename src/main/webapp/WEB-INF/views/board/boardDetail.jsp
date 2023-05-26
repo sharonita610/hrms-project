@@ -863,9 +863,9 @@
                             $rt.value = '';
                             $rw.value = '';
                             // 마지막페이지 번호
-                            // const lastPageNo = document.querySelector('.pagination').dataset.fp;
+                            const lastPageNo = document.querySelector('.pagination').dataset.fp;
                             document.getElementById('newReplyWriter').value = ' ${login.empName}';
-                            findAllReplies(1);
+                            findAllReplies(lastPageNo);
 
                         } else {
                             // console.log($rt.value);

@@ -52,7 +52,7 @@ public class BoardReplyController {
             return ResponseEntity.badRequest().body(result.toString());
         }
 
-        log.info("/api/hrms/replies : POST!! / dto : {}", dto);
+//        log.info("/api/hrms/replies : POST!! / dto : {}", dto);
         try {
             boardReplyService.save(dto);
         } catch (SQLDataException e) {

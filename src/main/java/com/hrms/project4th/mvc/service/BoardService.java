@@ -9,7 +9,6 @@ import com.hrms.project4th.mvc.dto.requestDTO.BoardSaveRequestDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.BoardListResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardInfoResponseDTO;
 import com.hrms.project4th.mvc.dto.responseDTO.MainBoardResponseDTO;
-import com.hrms.project4th.mvc.entity.BdType;
 import com.hrms.project4th.mvc.entity.Board;
 import com.hrms.project4th.mvc.repository.BoardMapper;
 import lombok.RequiredArgsConstructor;
@@ -105,9 +104,7 @@ public class BoardService {
      * @return 수정 성공 TRUE / 수정 실패 FALSE
      */
     public boolean boardModify(BoardModifyRequestDTO dto) {
-        log.info("DTOMODIDI {}",dto);
-
-//        log.info("dto를 entity로 {}",build);
+//        log.info("BoardModifyRequestDTO DTO {}",dto);
         return boardMapper.boardModify(new Board(dto));
     }
 

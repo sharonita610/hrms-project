@@ -175,21 +175,18 @@
                         <div class="form-group">
                             <label for="title" class="container title-input">제목</label>
                             <input type="text" id="title" name="bdTitle" placeholder="제목을 입력하세요" value=${m.bdTitle}>
-                            <!-- <c:if test="${login.roleCode=='11111'|| login.roleCode=='00000'}"> -->
-                            <input name='important' id='importantCheck' type='checkbox' value='${m.important}'>
-                            <span id="serious">중요</span>
-                            <!-- </c:if> -->
+                            <c:if test="${login.roleCode=='11111'|| login.roleCode=='00000'}">
+                                <input name='important' id='importantCheck' type='checkbox' value='${m.important}'>
+                                <span id="serious">중요</span>
+                            </c:if>
                         </div>
                         <div class="form-group">
                             <label for="content">내용</label>
-                            <!-- <textarea id="content" name="bdContent" placeholder="내용을 입력하세요">${m.bdContent}</textarea> -->
                             <textarea id="mytextarea" name="bdContent" readonly>${m.bdContent}</textarea>
                         </div>
                         <div class="form-group detail-button">
                             <button id="backToList" type="reset">수정취소</button>
-                            <!--  onclick="window.location.href='/hrms/board/board-list'" -->
                             <button type="submit">수정완료</button>
-                            <!--   onclick="window.location.href='/hrms/board-list?boardPageNo=${s.boardPageNo}'" -->
                         </div>
                     </form>
                 </section>
@@ -200,7 +197,6 @@
         // 수정취소 기능
         const backToDetail = document.getElementById('backToList');
         backToDetail.onclick = () => {
-            // http://localhost:8888/hrms/board/board-detail/?boardNo=300&boardPageNo=1&bdType=NOTICE
             // console.log('수정취소버튼클릭');
             window.location.href = '/hrms/board/board-detail/?boardNo=${m.boardNo}&boardPageNo=1&bdType=${m.bdType}'
         }
@@ -225,10 +221,9 @@
 
             } else {
                 console.log("체크박스가 선택되지 않았습니다.");
-                checkTag.value = 0;
-                // 선택되지 않았을 때 수행할 동작
 
-                // console.log('나오냐?');
+                // 선택되지 않았을 때 수행할 동작
+                checkTag.value = 0;
                 // console.log($checkbox.value);
 
             }

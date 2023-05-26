@@ -18,7 +18,7 @@
         JOIN hr_position hp
         ON em.pos_code=hp.pos_code
         WHERE re.board_no=#{boardNo}
-        ORDER BY 2 desc
+        ORDER BY 2
         LIMIT #{page.pageLimitNum}, #{page.boardAmount}
 
     </select>

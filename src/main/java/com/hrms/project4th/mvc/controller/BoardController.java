@@ -80,7 +80,7 @@ public class BoardController {
             Model model) {
         BoardDetailRequestDTO board = boardService.boardDetail(boardNo);
 //        log.info("board-detail / boardNo : {} ", boardNo);
-        log.info("detailboard {}",board);
+//        log.info("detailboard {}",board);
 //        log.info("searchInfo : {}", search);
         model.addAttribute("s", search);
         model.addAttribute("b", board);
@@ -91,8 +91,8 @@ public class BoardController {
     // 게시글 수정 페이지를 보여주는 기능
     @PostMapping("/show-modify")
     public String showModify(Model model, BoardModifyRequestDTO dto,BoardSearch boardSearch) {
-        log.info("/hrms/board-modify : show POST / {}", dto);
-        log.info("boardSearch : {}",boardSearch);
+//        log.info("/hrms/board-modify : show POST / {}", dto);
+//        log.info("boardSearch : {}",boardSearch);
         model.addAttribute("s",boardSearch);
         model.addAttribute("m", dto);
         return "/board/boardModify";
@@ -101,9 +101,9 @@ public class BoardController {
     // 수정한 값을 입력받아 Detail page 에 다시 띄어준다.
     @PostMapping("/board-modify")
     public String boardModify(BoardModifyRequestDTO dto, Model model,  BoardSearch search) {
-        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}", dto);
+//        log.info("/hrms/board-modify : POST / BoardModifyRequestDTO {}", dto);
         boolean flag = boardService.boardModify(dto);
-        log.info("flag : {}",flag);
+//        log.info("flag : {}",flag);
 //        log.info("searchinfo : {}", search);
         model.addAttribute("b", dto);
         model.addAttribute("s",search);
