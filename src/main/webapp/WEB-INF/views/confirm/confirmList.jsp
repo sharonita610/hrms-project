@@ -58,7 +58,7 @@
         </div>
     </div>
 
-</body>
+
 
 <script>
     const URL = "/hrms/confirm";
@@ -429,5 +429,7 @@
     }
 
 </script>
+</body>
+<%@ include file="../main/include/footer.jsp" %>
 
 </html>

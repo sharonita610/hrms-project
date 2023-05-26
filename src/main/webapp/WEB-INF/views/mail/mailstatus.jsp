@@ -135,5 +135,6 @@ window.onload = function() {
 </script>
 
 </body>
+<%@ include file="../main/include/footer.jsp" %>
 
 </html>

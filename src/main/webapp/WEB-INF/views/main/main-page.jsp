@@ -90,7 +90,7 @@
                 <div id="top-list">
                     <ul>
                         <li class="title-list">
-                            <h1>공지사항</h1>
+                            <h1 id="main-board">공지사항</h1>
                             <div id="left-pointer">
                             </div>
                             <div id="right-pointer">
@@ -115,7 +115,10 @@
                     </ul>
                     <ul>
                         <li class="title-list">
-                            <h1>동호회</h1>
+                            <h1 id="main-club">동호회</h1>
+                            <span id="wannaseemore">
+                                <a href="#">더보기+</a>
+                            </span>
                         </li>
                         <li>동호회</li>
                         <li>동호회</li>
@@ -124,7 +127,7 @@
                 <div id="bottom-list">
                     <ul id = "mail-box">
                         <li class="title-list">
-                            <h1>메일</h1>
+                            <h1 id="main-mail">메일</h1>
                             <span id="wannaseemore">
                                 <a href="/hrms/mail-list?empNo=${login.empNo}">더보기+</a>
                             </span>
@@ -133,7 +136,7 @@
                     </ul>
                     <ul id="confirm-box">
                         <li class="title-list">
-                            <h1>결재</h1>
+                            <h1 id="main-confirm">결재</h1>
                             <input type = 'hidden' name = 'conStatus' value = null>
                             <a href="/hrms/confirm/list?conStatus=">더보기+</a>
                         </li>

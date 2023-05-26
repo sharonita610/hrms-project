@@ -446,5 +446,6 @@
     </script>
 
 </body>
+<%@ include file="../main/include/footer.jsp" %>
 
 </html>

@@ -3,7 +3,7 @@
     text-decoration: none;
     font-weight: normal;
     box-sizing: border-box;
-    color: #000;
+    /*color: #000;*/
 }
 .forscroll {
     width: 100%;
@@ -21,7 +21,7 @@
 
 .confirm-page-wrapper .confirm-titleline {
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     height: 40px;
     justify-content: space-between;
     align-items: center;

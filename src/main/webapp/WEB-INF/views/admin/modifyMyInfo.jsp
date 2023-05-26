@@ -356,6 +356,7 @@
 
         };
     }
+
     //
     // function changePasswordWithCheck() {
     //     // "비밀번호 수정" 사진 주변 클릭 시 모달 창 열기
@@ -451,7 +452,6 @@
     // }
 
 
-
     const $changePwdModal = document.getElementById('change-pwd-modal');
     const $savePwdButton = document.getElementById('savePwd-button');
     const $cancelChangePwdButton = document.getElementById('cancelChangePwd-button');
@@ -485,7 +485,7 @@
     function changePasswordWithCheck() {
         // "비밀번호 수정" 사진 주변 클릭 시 모달 창 열기
         const $changePwdModal = document.getElementById('change-pwd-modal');
-        const $savePwdButton = document.getElementById('savePwd-button');
+        // const $savePwdButton = document.getElementById('savePwd-button');
         const $cancelChangePwdButton = document.getElementById('cancelChangePwd-button');
         const $updatePwdButton = document.getElementById('change-pwd');
         const $changePwdImage = document.getElementById('pwd-img');
@@ -505,23 +505,30 @@
         // 새 비밀번호 입력 필드
         const $changePwdInput = document.getElementById('change-pwd-input');
         const $checkPwdInput = document.getElementById('check-pwd-input');
+        const newPassword = $changePwdInput.value;
+        const checkPassword = $checkPwdInput.value;
 
         $changePwdInput.onkeyup = () => {
-            const newPassword = $changePwdInput.value;
 
             if (newPassword.trim() === '') {
                 $changePwdInput.style.borderColor = 'red';
                 document.getElementById('check-pwd-input').textContent = '<b style="color: red;">[비밀번호는 필수값입니다!]</b>';
-            } else if (!passwordPattern.test(newPassword)) {
-                $changePwdInput.style.borderColor = 'red';
-                document.getElementById('check-pwd-input').textContent = '<b style="color: red;">[특수문자 포함 8자 이상!]</b>';
+                // } else if (!passwordPattern.test(newPassword)) {
+                //     $changePwdInput.style.borderColor = 'red';
+                //     document.getElementById('check-pwd-input').textContent = '<b style="color: red;">[특수문자 포함 8자 이상!]</b>';
             } else {
                 $changePwdInput.style.borderColor = 'skyblue';
                 document.getElementById('check-pwd-input').textContent = '<b style="color: skyblue;">[사용가능한 비밀번호입니다.]</b>';
             }
-        };
+
+            // console.log($changePwdInput.value);
+
+
+        }
+
 
         $checkPwdInput.onkeyup = () => {
+            const $checkPwdInput = document.getElementById('check-pwd-input');
             const checkPassword = $checkPwdInput.value;
 
             if (checkPassword.trim() === '') {
@@ -534,17 +541,42 @@
                 $checkPwdInput.style.borderColor = 'skyblue';
                 document.getElementById('check-pwd-input').textContent = '<b style="color: skyblue;">[참 잘했어요~]</b>';
             }
-        };
+            console.log($checkPwdInput.value);
 
-        // 비밀번호 저장 버튼 클릭 시 업데이트
-        $savePwdButton.onclick = e => {
-            e.preventDefault();
-            const newPassword = $changePwdInput.value;
+            function checkEqual(newPassword, checkPassword) {
+                if (newPassword === checkPassword) {
+                    console.log("같음");
+                    console.log(newPassword);
+                    console.log(checkPassword);
+                } else {
+                    console.log("다름");
+                    console.log(newPassword);
+                    console.log(checkPassword);
+                }
+            }
+        }
+    };
 
-            // 여기서 newPassword를 서버로 전송하여 비밀번호를 업데이트하는 로직을 수행
+
+    const $changePwdInput = document.getElementById('change-pwd-input');
+    const $checkPwdInput = document.getElementById('check-pwd-input');
+    const newPassword = $changePwdInput.value;
+    const checkPassword = $checkPwdInput.value;
+    // 비밀번호 저장 버튼 클릭 시 업데이트
+    $savePwdButton.onclick = e => {
+        e.preventDefault();
+
+        console.log(newPassword);
+        console.log(checkPassword);
+        // 여기서 newPassword를 서버로 전송하여 비밀번호를 업데이트하는 로직을 수행
+        //     changePasswordWithCheck();
+        if (newPassword !== checkPassword) {
+            alert('비밀번호 업데이트가 안됐습니다.');
+        } else {
+
             updatePassword(newPassword);
-        };
-    }
+        }
+    };
 
     function updatePassword(newPassword) {
         const $changePwdModal = document.getElementById('change-pwd-modal');
@@ -582,6 +614,7 @@
         changePasswordWithCheck();
     })();
 </script>
+<%@ include file="../main/include/footer.jsp" %>
 
 
 </html>

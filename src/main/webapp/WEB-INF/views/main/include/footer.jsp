@@ -9,6 +9,7 @@
         footer {
             background: rgba(28, 30, 40, 0.74);
             height: 55px;
+            color: #f1f1f1 !important;
         }
 
         .footer-top {
@@ -19,6 +20,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+
 
         }
 
