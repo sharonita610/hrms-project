@@ -70,7 +70,8 @@ header{
     box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
     15px 15px 15px rgba(0,0,0,0.1);
     align-items: center;
-    background: #0052cc;
+    /*background: #0052cc;*/
+    background: #082F69;
     font-weight: 900;
     color: #ffffff;
 }
@@ -101,11 +102,11 @@ header{
     text-align: center;
 }
 /*.section-sub-header .nav-bar #tabs*/
-.section-sub-header .nav-bar #tabs li:hover {
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-    transition: border-color 0.1s, color 0.1s;
-}
+/*.section-sub-header .nav-bar #tabs li:hover {*/
+/*    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,*/
+/*    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;*/
+/*    transition: border-color 0.1s, color 0.1s;*/
+/*}*/
 
 .section-sub-header .nav-bar #tabs li#home:hover{
     box-shadow: none;

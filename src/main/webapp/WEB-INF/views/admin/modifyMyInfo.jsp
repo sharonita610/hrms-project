@@ -36,8 +36,7 @@
             margin-top: 80px;
         }
 
-        #change-pwd,
-        #change-phone {
+        #change-pwd, #change-phone {
             margin-top: 10px;
         }
 
@@ -205,10 +204,10 @@
                     <img id="pwd-img" src="/assets/img/pwd-img.png" alt="휴대폰사진">
                 </div>
 
-            </div>
-            <form action="/hrms/main-page" method="get">
-                <button id="save-changes-button" type="submit">확인</button>
-            </form>
+        </div>
+        <form action="/hrms/main-page" method="get">
+            <button id="save-changes-button" type="submit">확인</button>
+        </form>
 
             <div id="check-currentPwd-modal" style="display: none;">
                 <h2 class="modify-my-info-Subtitle"><br><br>수정을 위해 비밀번호를 입력해주세요</h2>
@@ -307,7 +306,7 @@
 
     };
 
-    // 저장 버튼 클릭 시 개인정보 수정 비동기 처리 
+    // 저장 버튼 클릭 시 개인정보 수정 비동기 처리
     function updatePhoneClickEvent() {
 
         const $saveButton = document.getElementById('savePhone-button');
@@ -351,8 +350,8 @@
     const $changePwdImage = document.getElementById('pwd-img');
 
 
-   
- 
+
+
         $updatePwdButton.onclick = e => {
             e.preventDefault();
             $changePwdImage.click();
@@ -368,8 +367,8 @@
         // 새 비밀번호 입력 필드
         const $changePwdInput = document.getElementById('change-pwd-input');
         const $checkPwdInput = document.getElementById('check-pwd-input');
-       
-      
+
+
         $changePwdInput.onkeyup = () => {
             const newPassword = $changePwdInput.value;
             // console.log(newPassword+' fisrtvalue');
@@ -451,8 +450,9 @@
             });
     }
 
- 
+
 </script>
+<%@ include file="../main/include/footer.jsp" %>
 
 
 </html>
