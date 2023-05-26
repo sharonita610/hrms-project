@@ -1,0 +1,129 @@
+* {
+    text-decoration: none;
+    color: black;
+    box-sizing: border-box;
+}
+
+.addEmpFormWrapper {
+    width: 800px;
+    margin: 50px auto;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    padding: 20px 10px 30px 10px;
+    position: relative;
+    height: fit-content;
+    /*border: 1px solid #000;*/
+}
+
+.genderOption {
+    font-size: 15px;
+}
+
+.addEmpFormWrapper h1 {
+    font-size: 20px;
+    margin: 0;
+    padding-bottom: 30px;
+} 
+
+.addEmpFormWrapper h2 {
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    width: 80px;
+}
+
+.addEmpFormWrapper .addInputForm {
+    display: flex;
+    margin-top: 15px;
+}
+
+.addEmpFormWrapper .addInputForm .inputblank {
+    font-size: 15px;
+    outline-color: rgb(113, 150, 218);
+    width: 200px;
+    text-indent: 5px;
+}
+
+.addEmpFormWrapper #email-address {
+    font-weight: lighter;
+}
+
+.empBossInput { 
+    width: 280px;
+    /* border: 1px solid #000; */
+}
+
+#addBtn {
+    display: none;
+}
+
+#emp-submit {
+    font-size: 15px;
+    position: absolute;
+    padding: 5px;
+    bottom: 20px;
+    right: 20px;
+    background: #e6e6e6;
+    border: 1px solid gray;
+    /* display: none; */
+    cursor: pointer;
+}
+
+.alert {
+    font-size: 12px;
+    position: absolute;
+    left: 297px;
+    color: red;
+    display: none;
+    transform: translateY(2px);
+}
+
+#duplicatedEmail {
+    /* font-weight: 700; */
+    position: absolute;
+    bottom: 235px;
+}
+
+#noEmail {
+    /* font-weight: 700; */
+    position: absolute;
+    bottom: 235px;
+}
+
+#noPic {
+    transform: translateY(5px);
+}
+
+#profileImage {
+    text-indent: 0;
+}
+
+.profilePic {
+    width: 120px;
+    height: 140px;
+    /* border: 1px solid #000; */
+    position: absolute;
+}
+
+#picFrame {
+    right: 20px;
+    top: 30px;
+    overflow: hidden;
+    border: 1px solid gray;
+}
+
+#showPic {
+    width: 100%;
+}
+
+.goBack {
+    font-size: 15px;
+    position: absolute;
+    padding: 5px;
+    bottom: 20px;
+    right: 110px;
+    background: #e6e6e6;
+    border: 1px solid gray;
+    /* display: none; */
+    cursor: pointer;
+}

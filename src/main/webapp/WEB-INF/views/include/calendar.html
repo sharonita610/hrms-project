@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+        table {
+            border-collapse: collapse;
+            margin-top: 29%;
+            margin-left: 20px;
+        }
+        td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+        .today {
+            background-color: lightblue;
+        }
+	</style>
+</head>
+<body>
+<h1>미니 달력</h1>
+<table>
+	<tr>
+		<th colspan="7">
+			<button onclick="prevMonth()">&#8249;</button>
+			<span id="currentMonth"></span>
+			<button onclick="nextMonth()">&#8250;</button>
+		</th>
+	</tr>
+	<tr>
+		<th>일</th>
+		<th>월</th>
+		<th>화</th>
+		<th>수</th>
+		<th>목</th>
+		<th>금</th>
+		<th>토</th>
+	</tr>
+	<tbody id="calendarBody"></tbody>
+</table>
+</body>
+
+<script>
+    let today = new Date();
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
+    let months = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+
+    function displayCalendar() {
+        let firstDay = (new Date(currentYear, currentMonth)).getDay();
+        let daysInMonth = 32 - new Date(currentYear, currentMonth, 32).getDate();
+
+        let calendarBody = document.getElementById("calendarBody");
+        calendarBody.innerHTML = "";
+
+        document.getElementById("currentMonth").innerHTML = months[currentMonth] + " " + currentYear;
+
+        let date = 1;
+        for (let i = 0; i < 6; i++) {
+            let row = document.createElement("tr");
+
+            for (let j = 0; j < 7; j++) {
+                if (i === 0 && j < firstDay) {
+                    let cell = document.createElement("td");
+                    let cellText = document.createTextNode("");
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                } else if (date > daysInMonth) {
+                    break;
+                } else {
+                    let cell = document.createElement("td");
+                    let cellText = document.createTextNode(date);
+
+                    if (date === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+                        cell.classList.add("today");
+                    }
+
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    date++;
+                }
+            }
+
+            calendarBody.appendChild(row);
+        }
+    }
+
+    displayCalendar();
+
+    function prevMonth() {
+        if (currentMonth === 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else {
+            currentMonth--;
+        }
+
+        displayCalendar();
+    }
+
+    function nextMonth() {
+        if (currentMonth === 11) {
+            currentMonth = 0;
+            currentYear++;
+        } else {
+            currentMonth++;
+        }
+
+        displayCalendar();
+    }
+</script>
+</html>

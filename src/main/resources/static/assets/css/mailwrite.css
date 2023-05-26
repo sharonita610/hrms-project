@@ -1,0 +1,140 @@
+/*  메일 jsp css  */
+/*  메일 전체 틀  */
+.section-mail {
+    /* margin-top: 6%; */
+    position: relative;
+    display: block;
+    width: 100%;
+
+}
+/*  전체틀 안에 큰 라인  */
+.section-mail #mail-wrapper {
+    border: 1px solid rgba(198, 198, 199, 0.65);
+    width: 100%;
+    height: 90%;
+}
+
+/*  메일 정렬 태그 스타일  */
+.section-mail #mail-wrapper .mail-sort {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+/*  메일 정렬 태그 폰트  */
+.section-mail #mail-wrapper .mail-detail-box{
+    /*border: 2px solid black;*/
+    font-size: 1.0rem;
+    margin-top: 10px;
+    width: 100%;
+    height: 90%;
+}
+
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title{
+    width: 100%;
+}
+.section-mail #mail-wrapper .mail-detail-box .mail-header-title .headerbox{
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    height: 30px;
+    display: flex;
+    font-weight: 700;
+    border-top: 1px solid #000;
+}
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo{
+    display: flex;
+    width: 100%;
+    height: 25%; 
+    /* background-color: yellow; */
+    border-top: 1px solid #000;
+}
+
+
+
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo .senderinfo{
+    width: 50%;
+    height: 30%;
+    /* background: purple; */
+    display: flex;
+    flex-direction: column;
+}
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo .senderinfo .senderempNo{
+    display: flex;
+    line-height: 26px;
+    border-top: 1px solid #000;
+    width: 100%;
+}
+
+
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo .senderinfo span{
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo .senderinfo div{
+    font-weight: 700;
+    font-size: 1.0em;
+    border-bottom: 1px solid #000;
+}
+
+
+
+
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo .reciverinfo{
+    width: 50%;
+    /* background: purple; */
+    display: flex;
+    flex-direction: column;
+    border-left: solid 1px #000;
+    height: 30%;
+}
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo .reciverinfo .reciverempNo{
+    display: flex;
+    line-height: 26px;
+    border-top: 1px solid #000;
+}
+
+
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo .reciverinfo span{
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo .reciverinfo div{
+    font-weight: 700;
+    font-size: 1.0em;
+    border-bottom: 1px solid #000;
+}
+.section-mail #mail-wrapper .mail-detail-box .employeesinfo .reciverinfo .search{
+    display: flex;
+    height: 100%;
+}
+
+
+
+
+.section-mail #mail-wrapper .mail-detail-box .buttonarea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    height: 10%;
+}
+
+
+
+.ck-editor__editable { height: 414px; }
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,154 @@
+* {
+    text-decoration: none;
+    color: black;
+    box-sizing: border-box;
+}
+
+.modiEmpFormWrapper {
+    width: 800px;
+    margin: 50px auto;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    padding: 20px 10px 30px 10px;
+    position: relative;
+    height: fit-content;
+}
+
+.genderOption {
+    font-size: 15px;
+}
+
+.modiEmpFormWrapper h1 {
+    font-size: 20px;
+    margin: 0;
+    padding-bottom: 30px;
+} 
+
+.modiEmpFormWrapper h2 {
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    width: 80px;
+}
+
+.modiEmpFormWrapper .addInputForm {
+    width: fit-content;
+    display: flex;
+    margin-top: 15px;
+}
+
+.modiEmpFormWrapper .addInputForm .inputblank {
+    font-size: 15px;
+    outline-color: rgb(113, 150, 218);
+    width: 200px;
+    text-indent: 5px;
+    /* border: 1px solid #000; */
+}
+
+.modiEmpFormWrapper #email-address {
+    font-weight: lighter;
+}
+
+.empBossInput { 
+    width: 280px;
+}
+
+#modiBtn {
+    display: none;
+}
+
+.modi-btns {
+    font-size: 15px;
+    position: absolute;
+    padding: 5px;
+    bottom: 20px;
+    background: #e6e6e6;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+#emp-submit {
+    right: 20px;
+}
+
+#terminate {
+    right: 110px;
+}
+.goBack {
+    right: 200px;
+}
+
+.alert {
+    font-size: 12px;
+    position: absolute;
+    left: 297px;
+    color: red;
+    display: none;
+    transform: translateY(2px);
+}
+
+#duplicatedEmail {
+    /* font-weight: 700; */
+    position: absolute;
+    bottom: 235px;
+}
+
+#noEmail {
+    /* font-weight: 700; */
+    position: absolute;
+    /*bottom: 235px;*/
+    transform: translateY(20px);
+}
+
+#noPic {
+    transform: translateY(5px);
+}
+
+#profileImage {
+    text-indent: 0;
+}
+
+.profilePic {
+    width: 120px;
+    height: 140px;
+    /* border: 1px solid #000; */
+    position: absolute;
+}
+
+#picFrame {
+    right: 20px;
+    top: 30px;
+    overflow: hidden;
+    border: 1px solid gray;
+}
+
+#showPic {
+    width: 100%;
+}
+
+.modiEmpFormWrapper #clubs {
+    margin-top: 30px;
+    width: 550px;
+    display: flex;
+}
+
+.modiEmpFormWrapper #clubs #emp-enrolled-clubs {
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0;
+    width: 115px;
+    /*border: 1px solid blue;*/
+}
+
+.modiEmpFormWrapper #clubs #club-wrapper {
+    /*border: 1px solid red;*/
+    width: 450px;
+}
+.modiEmpFormWrapper #clubs #club-wrapper #joined-club-list {
+    display: flex;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.modiEmpFormWrapper #clubs #club-wrapper .enrolled-club {
+    margin-right: 10px;
+}

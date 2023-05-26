@@ -1,0 +1,271 @@
+/*  club.jsp css  */
+
+/*  클럽 전체 틀  */
+.section-club-board {
+    /* margin-top: 2%; */
+    width: 77%;
+    position: relative;
+    /*border: 2px solid red;*/
+    overflow: hidden;
+}
+
+/*  틀 3등분으로 나워주기  */
+.section-club-board #club-contents {
+    display: flex;
+    flex-direction: row;
+}
+
+/* 1등분 드랍다운 할 버튼 시작 */
+.club-drop-down-btn{
+    width: 15%;
+    background: #fff;
+    position : relative;
+    display : inline-block;
+}
+/*  버튼 속성  동그라미 */
+.club-dropbtn{
+    border-radius : 50px;
+    background: rgba(56, 175, 54, 0.1);
+    font-weight: 600;
+    color : rgb(37, 37, 37);
+    margin: 40px 20px 5px 50px;        /* 40px 20px */
+    width :60px;
+    height :60px;
+    text-align: center;
+    cursor : pointer;
+    font-size : 14px;
+    background: url("/assets/img/menu.png") no-repeat center / cover;
+    background-size: 60%;
+    border: none;
+}
+
+/*  떨어질 값들 속성  */
+.club-drop-down-content {
+    width: 120px;
+    display : none;
+    position : absolute;
+    z-index : 150; /*다른 요소들보다 앞에 배치 */
+    font-weight: 500;
+    background: rgb(21 47 255 / 56%);
+    color: #fff;
+    margin-left: 60px;
+    border-radius: 20px;
+    font-size: 15px;
+}
+.show-content {
+    display: block;
+}
+/*  떨어지는 값들의 a태그 속성  */
+.club-drop-down-content a{
+    display : block;
+    text-decoration : none;
+    /* background: rgba(56, 175, 54, 0.1); */
+    font-weight: 700;
+    /* font-size: 14px; */
+    padding : 12px 20px;
+    width: 120px;
+    margin: 0 auto;
+    /* font-size: 50px; */
+}
+
+
+/*  클릭버튼 호버시에 드랍다운 */
+/* .club-drop-down-btn:hover .club-drop-down-content {
+    display: block;
+} */
+
+
+/*  클럽보드 리스트 전용 속성  */
+.section-club-board  #club-board-list{
+    width: 50%;
+    height: 800px;
+    background: #fff;
+    margin-right: 30px;
+    overflow: scroll;
+}
+
+/*  스크롤 바 숨기기 */
+#club-board-list::-webkit-scrollbar {
+    display: none;
+}
+/* 2등분  중간단계 기본 속성 무한스크롤 */
+#club-board-list .club-card-wrapper{
+    /* background: rgb(218, 238, 245); */
+    width: 70%;     /* 90% */
+    /* height: 200%; */
+    margin: 20px auto;
+}
+
+/*  클럽 정보 나열 동호회사진, 동호회명, 가입하기  */
+.club-card-info ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* 가입하기 버튼 */
+button.join {
+    background: rgb(21 47 255 / 56%);
+    border-radius: 20px;
+    height: 40px;
+    width: 60px;
+    font-size: 18px;
+    color: #fff;
+    border: 0px;
+}
+
+/*  동호회 사진  */
+.club-card-info ul li img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid #434374;
+}
+/*  카드 개별 속성 */
+.club-card {
+    border: 2px solid rgb(166 192 255);
+    margin-top: 20px;
+    margin-bottom: 80px;
+    padding: 20px; 
+    position: relative;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+}
+.club-card-content {
+    cursor: pointer;
+}
+
+/*  3등분  필터링 속성  */
+#club-board-information{
+    width: 25%;
+    /* background: rgb(218, 238, 245); */
+    border: 2px double rgb(166 192 255);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    background: #fff;
+    border-radius: 20px;
+    height: 500px;
+    margin: 100px 0px 0px 50px;
+}
+.three-option {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.three-option::-webkit-scrollbar {
+    display: none;
+}
+/*  3등분 안에 칸 */
+#club-board-reply {
+    width: 90%;
+    height: fit-content;
+    /* border: 2px solid #333333; */
+    margin: 20px auto;
+}
+/*  내게시글, 내동호회, 내가쓴 댓글 나열하기  */
+#club-board-reply .club-board-sort{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    /* margin-bottom: 10px; */
+    border-bottom: 2px solid rgb(156, 152, 152);
+}
+
+/*  내게시글, 내동호회, 내가쓴 댓글 속성  */
+#club-board-reply .club-board-sort div{
+    padding: 5px;
+    width: 33%;
+    border: 2px solid rgb(156, 152, 152);
+}
+
+.board-height {
+    padding: 15px;
+    border-bottom: 1px solid rgb(156, 152, 152);
+}
+
+/*  */
+.club-board-title {
+    /* line-height: 30px; */
+    padding: 16px;
+    border-bottom: 2px solid lightgray;
+    cursor: pointer;
+}
+
+/* 게시글 이미지 */
+.board-list-club-URL img {
+    width: 100%;
+}
+
+.joined-club-list {
+    padding: 16px;
+    border-bottom: 2px solid lightgray;
+}
+
+.club-board-write-btn {
+    float: right;
+}
+.club-leave-btn {
+    float: right;
+    margin-right: 10px;
+}
+
+.my-club-reply {
+    padding: 16px;
+    border-bottom: 2px solid lightgray;
+}
+.crep-mod-btn {
+    float: right;
+}
+.crep-del-btn {
+    float: right;
+    margin-right: 10px;
+}
+
+/* .sample {
+    width: 900px;
+    height: 700px;
+    border: 3px solid red;
+    position: absolute;
+    margin-left: 500px;
+} */
+
+
+.board-list-club-URL {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.board-list-club-URL img {
+    width: fit-content;
+    height: 100%;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.board-list-club-content {
+    padding: 10px;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

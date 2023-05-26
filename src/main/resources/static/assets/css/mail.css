@@ -1,0 +1,186 @@
+
+/*  메일 jsp css  */
+/*  메일 전체 틀  */
+.section-mail {
+    /* margin-top: 6%; */
+    position: relative;
+    display: block;
+    width: 100%;
+
+}
+/*  전체틀 안에 큰 라인  */
+.section-mail #mail-wrapper {
+    border: 1px solid rgba(198, 198, 199, 0.65);
+    width: 100%;
+    height: 90%;
+}
+
+/*  메일 정렬 태그 스타일  */
+.section-mail #mail-wrapper .mail-sort {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+/*  메일 정렬 태그 폰트  */
+.section-mail #mail-wrapper .mail-sort div{
+    /*border: 2px solid black;*/
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+.section-mail #mail-wrapper .mail-sort-info{
+    /*border: 2px solid black;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 1.1rem;
+    font-weight: 700;
+    width: 90%;
+    margin: 0 auto;
+}
+.section-mail #mail-wrapper .mail-sort-info .number{
+    text-align: center;
+    width: 5%;
+}
+
+.section-mail #mail-wrapper .mail-sort-info .email{
+    text-align: center;
+    width: 25%;
+}
+.section-mail #mail-wrapper .mail-sort-info .name{
+    text-align: center;
+    width: 10%;
+}
+.section-mail #mail-wrapper .mail-sort-info .role{
+    text-align: center;
+    width: 10%;
+}
+.section-mail #mail-wrapper .mail-sort-info .dept{
+    text-align: center;
+    width: 10%;
+}
+.section-mail #mail-wrapper .mail-sort-info .title{
+    text-align: center;
+    width: 25%;
+}
+.section-mail #mail-wrapper .mail-sort-info .status{
+    text-align: center;
+    width: 5%;
+}
+.section-mail #mail-wrapper .mail-sort-info .sendtime{
+    text-align: center;
+    width: 10%;
+}
+
+
+
+/*  메일 리스트를 뿌릴 박스  */
+.section-mail #mail-wrapper #mail-list-box {
+    width: 95%;
+    height: 80%;
+    margin: 40px auto;
+    overflow: scroll ;
+
+}
+.section-mail #mail-wrapper #mail-list-box .maillist{
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+.section-mail #mail-wrapper #mail-list-box .maillist .mail{
+    display: flex;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail{
+    cursor: pointer;
+    border: 1px solid ;
+    background: rgba(198, 198, 199, 0.15);
+    padding: 10px 0;
+    margin-top:10px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 메일 리스트 호버효과 */
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail:hover{
+    background-color: azure;
+}
+
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(1){
+    /* background: red; */
+    text-align: center;
+    width: 5%;
+}
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(2){
+    /* background: orange; */
+    text-align: center;
+    width: 25%;
+}
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(3){
+    /* background: yellow; */
+    text-align: center;
+    width: 10%;
+}
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(4){
+    /* background: green; */
+    text-align: center;
+    width: 10%;
+}
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(5){
+    /* background: blue; */
+    text-align: center;
+    width: 10%;
+}
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(6){
+    /* background: darkblue; */
+    text-align: center;
+    width: 25%;
+}
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(7){
+    /* background: purple; */
+    text-align: center;
+    width: 5%;
+}
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(8){
+    /* background: aqua; */
+    text-align: center;
+    width: 10%;
+}
+.section-mail #mail-wrapper #mail-list-box .maillist .mail .maildetail p:nth-child(9){
+    /* background: deeppink; */
+    display: none;
+}
+
+
+
+.section-mail #mail-wrapper #mail-list-box li .delete-button{
+    width: 50px;
+    height: 30px;
+    margin-left: 15px;
+    font-size: 0.3em;
+}
+
+
+/*  스크롤 바 숨기기 */
+.section-mail #mail-wrapper #mail-list-box::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.section-mail #mail-wrapper #mail-list-box li .delete-button{
+    width: 50px;
+    height: 30px;
+    margin-left: 15px;
+    font-size: 0.3em;
+}
+
+
+
+
+

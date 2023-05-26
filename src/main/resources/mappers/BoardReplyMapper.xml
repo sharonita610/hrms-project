@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.BoardReplyMapper">
+
+<!--    -->
+
+    <select id="findAll" resultType="boardReply">
+        SELECT
+        re.emp_no, re.rep_date,re.board_no, hd.dept_name,
+        hp.pos_name, re.rep_content,re.rep_no,em.emp_name
+        FROM hr_reply re
+        JOIN hr_employees em
+        ON re.emp_no=em.emp_no
+        JOIN hr_department hd
+        ON em.dept_code =hd.dept_code
+        JOIN hr_position hp
+        ON em.pos_code=hp.pos_code
+        WHERE re.board_no=#{boardNo}
+        ORDER BY 2
+        LIMIT #{page.pageLimitNum}, #{page.boardAmount}
+
+    </select>
+
+    <select id="findOne" resultType="boardReply">
+        SELECT
+        rep_no, rep_content, rep_date, board_no,emp_no
+        FROM
+        hr_reply
+        WHERE rep_no = #{repNo}
+
+    </select>
+
+    <insert id="save">
+        INSERT INTO hr_reply
+        (rep_content, board_no, emp_no)
+        VALUES
+        (#{repContent},#{boardNo},#{empNo})
+    </insert>
+
+    <select id="countReply" resultType="int">
+        SELECT count(*)
+        FROM hr_reply
+        WHERE board_no=#{boardNo}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM hr_reply
+        WHERE rep_no=#{repNo}
+        AND emp_no=#{empNo}
+    </delete>
+
+    <update id="modify">
+        UPDATE hr_reply
+        SET rep_content=#{repContent}
+        WHERE rep_no=#{repNo}
+        AND emp_No=#{empNo}
+    </update>
+
+
+
+</mapper>

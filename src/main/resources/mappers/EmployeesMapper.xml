@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.EmployeesMapper">
+
+    <select id="getEmployeesList" resultType="employees">
+        select from hr_employees
+        order by dept_code, pos_code
+    </select>
+
+    <select id="getDeptBoss" resultType="deptBossDto">
+        select e.emp_no, e.emp_name, d.dept_name, e.role_code
+        from hr_employees e, hr_department d
+        where e.DEPT_CODE = d.dept_code
+          and e.dept_code = #{deptCode}
+          and e.role_code = '11111';
+    </select>
+
+    <select id="getDetailedEmployee" resultType="employeeDetailResponseDTO">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
+        from hr_employees e
+        left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+        join hr_position hp on e.POS_CODE = hp.POS_CODE
+        join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+        where e.emp_no = #{empNo}
+    </select>
+
+    <select id="searchEmployeesByName" resultType="employeeDetailResponseDTO">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
+        from hr_employees e
+        left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+        join hr_position hp on e.POS_CODE = hp.POS_CODE
+        join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+        where e.emp_name like concat('%', #{empName}, '%');
+    </select>
+    
+    <select id="getDetailEmployeesList" resultType="employeeDetailResponseDTO">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
+        from hr_employees e
+                 left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+                 join hr_position hp on e.POS_CODE = hp.POS_CODE
+                 join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+        order by e.emp_no
+    </select>
+
+    <select id="getDetailEmployeesListByDept" resultType="employeeDetailResponseDTO">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
+        from hr_employees e
+                 left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+                 join hr_position hp on e.POS_CODE = hp.POS_CODE
+                 join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+        where e.dept_code = #{deptCode}
+        order by e.emp_no;
+    </select>
+
+    <select id="getDeptHeadList" resultType="employeeDetailResponseDTO">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
+        from hr_employees e
+                 left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+                 join hr_position hp on e.POS_CODE = hp.POS_CODE
+                 join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+        where e.role_code = '11111'
+        order by e.emp_no;
+    </select>
+
+    <select id="getMyBossNames" resultType="employees">
+        select emp_name, pos_code, emp_no from hr_employees
+        where dept_code = #{deptCode}
+    </select>
+
+    <select id="isDuplicated" resultType="boolean">
+        select count(*) from hr_employees
+        where emp_email = #{email}
+    </select>
+
+
+    <insert id="addEmployee">
+        insert into hr_employees
+        (emp_name, emp_birth_day, emp_hire_date, emp_email, emp_password, emp_gender, emp_salary, emp_phone, emp_my_boss, pos_code, role_code, dept_code, profile)
+        values (#{empName}, #{empBirthDay}, current_timestamp, #{empEmail}, #{empPassword}, #{empGender}, #{empSalary}, #{empPhone}, #{empMyBoss}, #{posCode}, #{roleCode}, #{deptCode}, #{profile})
+    </insert>
+
+    <update id="modifyEmployees">
+        update hr_employees set
+        emp_name = #{empName}, emp_birth_day = #{empBirthDay}, emp_email = #{empEmail}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}, profile = #{profile}
+        <if test = 'empPassword != ""'>
+            , emp_password = #{empPassword}
+        </if>
+        where emp_no = #{empNo}
+    </update>
+
+    <update id="modifyEmployeesWithNoProfile">
+        update hr_employees set
+        emp_name = #{empName}, emp_birth_day = #{empBirthDay}, emp_email = #{empEmail}, emp_salary = #{empSalary}, emp_phone = #{empPhone}, emp_my_boss = #{empMyBoss}, pos_code = #{posCode}, role_code = #{roleCode}, dept_code = #{deptCode}
+        <if test = 'empPassword != ""'>
+            , emp_password = #{empPassword}
+        </if>
+        where emp_no = #{empNo}
+    </update>
+
+    <delete id="removeEmployee">
+        delete from hr_employees where emp_no = #{empNo}
+    </delete>
+
+    <select id="findEmployee" resultType="employees">
+
+        select *
+        from hr_employees
+        where emp_email = #{empEmail}
+    </select>
+
+    <select id="checkEmployee" resultType="checkPassword">
+
+        select empPassword
+        from hr_employees
+        where emp_email = #{empEmail}
+    </select>
+
+
+
+    <select id="logedInDetail" resultType="employeeDetailResponseDTO">
+        select e.emp_no, e.emp_name, e.EMP_BIRTH_DAY, e.EMP_HIRE_DATE, e.EMP_EMAIL, e.EMP_PASSWORD, e.EMP_GENDER, e.EMP_SALARY, e.EMP_PHONE, q.emp_name as emp_boss_name, e.emp_my_boss, e.pos_code, POS_NAME, e.dept_code, dept_name, e.role_code, e.profile
+        from hr_employees e
+                 left join hr_employees q on (e.EMP_MY_BOSS = q.EMP_NO)
+                 join hr_position hp on e.POS_CODE = hp.POS_CODE
+                 join HR_DEPARTMENT d on e.DEPT_CODE = d.DEPT_CODE
+        where e.emp_email = #{empEmail}
+    </select>
+
+    <update id="updatePhoneNumber">
+        update hr_employees
+        set emp_phone = ${newPhone}
+        where emp_email = #{empEmail}
+    </update>
+
+    <select id="verificateEmp" resultType="employees">
+        SELECT emp_no, emp_name, emp_email, emp_birth_day, emp_salary
+        FROM hr_employees
+        WHERE emp_no = #{empNo}
+          AND emp_name = #{empName}
+          AND emp_email = #{empEmail}
+          AND emp_birth_day = #{empBirthDay}
+          AND emp_salary = #{empSalary};
+    </select>
+
+    <update id="saveAutoLogin">
+        UPDATE HR_EMPLOYEES
+        SET cookie_limit_time = #{cookieLimitTime}, emp_session= #{empSession}
+        WHERE EMP_EMAIL = #{empEmail}
+    </update>
+
+    <select id="checkSession" resultType="employees">
+        select emp_email, cookie_limit_time
+        from HR_EMPLOYEES
+        where emp_session = #{empSession}
+
+    </select>
+
+    <update id="updatePassword">
+        UPDATE HR_EMPLOYEES
+        SET EMP_PASSWORD = ${newPassword}
+        WHERE EMP_EMAIL =  #{empEmail}
+    </update>
+</mapper>

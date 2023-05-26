@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.MailMapper">
+    <!--메일 전송 요청-->
+    <insert id="sendRequest">
+        INSERT INTO hr_email
+        (mail_to,mail_from,mail_title,mail_content)
+        VALUES
+        (#{mailTo},#{mailFrom},#{mailTitle},#{mailContent})
+    </insert>
+
+<!--    접속한 사용자의 사원번호에맞는 메일만 나온다-->
+    <select id="getMailList" resultType="MailResponseDTO">
+        SELECT
+        E.MAIL_NO,
+        E.MAIL_TITLE,
+        P.EMP_NAME AS SENDER_NAME,
+        P.EMP_EMAIL AS SENDER_EMAIL,
+        HP.POS_NAME AS SENDER_POSITION,
+        HD.DEPT_NAME AS SENDER_DEPARTMENT,
+        E.MAIL_STATUS,
+        E.MAIL_DATE
+        FROM HR_EMAIL E
+        JOIN HR_EMPLOYEES P ON E.MAIL_FROM = P.EMP_NO
+        JOIN HR_POSITION HP ON P.POS_CODE = HP.POS_CODE
+        JOIN HR_DEPARTMENT HD ON P.DEPT_CODE = HD.DEPT_CODE
+        WHERE
+        <if test="s.mailType == 'mailto'">
+            E.MAIL_TO = #{empNo}
+        </if>
+        <if test="s.mailType == 'mailfrom'">
+            E.MAIL_FROM = #{empNo}
+        </if>
+        ORDER BY
+        E.mail_no DESC
+        LIMIT #{s.pageLimitNum}, #{s.mailAmount}
+    </select>
+<!--접속한 사용자의 번호에맞는 상태값에 따라 메일리스트가 나온다-->
+    <select id="getMailListByStatus" resultType="MailResponseDTO">
+        SELECT
+        E.MAIL_NO,
+        E.MAIL_TITLE,
+        P.EMP_NAME AS SENDER_NAME,
+        P.EMP_EMAIL AS SENDER_EMAIL,
+        HP.POS_NAME AS SENDER_POSITION,
+        HD.DEPT_NAME AS SENDER_DEPARTMENT,
+        E.MAIL_STATUS,
+        E.MAIL_DATE
+        FROM HR_EMAIL E
+        JOIN HR_EMPLOYEES P ON E.MAIL_FROM = P.EMP_NO
+        JOIN HR_POSITION HP ON P.POS_CODE = HP.POS_CODE
+        JOIN HR_DEPARTMENT HD ON P.DEPT_CODE = HD.DEPT_CODE
+        <choose>
+            <when test="status.desc == 'YES'">
+                WHERE E.mail_to = #{empNo} AND E.mail_status = 'Y'
+            </when>
+            <when test="status.desc == 'NO'">
+                WHERE E.mail_to = #{empNo} AND E.mail_status = 'N'
+            </when>
+        </choose>
+        ORDER BY E.mail_no DESC
+        LIMIT #{s.pageLimitNum}, #{s.mailAmount}
+    </select>
+
+    <!--메일번호에 맞는 메일의 객체정보전체가 나온다    -->
+    <select id="getMailDetail" resultType="MailDetailResponseDTO">
+        SELECT
+        he1.EMP_NO AS senderEmpNo,
+        he1.EMP_EMAIL AS senderEmail,
+        he2.EMP_NO AS receiverEmpNo,
+        he2.EMP_EMAIL AS receiverEmail,
+        he2.EMP_NAME AS receiverName,
+        hp.pos_name,
+        hd.DEPT_Name AS receiverDeptName,
+        he.MAIL_TITLE AS mailTitle,
+        he.MAIL_CONTENT AS mailContent,
+        he.MAIL_DATE AS mailDate
+<!--        he.mail_status-->
+        FROM
+        HR_EMAIL he
+        JOIN
+        HR_EMPLOYEES he1 ON he1.EMP_NO = he.MAIL_FROM
+        JOIN
+        HR_EMPLOYEES he2 ON he2.EMP_NO = he.MAIL_TO
+        JOIN
+        hr_department hd ON hd.DEPT_CODE = he2.DEPT_CODE
+        JOIN
+        hr_position hp ON hp.POS_CODE = he2.POS_CODE
+        WHERE he.mail_no = #{mailNo}
+    </select>
+
+
+    <update id="mailViewUpdate">
+        UPDATE hr_email
+        SET mail_status = 'Y'
+        WHERE mail_no = #{mailNo};
+    </update>
+
+    <delete id="deleteMailByNum">
+        DELETE FROM hr_email
+        WHERE mail_no = #{mailNo}
+    </delete>
+
+    <select id="getMailPageCount" resultType="int">
+        SELECT COUNT(*)
+        FROM hr_email
+        <choose>
+            <when test="s.mailType == 'mailto'">
+                WHERE mail_to = #{empNo}
+            </when>
+            <when test="s.mailType == 'mailfrom'">
+                WHERE mail_from = #{empNo}
+            </when>
+        </choose>
+    </select>
+
+    <select id="getMailPageCountByStatus" resultType="int">
+        SELECT COUNT(*)
+        FROM hr_email
+        <choose>
+            <when test="s.desc == 'YES'">
+                WHERE mail_to = #{empNo} AND MAIL_STATUS = 'Y'
+            </when>
+            <when test="s.desc  == 'NO'">
+                WHERE mail_to = #{empNo} AND MAIL_STATUS = 'N'
+            </when>
+        </choose>
+    </select>
+
+</mapper>

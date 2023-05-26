@@ -1,0 +1,117 @@
+/*  고정 헤더 왼쪽 배너 css  */
+
+/*==== HEADER BEGIN ===== */
+header{
+    top: 0;
+    right: 0;
+    left: 0;
+
+}
+
+/* 기본 설정 */
+.common_wrap {
+    width: 100%;
+    position: sticky;
+    height: 90px;
+    z-index: 300;
+
+
+}
+
+/*  헤더 최상단 파트 시작  */
+
+.section-header {
+    margin-bottom: 10px;
+    background: #ffffff;
+    font-weight: 700;
+    color: #333333;
+    font-size: 0.8rem;
+
+}
+.section-header .head {
+    height: 100%;
+}
+
+/*  로고 이미지 속성  */
+.section-header .head .logo-img {
+    margin-top: 17px;
+    margin-left: 5px ;
+    width: 120px;
+    height: 60px;
+    position: absolute;
+
+}
+.section-header .head .logo-img img{
+    width: 100%;
+    height: 100%;
+}
+
+/*  최상단 로고, 환영, 로그아웃 나열  */
+.section-header .head ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+
+}
+.welcome-title{
+    margin-left: 280px !important;
+}
+
+#logout-button{
+    margin-right: 100px;
+}
+
+/*  헤더 최상단 파트 끝  */
+
+/*  선택 탭 시작  */
+.section-sub-header {
+    width: 100%;
+    box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
+    15px 15px 15px rgba(0,0,0,0.1);
+    align-items: center;
+    /*background: #0052cc;*/
+    background: #082F69;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+
+.section-sub-header .nav-bar {
+    width: 100%;
+
+}
+
+/* 탭 나열 */
+.section-sub-header .nav-bar ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+
+}
+
+/* 탭 속성 */
+.section-sub-header .nav-bar ul li {
+    width: 100%;
+    padding: 0px 15px;
+    font-size: 1.0em;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+/*.section-sub-header .nav-bar #tabs*/
+/*.section-sub-header .nav-bar #tabs li:hover {*/
+/*    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,*/
+/*    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;*/
+/*    transition: border-color 0.1s, color 0.1s;*/
+/*}*/
+
+.section-sub-header .nav-bar #tabs li#home:hover{
+    box-shadow: none;
+}
+/*  선택 탭 끝  */
+
+/*==== HEADER END ===== */
+

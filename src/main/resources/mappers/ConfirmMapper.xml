@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.ConfirmMapper">
+
+    <insert id="requestConfirm">
+        insert into hr_confirm (con_title, con_content, from_emp_no, to_emp_no)
+        values (#{conTitle}, #{conContent}, #{fromEmpNo}, #{toEmpNo})
+    </insert>
+
+    <select id="findOne" resultType="getConfirmListDto">
+        select c.con_no, c.con_title, c.con_content, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
+        from hr_confirm c, hr_employees e, hr_department d
+        where c.from_emp_no = e.emp_no
+          and e.DEPT_CODE = d.DEPT_CODE
+          and con_no = #{conNo}
+    </select>
+
+    <select id="searchConfirm" resultType="getConfirmListDto">
+        <choose>
+            <when test="roleCode eq '11111'">
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.from_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and to_emp_no = #{empNo}
+                and c.con_title like concat('%',#{conTitle},'%')
+            </when>
+            <otherwise>
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.to_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and from_emp_no = #{empNo}
+                and c.con_title like concat('%',#{conTitle},'%')
+            </otherwise>
+        </choose>
+        order by con_date desc
+    </select>
+
+    <select id="getConfirmList" resultType="getConfirmListDto">
+        <choose>
+            <when test="roleCode eq '11111'">
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.from_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and to_emp_no = #{empNo}
+            </when>
+            <otherwise>
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.to_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and from_emp_no = #{empNo}
+            </otherwise>
+        </choose>
+        order by con_date desc
+    </select>
+
+    <select id="getWaitingList" resultType="getConfirmListDto">
+        <choose>
+            <when test="roleCode eq '11111'">
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.from_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and con_status = 'N'
+                and to_emp_no = #{empNo}
+            </when>
+            <otherwise>
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.to_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and con_status = 'N'
+                and from_emp_no = #{empNo}
+            </otherwise>
+        </choose>
+        order by con_date desc
+    </select>
+
+    <select id="getCheckedList" resultType="getConfirmListDto">
+        <choose>
+            <when test="roleCode eq '11111'">
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.from_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and con_status = 'Y'
+                and to_emp_no = #{empNo}
+            </when>
+            <otherwise>
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.to_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and con_status = 'Y'
+                and from_emp_no = #{empNo}
+            </otherwise>
+        </choose>
+        order by con_check_date desc
+    </select>
+
+    <select id="getRejectedList" resultType="getConfirmListDto">
+        <choose>
+            <when test="roleCode eq '11111'">
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.from_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and con_status = 'Z'
+                and to_emp_no = #{empNo}
+            </when>
+            <otherwise>
+                select c.con_no, c.con_title, e.emp_name as fromName, d.dept_name as fromDept, c.con_date, c.con_status, c.con_check_date
+                from hr_confirm c, hr_employees e, hr_department d
+                where c.to_emp_no = e.emp_no
+                and e.DEPT_CODE = d.DEPT_CODE
+                and con_status = 'Z'
+                and from_emp_no = #{empNo}
+            </otherwise>
+        </choose>
+        order by con_check_date desc
+    </select>
+
+    <update id="checkConfirm">
+        update hr_confirm
+        set con_status = 'Y', con_check_date = current_timestamp
+        where con_no = #{conNo};
+    </update>
+
+    <update id="rejectConfirm">
+        update hr_confirm
+        set con_status = 'Z', con_check_date = current_timestamp
+        where con_no = #{conNo};
+    </update>
+
+    <update id="modifyConfirm">
+        update hr_confirm
+        set con_title = #{conTitle}, con_content = #{conContent} where con_no = #{conNo}
+    </update>
+
+    <delete id="deleteConfirm">
+        delete from hr_confirm
+        where con_no = #{conNo}
+    </delete>
+</mapper>

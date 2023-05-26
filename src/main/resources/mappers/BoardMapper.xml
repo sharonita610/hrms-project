@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.BoardMapper">
+
+
+    <select id="boardFindAll" resultType="board">
+        SELECT
+        b.board_no, b.bd_type, b.bd_title, b.bd_content,
+        b.bd_date, b.emp_no, b.view_count, e.emp_name, count(r.rep_no) AS repNo,b.important
+<!--        hd.dept_name, hp.pos_name,hr.role_name,e.emp_email,e.emp_phone-->
+        FROM hr_board b
+        LEFT JOIN hr_reply r ON b.board_no = r.board_no
+        LEFT JOIN hr_employees e ON e.emp_no = b.emp_no
+<!--        JOIN hr_department hd ON e.dept_code =hd.dept_code-->
+<!--        JOIN hr_position hp ON e.pos_code=hp.pos_code-->
+<!--        JOIN hr_role hr ON hr.role_code =e.role_code-->
+        <if test="boardType == 'title'">
+            WHERE b.bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType == 'boardContent'">
+            WHERE b.bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType=='empName'">
+            WHERE e.EMP_NAME LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType=='titleAndContent'">
+            WHERE b.bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
+            OR b.bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        GROUP BY b.board_no
+        ORDER BY 10 desc ,1 desc
+        Limit #{pageLimitNum},#{boardAmount}
+    </select>
+
+    <select id="boardFindOneByEno" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no
+        FROM hr_board
+        WHERE emp_no=#{empNo}
+    </select>
+
+    <select id="boardFindOneByBoardNo" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content, important,
+        bd_date, emp_no
+        FROM hr_board
+        WHERE board_no=#{boardNo}
+    </select>
+
+    <select id="boardDetail" resultType="board">
+        SELECT
+        board_no, bd_type, bd_title, bd_content,
+        bd_date, emp_no,important
+        FROM hr_board
+        WHERE board_no=#{boardNo}
+    </select>
+
+    <insert id="boardSave">
+        INSERT INTO hr_board
+        (bd_type, bd_title, bd_content, emp_no, important)
+        VALUES
+        (#{bdType},#{bdTitle},#{bdContent},#{empNo},#{important})
+    </insert>
+
+    <delete id="boardDelete">
+        DELETE FROM hr_board
+        WHERE board_no=#{boardNo}
+    </delete>
+
+    <update id="boardModify">
+        UPDATE hr_board
+        SET bd_type=#{bdType}, bd_title=#{bdTitle}, bd_content=#{bdContent}, important=#{important}
+        WHERE board_no=#{boardNo}
+
+    </update>
+
+    <select id="countBoardPage" resultType="int">
+        SELECT COUNT(*)
+        FROM hr_board
+        <if test="boardType=='title'">
+            WHERE bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType=='boardContent'">
+            WHERE bd_content LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType=='empName'">
+            JOIN hr_employees ON hr_board.EMP_NO = hr_employees.EMP_NO
+            WHERE hr_employees.EMP_NAME LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <if test="boardType=='titleAndContent'">
+            WHERE bd_title LIKE CONCAT('%', #{boardKeyWord}, '%')
+            OR bd_Content LIKE CONCAT('%', #{boardKeyWord}, '%')
+        </if>
+        <!--SELECT COUNT(*) AS emp_count
+FROM hr_board
+JOIN hr_employees ON hr_board.EMP_NO = hr_employees.EMP_NO
+WHERE hr_employees.EMP_NAME = 'JACKSON300'-->
+    </select>
+
+    <update id="countUp">
+        UPDATE hr_board
+        SET view_count=view_count+1
+        WHERE board_no=#{boardNo}
+    </update>
+
+    <select id="showAllMainBoard" resultType="board">
+        SELECT
+        b.board_no, b.bd_type, b.bd_title,
+        b.bd_date, b.emp_no, e.emp_name, count(r.rep_no) AS repNo, b.important
+        FROM hr_board b
+        LEFT JOIN hr_reply r ON b.board_no = r.board_no
+        LEFT JOIN hr_employees e ON e.emp_no = b.emp_no
+        GROUP BY b.board_no
+        ORDER BY 8 DESC,1 DESC
+        Limit #{pageLimitNum},#{boardAmount}
+    </select>
+    <select id="countMainBoard" resultType="int">
+        select count(*) from hr_board
+    </select>
+
+
+</mapper>

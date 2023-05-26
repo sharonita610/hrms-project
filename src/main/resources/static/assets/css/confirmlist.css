@@ -1,0 +1,202 @@
+*{
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: normal;
+    box-sizing: border-box;
+    /*color: #000;*/
+}
+.forscroll {
+    width: 100%;
+    /*overflow-y: scroll;*/
+}
+
+/*.forscroll::-webkit-scrollbar {*/
+/*    display: none;*/
+/*}*/
+
+.confirm-page-wrapper {
+    width: 990px;
+    margin: 0 auto;
+}
+
+.confirm-page-wrapper .confirm-titleline {
+    display: flex;
+    margin-bottom: 15px;
+    height: 40px;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid #000; */
+}
+
+.confirm-page-wrapper .confirm-titleline .confirm-menu-tab{
+    cursor: pointer;
+}
+
+.confirm-page-wrapper h1 {
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    width: fit-content;
+    margin: 0;
+    margin-right: 15px;
+}
+
+.confirm-page-wrapper .rq-confirm {
+    display: block;
+    border: 1px solid gray;
+    background: #e6e6e6;
+    padding: 5px;
+}
+
+.confirm-page-wrapper .confirm-outer-container h2 {
+    margin: 0;
+    font-size: 15px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    width: fit-content;
+}
+
+.confirm-page-wrapper .confirm-outer-container .confirm-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirm-page-wrapper .confirm-outer-container .search {
+    display: flex;
+    margin-top: 17px;
+}
+
+.confirm-page-wrapper .confirm-outer-container .search h3 {
+    font-size: 15px;
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
+.confirm-page-wrapper .confirm-outer-container .search input {
+    height: 20px;
+    border: none;
+    background: #d0e3ed;
+    outline: none;
+}
+
+.confirm-box {
+    width: 990px;
+    border: 1px solid #000;
+    height: 200px;
+    overflow-y: scroll;
+    margin: 0;
+    font-size: 17px;
+
+}
+
+.confirm-box::-webkit-scrollbar {
+    display: none;
+}
+
+.confirm-box .confirm-table {
+    position: relative;
+}
+
+.confirm-box .confirm-table li {
+    margin: 0;
+}
+
+.confirm-box .confirm-table .confirm-tr {
+    display: flex;
+    text-align: center;
+    border: none;
+}
+
+.confirm-box .confirm-table .header-bar {
+    position: fixed;
+    width: 988px;
+    z-index: 9999;
+    border-bottom: 1px solid gray;
+}
+
+.confirm-box .confirm-table .title-line {
+    background: #e6e6e6;
+    height: 30px;
+}
+
+.inner-list-container {
+    transform: translateY(30px);
+    width: 990px;
+}
+
+.confirm-box .confirm-table li {
+    text-align: center;
+    border: none;
+    padding: 5px;
+}
+
+.confirm-box .confirm-table .col1 {
+    margin: 0;
+    width: 40px;
+}
+
+.confirm-box .confirm-table .col2 {
+    width: 300px;
+    text-align: left;
+}
+
+.confirm-box .confirm-table .col3 {
+    width: 100px;
+}
+
+.confirm-box .confirm-table .col4 {
+    width: 130px;
+}
+
+.confirm-box .confirm-table .col5 {
+    width: 160px;
+}
+
+.confirm-box .confirm-table .col6 {
+    width: 100px;
+}
+
+.confirm-box .confirm-table .button {
+    height: 15px;
+    width: 15px;
+    margin: 0 auto;
+    margin-top: 2px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.confirm-box #waiting-table .col7 {
+    width: 80px;
+}
+
+.confirm-box #confirmed-table .col7 {
+    width: 160px;
+}
+
+.confirm-box #rejected-table .col7 {
+    width: 160px;
+}
+
+.confirm-box #waiting-table .col6 {
+    color: dodgerblue;
+}
+
+.confirm-box #waiting-table .title-line.col6 {
+    color: black;
+}
+
+.confirm-box #confirmed-table .col6 {
+    color: green;
+}
+
+.confirm-box #confirmed-table .title-line.col6 {
+    color: black;
+}
+
+.confirm-box #rejected-table .col6 {
+    color: red;
+}
+
+.confirm-box #rejected-table .title-line.col6 {
+    color: black;
+}

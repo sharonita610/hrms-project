@@ -1,0 +1,331 @@
+
+/* 내가 작성한 게시글 클릭시 뜨는 모달 */
+.my-modal {
+    display: none;
+}
+/* 모달창 배경 */
+.modal-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0,0, 0.5);
+    top:0;
+    left: 0;
+    z-index: 400;
+    display : none;
+}
+/* 게시글 컨텐츠 클릭시 뜨는 모달 */
+.club-modal-wrapper.show-modal {
+    display: block;
+}
+.modal-background.show-modal {
+    display: block;
+}
+
+/* 모달 전체 속성*/
+.club-modal-wrapper {
+    width: 900px;
+    height: 700px;
+    margin-left: 550px !important;
+    position: absolute !important;
+    z-index: 600; 
+    display: none;
+}
+
+.club-modal-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* 수정버튼 삭제버튼 */
+#update-club-btn {
+    margin-right: 10px;
+}
+#delete-club-btn {
+    margin-right: 20px;
+}
+
+/* 모달 컨텐츠, 댓글란 쪼개기*/
+.club-modal-separator {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); */
+}
+/* 게시글 상세보기 시 이미지란 */
+.post-img {
+    width: 500px;
+    height: 350px;
+    margin: 10px auto;
+    background: rgb(204, 204, 204);
+}
+
+/* 게시글 상세보기 시 댓글란 */
+.post-text {
+    width: 500px;    
+    height: 250px;
+    background: rgb(172, 172, 172);
+    margin: 10px auto;
+    padding: 15px;
+}
+
+/*  쪼갠 모달 컨텐츠 비율 조정, 스크롤 기능*/
+.club-modal-content-container {
+    background: #fff;
+    width: 60%;
+    overflow-y: scroll;
+    border-radius: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6)
+}
+
+.club-modal-replies-container {
+    width: 40%;
+    background: rgb(238, 238, 238);
+    overflow-y: scroll;
+    border-radius: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6)
+}
+
+.club-modal-content-container::-webkit-scrollbar,
+.club-modal-replies-container::-webkit-scrollbar {
+    display: none;
+}
+
+/*  사진과 글씨/ 댓글란 높이 일단 줌  $ 스크롤 테스트용 */
+.contents-wrapper,
+.replies-wrapper {
+    margin-bottom: 5px;
+    height: fit-content;
+}
+
+/*  컨텐츠들 인포메이션쪽  속성 START */
+.club-modal-informations {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid #eeeeee;
+    width: 100%;
+    margin: 0 auto;
+    height: 60px;
+    align-items: center;
+}
+/*  동호회 프로필 사진용  */
+.club-modal-image{
+    margin: 0 10px ;
+}
+.club-modal-image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid #000;
+}
+.club-name {
+    margin-right: 10px;
+}
+.board-writer {
+    font-size: 16px;
+}
+.reply-info {
+    margin-bottom: 10px;
+    color: gray;
+}
+.reply-writer {
+    font-size: 15px;
+    margin-right: 10px;
+}
+.reply-time {
+    font-size: 14px;
+}
+.reply-content {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/*  사진, 글 목록 속성  */
+.club-modal-contents {
+    height: fit-content;
+    width: 100%;
+}
+
+#join-club-btn{
+    margin-left: 100px;
+}
+
+/*  컨텐츠들 인포메이션쪽 속성 FINISH */
+
+/*  댓글 속성  */
+.club-modal-replies-head {
+    /* height: 1000px; */
+    background: rgb(238, 238, 238);
+}
+
+.club-modal-add-reply {
+    padding: 20px 0; 
+    position: fixed;
+}
+
+
+/*  input 속성 댓글창 */
+.write-reply {
+    margin-left: 20px;
+    border-style: none;
+    border-bottom: 1px solid #333333;
+    width: 220px;
+    height: 30px;
+    font-size: 1rem;
+    border-radius: 1%;
+
+}
+
+.club-modal-reply-list {
+    width: 100%;
+    transform: translateY(70px);
+}
+/* 댓글 하나하나 뿌리는 속성  */
+.club-modal-reply-list-one{
+    border-bottom: 2px solid rgb(255, 255, 255);
+    margin:0px auto 10px;
+    padding: 5px;
+    width: 90%;
+}
+
+.noreply {
+    width: fit-content;
+    margin: 0 auto;
+    color: rgb(112 109 109);
+}
+
+#detail-join-btn {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+/* 새 게시글 작성 모달창 start ============================================================================================ */
+ /* 모달 전체 속성*/
+ .club-write-content-wrapper {
+    width: 540px;
+    height: 800px;
+    border: 2px solid #000000;
+    margin-left: 700px !important;
+    background: #fff;
+    /* z-index: 9990; */
+    /* display: none; */
+    /* position: absolute; */
+}
+
+/*  스크롤 기능*/
+.club-write-content-container {
+    overflow-y: scroll;
+}
+
+.club-write-content-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+/*  컨텐츠들 인포메이션쪽  속성 START */
+.club-modal-informations {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+    border-bottom: 2px solid #000000;
+}
+
+/*  동호회 프로필 사진용  */
+.club-modal-image {
+
+}
+
+.club-modal-image img {
+    width: 80px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/*  취소 버튼 위치 */
+#add-cancel-btn {
+    border-style: none;
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 25px;
+    margin-right: 25px;
+}
+
+/*  컨텐츠들 인포메이션쪽 속성 FINISH */
+
+/*  사진, 글 목록 속성  */
+.club-modal-contents {
+    height: fit-content;
+    width: 100%;
+}
+
+/*  게시글 제목 작성란  */
+#club-write-title {
+    margin: 30px 0;
+    width: 470px;
+    height: 40px;
+    font-size: 1.2rem;
+}
+
+/*  "문구"  위치 잡기 위한 속성*/
+#content-label span {
+    display: block;
+    float: left;
+    margin: 15px 0px 15px 40px;
+}
+
+/*  글씨쓰기 칸 속성  */
+#club-write-content {
+    margin-left: 40px;
+    margin-bottom: 20px;
+    width: 470px;
+    height: 300px;
+    font-size: 1.2rem;
+
+}
+
+
+/*  사진 업로드 쪽 */
+.club-content-image label {
+    font-weight: 600;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 170px;
+    margin-top: 20px;
+}
+
+.club-content-image .content-image-box {
+    width: 230px;
+    height: 230px;
+    margin: 0 auto;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.club-content-image .content-image-box img {
+    width: 180px;
+    height: 180px;
+    margin: 25px 30px;
+}
+
+/*  등록하기 버튼  */
+#add-content-btn {
+    border-style: none;
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 25px;
+    margin-left: 75%;
+
+}
+
+
+
+
+
+/* 새 게시글 작성 모달창 end ============================================================================================ */

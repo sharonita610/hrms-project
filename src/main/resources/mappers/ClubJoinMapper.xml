@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hrms.project4th.mvc.repository.ClubJoinMapper">
+
+    <insert id="clubJoin">
+        INSERT INTO HR_EMP_CLUB
+        (EMP_NO, CLUB_CODE)
+        VALUES
+        (#{empNo}, #{clubCode})
+    </insert>
+
+    <delete id="clubLeave">
+        DELETE FROM HR_EMP_CLUB
+        WHERE EMP_NO = #{empNo} AND CLUB_CODE = #{clubCode}
+    </delete>
+
+    <select id="joinedClubList" resultType="joinedClubListDTO">
+        select EC_INDEX, EMP_JOIN_DATE, E.EMP_NO, C.CLUB_CODE, CLUB_NAME
+        from HR_emp_club E
+        join HR_club C using (CLUB_CODE)
+        where E.EMP_NO = #{empNo};
+    </select>
+
+</mapper>
