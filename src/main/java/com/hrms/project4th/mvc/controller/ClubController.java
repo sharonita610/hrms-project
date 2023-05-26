@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,9 +30,8 @@ public class ClubController {
 
     private  final ClubBoardService clubBoardService;
     private final ClubJoinService clubJoinService;
-
     @Value("${clubFile.upload.root-path}")
-    private  String rootPath;
+    private  String clubRootPath;
 
     @GetMapping("/club-board-list")
     public String clubBoardList(Model model) {
@@ -125,8 +125,8 @@ public class ClubController {
     @PostMapping("/clubBoardSave")
     public String clubBoardSave(ClubBoardSaveRequestDTO dto) {
         log.info("newClubBoard !!!!! dto: {}", dto);
-        String savePath = FileUtil.uploadClubFile(dto.getEmpNo(), dto.getCbURL(), rootPath);
-        log.info(rootPath);
+        String savePath = FileUtil.uploadClubFile(dto.getEmpNo(), dto.getCbURL(), clubRootPath);
+        log.info(clubRootPath);
 
 
         boolean b = clubBoardService.clubBoardSave(dto, savePath);

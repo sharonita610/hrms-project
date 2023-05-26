@@ -41,4 +41,9 @@ public class ClubReplyController {
         return ResponseEntity.ok().body(b);
     }
 
+//    @DeleteMapping("/{clubRepNo}")
+//    public ResponseEntity<?> clubReplyDelete(@PathVariable Long clubRepNo) {
+//        clubReplyService.clubReplyDelete(clubRepNo);
+//    }
+
 }

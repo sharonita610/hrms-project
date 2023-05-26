@@ -69,8 +69,9 @@ public class FileUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return newClubPath + newClubFileName;
+        String fullPath = newClubPath + newClubFileName;
+        String responsePath = "/"+fullPath.substring(path.length());
+        return responsePath;
     }
 
     private static String makeDirectory(String path) {

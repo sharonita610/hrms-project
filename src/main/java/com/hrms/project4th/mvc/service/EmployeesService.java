@@ -96,7 +96,8 @@ public class EmployeesService {
 
     public boolean updatePassword(String empEmail, String newPassword){
 
-       return employeesMapper.updatePassword(empEmail, newPassword);
+//       return employeesMapper.updatePassword(empEmail, newPassword);
+        return true;
     }
 
 //    public CheckPassword checkCurrentPwd(String checkPwd, String empEmail) {

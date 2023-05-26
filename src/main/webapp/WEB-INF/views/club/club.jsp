@@ -142,7 +142,7 @@
                                     </ul>
                                 </div>
                                 <div class="club-card-content">
-                                    <div class="board-list-club-URL"><img src="${c.cbURL}" alt="게시글사진"></div>
+                                    <div class="board-list-club-URL"><img src="/hrms${c.cbURL}" alt="게시글사진"></div>
                                     <div class="board-list-club-content">${c.cbContent}</div>
                                 </div>
                             </section>
@@ -567,7 +567,7 @@
                     clubReplyList(selectedCbNo);
                 });
                 
-            }
+            } 
 
             // 새 게시글 작성하기 ==============================================
             else if(e.target.matches('.club-board-write-btn')) {
@@ -577,6 +577,31 @@
                 document.querySelector('.newClubBoard-clubName').textContent = e.target.previousElementSibling.textContent;
                 document.querySelector('#input-clubCode').value = e.target.parentElement.dataset.clubcode;
                 
+            }
+
+            // 댓글 삭제
+            else if(e.target.matches('.crep-del-btn')) {
+                $clubRepNo = e.target.parentElement.dataset.clubrepno;
+                $delCbNo = e.target.parentElement.dataset.cbno;
+
+                if (!confirm('정말 삭제합니까?')) return;
+
+                // console.log(rno);
+
+                // 서버에 삭제 비동기 요청
+                    fetch(URL + '/' + rno, {
+                        method: 'DELETE'
+                    }).then(res => {
+                        if (res.status === 200) {
+                            alert('댓글이 정상 삭제됨!');
+                            return res.json();
+                        } else {
+                            alert('댓글 삭제 실패!');
+                        }
+                    }).then(responseResult => {
+                        renderReplyList(responseResult);
+                    });
+
             }
             
         }
@@ -613,7 +638,7 @@
                 .then(res => {
                         if (res.status === 200) {
                             alert('댓글을 등록했습니다!');
-                            $clubReplyContent.value = '';
+                            $clubReplyContent = '';
                             clubReplyList($clubReplyCbNo);
                         } else {
                             alert('댓글 등록에 실패함!');

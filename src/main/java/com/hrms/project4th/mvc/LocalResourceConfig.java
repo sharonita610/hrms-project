@@ -13,11 +13,19 @@ public class LocalResourceConfig implements WebMvcConfigurer {
     @Value("${file.upload.root-path}")
     private String rootPath;
 
+    @Value("${clubFile.upload.root-path}")
+    private  String clubRootPath;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         registry.addResourceHandler("/hrms/**")
-                .addResourceLocations("file:/" + rootPath);
+                .addResourceLocations("file:/" + rootPath)
+                .addResourceLocations("file:/" + clubRootPath)
+        ;
+
 
     }
+
+
 }

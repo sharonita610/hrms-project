@@ -5,21 +5,21 @@
 <mapper namespace="com.hrms.project4th.mvc.repository.ClubJoinMapper">
 
     <insert id="clubJoin">
-        INSERT INTO TEST_EMP_CLUB
+        INSERT INTO HR_EMP_CLUB
         (EMP_NO, CLUB_CODE)
         VALUES
         (#{empNo}, #{clubCode})
     </insert>
 
     <delete id="clubLeave">
-        DELETE FROM TEST_EMP_CLUB
+        DELETE FROM HR_EMP_CLUB
         WHERE EMP_NO = #{empNo} AND CLUB_CODE = #{clubCode}
     </delete>
 
     <select id="joinedClubList" resultType="joinedClubListDTO">
         select EC_INDEX, EMP_JOIN_DATE, E.EMP_NO, C.CLUB_CODE, CLUB_NAME
-        from test_emp_club E
-        join test_club C using (CLUB_CODE)
+        from HR_emp_club E
+        join HR_club C using (CLUB_CODE)
         where E.EMP_NO = #{empNo};
     </select>
 
